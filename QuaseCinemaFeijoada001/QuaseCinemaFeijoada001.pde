@@ -483,32 +483,6 @@ public void draw() {
   }// end if layer4visibility
   
   
-   
-  
-  
-//  // render layer 1
-//  if (layer1visibility) {
-//    tint(255, alpha(colorPicker1.getColorValue()));
-//    image(glg1.getTexture(), 0, 0, width, height); 
-//  }
-//
-//  // render layer 2
-//  if (layer2visibility) {
-//    tint(255, alpha(colorPicker2.getColorValue()));
-//    image(glg2.getTexture(), 0, 0, width, height); 
-//  }
-//  
-//  // render layer 3
-//  if (layer3visibility) {
-//    tint(255, alpha(colorPicker3.getColorValue()));
-//    image(glg3.getTexture(), 0, 0, width, height); 
-//  }
-//  
-//  // render layer 4
-//  if (layer4visibility) {
-//    tint(255, alpha(colorPicker4.getColorValue()));
-//    image(glg4.getTexture(), 0, 0, width, height); 
-//  }
   
   // render fade
   if (fade > 0.0) {
