@@ -4,13 +4,16 @@
 // www.quasecinema.org
 //
 // built with Processing 2.0 alpha 2
-// 2011.11.11
+// 2011.11.12
+//
 
-import controlP5.*;
-import codeanticode.gsvideo.*;
+import controlP5.*; // controlP5 library
+import codeanticode.gsvideo.*; // GSvideo library
 
-import javax.media.opengl.GL;
-import processing.opengl.*;
+import javax.media.opengl.GL; // openGL library
+import processing.opengl.*; // openGL library
+
+import sojamo.drop.*; // sDrop library
 
 
 // controlP5
@@ -35,8 +38,6 @@ public GSMovie myMovie, myMovie2, myMovie3, myMovie4;
 String newMovie = "";
 boolean change1 = false; boolean change2 = false; boolean change3 = false; boolean change4 = false;
 
-
-import sojamo.drop.*;
 SDrop drop;
 
 // file filter
@@ -58,8 +59,8 @@ int columnWidth = int (interfaceWidth/4);
 
 float fade = 0.0;
 
-int changeResolution = 100;
-int outputWidth = 1024; int outputHeight = 768;
+public int changeResolution = 100;
+public int outputWidth = 1024; public int outputHeight = 768;
 
 boolean  layer1visibility = true;
 boolean  layer2visibility = false;
@@ -334,7 +335,6 @@ void setup() {
   
   myMovie = new GSMovie(this, "Aviao.mov");
   myMovie.loop();
-  //myMovie.setPixelDest(glg1);
   
   myMovie2 = new GSMovie(this, sketchPath("data/Palatnik1.mov"));
   myMovie2.loop();
@@ -444,6 +444,12 @@ public void draw() {
     tint(colorPicker1.getColorValue());
     myMovie.play();
     myMovie.speed(layer1speed);
+    
+    //myMovie.filter(INVERT);
+    //myMovie.filter(POSTERIZE,4);
+    //myMovie.filter(BLUR,2);
+    //myMovie.filter(DILATE);
+    
     image(myMovie, 0, 0, outputWidth, outputHeight); 
   } else {
      myMovie.pause();
@@ -490,66 +496,7 @@ public void draw() {
     rect(0,0,screenWidth,screenHeight);
   } 
   
-  // update resolution
-  switch (changeResolution) {
-    case 0:
-      outputWidth = 240; outputHeight = 180; frame.setSize(outputWidth,outputHeight);
-      changeResolution = 100;
-      break;
-    case 1:
-      outputWidth = 320; outputHeight = 240; frame.setSize(outputWidth,outputHeight);
-      changeResolution = 100;
-      break;
-    case 2:
-      outputWidth = 640; outputHeight = 480; frame.setSize(outputWidth,outputHeight);
-      changeResolution = 100;
-      break;
-    case 3:
-      outputWidth = 800; outputHeight = 600; frame.setSize(outputWidth,outputHeight);
-      changeResolution = 100;
-      break;
-    case 4:
-      outputWidth = 1024; outputHeight = 768; frame.setSize(outputWidth,outputHeight);
-      changeResolution = 100;
-      break;
-    case 5:
-      outputWidth = 1280; outputHeight = 720; frame.setSize(outputWidth,outputHeight);
-      changeResolution = 100;
-      break;
-    case 6:
-      outputWidth = 1920; outputHeight = 1080; frame.setSize(outputWidth,outputHeight);
-      changeResolution = 100;
-      break;
-    case 7:
-      outputWidth = 1920; outputHeight = 1080; frame.setSize(outputWidth,outputHeight);
-      changeResolution = 100;
-      break;
-    case 8:
-      outputWidth = 1280; outputHeight = 480; frame.setSize(outputWidth,outputHeight);
-      changeResolution = 100;
-      break;
-    case 9:
-      outputWidth = 1600; outputHeight = 600; frame.setSize(outputWidth,outputHeight);
-      changeResolution = 100;
-      break;
-    case 10:
-      outputWidth = 2048; outputHeight = 768; frame.setSize(outputWidth,outputHeight);
-      changeResolution = 100;
-      break;
-    case 11:
-      outputWidth = 1920; outputHeight = 480; frame.setSize(outputWidth,outputHeight);
-      changeResolution = 100;
-      break;
-    case 12:
-      outputWidth = 2400; outputHeight = 600; frame.setSize(outputWidth,outputHeight);
-      changeResolution = 100;
-      break;
-    case 13:
-      outputWidth = 3072; outputHeight = 768; frame.setSize(outputWidth,outputHeight);
-      changeResolution = 100;
-      break;
-    default: break;
-  } // end switch
+  if (changeResolution != 100) { QCchangeResolution(); }
   
 } // end draw
 
