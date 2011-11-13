@@ -31,33 +31,33 @@ public int fpsValue = 0;
 public GSMovie myMovie1, myMovie2, myMovie3, myMovie4;
 
 // directory
-//public String[] fileNames;
-//public String folderPath = " ";
-//ListBox dirListBox;
+public String[] fileNames;
+public String folderPath = " ";
+ListBox dirListBox;
 
 String newMovie = "";
-boolean change1 = false; boolean change2 = false; boolean change3 = false; boolean change4 = false;
+public boolean change1 = false; boolean change2 = false; boolean change3 = false; boolean change4 = false;
 
 SDrop drop;
 
 // file filter
-//java.io.FilenameFilter txtFilter = new java.io.FilenameFilter() {
-//  boolean accept(File dir, String name) {
-//    return name.toLowerCase().endsWith(".mov")
-//    || name.toLowerCase().endsWith(".avi")
-//    || name.toLowerCase().endsWith(".mp4")
-//    || name.toLowerCase().endsWith(".ogg")
-//    || name.toLowerCase().endsWith(".mpg");
-//  }
-//};
+java.io.FilenameFilter txtFilter = new java.io.FilenameFilter() {
+  boolean accept(File dir, String name) {
+    return name.toLowerCase().endsWith(".mov")
+    || name.toLowerCase().endsWith(".avi")
+    || name.toLowerCase().endsWith(".mp4")
+    || name.toLowerCase().endsWith(".ogg")
+    || name.toLowerCase().endsWith(".mpg");
+  }
+};
 
-//  quad mapping
+//  quad mapping pre setup
 String configFile = "data/quadsconfig.txt";
 ProjectedQuads projectedQuads;
 PImage    quadImage;  
 PGraphics quadGraphics;
 
-// variables
+// variables pre setup
 public int selectedLayer = 0;
 //int myColorBackground = color(0,0,0);
 int interfaceWidth = 1024;
@@ -73,6 +73,11 @@ boolean  layer1visibility = true;
 boolean  layer2visibility = false;
 boolean  layer3visibility = false;
 boolean  layer4visibility = false;
+
+boolean mapping1 = false;
+boolean mapping2 = false;
+boolean mapping3 = false;
+boolean mapping4 = false;
 
 int layer1bpmVis, layer2bpmVis, layer3bpmVis, layer4bpmVis;
 
@@ -101,14 +106,22 @@ public void init(){
 // --------------------------------------------------------------------------------------------------------------
 
 //
-// interface canvas
+// interface canvas screen
 //
 
 class MyCanvas extends ControlWindowCanvas {
+  
   public void draw(PApplet theApplet) {
-    theApplet.fill(128);
     
+    
+    // layer base
+    theApplet.fill(40);
+    theApplet.rect(0+(columnWidth*selectedLayer),20,columnWidth,700,3);
+    
+    
+    // layer icons
     if (frameCount > 1) {
+      theApplet.fill(128);
       theApplet.rect(8,22,164,124);
       theApplet.image(myMovie1, 10, 24, 160, 120);
       theApplet.rect(8+(columnWidth*1),22,164,124);
@@ -156,34 +169,51 @@ class MyCanvas extends ControlWindowCanvas {
 
 
 void setup() {
-  size(outputWidth,outputHeight, OPENGL);
+  size(outputWidth, outputHeight, OPENGL);
   //hint(ENABLE_OPENGL_4X_SMOOTH);
   frame.setResizable(true);
   frameRate(60);
   //frame.setLocation(screen.width,0);
-  frame.setLocation(1024,0);
   //frame.setLocation(1024,0);
+  frame.setLocation(1440,0);
   
   // variables setup
   QCsetupInterface();
   
+  //
   // GStreamer setup
+  //
   
   GSVideo.localGStreamerPath = "/Users/rangel/Documents/processing/libraries/GSVideo/library/gstreamer/macosx32";
   
-  myMovie1 = new GSMovie(this, sketchPath("data/Aviao.mov"));
-  myMovie1.loop();
+  myMovie1 = new GSMovie(this, "Aviao.mov"); myMovie1.loop();
   
-  myMovie2 = new GSMovie(this, sketchPath("data/Palatnik1.mov"));
-  myMovie2.loop();
+  myMovie2 = new GSMovie(this, sketchPath("data/Palatnik1.mov")); myMovie2.loop();
   
-  myMovie3 = new GSMovie(this, sketchPath("data/Palatnik2.mov"));
-  myMovie3.loop();
+  myMovie3 = new GSMovie(this, sketchPath("data/Palatnik2.mov")); myMovie3.loop();
   
-  myMovie4 = new GSMovie(this, sketchPath("data/Palatnik3.mov"));
-  myMovie4.loop();
+  myMovie4 = new GSMovie(this, sketchPath("data/Palatnik3.mov")); myMovie4.loop();
   
+  //
+  // projectedQuads setup
+  //
+  
+  projectedQuads = new ProjectedQuads();  
+  projectedQuads.load(configFile);  
+  
+  //we want to display 3 quads so if there was no config file or less than 3 were defined we increase num to 3
+  if (projectedQuads.getNumQuads() < 3) { projectedQuads.setNumQuads(3); }
+  
+  quadGraphics = createGraphics(640, 480, OPENGL);
+  projectedQuads.getQuad(0).setTexture(quadGraphics); 
+  projectedQuads.getQuad(1).setTexture(quadGraphics);
+  projectedQuads.getQuad(2).setTexture(quadGraphics); 
+  projectedQuads.getQuad(1).setTexture(quadGraphics); 
+  
+  // drop setup
   drop = new SDrop(controlWindow.component(),this);
+  
+  
   
 } // end setup
 
@@ -202,8 +232,6 @@ public void movieEvent(GSMovie gsMovie) {
 // --------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------
-
-// update resolution
 
 void controlEvent(ControlEvent theEvent) {
   // ListBox is if type ControlGroup.
@@ -227,35 +255,18 @@ void controlEvent(ControlEvent theEvent) {
 
 public void draw() {
   
-  // update
+  background(0);
   
-  // dirs
+  //
+  // drop
+  //
   
   if (change1 == true && selectedLayer == 0) {
    myMovie1 = new GSMovie(this, newMovie);
-   //myMovie1.read();
    myMovie1.play();
    myMovie1.loop();
    change1 = false; 
   }
-
-
-//  if (change1 == true && selectedLayer == 1) {
-//   myMovie2 = new GSMovie(this, newMovie); myMovie2.read(); myMovie2.loop();
-//   change1 = false; 
-//  }
-//  if (change1 == true && selectedLayer == 2) {
-//   myMovie3 = new GSMovie(this, newMovie); myMovie3.read(); myMovie3.loop();
-//   change1 = false; 
-//  }
-//  if (change1 == true && selectedLayer == 3) {
-//   myMovie4 = new GSMovie(this, newMovie); myMovie4.read(); myMovie4.loop();
-//   change1 = false; 
-//  }
-  
-  
-  
-  background(0);
   
   
   //
@@ -285,10 +296,20 @@ public void draw() {
     tint(colorPicker1.getColorValue());
     myMovie1.play();
     myMovie1.speed(layer1speed);
-    image(myMovie1, 0, 0, outputWidth, outputHeight); 
+    if (mapping1) {
+      // mapping
+      quadGraphics.beginDraw();
+      image(myMovie1, 0, 0, 640, 480); 
+      quadGraphics.endDraw();
+    } else {
+      // no mapping
+      image(myMovie1, 0, 0, outputWidth, outputHeight); 
+    } // end if mapping
   } else {
      myMovie1.pause();
   }// end if layer1visibility
+  
+  projectedQuads.draw();
   
  
  
@@ -347,11 +368,17 @@ public void draw() {
 //int mY;
 
 void mousePressed(){
+  
+  projectedQuads.mousePressed();
+  
   //mX = mouseX;
   //mY = mouseY;
 }
 
 void mouseDragged(){
+  
+  projectedQuads.mouseDragged();
+  
   //frame.setLocation(MouseInfo.getPointerInfo().getLocation().x-mX, MouseInfo.getPointerInfo().getLocation().y-mY);
 }
 
@@ -361,6 +388,8 @@ void mouseDragged(){
 
 void keyPressed(){
  
+  projectedQuads.keyPressed();
+  
   switch(key) {
      case '1':
        selectedLayer = 0; break; 
@@ -372,27 +401,27 @@ void keyPressed(){
        selectedLayer = 3; break;
      
   case 'd': 
-//    String folderPath = selectFolder();
-//    if (folderPath == null) {
-//      println("No folder was selected..."); // if no folder was selected
-//    } 
-//    else {
-//      println(folderPath);
-//      fileNames = listFileNames(folderPath, txtFilter);
-//      println(fileNames);
-//      //for(int i=0;i<fileNames.length;i++) { 
-//        //
-//      //}
-//      //dirListBox.addItem(fileNames[0],0);
-//    }
+    String folderPath = selectFolder();
+    if (folderPath == null) {
+      println("No folder was selected..."); // if no folder was selected
+    } 
+    else {
+      println(folderPath);
+      fileNames = listFileNames(folderPath, txtFilter);
+      println(fileNames);
+      //for(int i=0;i<fileNames.length;i++) { 
+        //
+      //}
+      //dirListBox.addItem(fileNames[0],0);
+    }
 break; // break 'd'
     
   case 'u':
-    //myMovie2.stop(); myMovie2.delete();
+    //myMovie.stop(); myMovie2.delete();
     myMovie1 = new GSMovie(this, "Palatnik2.mov");
-    myMovie1.read(); myMovie1.play();
+    //myMovie1.read(); myMovie1.play();
     //file = File.getParentFile();
-    //myMovie1.loadMovie
+    //myMovie1.loadMovie();
     
     break; // break 'd'
     
@@ -415,17 +444,17 @@ break; // break 'd'
 // --------------------------------------------------------------------------------------------------------------
 
 
-//// This function returns all the files in a directory as an array of Strings  
-//String[] listFileNames(String dir,java.io.FilenameFilter extension) {
-//  File file = new File(dir);
-//  if (file.isDirectory()) {
-//    String names[] = file.list(extension);
-//    return names;
-//  } else {
-//    // If it's not a directory
-//    return null;
-//  }
-//}
+// This function returns all the files in a directory as an array of Strings  
+String[] listFileNames(String dir,java.io.FilenameFilter extension) {
+  File file = new File(dir);
+  if (file.isDirectory()) {
+    String names[] = file.list(extension);
+    return names;
+  } else {
+    // If it's not a directory
+    return null;
+  }
+}
 
 
 // --------------------------------------------------------------------------------------------------------------
@@ -461,6 +490,10 @@ break; // break 'd'
 //} // end class myDropListener
   
   
+  
+public void stop() {
+  super.stop();
+} 
   
       
       

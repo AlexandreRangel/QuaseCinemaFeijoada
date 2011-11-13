@@ -203,22 +203,22 @@ class ProjectedQuads {
       }
     }
     
-    if (key == '1') {
+    if (key == '!') {
       selectedPoint = 0;
     }
-    if (key == '2') {
+    if (key == '@') {
       selectedPoint = 1;
     }
-    if (key == '3') {
+    if (key == '#') {
       selectedPoint = 2;
     }
-    if (key == '4') {
+    if (key == '$') {
       selectedPoint = 3;
     }
-    if (key == '<') {
+    if (key == '[') {
       selectedQuad = (selectedQuad - 1 + quads.size()) % quads.size();
     }
-    if (key == '>') {
+    if (key == ']') {
       selectedQuad = (selectedQuad + 1) % quads.size();
     }
     
@@ -233,7 +233,7 @@ class ProjectedQuads {
     }
   
     //Toggle debug/design/setup mode
-    if (key == 'd') {
+    if (key == 'm') {
       projectedQuads.setDebugMode(!projectedQuads.getDebugMode());
     }
   }

@@ -9,25 +9,25 @@ void QCsetupInterface() {
   controlP5 = new ControlP5(this);
   controlWindow = controlP5.addControlWindow("Quase-Cinema Feijoada VJ 0.01",0,0,1024,748); 
   controlWindow.hideCoordinates();
-  controlWindow.setBackground(color(40));
+  controlWindow.setBackground(color(20));
   // for continuous update use ControlWindow.NORMAL  to update a control
   // window only when it is in focus, use ControlWindow.ECONOMIC is the default update value.
   //controlWindow.setUpdateMode(ControlWindow.NORMAL);
-  controlWindow.setUpdateMode(ControlWindow.ECONOMIC);
+  controlWindow.setUpdateMode(ControlWindow.NORMAL);
     
   cc = new MyCanvas(); // create a control window canvas
   cc.pre(); // use cc.post(); to draw on top of the controllers.
   controlWindow.addCanvas(cc);
   
   // tabs
-  controlWindow.tab("default").setLabel(" Main ");
-  controlWindow.addTab("Effects"); controlWindow.tab("Effects").setLabel(" Effects ");
-  controlWindow.addTab("Rhythm"); controlWindow.tab("Rhythm").setLabel(" Rhythm ");
-  controlWindow.addTab("Sequencer"); controlWindow.tab("Sequencer").setLabel(" Sequencer ");
-  controlWindow.addTab("Mapping"); controlWindow.tab("Mapping").setLabel(" Mapping ");
-  controlWindow.addTab("3D"); controlWindow.tab("3D").setLabel(" 3D ");
-  controlWindow.addTab("Playlist"); controlWindow.tab("Playlist").setLabel(" Playlist ");
-  controlWindow.addTab("Prefs"); controlWindow.tab("Prefs").setLabel(" Prefs ");
+  controlWindow.tab("default").setLabel("  Main  ");
+  controlWindow.addTab("Effects"); controlWindow.tab("Effects").setLabel("  Effects  ");
+  controlWindow.addTab("Rhythm"); controlWindow.tab("Rhythm").setLabel("  Rhythm  ");
+  controlWindow.addTab("Sequencer"); controlWindow.tab("Sequencer").setLabel("  Sequencer  ");
+  controlWindow.addTab("Mapping"); controlWindow.tab("Mapping").setLabel("  Mapping  ");
+  controlWindow.addTab("3D"); controlWindow.tab("3D").setLabel("  3D  ");
+  controlWindow.addTab("Playlist"); controlWindow.tab("Playlist").setLabel("  Playlist  ");
+  controlWindow.addTab("Prefs"); controlWindow.tab("Prefs").setLabel("  Prefs  ");
   
 //  controlP5.trigger();
 //  
@@ -182,6 +182,31 @@ void QCsetupInterface() {
   
   controlP5.Controller sequencerSlider1 = controlP5.addMatrix("layer1sequencer", 8, 4, 20, 240, 400, 300);
   sequencerSlider1.setLabel("sequencer"); sequencerSlider1.moveTo(controlWindow,"Sequencer");
+  
+  
+  //
+  // interface
+  // mapping tab
+  //
+  
+  // interface mapping - column 1
+  controlP5.Controller mappingToggle1 = controlP5.addToggle("mapping1",false,50+(columnWidth*0),265,20,20);
+  mappingToggle1.setLabel("mapping"); mappingToggle1.moveTo(controlWindow,"Mapping");
+  
+  
+  // interface mapping - column 2
+  controlP5.Controller mappingToggle2 = controlP5.addToggle("mapping2",false,50+(columnWidth*1),265,20,20);
+  mappingToggle2.setLabel("mapping"); mappingToggle2.moveTo(controlWindow,"Mapping");
+  
+  
+  // interface mapping - column 3
+  controlP5.Controller mappingToggle3 = controlP5.addToggle("mapping3",false,50+(columnWidth*2),265,20,20);
+  mappingToggle3.setLabel("mapping"); mappingToggle3.moveTo(controlWindow,"Mapping");
+
+  
+  // interface mapping - column 4
+  controlP5.Controller mappingToggle4 = controlP5.addToggle("mapping4",false,50+(columnWidth*3),265,20,20);
+  mappingToggle4.setLabel("mapping"); mappingToggle4.moveTo(controlWindow,"Mapping");
   
   
   //
