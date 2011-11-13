@@ -191,22 +191,34 @@ void QCsetupInterface() {
   
   // interface mapping - column 1
   controlP5.Controller mappingToggle1 = controlP5.addToggle("mapping1",false,50+(columnWidth*0),265,20,20);
-  mappingToggle1.setLabel("mapping"); mappingToggle1.moveTo(controlWindow,"Mapping");
+  mappingToggle1.setLabel("quad mapping"); mappingToggle1.moveTo(controlWindow,"Mapping");
+  
+  controlP5.Controller bmappingToggle1 = controlP5.addToggle("bmapping1",false,50+(columnWidth*0),300,20,20);
+  bmappingToggle1.setLabel("berzier mapping"); bmappingToggle1.moveTo(controlWindow,"Mapping");
   
   
   // interface mapping - column 2
   controlP5.Controller mappingToggle2 = controlP5.addToggle("mapping2",false,50+(columnWidth*1),265,20,20);
   mappingToggle2.setLabel("mapping"); mappingToggle2.moveTo(controlWindow,"Mapping");
   
+  controlP5.Controller bmappingToggle2 = controlP5.addToggle("bmapping2",false,50+(columnWidth*1),300,20,20);
+  bmappingToggle2.setLabel("berzier mapping"); bmappingToggle2.moveTo(controlWindow,"Mapping");
+  
   
   // interface mapping - column 3
   controlP5.Controller mappingToggle3 = controlP5.addToggle("mapping3",false,50+(columnWidth*2),265,20,20);
   mappingToggle3.setLabel("mapping"); mappingToggle3.moveTo(controlWindow,"Mapping");
+  
+  controlP5.Controller bmappingToggle3 = controlP5.addToggle("bmapping3",false,50+(columnWidth*2),300,20,20);
+  bmappingToggle3.setLabel("berzier mapping"); bmappingToggle3.moveTo(controlWindow,"Mapping");
 
   
   // interface mapping - column 4
   controlP5.Controller mappingToggle4 = controlP5.addToggle("mapping4",false,50+(columnWidth*3),265,20,20);
   mappingToggle4.setLabel("mapping"); mappingToggle4.moveTo(controlWindow,"Mapping");
+  
+  controlP5.Controller bmappingToggle4 = controlP5.addToggle("bmapping4",false,50+(columnWidth*3),300,20,20);
+  bmappingToggle4.setLabel("berzier mapping"); bmappingToggle4.moveTo(controlWindow,"Mapping");
   
   
   //

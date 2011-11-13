@@ -15,6 +15,7 @@ import processing.opengl.*; // openGL library
 
 import sojamo.drop.*; // sDrop library
 
+import mappingtools.*; // mappingtools library
 
 // controlP5
 ControlP5 controlP5;
@@ -57,6 +58,10 @@ ProjectedQuads projectedQuads;
 //PImage    quadImage;  
 PGraphics quadGraphics1, quadGraphics2, quadGraphics3, quadGraphics4;
 
+// berzier mapping
+BezierWarp bw;
+
+
 // variables pre setup
 public int selectedLayer = 0;
 //int myColorBackground = color(0,0,0);
@@ -73,6 +78,7 @@ boolean  layer1visibility = true;
 boolean  layer2visibility = false; boolean  layer3visibility = false; boolean  layer4visibility = false;
 
 boolean mapping1 = false; boolean mapping2 = false; boolean mapping3 = false; boolean mapping4 = false;
+boolean bmapping1 = false; boolean bmapping2 = false; boolean bmapping3 = false; boolean bmapping4 = false;
 
 int layer1bpmVis, layer2bpmVis, layer3bpmVis, layer4bpmVis;
 
@@ -111,7 +117,7 @@ class MyCanvas extends ControlWindowCanvas {
     
     // layer base
     theApplet.fill(40);
-    theApplet.rect(0+(columnWidth*selectedLayer),20,columnWidth,700,3);
+    //theApplet.rect(0+(columnWidth*selectedLayer),20,columnWidth,700, 3);
     
     
     // layer icons
@@ -182,11 +188,8 @@ void setup() {
   GSVideo.localGStreamerPath = "/Users/rangel/Documents/processing/libraries/GSVideo/library/gstreamer/macosx32";
   
   myMovie1 = new GSMovie(this, "Aviao.mov"); myMovie1.loop();
-  
   myMovie2 = new GSMovie(this, sketchPath("data/Palatnik1.mov")); myMovie2.loop();
-  
   myMovie3 = new GSMovie(this, sketchPath("data/Palatnik2.mov")); myMovie3.loop();
-  
   myMovie4 = new GSMovie(this, sketchPath("data/Palatnik3.mov")); myMovie4.loop();
   
   //
@@ -208,6 +211,9 @@ void setup() {
   projectedQuads.getQuad(1).setTexture(quadGraphics2);
   projectedQuads.getQuad(2).setTexture(quadGraphics3); 
   projectedQuads.getQuad(3).setTexture(quadGraphics4); 
+  
+  // berzier mapping setup
+  bw = new BezierWarp(this, 10);
   
   // drop setup
   drop = new SDrop(controlWindow.component(),this);
@@ -295,13 +301,17 @@ public void draw() {
     tint(colorPicker1.getColorValue());
     myMovie1.play();
     myMovie1.speed(layer1speed);
-    if (mapping1) {
+    if (mapping1) { // quad mapping
       // mapping
       quadGraphics1.beginDraw();
       image(myMovie1, 0, 0, 640, 480); 
       quadGraphics1.endDraw();
-    } else {
-      // no mapping
+     } else if (bmapping1) {  // berzier mapping
+      quadGraphics1.beginDraw();
+      image(myMovie1, 0, 0, 640, 480); 
+      quadGraphics1.endDraw();
+      bw.render(quadGraphics1);
+     } else { // no mapping
       image(myMovie1, 0, 0, outputWidth, outputHeight); 
     } // end if mapping
   } else {
