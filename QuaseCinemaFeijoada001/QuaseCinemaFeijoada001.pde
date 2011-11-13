@@ -54,8 +54,8 @@ java.io.FilenameFilter txtFilter = new java.io.FilenameFilter() {
 //  quad mapping pre setup
 String configFile = "data/quadsconfig.txt";
 ProjectedQuads projectedQuads;
-PImage    quadImage;  
-PGraphics quadGraphics;
+//PImage    quadImage;  
+PGraphics quadGraphics1, quadGraphics2, quadGraphics3, quadGraphics4;
 
 // variables pre setup
 public int selectedLayer = 0;
@@ -70,14 +70,9 @@ public int changeResolution = 100;
 public int outputWidth = 1280; public int outputHeight = 1024;
 
 boolean  layer1visibility = true;
-boolean  layer2visibility = false;
-boolean  layer3visibility = false;
-boolean  layer4visibility = false;
+boolean  layer2visibility = false; boolean  layer3visibility = false; boolean  layer4visibility = false;
 
-boolean mapping1 = false;
-boolean mapping2 = false;
-boolean mapping3 = false;
-boolean mapping4 = false;
+boolean mapping1 = false; boolean mapping2 = false; boolean mapping3 = false; boolean mapping4 = false;
 
 int layer1bpmVis, layer2bpmVis, layer3bpmVis, layer4bpmVis;
 
@@ -202,13 +197,17 @@ void setup() {
   projectedQuads.load(configFile);  
   
   //we want to display 3 quads so if there was no config file or less than 3 were defined we increase num to 3
-  if (projectedQuads.getNumQuads() < 3) { projectedQuads.setNumQuads(3); }
+  if (projectedQuads.getNumQuads() < 4) { projectedQuads.setNumQuads(4); }
   
-  quadGraphics = createGraphics(640, 480, OPENGL);
-  projectedQuads.getQuad(0).setTexture(quadGraphics); 
-  projectedQuads.getQuad(1).setTexture(quadGraphics);
-  projectedQuads.getQuad(2).setTexture(quadGraphics); 
-  projectedQuads.getQuad(1).setTexture(quadGraphics); 
+  quadGraphics1 = createGraphics(640, 480, OPENGL);
+  quadGraphics2 = createGraphics(640, 480, OPENGL);
+  quadGraphics3 = createGraphics(640, 480, OPENGL);
+  quadGraphics4 = createGraphics(640, 480, OPENGL);
+  
+  projectedQuads.getQuad(0).setTexture(quadGraphics1); 
+  projectedQuads.getQuad(1).setTexture(quadGraphics2);
+  projectedQuads.getQuad(2).setTexture(quadGraphics3); 
+  projectedQuads.getQuad(3).setTexture(quadGraphics4); 
   
   // drop setup
   drop = new SDrop(controlWindow.component(),this);
@@ -286,7 +285,7 @@ public void draw() {
   
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
-  //  output
+  //  output draw
   //
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
@@ -298,9 +297,9 @@ public void draw() {
     myMovie1.speed(layer1speed);
     if (mapping1) {
       // mapping
-      quadGraphics.beginDraw();
+      quadGraphics1.beginDraw();
       image(myMovie1, 0, 0, 640, 480); 
-      quadGraphics.endDraw();
+      quadGraphics1.endDraw();
     } else {
       // no mapping
       image(myMovie1, 0, 0, outputWidth, outputHeight); 
@@ -309,16 +308,20 @@ public void draw() {
      myMovie1.pause();
   }// end if layer1visibility
   
-  projectedQuads.draw();
-  
- 
- 
   // pre-render layer 2
   if (layer2visibility) {
     tint(colorPicker2.getColorValue());
     myMovie2.play();
     myMovie2.speed(layer2speed);
-    image(myMovie2, 0, 0, outputWidth, outputHeight);
+    if (mapping2) {
+      // mapping
+      quadGraphics2.beginDraw();
+      image(myMovie2, 0, 0, 640, 480); 
+      quadGraphics2.endDraw();
+    } else {
+      // no mapping
+      image(myMovie2, 0, 0, outputWidth, outputHeight); 
+    } // end if mapping
   } else {
      myMovie2.pause();
   }// end if layer2visibility
@@ -329,7 +332,15 @@ public void draw() {
     tint(colorPicker3.getColorValue());
     myMovie3.play();
     myMovie3.speed(layer3speed);
-    image(myMovie3, 0, 0, outputWidth, outputHeight);
+    if (mapping3) {
+      // mapping
+      quadGraphics3.beginDraw();
+      image(myMovie3, 0, 0, 640, 480); 
+      quadGraphics3.endDraw();
+    } else {
+      // no mapping
+      image(myMovie3, 0, 0, outputWidth, outputHeight); 
+    } // end if mapping
   } else {
      myMovie3.pause();
   }// end if layer3visibility
@@ -339,17 +350,29 @@ public void draw() {
     tint(colorPicker4.getColorValue());
     myMovie4.play();
     myMovie4.speed(layer4speed);
-    image(myMovie4, 0, 0, outputWidth, outputHeight);
+    if (mapping4) {
+      // mapping
+      quadGraphics4.beginDraw();
+      image(myMovie4, 0, 0, 640, 480); 
+      quadGraphics4.endDraw();
+    } else {
+      // no mapping
+      image(myMovie4, 0, 0, outputWidth, outputHeight); 
+    } // end if mapping
   } else {
      myMovie4.pause();
   }// end if layer4visibility
   
+  // mapping draw
+  if (mapping1 || mapping2 || mapping3 || mapping4) {
+    projectedQuads.draw();
+  }
   
   
   // render fade
   if (fade > 0.0) {
     fill(0,0,0,map(fade,0.0,100.0,0,255));
-    rect(0,0,screenWidth,screenHeight);
+    rect(0,0,outputWidth,outputHeight);
   } 
   
   if (changeResolution != 100) { QCchangeResolution(); }

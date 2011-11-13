@@ -33,7 +33,7 @@ class ProjectedQuads {
   
   public ProjectedQuads() {
     quads = new ArrayList();
-    debugFont = createFont("Arial", 64);
+    debugFont = createFont("Arial", 48);
   }
   
   public boolean getDebugMode() {
