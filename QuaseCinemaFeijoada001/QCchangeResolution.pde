@@ -27,7 +27,7 @@ void QCchangeResolution() { // update resolution
       changeResolution = 100;
       break;
     case 6:
-      outputWidth = 1920; outputHeight = 1080; frame.setSize(outputWidth,outputHeight);
+      outputWidth = 1280; outputHeight = 1024; frame.setSize(outputWidth,outputHeight);
       changeResolution = 100;
       break;
     case 7:
@@ -35,26 +35,30 @@ void QCchangeResolution() { // update resolution
       changeResolution = 100;
       break;
     case 8:
-      outputWidth = 1280; outputHeight = 480; frame.setSize(outputWidth,outputHeight);
+      outputWidth = 1920; outputHeight = 1080; frame.setSize(outputWidth,outputHeight);
       changeResolution = 100;
       break;
     case 9:
-      outputWidth = 1600; outputHeight = 600; frame.setSize(outputWidth,outputHeight);
+      outputWidth = 1280; outputHeight = 480; frame.setSize(outputWidth,outputHeight);
       changeResolution = 100;
       break;
     case 10:
-      outputWidth = 2048; outputHeight = 768; frame.setSize(outputWidth,outputHeight);
+      outputWidth = 1600; outputHeight = 600; frame.setSize(outputWidth,outputHeight);
       changeResolution = 100;
       break;
     case 11:
-      outputWidth = 1920; outputHeight = 480; frame.setSize(outputWidth,outputHeight);
+      outputWidth = 2048; outputHeight = 768; frame.setSize(outputWidth,outputHeight);
       changeResolution = 100;
       break;
     case 12:
-      outputWidth = 2400; outputHeight = 600; frame.setSize(outputWidth,outputHeight);
+      outputWidth = 1920; outputHeight = 480; frame.setSize(outputWidth,outputHeight);
       changeResolution = 100;
       break;
     case 13:
+      outputWidth = 2400; outputHeight = 600; frame.setSize(outputWidth,outputHeight);
+      changeResolution = 100;
+      break;
+    case 14:
       outputWidth = 3072; outputHeight = 768; frame.setSize(outputWidth,outputHeight);
       changeResolution = 100;
       break;

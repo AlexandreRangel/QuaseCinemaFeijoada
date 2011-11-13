@@ -28,7 +28,7 @@ ListBox outputResolutionList;
 public int fpsValue = 0;
 
 // movies
-public GSMovie myMovie, myMovie2, myMovie3, myMovie4;
+public GSMovie myMovie1, myMovie2, myMovie3, myMovie4;
 
 // directory
 //public String[] fileNames;
@@ -51,8 +51,14 @@ SDrop drop;
 //  }
 //};
 
+//  quad mapping
+String configFile = "data/quadsconfig.txt";
+ProjectedQuads projectedQuads;
+PImage    quadImage;  
+PGraphics quadGraphics;
+
 // variables
-int selectedLayer = 1;
+public int selectedLayer = 0;
 //int myColorBackground = color(0,0,0);
 int interfaceWidth = 1024;
 int columnWidth = int (interfaceWidth/4);
@@ -60,7 +66,8 @@ int columnWidth = int (interfaceWidth/4);
 float fade = 0.0;
 
 public int changeResolution = 100;
-public int outputWidth = 1024; public int outputHeight = 768;
+//public int outputWidth = 1024; public int outputHeight = 768;
+public int outputWidth = 1280; public int outputHeight = 1024;
 
 boolean  layer1visibility = true;
 boolean  layer2visibility = false;
@@ -72,6 +79,15 @@ int layer1bpmVis, layer2bpmVis, layer3bpmVis, layer4bpmVis;
 float layer1speed = 1.0; float layer2speed = 1.0; float layer3speed = 1.0; float layer4speed = 1.0;
 //float layer1transparency = 255; float layer2transparency = 255; float layer3transparency = 255; float layer4transparency = 255;
 public float layer1playback, layer2playback, layer3playback, layer4playback;
+
+	
+
+public boolean effectInvert1 = false; public boolean effectInvert2 = false;
+public boolean effectInvert3 = false; public boolean effectInvert4 = false; 
+
+public boolean effectPosterize1 = false; public boolean effectPosterize2 = false;
+public boolean effectPosterize3 = false; public boolean effectPosterize4 = false; 
+
 
 public void init(){
   frame.removeNotify();
@@ -94,7 +110,7 @@ class MyCanvas extends ControlWindowCanvas {
     
     if (frameCount > 1) {
       theApplet.rect(8,22,164,124);
-      theApplet.image(myMovie, 10, 24, 160, 120);
+      theApplet.image(myMovie1, 10, 24, 160, 120);
       theApplet.rect(8+(columnWidth*1),22,164,124);
       theApplet.image(myMovie2, 10+(columnWidth*1), 24, 160, 120);
       theApplet.rect(8+(columnWidth*2),22,164,124);
@@ -140,201 +156,23 @@ class MyCanvas extends ControlWindowCanvas {
 
 
 void setup() {
-  size(1024,748, OPENGL);
+  size(outputWidth,outputHeight, OPENGL);
   //hint(ENABLE_OPENGL_4X_SMOOTH);
   frame.setResizable(true);
   frameRate(60);
   //frame.setLocation(screen.width,0);
-  //frame.setLocation(1440,0);
   frame.setLocation(1024,0);
+  //frame.setLocation(1024,0);
   
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //
-  //  controlP5 setup
-  //
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  
-  controlP5 = new ControlP5(this);
-  controlWindow = controlP5.addControlWindow("Quase-Cinema Feijoada VJ 0.01",0,0,1024,748); 
-  controlWindow.hideCoordinates();
-  controlWindow.setBackground(color(40));
-  // for continuous update use ControlWindow.NORMAL  to update a control
-  // window only when it is in focus, use ControlWindow.ECONOMIC is the default update value.
-  //controlWindow.setUpdateMode(ControlWindow.NORMAL);
-  controlWindow.setUpdateMode(ControlWindow.ECONOMIC);
-    
-  cc = new MyCanvas(); // create a control window canvas
-  cc.pre(); // use cc.post(); to draw on top of the controllers.
-  controlWindow.addCanvas(cc);
-  
-  // tabs
-  controlWindow.tab("default").setLabel(" Main ");
-  controlWindow.addTab("Effects"); controlWindow.tab("Effects").setLabel(" Effects ");
-  controlWindow.addTab("Rhythm"); controlWindow.tab("Rhythm").setLabel(" Rhythm ");
-  controlWindow.addTab("Sequencer"); controlWindow.tab("Sequencer").setLabel(" Sequencer ");
-  controlWindow.addTab("Mapping"); controlWindow.tab("Mapping").setLabel(" Mapping ");
-  controlWindow.addTab("3D"); controlWindow.tab("3D").setLabel(" 3D ");
-  controlWindow.addTab("Playlist"); controlWindow.tab("Playlist").setLabel(" Playlist ");
-  controlWindow.addTab("Prefs"); controlWindow.tab("Prefs").setLabel(" Prefs ");
-  
-//  controlP5.trigger();
-//  
-//  controlP5.tab("default").activateEvent(true);
-//  controlP5.tab("default").setLabel("main");
-//  controlP5.tab("default").setId(1);
-//  //controlP5.tab("default").setWindow(controlWindow);
-//  
-//  controlP5.tab("effects").activateEvent(true);
-//  controlP5.tab("effects").setId(2);
-  
-  // interface global
-  controlP5.Controller faderSlider = controlP5.addSlider("fade",0,100,0,(columnWidth*3),733,int(columnWidth*0.88),10);
-  faderSlider.setLabel("fade"); faderSlider.moveTo(controlWindow,"global");
-  
-  controlP5.Controller myFPS = controlP5.addSlider("fpsValue",0,60,0,(columnWidth*2),733,int(columnWidth*0.88),10);
-  myFPS.moveTo(controlWindow,"global"); myFPS.captionLabel().set("fps");
-  
-  //
-  // interface
-  // main tab
-  //
-  
-  // interface main - directory
-  controlP5.ListBox dirListBox = controlP5.addListBox("dirList",10,screenHeight/2,columnWidth,screenHeight/2);
-  dirListBox.setLabel("dirs"); dirListBox.moveTo(controlWindow);
-  dirListBox.setItemHeight(15); dirListBox.setBarHeight(15);
-  dirListBox.captionLabel().style().marginTop = 3;
-//  for(int i=0;i<fileNames.length;i++) { //
-//    dirListBox.addItem(fileNames[i],i);
-//  }
-  
-  // interface main - column 1
-  controlP5.Controller visibilityToggle1 = controlP5.addToggle("layer1visibility",true,180+(columnWidth*0),20,20,20);
-  visibilityToggle1.setLabel("visible"); visibilityToggle1.moveTo(controlWindow,"global");
-  
-  controlP5.Controller playbackSlider1 = controlP5.addSlider("layer1playback",0,1.0,0.0,10+(columnWidth*0),200,int(columnWidth*0.7),14);
-  playbackSlider1.setLabel("playback"); playbackSlider1.moveTo(controlWindow);
-  
-  controlP5.Controller mySlider = controlP5.addSlider("layer1speed",0,5.0,1.0,10+(columnWidth*0),220,int(columnWidth*0.7),14);
-  mySlider.setLabel("speed"); mySlider.moveTo(controlWindow);
-  
-  // interface main - column 2
-  controlP5.Controller visibilityToggle2 = controlP5.addToggle("layer2visibility",false,180+(columnWidth*1),20,20,20);
-  visibilityToggle2.setLabel("visible"); visibilityToggle2.moveTo(controlWindow,"global");
-  
-  controlP5.Controller playbackSlider2 = controlP5.addSlider("layer2playback",0,1.0,0.0,10+(columnWidth*1),200,int(columnWidth*0.7),14);
-  playbackSlider2.setLabel("playback"); playbackSlider2.moveTo(controlWindow);
-  
-  controlP5.Controller speedSlider2 = controlP5.addSlider("layer2speed",0,5.0,1.0,10+(columnWidth*1),220,int(columnWidth*0.7),14);
-  speedSlider2.setLabel("speed"); speedSlider2.moveTo(controlWindow);
-  
-  
-  // interface main - column 3
-  controlP5.Controller visibilityToggle3 = controlP5.addToggle("layer3visibility",false,180+(columnWidth*2),20,20,20);
-  visibilityToggle3.setLabel("visible"); visibilityToggle3.moveTo(controlWindow,"global");
-  
-  controlP5.Controller playbackSlider3 = controlP5.addSlider("layer3playback",0,1.0,0.0,10+(columnWidth*2),200,int(columnWidth*0.7),14);
-  playbackSlider3.setLabel("playback"); playbackSlider3.moveTo(controlWindow);
-  
-  controlP5.Controller speedSlider3 = controlP5.addSlider("layer3speed",0,5.0,1.0,10+(columnWidth*2),220,int(columnWidth*0.7),14);
-  speedSlider3.setLabel("speed"); speedSlider3.moveTo(controlWindow);
-  
-  
-  // interface main - column 4
-  controlP5.Controller visibilityToggle4 = controlP5.addToggle("layer4visibility",false,180+(columnWidth*3),20,20,20);
-  visibilityToggle4.setLabel("visible"); visibilityToggle4.moveTo(controlWindow,"global");
-  
-  controlP5.Controller playbackSlider4 = controlP5.addSlider("layer4playback",0,1.0,0.0,10+(columnWidth*3),200,int(columnWidth*0.7),14);
-  playbackSlider4.setLabel("playback"); playbackSlider4.moveTo(controlWindow);
-  
-  controlP5.Controller speedSlider4 = controlP5.addSlider("layer4speed",0,5.0,1.0,10+(columnWidth*3),220,int(columnWidth*0.7),14);
-  speedSlider4.setLabel("speed"); speedSlider4.moveTo(controlWindow);
-  
-  //
-  // interface
-  // effects tab
-  //
-  
-  // interface effects - column 1
-  colorPicker1 = controlP5.addColorPicker("layer1color",10+(columnWidth*0),200,int(columnWidth*0.9),20);
-  colorPicker1.moveTo(controlWindow,"Effects");
-  
-  // interface effects - column 2
-  colorPicker2 = controlP5.addColorPicker("layer2color",10+(columnWidth*1),200,int(columnWidth*0.9),20);
-  colorPicker2.moveTo(controlWindow,"Effects");
-  
-  // interface effects - column 3
-  colorPicker3 = controlP5.addColorPicker("layer3color",10+(columnWidth*2),200,int(columnWidth*0.9),20);
-  colorPicker3.moveTo(controlWindow,"Effects");
-  
-  // interface effects - column 4
-  colorPicker4 = controlP5.addColorPicker("layer4color",10+(columnWidth*3),200,int(columnWidth*0.9),20);
-  colorPicker4.moveTo(controlWindow,"Effects");
-  
-  //
-  // interface
-  // bpm tab
-  //
-  
-  // interface bpm - column 1
-  controlP5.Controller bpmVisSlider1 = controlP5.addSlider("layer1bpmVis",0,240,120,10+(columnWidth*0),220,int(columnWidth*0.7),14);
-  bpmVisSlider1.setLabel("bpm vis"); bpmVisSlider1.moveTo(controlWindow,"Rhythm");
-  
-  // interface bpm - column 2  
-  controlP5.Controller bpmVisSlider2 = controlP5.addSlider("layer2bpmVis",0,240,120,10+(columnWidth*1),220,int(columnWidth*0.7),14);
-  bpmVisSlider2.setLabel("bpm vis"); bpmVisSlider2.moveTo(controlWindow,"Rhythm");
-  
-  
-  // interface bpm - column 3
-  controlP5.Controller bpmVisSlider3 = controlP5.addSlider("layer3bpmVis",0,240,120,10+(columnWidth*2),220,int(columnWidth*0.7),14);
-  bpmVisSlider3.setLabel("bpm vis"); bpmVisSlider3.moveTo(controlWindow,"Rhythm");
-  
-  
-  // interface bpm - column 4
-  controlP5.Controller bpmVisSlider4 = controlP5.addSlider("layer4bpmVis",0,240,120,10+(columnWidth*3),220,int(columnWidth*0.7),14);
-  bpmVisSlider4.setLabel("bpm vis"); bpmVisSlider4.moveTo(controlWindow,"Rhythm");
-  
-  
-  //
-  // interface
-  // sequencer tab
-  //
-  
-  controlP5.Controller sequencerSlider1 = controlP5.addMatrix("layer1sequencer", 8, 4, 20, 240, 400, 300);
-  sequencerSlider1.setLabel("sequencer"); sequencerSlider1.moveTo(controlWindow,"Sequencer");
-  
-  
-  //
-  // interface
-  // prefs tab
-  //
-  
-  outputResolutionList = controlP5.addListBox("outputResolution",10,200,int(columnWidth*0.9),180);
-  outputResolutionList.setLabel("output resolution");
-  outputResolutionList.moveTo(controlWindow,"Prefs");
-  
-  outputResolutionList.addItem("240 x 180",0);
-  outputResolutionList.addItem("320 x 240",1);
-  outputResolutionList.addItem("640 x 480",2);
-  outputResolutionList.addItem("800 x 600",3);
-  outputResolutionList.addItem("1024 x 768",4);
-  outputResolutionList.addItem("1280 x 720",5);
-  outputResolutionList.addItem("1920 x 1080",6);
-  outputResolutionList.addItem("1600 x 1200",7);
-  outputResolutionList.addItem("1280 x 480, dual 640 x 480)",8);
-  outputResolutionList.addItem("1600 x 600, dual 800 x 600)",9);
-  outputResolutionList.addItem("2048 x 768, dual 1024 x 768)",10);
-  outputResolutionList.addItem("1920 x 480, triple 640 x 480)",11);
-  outputResolutionList.addItem("2400 x 600, triple 800 x 600)",12);
-  outputResolutionList.addItem("3072 x 768, triple 1024 x 768)",13);
-  
+  // variables setup
+  QCsetupInterface();
   
   // GStreamer setup
   
   GSVideo.localGStreamerPath = "/Users/rangel/Documents/processing/libraries/GSVideo/library/gstreamer/macosx32";
   
-  myMovie = new GSMovie(this, "Aviao.mov");
-  myMovie.loop();
+  myMovie1 = new GSMovie(this, sketchPath("data/Aviao.mov"));
+  myMovie1.loop();
   
   myMovie2 = new GSMovie(this, sketchPath("data/Palatnik1.mov"));
   myMovie2.loop();
@@ -353,8 +191,11 @@ void setup() {
 // --------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------
 
-public void movieEvent(GSMovie myMovie) {
-  myMovie.read();
+public void movieEvent(GSMovie gsMovie) {
+  
+  gsMovie.read();
+  
+  QCeffects();
 }
 
 
@@ -390,24 +231,24 @@ public void draw() {
   
   // dirs
   
-  if (change1 == true && selectedLayer == 1) {
-   myMovie = new GSMovie(this, newMovie);
-   //myMovie.read();
-   myMovie.play();
-   myMovie.loop();
+  if (change1 == true && selectedLayer == 0) {
+   myMovie1 = new GSMovie(this, newMovie);
+   //myMovie1.read();
+   myMovie1.play();
+   myMovie1.loop();
    change1 = false; 
   }
 
 
-//  if (change1 == true && selectedLayer == 2) {
+//  if (change1 == true && selectedLayer == 1) {
 //   myMovie2 = new GSMovie(this, newMovie); myMovie2.read(); myMovie2.loop();
 //   change1 = false; 
 //  }
-//  if (change1 == true && selectedLayer == 3) {
+//  if (change1 == true && selectedLayer == 2) {
 //   myMovie3 = new GSMovie(this, newMovie); myMovie3.read(); myMovie3.loop();
 //   change1 = false; 
 //  }
-//  if (change1 == true && selectedLayer == 4) {
+//  if (change1 == true && selectedLayer == 3) {
 //   myMovie4 = new GSMovie(this, newMovie); myMovie4.read(); myMovie4.loop();
 //   change1 = false; 
 //  }
@@ -423,7 +264,7 @@ public void draw() {
   if (random(100)>50){ controlP5.controller("fpsValue").setValue(int(frameRate)); }
 
   // playback heads
-  controlP5.controller("layer1playback").setValue(map(myMovie.time(),0.0,myMovie.duration(),0.0,1.0));
+  controlP5.controller("layer1playback").setValue(map(myMovie1.time(),0.0,myMovie1.duration(),0.0,1.0));
   controlP5.controller("layer2playback").setValue(map(myMovie2.time(),0.0,myMovie2.duration(),0.0,1.0));
   controlP5.controller("layer3playback").setValue(map(myMovie3.time(),0.0,myMovie3.duration(),0.0,1.0));
   controlP5.controller("layer4playback").setValue(map(myMovie4.time(),0.0,myMovie4.duration(),0.0,1.0));
@@ -442,17 +283,11 @@ public void draw() {
   if (layer1visibility) {
     //tint(red(colorPicker1.getColorValue()), green(colorPicker1.getColorValue()), blue(colorPicker1.getColorValue()));
     tint(colorPicker1.getColorValue());
-    myMovie.play();
-    myMovie.speed(layer1speed);
-    
-    //myMovie.filter(INVERT);
-    //myMovie.filter(POSTERIZE,4);
-    //myMovie.filter(BLUR,2);
-    //myMovie.filter(DILATE);
-    
-    image(myMovie, 0, 0, outputWidth, outputHeight); 
+    myMovie1.play();
+    myMovie1.speed(layer1speed);
+    image(myMovie1, 0, 0, outputWidth, outputHeight); 
   } else {
-     myMovie.pause();
+     myMovie1.pause();
   }// end if layer1visibility
   
  
@@ -528,17 +363,13 @@ void keyPressed(){
  
   switch(key) {
      case '1':
-       selectedLayer = 1;
-       break; 
+       selectedLayer = 0; break; 
      case '2':
-       selectedLayer = 2;
-       break;
+       selectedLayer = 1; break;
      case '3':
-       selectedLayer = 3;
-       break;
+       selectedLayer = 2; break;
      case '4':
-       selectedLayer = 4;
-       break;
+       selectedLayer = 3; break;
      
   case 'd': 
 //    String folderPath = selectFolder();
@@ -558,18 +389,23 @@ break; // break 'd'
     
   case 'u':
     //myMovie2.stop(); myMovie2.delete();
-    myMovie = new GSMovie(this, "Palatnik2.mov");
-    myMovie.read(); myMovie.play();
+    myMovie1 = new GSMovie(this, "Palatnik2.mov");
+    myMovie1.read(); myMovie1.play();
     //file = File.getParentFile();
-    //myMovie.loadMovie
+    //myMovie1.loadMovie
     
     break; // break 'd'
     
   case 'r': //xxx
 //    String tempString = selectFolder() + fileNames[int(random(fileNames.length))]; 
-//    myMovie = new GSMovie(this, tempString);
-//    myMovie.loop();
+//    myMovie1 = new GSMovie(this, tempString);
+//    myMovie1.loop();
     break; // break 'r'
+    
+  case 'i': //xxx
+   effectInvert1 = !(effectInvert1);
+  break; // break 'i'
+    
   } // end switch 
 }
 
