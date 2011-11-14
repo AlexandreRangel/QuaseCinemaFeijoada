@@ -246,4 +246,14 @@ void QCsetupInterface() {
   outputResolutionList.addItem("2400 x 600, triple 800 x 600)",13);
   outputResolutionList.addItem("3072 x 768, triple 1024 x 768)",14);
   
+  controlP5.Controller outputXposNumberBox = controlP5.addNumberbox("outputXpos",screenWidth,columnWidth,200,int(columnWidth*0.9),14);
+  //controlP5.outputXposNumberBox.setMultiplier(1); // set the sensitifity of the numberbox
+  //outputXposNumberBox.setDirection(controlP5.Controller.HORIZONTAL); // change the control direction to left/right
+  outputXposNumberBox.moveTo(controlWindow,"Prefs");
+  
+  controlP5.Controller outputYposNumberBox = controlP5.addNumberbox("outputYpos",0,columnWidth,240,int(columnWidth*0.9),14);
+  //controlP5.outputYposNumberBox.setMultiplier(1); // set the sensitifity of the numberbox
+  //outputYposNumberBox.setDirection(Controller.HORIZONTAL); // change the control direction to left/right
+  outputYposNumberBox.moveTo(controlWindow,"Prefs");
+  
 } // end QC setupInterface

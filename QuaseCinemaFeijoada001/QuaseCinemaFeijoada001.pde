@@ -22,10 +22,10 @@ ControlWindow controlWindow;
 ControlWindowCanvas cc;
 
 ColorPicker colorPicker1, colorPicker2, colorPicker3, colorPicker4;
-
 ListBox outputResolutionList;
+Numberbox outputXposNumberBox, outputYposNumberBox;
 
-public int fpsValue = 0;
+public int fpsValue = 0; // fps slider value
 
 // movies
 public GSMovie myMovie1, myMovie2, myMovie3, myMovie4;
@@ -39,6 +39,7 @@ String newMovie = "";
 public boolean changeMovie = false;
 
 SDrop drop;
+
 
 // file filter
 java.io.FilenameFilter txtFilter = new java.io.FilenameFilter() {
@@ -54,7 +55,6 @@ java.io.FilenameFilter txtFilter = new java.io.FilenameFilter() {
 //  quad mapping pre setup
 String configFile = "data/quadsconfig.txt";
 ProjectedQuads projectedQuads;
-//PImage    quadImage;  
 PGraphics quadGraphics1, quadGraphics2, quadGraphics3, quadGraphics4;
 
 // berzier mapping
@@ -69,12 +69,12 @@ int columnWidth = int (interfaceWidth/4);
 
 float fade = 0.0;
 
-public int changeResolution = 100;
+public int changeResolution = 100; // changeResolution = 100 means don't change resolution on the draw loop
 //public int outputWidth = 1024; public int outputHeight = 768;
 public int outputWidth = 1280; public int outputHeight = 1024;
 
-boolean  layer1visibility = true;
-boolean  layer2visibility = false; boolean  layer3visibility = false; boolean  layer4visibility = false;
+boolean layer1visibility = true;
+boolean layer2visibility = false; boolean layer3visibility = false; boolean layer4visibility = false;
 
 boolean mapping1 = false; boolean mapping2 = false; boolean mapping3 = false; boolean mapping4 = false;
 boolean bmapping1 = false; boolean bmapping2 = false; boolean bmapping3 = false; boolean bmapping4 = false;
@@ -84,8 +84,6 @@ int layer1bpmVis, layer2bpmVis, layer3bpmVis, layer4bpmVis;
 float layer1speed = 1.0; float layer2speed = 1.0; float layer3speed = 1.0; float layer4speed = 1.0;
 //float layer1transparency = 255; float layer2transparency = 255; float layer3transparency = 255; float layer4transparency = 255;
 public float layer1playback, layer2playback, layer3playback, layer4playback;
-
-	
 
 public boolean effectInvert1 = false; public boolean effectInvert2 = false;
 public boolean effectInvert3 = false; public boolean effectInvert4 = false; 
@@ -116,8 +114,7 @@ class MyCanvas extends ControlWindowCanvas {
     
     // layer base
     theApplet.fill(40);
-    //theApplet.rect(0+(columnWidth*selectedLayer),20,columnWidth,700, 3);
-    
+    theApplet.rect(1+(columnWidth*selectedLayer),20,columnWidth,700);
     
     // layer icons
     if (frameCount > 1) {
@@ -131,15 +128,10 @@ class MyCanvas extends ControlWindowCanvas {
       theApplet.rect(8+(columnWidth*3),22,164,124);
       theApplet.image(myMovie4, 10+(columnWidth*3), 24,160, 120);
     }
-    
+   
+//    if(theApplet.mousePressed) { theApplet.ellipse(theApplet.mouseX,theApplet.mouseY,20,20); }
 
-    
-//    if(theApplet.mousePressed) {
-//      theApplet.fill(255,0,0,155);
-//      theApplet.ellipse(theApplet.mouseX,theApplet.mouseY,20,20);
-//    }
-
-  //dropArea1.draw();
+      // dropArea1.draw();
     
   }
 }
@@ -149,18 +141,18 @@ class MyCanvas extends ControlWindowCanvas {
 // --------------------------------------------------------------------------------------------------------------
 
 // select an input dir
-//File[] listFiles(String dir) {
-//  
-//    File file = new File(dir);
-//
-//    if (file.isDirectory()) {
-//	File[] files = file.listFiles();
-//	return files;
-//    } else {
-//	// If it's not a directory
-//	return null;
-//    }
-//}
+File[] listFiles(String dir) {
+  
+    File file = new File(dir);
+
+    if (file.isDirectory()) {
+	File[] files = file.listFiles();
+	return files;
+    } else {
+	// If it's not a directory
+	return null;
+    }
+}
 
 
 // --------------------------------------------------------------------------------------------------------------
@@ -173,9 +165,9 @@ void setup() {
   //hint(ENABLE_OPENGL_4X_SMOOTH);
   frame.setResizable(true);
   frameRate(60);
-  //frame.setLocation(screen.width,0);
+  frame.setLocation(screen.width,0);
   //frame.setLocation(1024,0);
-  frame.setLocation(1440,0);
+  //frame.setLocation(1440,0);
   
   // variables setup
   QCsetupInterface();
@@ -461,10 +453,11 @@ void keyPressed(){
       println(folderPath);
       fileNames = listFileNames(folderPath, txtFilter);
       println(fileNames);
-      //for(int i=0;i<fileNames.length;i++) { 
-        //
-      //}
       //dirListBox.addItem(fileNames[0],0);
+//      for(int i=0;i<fileNames.length;i++) { //
+//        dirListBox.addItem(fileNames[i],i);
+//      }
+      
     }
 break; // break 'd'
     
@@ -512,8 +505,6 @@ String[] listFileNames(String dir,java.io.FilenameFilter extension) {
 // --------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------
-
-
 
   void dropEvent(DropEvent theDropEvent) {
     if(theDropEvent.isFile()) {

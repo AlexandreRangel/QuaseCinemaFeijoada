@@ -62,7 +62,7 @@ void QCchangeResolution() { // update resolution
       outputWidth = 3072; outputHeight = 768; frame.setSize(outputWidth,outputHeight);
       changeResolution = 100;
       break;
-    default: break;
+    default: break; // value = 100
   } // end switch
   
 } // end QCchangeResolution
