@@ -4,7 +4,6 @@
 // www.quasecinema.org
 //
 // built with Processing 2.0 alpha 2
-// 2011.11.12
 //
 
 import controlP5.*; // controlP5 library
@@ -37,7 +36,7 @@ public String folderPath = " ";
 ListBox dirListBox;
 
 String newMovie = "";
-public boolean change1 = false; boolean change2 = false; boolean change3 = false; boolean change4 = false;
+public boolean changeMovie = false;
 
 SDrop drop;
 
@@ -59,7 +58,7 @@ ProjectedQuads projectedQuads;
 PGraphics quadGraphics1, quadGraphics2, quadGraphics3, quadGraphics4;
 
 // berzier mapping
-BezierWarp bw;
+BezierWarp bw1, bw2, bw3, bw4;
 
 
 // variables pre setup
@@ -213,7 +212,10 @@ void setup() {
   projectedQuads.getQuad(3).setTexture(quadGraphics4); 
   
   // berzier mapping setup
-  bw = new BezierWarp(this, 10);
+  bw1 = new BezierWarp(this, 16);
+  bw2 = new BezierWarp(this, 16);
+  bw3 = new BezierWarp(this, 16);
+  bw4 = new BezierWarp(this, 16);
   
   // drop setup
   drop = new SDrop(controlWindow.component(),this);
@@ -263,20 +265,29 @@ public void draw() {
   background(0);
   
   //
-  // drop
+  // drop movie
   //
   
-  if (change1 == true && selectedLayer == 0) {
-   myMovie1 = new GSMovie(this, newMovie);
-   myMovie1.play();
-   myMovie1.loop();
-   change1 = false; 
+  if (changeMovie && selectedLayer == 0) {
+   myMovie1 = new GSMovie(this, newMovie); myMovie1.play(); myMovie1.loop(); changeMovie = false; 
+  }
+  if (changeMovie && selectedLayer == 1) {
+   myMovie2 = new GSMovie(this, newMovie); myMovie2.play(); myMovie2.loop(); changeMovie = false; 
+  }
+  if (changeMovie && selectedLayer == 2) {
+   myMovie3 = new GSMovie(this, newMovie); myMovie3.play(); myMovie3.loop(); changeMovie = false; 
+  }
+  if (changeMovie && selectedLayer == 3) {
+   myMovie4 = new GSMovie(this, newMovie); myMovie4.play(); myMovie4.loop(); changeMovie = false; 
   }
   
   
+  
   //
-  // interface update
+  // interface update values
   //
+  
+  // fps
   if (random(100)>50){ controlP5.controller("fpsValue").setValue(int(frameRate)); }
 
   // playback heads
@@ -302,7 +313,6 @@ public void draw() {
     myMovie1.play();
     myMovie1.speed(layer1speed);
     if (mapping1) { // quad mapping
-      // mapping
       quadGraphics1.beginDraw();
       image(myMovie1, 0, 0, 640, 480); 
       quadGraphics1.endDraw();
@@ -310,7 +320,7 @@ public void draw() {
       quadGraphics1.beginDraw();
       image(myMovie1, 0, 0, 640, 480); 
       quadGraphics1.endDraw();
-      bw.render(quadGraphics1);
+      bw1.render(quadGraphics1);
      } else { // no mapping
       image(myMovie1, 0, 0, outputWidth, outputHeight); 
     } // end if mapping
@@ -323,13 +333,16 @@ public void draw() {
     tint(colorPicker2.getColorValue());
     myMovie2.play();
     myMovie2.speed(layer2speed);
-    if (mapping2) {
-      // mapping
+    if (mapping2) { // quad mapping
       quadGraphics2.beginDraw();
       image(myMovie2, 0, 0, 640, 480); 
       quadGraphics2.endDraw();
-    } else {
-      // no mapping
+     } else if (bmapping2) {  // berzier mapping
+      quadGraphics2.beginDraw();
+      image(myMovie2, 0, 0, 640, 480); 
+      quadGraphics2.endDraw();
+      bw2.render(quadGraphics2);
+     } else { // no mapping
       image(myMovie2, 0, 0, outputWidth, outputHeight); 
     } // end if mapping
   } else {
@@ -342,13 +355,16 @@ public void draw() {
     tint(colorPicker3.getColorValue());
     myMovie3.play();
     myMovie3.speed(layer3speed);
-    if (mapping3) {
-      // mapping
+    if (mapping3) { // quad mapping
       quadGraphics3.beginDraw();
       image(myMovie3, 0, 0, 640, 480); 
       quadGraphics3.endDraw();
-    } else {
-      // no mapping
+     } else if (bmapping3) {  // berzier mapping
+      quadGraphics3.beginDraw();
+      image(myMovie3, 0, 0, 640, 480); 
+      quadGraphics3.endDraw();
+      bw3.render(quadGraphics3);
+     } else { // no mapping
       image(myMovie3, 0, 0, outputWidth, outputHeight); 
     } // end if mapping
   } else {
@@ -360,13 +376,16 @@ public void draw() {
     tint(colorPicker4.getColorValue());
     myMovie4.play();
     myMovie4.speed(layer4speed);
-    if (mapping4) {
-      // mapping
+    if (mapping4) { // quad mapping
       quadGraphics4.beginDraw();
       image(myMovie4, 0, 0, 640, 480); 
       quadGraphics4.endDraw();
-    } else {
-      // no mapping
+     } else if (bmapping4) {  // berzier mapping
+      quadGraphics4.beginDraw();
+      image(myMovie4, 0, 0, 640, 480); 
+      quadGraphics4.endDraw();
+      bw4.render(quadGraphics4);
+     } else { // no mapping
       image(myMovie4, 0, 0, outputWidth, outputHeight); 
     } // end if mapping
   } else {
@@ -502,7 +521,7 @@ String[] listFileNames(String dir,java.io.FilenameFilter extension) {
       if(myFile.isFile()) {
         println("toString()\t"+theDropEvent.toString());
         newMovie = theDropEvent.toString();
-        change1 = true;
+        changeMovie = true;
       }
     } // end theDropEvent.isFile()   
   } // end dropEvent
