@@ -40,6 +40,14 @@ public boolean changeMovie = false;
 
 SDrop drop;
 
+// dirs pre setup
+// ------ default folder path ------
+String defaultFolderPath = System.getProperty("user.home")+"/Desktop";
+//String defaultFolderPath = "/Users/admin/Desktop";
+//String defaultFolderPath = "C:\\windows";
+String dirs[] = new String[200];
+int fileCounter = 0;
+PFont debugFont;
 
 // file filter
 java.io.FilenameFilter txtFilter = new java.io.FilenameFilter() {
@@ -104,7 +112,7 @@ public void init(){
 // --------------------------------------------------------------------------------------------------------------
 
 //
-// interface canvas screen
+// interface canvas screen draw
 //
 
 class MyCanvas extends ControlWindowCanvas {
@@ -128,6 +136,14 @@ class MyCanvas extends ControlWindowCanvas {
       theApplet.rect(8+(columnWidth*3),22,164,124);
       theApplet.image(myMovie4, 10+(columnWidth*3), 24,160, 120);
     }
+   
+  //
+  if (controlWindow.currentTab().id()==1) { 
+    theApplet.fill(0, 255, 0);  
+    if (fileCounter > 0) {
+      for(int i = 0; i< fileCounter; i++) { theApplet.text(dirs[i], 10, 300+(16*i)); }
+    } //end if fileCounter
+  }
    
 //    if(theApplet.mousePressed) { theApplet.ellipse(theApplet.mouseX,theApplet.mouseY,20,20); }
 
@@ -212,6 +228,11 @@ void setup() {
   // drop setup
   drop = new SDrop(controlWindow.component(),this);
   
+  // dirs setup
+  setInputFolder(defaultFolderPath);
+  debugFont = createFont("Arial", 14);
+  textFont(debugFont);
+  for(int i = 0; i< 200; i++) { dirs[i]=""; }
   
   
 } // end setup
@@ -435,30 +456,35 @@ void keyPressed(){
   projectedQuads.keyPressed();
   
   switch(key) {
-     case '1':
+    case '1':
        selectedLayer = 0; break; 
-     case '2':
+    case '2':
        selectedLayer = 1; break;
-     case '3':
+    case '3':
        selectedLayer = 2; break;
-     case '4':
+    case '4':
        selectedLayer = 3; break;
-     
-  case 'd': 
-    String folderPath = selectFolder();
-    if (folderPath == null) {
-      println("No folder was selected..."); // if no folder was selected
-    } 
-    else {
-      println(folderPath);
-      fileNames = listFileNames(folderPath, txtFilter);
-      println(fileNames);
-      //dirListBox.addItem(fileNames[0],0);
-//      for(int i=0;i<fileNames.length;i++) { //
-//        dirListBox.addItem(fileNames[i],i);
-//      }
+       
+    
       
-    }
+    case 'd':
+      for(int i = 0; i< 200; i++) { dirs[i]=""; } // clear dirs
+      setInputFolder(selectFolder("select library master folder"));
+  
+  //    String folderPath = selectFolder();
+  //    if (folderPath == null) {
+  //      println("No folder was selected..."); // if no folder was selected
+  //    } 
+  //    else {
+  //      println(folderPath);
+  //      fileNames = listFileNames(folderPath, txtFilter);
+  //      println(fileNames);
+  //      //dirListBox.addItem(fileNames[0],0);
+  ////      for(int i=0;i<fileNames.length;i++) { //
+  ////        dirListBox.addItem(fileNames[i],i);
+  ////      }
+  //      
+  //    }
 break; // break 'd'
     
   case 'u':
@@ -470,18 +496,30 @@ break; // break 'd'
     
     break; // break 'd'
     
-  case 'r': //xxx
+  case 'R': //xxx
 //    String tempString = selectFolder() + fileNames[int(random(fileNames.length))]; 
 //    myMovie1 = new GSMovie(this, tempString);
 //    myMovie1.loop();
-    break; // break 'r'
+    break; // break 'R'
     
   case 'i': //xxx
    effectInvert1 = !(effectInvert1);
   break; // break 'i'
     
-  } // end switch 
-}
+  } // end switch key
+  
+  if (key == CODED) {
+      if (keyCode == KeyEvent.VK_F1) { controlWindow.activateTab("default"); }
+      if (keyCode == KeyEvent.VK_F2) { controlWindow.activateTab("Effects"); }
+      if (keyCode == KeyEvent.VK_F3) { controlWindow.activateTab("Rhythm"); }
+      if (keyCode == KeyEvent.VK_F4) { controlWindow.activateTab("Sequencer"); }
+      if (keyCode == KeyEvent.VK_F5) { controlWindow.activateTab("Mapping"); }
+      if (keyCode == KeyEvent.VK_F6) { controlWindow.activateTab("3D"); }
+      if (keyCode == KeyEvent.VK_F7) { controlWindow.activateTab("Playlist"); }
+      if (keyCode == KeyEvent.VK_F8) { controlWindow.activateTab("Prefs"); }
+    } // end if keyCoded  
+    
+} // end keyPressed
 
 
 // --------------------------------------------------------------------------------------------------------------
@@ -557,4 +595,86 @@ public void stop() {
 //}
 
 
+
+// ------ folder selection dialog + init visualization ------
+void setInputFolder(String theFolderPath) {
+  // get files on harddisk
+  println("\n"+theFolderPath);
+  FileSystemItem selectedFolder = new FileSystemItem(new File(theFolderPath));
+  selectedFolder.printDepthFirst();
+  println("\n");
+}
+
+class FileSystemItem {
+  File file;
+  FileSystemItem[] children;
+  int childCount;
+
+  // ------ constructor ------
+  FileSystemItem(File theFile) {
+    file = theFile;
+
+    if (file.isDirectory()) {
+      String[] contents = file.list();
+      if (contents != null) {
+        // Sort the file names in case insensitive order
+        contents = sort(contents);
+
+        children = new FileSystemItem[contents.length];
+        for (int i = 0 ; i < contents.length; i++) {
+          // skip the . and .. directory entries on Unix systems
+          if (contents[i].equals(".") || contents[i].equals("..")
+            || contents[i].substring(0,1).equals(".")) {
+            continue;
+          }
+          File childFile = new File(file, contents[i]);
+          // skip any file that appears to be a symbolic link
+          try {
+            String absPath = childFile.getAbsolutePath();
+            String canPath = childFile.getCanonicalPath();
+            if (!absPath.equals(canPath)) continue;
+          }
+          catch (IOException e) {
+          }
+          FileSystemItem child = new FileSystemItem(childFile);
+          children[childCount] = child;
+          childCount++;
+        }
+      }
+    }
+  }
+
+
+
+  // ------ print and debug functions ------
+  // Depth First Search
+  void printDepthFirst() {
+    //println("printDepthFirst");
+    // global fileCounter
+    fileCounter = 0;
+    printDepthFirst(0,-1);
+    //println(fileCounter+" files");
+  }
+  
+  
+  void printDepthFirst(int depth, int indexToParent) {
+
+    if (file.isDirectory()) {
+      println(file.getName());
+      dirs[fileCounter] = file.getName();
+      indexToParent = fileCounter;
+      fileCounter++;
+    }
+    
+    
+    
+    // now handle the children, if any
+    for (int i = 0; i < childCount; i++) {
+      if (depth == 1) { break; }
+      children[i].printDepthFirst(depth+1,indexToParent);
+    } // end for
+    
+  }
+
+}
 

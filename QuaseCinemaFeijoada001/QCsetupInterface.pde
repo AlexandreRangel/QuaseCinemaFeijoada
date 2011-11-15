@@ -14,13 +14,15 @@ void QCsetupInterface() {
   // window only when it is in focus, use ControlWindow.ECONOMIC is the default update value.
   //controlWindow.setUpdateMode(ControlWindow.NORMAL);
   controlWindow.setUpdateMode(ControlWindow.NORMAL);
-    
+  controlWindow.frameRate(30);  
+   
   cc = new MyCanvas(); // create a control window canvas
   cc.pre(); // use cc.post(); to draw on top of the controllers.
   controlWindow.addCanvas(cc);
   
   // tabs
   controlWindow.tab("default").setLabel("  Main  ");
+  controlWindow.tab("default").setId(1);
   controlWindow.addTab("Effects"); controlWindow.tab("Effects").setLabel("  Effects  ");
   controlWindow.addTab("Rhythm"); controlWindow.tab("Rhythm").setLabel("  Rhythm  ");
   controlWindow.addTab("Sequencer"); controlWindow.tab("Sequencer").setLabel("  Sequencer  ");
@@ -50,15 +52,6 @@ void QCsetupInterface() {
   // interface
   // main tab
   //
-  
-  // interface main - directory
-  controlP5.ListBox dirListBox = controlP5.addListBox("dirList",10,screenHeight/2,columnWidth,screenHeight/2);
-  dirListBox.setLabel("dirs"); dirListBox.moveTo(controlWindow);
-  dirListBox.setItemHeight(15); dirListBox.setBarHeight(15);
-  dirListBox.captionLabel().style().marginTop = 3;
-//  for(int i=0;i<fileNames.length;i++) { //
-//    dirListBox.addItem(fileNames[i],i);
-//  }
   
   // interface main - column 1
   controlP5.Controller visibilityToggle1 = controlP5.addToggle("layer1visibility",true,180+(columnWidth*0),20,20,20);

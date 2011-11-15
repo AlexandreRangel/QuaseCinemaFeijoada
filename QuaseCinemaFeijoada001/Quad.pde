@@ -63,4 +63,5 @@ class Quad {
       (points[0].y + points[1].y + points[2].y + points[3].y)/4
     );
   } 
+
 }
