@@ -30,6 +30,7 @@ void QCsetupInterface() {
   controlWindow.addTab("3D"); controlWindow.tab("3D").setLabel("  3D  ");
   controlWindow.addTab("Playlist"); controlWindow.tab("Playlist").setLabel("  Playlist  ");
   controlWindow.addTab("Prefs"); controlWindow.tab("Prefs").setLabel("  Prefs  ");
+  controlWindow.addTab("Help"); controlWindow.tab("Help").setLabel("  Help  ");
   
 //  controlP5.trigger();
 //  
@@ -54,7 +55,7 @@ void QCsetupInterface() {
   //
   
   // interface main - column 1
-  controlP5.Controller visibilityToggle1 = controlP5.addToggle("layer1visibility",true,180+(columnWidth*0),20,20,20);
+  controlP5.Controller visibilityToggle1 = controlP5.addToggle("layer1visibility",true,180+(columnWidth*0),24,20,20);
   visibilityToggle1.setLabel("visible"); visibilityToggle1.moveTo(controlWindow,"global");
   
   controlP5.Controller playbackSlider1 = controlP5.addSlider("layer1playback",0,1.0,0.0,10+(columnWidth*0),200,int(columnWidth*0.7),14);
@@ -64,7 +65,7 @@ void QCsetupInterface() {
   mySlider.setLabel("speed"); mySlider.moveTo(controlWindow);
   
   // interface main - column 2
-  controlP5.Controller visibilityToggle2 = controlP5.addToggle("layer2visibility",false,180+(columnWidth*1),20,20,20);
+  controlP5.Controller visibilityToggle2 = controlP5.addToggle("layer2visibility",false,180+(columnWidth*1),24,20,20);
   visibilityToggle2.setLabel("visible"); visibilityToggle2.moveTo(controlWindow,"global");
   
   controlP5.Controller playbackSlider2 = controlP5.addSlider("layer2playback",0,1.0,0.0,10+(columnWidth*1),200,int(columnWidth*0.7),14);
@@ -75,7 +76,7 @@ void QCsetupInterface() {
   
   
   // interface main - column 3
-  controlP5.Controller visibilityToggle3 = controlP5.addToggle("layer3visibility",false,180+(columnWidth*2),20,20,20);
+  controlP5.Controller visibilityToggle3 = controlP5.addToggle("layer3visibility",false,180+(columnWidth*2),24,20,20);
   visibilityToggle3.setLabel("visible"); visibilityToggle3.moveTo(controlWindow,"global");
   
   controlP5.Controller playbackSlider3 = controlP5.addSlider("layer3playback",0,1.0,0.0,10+(columnWidth*2),200,int(columnWidth*0.7),14);
@@ -86,7 +87,7 @@ void QCsetupInterface() {
   
   
   // interface main - column 4
-  controlP5.Controller visibilityToggle4 = controlP5.addToggle("layer4visibility",false,180+(columnWidth*3),20,20,20);
+  controlP5.Controller visibilityToggle4 = controlP5.addToggle("layer4visibility",false,180+(columnWidth*3),24,20,20);
   visibilityToggle4.setLabel("visible"); visibilityToggle4.moveTo(controlWindow,"global");
   
   controlP5.Controller playbackSlider4 = controlP5.addSlider("layer4playback",0,1.0,0.0,10+(columnWidth*3),200,int(columnWidth*0.7),14);
@@ -150,21 +151,21 @@ void QCsetupInterface() {
   //
   
   // interface bpm - column 1
-  controlP5.Controller bpmVisSlider1 = controlP5.addSlider("layer1bpmVis",0,240,120,10+(columnWidth*0),220,int(columnWidth*0.7),14);
+  controlP5.Controller bpmVisSlider1 = controlP5.addSlider("layer1bpmVis",0,240,0,10+(columnWidth*0),220,int(columnWidth*0.7),14);
   bpmVisSlider1.setLabel("bpm vis"); bpmVisSlider1.moveTo(controlWindow,"Rhythm");
   
   // interface bpm - column 2  
-  controlP5.Controller bpmVisSlider2 = controlP5.addSlider("layer2bpmVis",0,240,120,10+(columnWidth*1),220,int(columnWidth*0.7),14);
+  controlP5.Controller bpmVisSlider2 = controlP5.addSlider("layer2bpmVis",0,240,0,10+(columnWidth*1),220,int(columnWidth*0.7),14);
   bpmVisSlider2.setLabel("bpm vis"); bpmVisSlider2.moveTo(controlWindow,"Rhythm");
   
   
   // interface bpm - column 3
-  controlP5.Controller bpmVisSlider3 = controlP5.addSlider("layer3bpmVis",0,240,120,10+(columnWidth*2),220,int(columnWidth*0.7),14);
+  controlP5.Controller bpmVisSlider3 = controlP5.addSlider("layer3bpmVis",0,240,0,10+(columnWidth*2),220,int(columnWidth*0.7),14);
   bpmVisSlider3.setLabel("bpm vis"); bpmVisSlider3.moveTo(controlWindow,"Rhythm");
   
   
   // interface bpm - column 4
-  controlP5.Controller bpmVisSlider4 = controlP5.addSlider("layer4bpmVis",0,240,120,10+(columnWidth*3),220,int(columnWidth*0.7),14);
+  controlP5.Controller bpmVisSlider4 = controlP5.addSlider("layer4bpmVis",0,240,0,10+(columnWidth*3),220,int(columnWidth*0.7),14);
   bpmVisSlider4.setLabel("bpm vis"); bpmVisSlider4.moveTo(controlWindow,"Rhythm");
   
   
@@ -173,8 +174,21 @@ void QCsetupInterface() {
   // sequencer tab
   //
   
-  controlP5.Controller sequencerSlider1 = controlP5.addMatrix("layer1sequencer", 8, 4, 20, 240, 400, 300);
+  // sequencer - column 1
+  controlP5.Controller sequencerSlider1 = controlP5.addMatrix("layer1sequencer", 8, 4, 10+(columnWidth*0), 240, int(columnWidth*0.94), 160);
   sequencerSlider1.setLabel("sequencer"); sequencerSlider1.moveTo(controlWindow,"Sequencer");
+  
+  // sequencer - column 2
+  controlP5.Controller sequencerSlider2 = controlP5.addMatrix("layer2sequencer", 8, 4, 10+(columnWidth*1), 240, int(columnWidth*0.94), 160);
+  sequencerSlider2.setLabel("sequencer"); sequencerSlider2.moveTo(controlWindow,"Sequencer");
+  
+  // sequencer - column 3
+  controlP5.Controller sequencerSlider3 = controlP5.addMatrix("layer3sequencer", 8, 4, 10+(columnWidth*2), 240, int(columnWidth*0.94), 160);
+  sequencerSlider3.setLabel("sequencer"); sequencerSlider3.moveTo(controlWindow,"Sequencer");
+  
+  // sequencer - column 4
+  controlP5.Controller sequencerSlider4 = controlP5.addMatrix("layer4sequencer", 8, 4, 10+(columnWidth*3), 240, int(columnWidth*0.94), 160);
+  sequencerSlider4.setLabel("sequencer"); sequencerSlider4.moveTo(controlWindow,"Sequencer");
   
   
   //

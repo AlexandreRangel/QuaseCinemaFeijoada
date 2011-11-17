@@ -33,7 +33,8 @@ public GSMovie myMovie1, myMovie2, myMovie3, myMovie4;
 // directory
 public String[] fileNames;
 public String folderPath = " ";
-ListBox dirListBox;
+//ListBox dirListBox;
+int dirClicked = 100;
 
 String newMovie = "";
 public boolean changeMovie = false;
@@ -65,9 +66,11 @@ String configFile = "data/quadsconfig.txt";
 ProjectedQuads projectedQuads;
 PGraphics quadGraphics1, quadGraphics2, quadGraphics3, quadGraphics4;
 
-// berzier mapping
+// berzier mapping pre setup
 BezierWarp bw1, bw2, bw3, bw4;
 
+// timer pre setup
+int layer1bpmVisLastTime = 0; int layer2bpmVisLastTime = 0; int layer3bpmVisLastTime = 0; int layer4bpmVisLastTime = 0;
 
 // variables pre setup
 public int selectedLayer = 0;
@@ -112,7 +115,7 @@ public void init(){
 // --------------------------------------------------------------------------------------------------------------
 
 //
-// interface canvas screen draw
+// interface draw canvas screen
 //
 
 class MyCanvas extends ControlWindowCanvas {
@@ -127,25 +130,41 @@ class MyCanvas extends ControlWindowCanvas {
     // layer icons
     if (frameCount > 1) {
       theApplet.fill(128);
-      theApplet.rect(8,22,164,124);
-      theApplet.image(myMovie1, 10, 24, 160, 120);
-      theApplet.rect(8+(columnWidth*1),22,164,124);
-      theApplet.image(myMovie2, 10+(columnWidth*1), 24, 160, 120);
-      theApplet.rect(8+(columnWidth*2),22,164,124);
-      theApplet.image(myMovie3, 10+(columnWidth*2), 24,160, 120);
-      theApplet.rect(8+(columnWidth*3),22,164,124);
-      theApplet.image(myMovie4, 10+(columnWidth*3), 24,160, 120);
+      theApplet.rect(8+(columnWidth*0), 24, 164, 124);
+      theApplet.image(myMovie1, 10+(columnWidth*0), 26, 160, 120);
+      theApplet.rect(8+(columnWidth*1), 24, 164, 124);
+      theApplet.image(myMovie2, 10+(columnWidth*1), 26, 160, 120);
+      theApplet.rect(8+(columnWidth*2), 24, 164, 124);
+      theApplet.image(myMovie3, 10+(columnWidth*2), 26, 160, 120);
+      theApplet.rect(8+(columnWidth*3), 24, 164, 124);
+      theApplet.image(myMovie4, 10+(columnWidth*3), 26, 160, 120);
     }
    
-  //
-  if (controlWindow.currentTab().id()==1) { 
+  // dir names
+  if (controlWindow.currentTab().id()==1) { // if main tab 
     theApplet.fill(0, 255, 0);  
     if (fileCounter > 0) {
-      for(int i = 0; i< fileCounter; i++) { theApplet.text(dirs[i], 10, 300+(16*i)); }
+      for(int i = 0; i< fileCounter; i++) { theApplet.text(dirs[i], 10, 350+(18*i)); }
     } //end if fileCounter
-  }
+  } // end if main tab
    
-//    if(theApplet.mousePressed) { theApplet.ellipse(theApplet.mouseX,theApplet.mouseY,20,20); }
+  if(theApplet.mousePressed) {
+    //theApplet.ellipse(theApplet.mouseX,theApplet.mouseY,20,20);
+      // dir click
+    if (controlWindow.currentTab().id()==1) { // if main tab 
+      //if (fileCounter > 0) {
+        for(int i = 0; i< fileCounter; i++) {
+          if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
+            dirClicked = i;
+            println (theApplet.mouseY + "  dir: " + dirClicked);
+            //break; // break for
+            
+          } // end if mouse loc
+        } // end for
+      //} //end if fileCounter
+    } // end if main tab
+    
+  } // end if theApplet.mousePressed
 
       // dropArea1.draw();
     
@@ -182,7 +201,7 @@ void setup() {
   frame.setResizable(true);
   frameRate(60);
   frame.setLocation(screen.width,0);
-  //frame.setLocation(1024,0);
+  frame.setLocation(1024,0);
   //frame.setLocation(1440,0);
   
   // variables setup
@@ -229,11 +248,14 @@ void setup() {
   drop = new SDrop(controlWindow.component(),this);
   
   // dirs setup
+  for(int i = 0; i< 200; i++) { dirs[i]=""; }
   setInputFolder(defaultFolderPath);
   debugFont = createFont("Arial", 14);
   textFont(debugFont);
-  for(int i = 0; i< 200; i++) { dirs[i]=""; }
   
+  
+  // timer setup
+  layer1bpmVisLastTime=millis(); layer2bpmVisLastTime=millis(); layer3bpmVisLastTime=millis(); layer4bpmVisLastTime=millis();
   
 } // end setup
 
@@ -309,9 +331,28 @@ public void draw() {
   controlP5.controller("layer3playback").setValue(map(myMovie3.time(),0.0,myMovie3.duration(),0.0,1.0));
   controlP5.controller("layer4playback").setValue(map(myMovie4.time(),0.0,myMovie4.duration(),0.0,1.0));
 
-  
-  
   //controlP5.draw();
+
+  // timer update
+  if(layer1bpmVis>0 && millis()-layer1bpmVisLastTime >= map(layer1bpmVis,0,240,1000,10)){
+    layer1visibility = !(layer1visibility);
+    layer1bpmVisLastTime=millis();
+  }
+  
+  if(layer2bpmVis>0 && millis()-layer2bpmVisLastTime >= map(layer2bpmVis,0,240,1000,10)){
+    layer2visibility = !(layer2visibility);
+    layer2bpmVisLastTime=millis();
+  }
+  
+  if(layer3bpmVis>0 && millis()-layer3bpmVisLastTime >= map(layer3bpmVis,0,240,1000,10)){
+    layer3visibility = !(layer3visibility);
+    layer3bpmVisLastTime=millis();
+  }
+  
+  if(layer4bpmVis>0 && millis()-layer4bpmVisLastTime >= map(layer4bpmVis,0,240,1000,10)){
+    layer4visibility = !(layer4visibility);
+    layer4bpmVisLastTime=millis();
+  }
   
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
@@ -434,6 +475,7 @@ public void draw() {
 
 void mousePressed(){
   
+  // quad mapping click
   projectedQuads.mousePressed();
   
   //mX = mouseX;
@@ -465,8 +507,6 @@ void keyPressed(){
     case '4':
        selectedLayer = 3; break;
        
-    
-      
     case 'd':
       for(int i = 0; i< 200; i++) { dirs[i]=""; } // clear dirs
       setInputFolder(selectFolder("select library master folder"));
@@ -496,13 +536,13 @@ break; // break 'd'
     
     break; // break 'd'
     
-  case 'R': //xxx
+  case 'R': //
 //    String tempString = selectFolder() + fileNames[int(random(fileNames.length))]; 
 //    myMovie1 = new GSMovie(this, tempString);
 //    myMovie1.loop();
     break; // break 'R'
     
-  case 'i': //xxx
+  case 'i': //
    effectInvert1 = !(effectInvert1);
   break; // break 'i'
     
@@ -517,6 +557,7 @@ break; // break 'd'
       if (keyCode == KeyEvent.VK_F6) { controlWindow.activateTab("3D"); }
       if (keyCode == KeyEvent.VK_F7) { controlWindow.activateTab("Playlist"); }
       if (keyCode == KeyEvent.VK_F8) { controlWindow.activateTab("Prefs"); }
+      if (keyCode == KeyEvent.VK_F9) { controlWindow.activateTab("Help"); }
     } // end if keyCoded  
     
 } // end keyPressed
@@ -573,6 +614,8 @@ String[] listFileNames(String dir,java.io.FilenameFilter extension) {
   
   
 public void stop() {
+  myMovie1.stop(); myMovie2.stop(); myMovie3.stop(); myMovie4.stop(); 
+  myMovie1.delete(); myMovie2.delete(); myMovie3.delete(); myMovie4.delete();
   super.stop();
 } 
   
