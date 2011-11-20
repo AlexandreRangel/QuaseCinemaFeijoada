@@ -16,6 +16,9 @@ import sojamo.drop.*; // sDrop library
 
 import mappingtools.*; // mappingtools library
 
+import ddf.minim.analysis.*; // minim library
+import ddf.minim.*;
+
 // controlP5
 ControlP5 controlP5;
 ControlWindow controlWindow;
@@ -43,7 +46,8 @@ SDrop drop;
 
 // dirs pre setup
 // ------ default folder path ------
-String defaultFolderPath = System.getProperty("user.home")+"/Desktop";
+//String defaultFolderPath = System.getProperty("user.home")+"/Desktop";
+String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos/";
 //String defaultFolderPath = "/Users/admin/Desktop";
 //String defaultFolderPath = "C:\\windows";
 String dirs[] = new String[200];
@@ -71,6 +75,11 @@ BezierWarp bw1, bw2, bw3, bw4;
 
 // timer pre setup
 int layer1bpmVisLastTime = 0; int layer2bpmVisLastTime = 0; int layer3bpmVisLastTime = 0; int layer4bpmVisLastTime = 0;
+
+// audio pre setup
+Minim minim;
+ddf.minim.AudioPlayer audio1;
+FFT fft;
 
 // variables pre setup
 public int selectedLayer = 0;
@@ -140,7 +149,27 @@ class MyCanvas extends ControlWindowCanvas {
       theApplet.image(myMovie4, 10+(columnWidth*3), 26, 160, 120);
     }
    
-  // dir names
+  // audio tab draw
+  if (controlWindow.currentTab().id()==8) { // if main tab
+    //rectMode(CORNERS);
+    //theApplet.fill(255);
+    // perform a forward FFT on the samples in jingle's mix buffer
+    // note that if jingle were a MONO file, this would be the same as using jingle.left or jingle.right
+    //fft.forward(audio1.mix);
+    // avgWidth() returns the number of frequency bands each average represents
+    // we'll use it as the width of our rectangles
+    
+    //int w = int(200/fft.avgSize());
+    //for(int i = 0; i < fft.avgSize(); i++) {
+      // draw a rectangle for each average, multiply the value by 5 so we can see it better
+     // theApplet.rect(i*w, theApplet.screenHeight, i*w + w, theApplet.screenHeight - fft.getAvg(i)*5);
+    //} // end for
+    
+    //fft.getAvg(0) xxxx
+    
+  } // end if audio tab
+   
+  // dir names draw
   if (controlWindow.currentTab().id()==1) { // if main tab 
     theApplet.fill(0, 255, 0);  
     if (fileCounter > 0) {
@@ -166,7 +195,7 @@ class MyCanvas extends ControlWindowCanvas {
     
   } // end if theApplet.mousePressed
 
-      // dropArea1.draw();
+  // dropArea1.draw();
     
   }
 }
@@ -238,14 +267,17 @@ void setup() {
   projectedQuads.getQuad(2).setTexture(quadGraphics3); 
   projectedQuads.getQuad(3).setTexture(quadGraphics4); 
   
+  
   // berzier mapping setup
   bw1 = new BezierWarp(this, 16);
   bw2 = new BezierWarp(this, 16);
   bw3 = new BezierWarp(this, 16);
   bw4 = new BezierWarp(this, 16);
   
+  
   // drop setup
   drop = new SDrop(controlWindow.component(),this);
+  
   
   // dirs setup
   for(int i = 0; i< 200; i++) { dirs[i]=""; }
@@ -256,6 +288,21 @@ void setup() {
   
   // timer setup
   layer1bpmVisLastTime=millis(); layer2bpmVisLastTime=millis(); layer3bpmVisLastTime=millis(); layer4bpmVisLastTime=millis();
+  
+  
+  // audio setup
+  minim = new Minim(this);
+  audio1 = minim.loadFile("audio1.mp3", 2048);
+  // loop the file
+  audio1.loop();
+  // create an FFT object that has a time-domain buffer the same size as jingle's sample buffer
+  // note that this needs to be a power of two 
+  // and that it means the size of the spectrum will be 1024. 
+  // see the online tutorial for more info.
+  fft = new FFT(audio1.bufferSize(), audio1.sampleRate());
+  // calculate averages based on a miminum octave width of 22 Hz
+  // split each octave into three bands
+  fft.logAverages(22, 3);
   
 } // end setup
 
@@ -362,7 +409,7 @@ public void draw() {
   
   // pre-render layer 1
   if (layer1visibility) {
-    //tint(red(colorPicker1.getColorValue()), green(colorPicker1.getColorValue()), blue(colorPicker1.getColorValue()));
+    //tint(fft.getAvg(5)*255, green(colorPicker1.getColorValue()), 0);
     tint(colorPicker1.getColorValue());
     myMovie1.play();
     myMovie1.speed(layer1speed);
@@ -556,8 +603,9 @@ break; // break 'd'
       if (keyCode == KeyEvent.VK_F5) { controlWindow.activateTab("Mapping"); }
       if (keyCode == KeyEvent.VK_F6) { controlWindow.activateTab("3D"); }
       if (keyCode == KeyEvent.VK_F7) { controlWindow.activateTab("Playlist"); }
-      if (keyCode == KeyEvent.VK_F8) { controlWindow.activateTab("Prefs"); }
-      if (keyCode == KeyEvent.VK_F9) { controlWindow.activateTab("Help"); }
+      if (keyCode == KeyEvent.VK_F8) { controlWindow.activateTab("Sound"); }
+      if (keyCode == KeyEvent.VK_F9) { controlWindow.activateTab("Prefs"); }
+      if (keyCode == KeyEvent.VK_F10) { controlWindow.activateTab("Help"); }
     } // end if keyCoded  
     
 } // end keyPressed
@@ -616,6 +664,9 @@ String[] listFileNames(String dir,java.io.FilenameFilter extension) {
 public void stop() {
   myMovie1.stop(); myMovie2.stop(); myMovie3.stop(); myMovie4.stop(); 
   myMovie1.delete(); myMovie2.delete(); myMovie3.delete(); myMovie4.delete();
+  
+  audio1.close(); minim.stop();
+  
   super.stop();
 } 
   

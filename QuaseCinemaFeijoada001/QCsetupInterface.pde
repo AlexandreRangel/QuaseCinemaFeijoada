@@ -24,13 +24,23 @@ void QCsetupInterface() {
   controlWindow.tab("default").setLabel("  Main  ");
   controlWindow.tab("default").setId(1);
   controlWindow.addTab("Effects"); controlWindow.tab("Effects").setLabel("  Effects  ");
+  controlWindow.tab("Effects").setId(2);
   controlWindow.addTab("Rhythm"); controlWindow.tab("Rhythm").setLabel("  Rhythm  ");
+  controlWindow.tab("Rhythm").setId(3);
   controlWindow.addTab("Sequencer"); controlWindow.tab("Sequencer").setLabel("  Sequencer  ");
+  controlWindow.tab("Sequencer").setId(4);
   controlWindow.addTab("Mapping"); controlWindow.tab("Mapping").setLabel("  Mapping  ");
+  controlWindow.tab("Mapping").setId(5);
   controlWindow.addTab("3D"); controlWindow.tab("3D").setLabel("  3D  ");
+  controlWindow.tab("3D").setId(6);
   controlWindow.addTab("Playlist"); controlWindow.tab("Playlist").setLabel("  Playlist  ");
+  controlWindow.tab("Playlist").setId(7);
+  controlWindow.addTab("Sound"); controlWindow.tab("Sound").setLabel("  Sound  ");
+  controlWindow.tab("Sound").setId(8);
   controlWindow.addTab("Prefs"); controlWindow.tab("Prefs").setLabel("  Prefs  ");
+  controlWindow.tab("Prefs").setId(9);
   controlWindow.addTab("Help"); controlWindow.tab("Help").setLabel("  Help  ");
+  controlWindow.tab("Help").setId(10);
   
 //  controlP5.trigger();
 //  
