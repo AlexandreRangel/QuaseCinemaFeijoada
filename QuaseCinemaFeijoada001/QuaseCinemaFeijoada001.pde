@@ -12,7 +12,7 @@ import codeanticode.gsvideo.*; // GSvideo library
 import javax.media.opengl.GL; // openGL library
 import processing.opengl.*; // openGL library
 
-import sojamo.drop.*; // sDrop library
+import sojamo.drop.*; // sDrop libraryr
 
 import mappingtools.*; // mappingtools library
 
@@ -77,6 +77,7 @@ BezierWarp bw1, bw2, bw3, bw4;
 
 // timer pre setup
 int layer1bpmVisLastTime = 0; int layer2bpmVisLastTime = 0; int layer3bpmVisLastTime = 0; int layer4bpmVisLastTime = 0;
+int layer1bpmMovieLastTime = 0; int layer2bpmMovieLastTime = 0; int layer3bpmMovieLastTime = 0; int layer4bpmMovieLastTime = 0;
 
 // audio pre setup
 Minim minim;
@@ -102,6 +103,7 @@ boolean mapping1 = false; boolean mapping2 = false; boolean mapping3 = false; bo
 boolean bmapping1 = false; boolean bmapping2 = false; boolean bmapping3 = false; boolean bmapping4 = false;
 
 int layer1bpmVis, layer2bpmVis, layer3bpmVis, layer4bpmVis;
+int layer1bpmMovie, layer2bpmMovie, layer3bpmMovie, layer4bpmMovie;
 
 float layer1speed = 1.0; float layer2speed = 1.0; float layer3speed = 1.0; float layer4speed = 1.0;
 //float layer1transparency = 255; float layer2transparency = 255; float layer3transparency = 255; float layer4transparency = 255;
@@ -299,6 +301,7 @@ void setup() {
   
   // timer setup
   layer1bpmVisLastTime=millis(); layer2bpmVisLastTime=millis(); layer3bpmVisLastTime=millis(); layer4bpmVisLastTime=millis();
+  layer1bpmMovieLastTime=millis(); layer2bpmMovieLastTime=millis(); layer3bpmMovieLastTime=millis(); layer4bpmMovieLastTime=millis();
   
   
   // audio setup
@@ -395,25 +398,60 @@ public void draw() {
 
   //controlP5.draw();
 
+  //
   // timer update
+  //
+  
+  // bpm visibility
   if(layer1bpmVis>0 && millis()-layer1bpmVisLastTime >= map(layer1bpmVis,0,240,1000,10)){
     layer1visibility = !(layer1visibility);
     layer1bpmVisLastTime=millis();
   }
-  
   if(layer2bpmVis>0 && millis()-layer2bpmVisLastTime >= map(layer2bpmVis,0,240,1000,10)){
     layer2visibility = !(layer2visibility);
     layer2bpmVisLastTime=millis();
   }
-  
   if(layer3bpmVis>0 && millis()-layer3bpmVisLastTime >= map(layer3bpmVis,0,240,1000,10)){
     layer3visibility = !(layer3visibility);
     layer3bpmVisLastTime=millis();
   }
-  
   if(layer4bpmVis>0 && millis()-layer4bpmVisLastTime >= map(layer4bpmVis,0,240,1000,10)){
     layer4visibility = !(layer4visibility);
     layer4bpmVisLastTime=millis();
+  }
+  
+  // bpm change movie
+  if(layer1bpmMovie>0 && millis()-layer1bpmMovieLastTime >= map(layer1bpmMovie,0,240,1000,10)){
+    // change movie
+    String tempString = rootFolder + dirs[selectedDir1] +"/";
+    fileNames = listFileNames(tempString, txtFilter);
+    tempString = rootFolder + dirs[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+    myMovie1.delete(); myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play(); myMovie1.loop();
+    layer1bpmMovieLastTime=millis();
+  }
+  if(layer2bpmMovie>0 && millis()-layer2bpmMovieLastTime >= map(layer2bpmMovie,0,240,1000,10)){
+    // change movie
+    String tempString = rootFolder + dirs[selectedDir1] +"/";
+    fileNames = listFileNames(tempString, txtFilter);
+    tempString = rootFolder + dirs[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+    myMovie2.delete(); myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play(); myMovie2.loop();
+    layer2bpmMovieLastTime=millis();
+  }
+  if(layer3bpmMovie>0 && millis()-layer3bpmMovieLastTime >= map(layer3bpmMovie,0,240,1000,10)){
+    // change movie
+    String tempString = rootFolder + dirs[selectedDir1] +"/";
+    fileNames = listFileNames(tempString, txtFilter);
+    tempString = rootFolder + dirs[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+    myMovie3.delete(); myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play(); myMovie3.loop();
+    layer3bpmMovieLastTime=millis();
+  }
+  if(layer4bpmMovie>0 && millis()-layer4bpmMovieLastTime >= map(layer4bpmMovie,0,240,1000,10)){
+    // change movie
+    String tempString = rootFolder + dirs[selectedDir1] +"/";
+    fileNames = listFileNames(tempString, txtFilter);
+    tempString = rootFolder + dirs[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+    myMovie4.delete(); myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play(); myMovie4.loop();
+    layer4bpmMovieLastTime=millis();
   }
   
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -614,7 +652,7 @@ break; // break 'd'
     String tempString = rootFolder + dirs[selectedDir1] +"/";
     fileNames = listFileNames(tempString, txtFilter);
     
-    tempString = rootFolder + dirs[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];  //xxxx
+    tempString = rootFolder + dirs[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
     
     //String tempString =  dirs[1] + fileNames[int(random(fileNames.length))]; 
     //String tempString =  dirs[1] + fileNames[0]; // + children[1]; 

@@ -164,19 +164,31 @@ void QCsetupInterface() {
   controlP5.Controller bpmVisSlider1 = controlP5.addSlider("layer1bpmVis",0,240,0,10+(columnWidth*0),220,int(columnWidth*0.7),14);
   bpmVisSlider1.setLabel("bpm vis"); bpmVisSlider1.moveTo(controlWindow,"Rhythm");
   
+  controlP5.Controller bpmMovieSlider1 = controlP5.addSlider("layer1bpmMovie",0,240,0,10+(columnWidth*0),240,int(columnWidth*0.7),14);
+  bpmMovieSlider1.setLabel("bpm movie"); bpmMovieSlider1.moveTo(controlWindow,"Rhythm");
+  
   // interface bpm - column 2  
   controlP5.Controller bpmVisSlider2 = controlP5.addSlider("layer2bpmVis",0,240,0,10+(columnWidth*1),220,int(columnWidth*0.7),14);
   bpmVisSlider2.setLabel("bpm vis"); bpmVisSlider2.moveTo(controlWindow,"Rhythm");
+  
+  controlP5.Controller bpmMovieSlider2 = controlP5.addSlider("layer2bpmMovie",0,240,0,10+(columnWidth*1),240,int(columnWidth*0.7),14);
+  bpmMovieSlider2.setLabel("bpm movie"); bpmMovieSlider2.moveTo(controlWindow,"Rhythm");
   
   
   // interface bpm - column 3
   controlP5.Controller bpmVisSlider3 = controlP5.addSlider("layer3bpmVis",0,240,0,10+(columnWidth*2),220,int(columnWidth*0.7),14);
   bpmVisSlider3.setLabel("bpm vis"); bpmVisSlider3.moveTo(controlWindow,"Rhythm");
   
+  controlP5.Controller bpmMovieSlider3 = controlP5.addSlider("layer3bpmMovie",0,240,0,10+(columnWidth*2),240,int(columnWidth*0.7),14);
+  bpmMovieSlider3.setLabel("bpm movie"); bpmMovieSlider3.moveTo(controlWindow,"Rhythm");
+  
   
   // interface bpm - column 4
   controlP5.Controller bpmVisSlider4 = controlP5.addSlider("layer4bpmVis",0,240,0,10+(columnWidth*3),220,int(columnWidth*0.7),14);
   bpmVisSlider4.setLabel("bpm vis"); bpmVisSlider4.moveTo(controlWindow,"Rhythm");
+  
+  controlP5.Controller bpmMovieSlider4 = controlP5.addSlider("layer4bpmMovie",0,240,0,10+(columnWidth*3),240,int(columnWidth*0.7),14);
+  bpmMovieSlider4.setLabel("bpm movie"); bpmMovieSlider4.moveTo(controlWindow,"Rhythm");
   
   
   //
