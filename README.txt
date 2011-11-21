@@ -1,6 +1,23 @@
 Quase-Cinema Feijoada VJ software
 
-made with Processing 2.0 alpha2
+made with Processing 2.0 alpha 4
 
 Alexandre Rangel
 www.quasecinema.org
+
+
+TO DO list
+
+MIDI input hardware integration
+MIDI software integration
+OSC integration
+bpm toggles visibility interface
+dlete key to toggle visibility
+MP3 controls (volume, song, pan)
+FFT
+pixel filters (color channel changes, etc)
+movie directory interface
+dynamic layers add
+5 layers
+camera layer toggle
+camera choose

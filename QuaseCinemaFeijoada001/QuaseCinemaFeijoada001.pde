@@ -38,6 +38,7 @@ public String[] fileNames;
 public String folderPath = " ";
 //ListBox dirListBox;
 int dirClicked = 100;
+public String rootFolder;
 
 String newMovie = "";
 public boolean changeMovie = false;
@@ -150,7 +151,7 @@ class MyCanvas extends ControlWindowCanvas {
     }
    
   // audio tab draw
-  if (controlWindow.currentTab().id()==8) { // if main tab
+  if (controlWindow.currentTab().name()=="Audio") { // if audio tab
     //rectMode(CORNERS);
     //theApplet.fill(255);
     // perform a forward FFT on the samples in jingle's mix buffer
@@ -180,7 +181,7 @@ class MyCanvas extends ControlWindowCanvas {
   if(theApplet.mousePressed) {
     //theApplet.ellipse(theApplet.mouseX,theApplet.mouseY,20,20);
       // dir click
-    if (controlWindow.currentTab().id()==1) { // if main tab 
+    if (controlWindow.currentTab().name()=="Main") { // if main tab 
       //if (fileCounter > 0) {
         for(int i = 0; i< fileCounter; i++) {
           if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
@@ -230,8 +231,8 @@ void setup() {
   frame.setResizable(true);
   frameRate(60);
   frame.setLocation(screen.width,0);
-  frame.setLocation(1024,0);
-  //frame.setLocation(1440,0);
+  //frame.setLocation(1024,0);
+  frame.setLocation(1440,0);
   
   // variables setup
   QCsetupInterface();
@@ -351,15 +352,19 @@ public void draw() {
   //
   
   if (changeMovie && selectedLayer == 0) {
+   myMovie1.delete();
    myMovie1 = new GSMovie(this, newMovie); myMovie1.play(); myMovie1.loop(); changeMovie = false; 
   }
   if (changeMovie && selectedLayer == 1) {
+   myMovie2.delete();
    myMovie2 = new GSMovie(this, newMovie); myMovie2.play(); myMovie2.loop(); changeMovie = false; 
   }
   if (changeMovie && selectedLayer == 2) {
+   myMovie3.delete();
    myMovie3 = new GSMovie(this, newMovie); myMovie3.play(); myMovie3.loop(); changeMovie = false; 
   }
   if (changeMovie && selectedLayer == 3) {
+   myMovie4.delete();
    myMovie4 = new GSMovie(this, newMovie); myMovie4.play(); myMovie4.loop(); changeMovie = false; 
   }
   
@@ -558,20 +563,20 @@ void keyPressed(){
       for(int i = 0; i< 200; i++) { dirs[i]=""; } // clear dirs
       setInputFolder(selectFolder("select library master folder"));
   
-  //    String folderPath = selectFolder();
-  //    if (folderPath == null) {
-  //      println("No folder was selected..."); // if no folder was selected
-  //    } 
-  //    else {
-  //      println(folderPath);
-  //      fileNames = listFileNames(folderPath, txtFilter);
-  //      println(fileNames);
-  //      //dirListBox.addItem(fileNames[0],0);
-  ////      for(int i=0;i<fileNames.length;i++) { //
-  ////        dirListBox.addItem(fileNames[i],i);
-  ////      }
-  //      
-  //    }
+      //String folderPath = selectFolder();
+//    if (folderPath == null) {
+//      println("No folder was selected..."); // if no folder was selected
+//    } 
+//    else {
+//      // println(folderPath);
+//      fileNames = listFileNames(folderPath, txtFilter);
+//      println("filenames: \n"+ fileNames[0]);
+//      //dirListBox.addItem(fileNames[0],0);
+////      for(int i=0;i<fileNames.length;i++) { //
+////        dirListBox.addItem(fileNames[i],i);
+////      }
+//      
+//    }
 break; // break 'd'
     
   case 'u':
@@ -581,13 +586,28 @@ break; // break 'd'
     //file = File.getParentFile();
     //myMovie1.loadMovie();
     
-    break; // break 'd'
+    break; // break 'u'
     
-  case 'R': //
-//    String tempString = selectFolder() + fileNames[int(random(fileNames.length))]; 
-//    myMovie1 = new GSMovie(this, tempString);
-//    myMovie1.loop();
-    break; // break 'R'
+  case 'r': //r
+    println("rootFolder: "+rootFolder+"\n");
+    
+    fileNames = listFileNames(rootFolder, txtFilter);
+    
+//    for (int i = 0 ; i < fileNames.length; i++) {
+//      println("filename "+i+": "+ fileNames[i]);
+//    } // end for
+    
+    String tempString = rootFolder + "/" + fileNames[int(random(fileNames.length))]; 
+    
+    //String tempString =  dirs[1] + fileNames[int(random(fileNames.length))]; 
+    //String tempString =  dirs[1] + fileNames[0]; // + children[1]; 
+    
+    //println ("tempString: "+tempString+"\n");
+    
+    myMovie1.delete();
+    myMovie1 = new GSMovie(this, tempString);
+    myMovie1.read(); myMovie1.play(); myMovie1.loop();
+    break; // break 'r'
     
   case 'i': //
    effectInvert1 = !(effectInvert1);
@@ -693,15 +713,16 @@ public void stop() {
 // ------ folder selection dialog + init visualization ------
 void setInputFolder(String theFolderPath) {
   // get files on harddisk
-  println("\n"+theFolderPath);
+  println("\n"+theFolderPath+"\n");
   FileSystemItem selectedFolder = new FileSystemItem(new File(theFolderPath));
   selectedFolder.printDepthFirst();
-  println("\n");
+  rootFolder = theFolderPath;
+  println("\n rootFolder: "+theFolderPath+"\n");
 }
 
 class FileSystemItem {
   File file;
-  FileSystemItem[] children;
+  public FileSystemItem[] children;
   int childCount;
 
   // ------ constructor ------
@@ -759,8 +780,6 @@ class FileSystemItem {
       indexToParent = fileCounter;
       fileCounter++;
     }
-    
-    
     
     // now handle the children, if any
     for (int i = 0; i < childCount; i++) {

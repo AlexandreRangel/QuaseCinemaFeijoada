@@ -35,8 +35,8 @@ void QCsetupInterface() {
   controlWindow.tab("3D").setId(6);
   controlWindow.addTab("Playlist"); controlWindow.tab("Playlist").setLabel("  Playlist  ");
   controlWindow.tab("Playlist").setId(7);
-  controlWindow.addTab("Sound"); controlWindow.tab("Sound").setLabel("  Sound  ");
-  controlWindow.tab("Sound").setId(8);
+  controlWindow.addTab("Audio"); controlWindow.tab("Audio").setLabel(" Audio  ");
+  controlWindow.tab("Audio").setId(8);
   controlWindow.addTab("Prefs"); controlWindow.tab("Prefs").setLabel("  Prefs  ");
   controlWindow.tab("Prefs").setId(9);
   controlWindow.addTab("Help"); controlWindow.tab("Help").setLabel("  Help  ");
@@ -236,6 +236,14 @@ void QCsetupInterface() {
   
   controlP5.Controller bmappingToggle4 = controlP5.addToggle("bmapping4",false,50+(columnWidth*3),300,20,20);
   bmappingToggle4.setLabel("berzier mapping"); bmappingToggle4.moveTo(controlWindow,"Mapping");
+  
+  
+  //
+  // audio
+  // prefs tab
+  //
+  
+  
   
   
   //
