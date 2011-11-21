@@ -51,9 +51,10 @@ SDrop drop;
 String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos/";
 //String defaultFolderPath = "/Users/admin/Desktop";
 //String defaultFolderPath = "C:\\windows";
-String dirs[] = new String[200];
-int fileCounter = 0;
-int selectedDir1 = 1;
+String dirs1[] = new String[200]; String dirs2[] = new String[200];
+String dirs3[] = new String[200]; String dirs4[] = new String[200];
+int fileCounter1 = 0; int fileCounter2 = 0; int fileCounter3 = 0; int fileCounter4 = 0;
+int selectedDir1 = 1; int selectedDir2 = 2; int selectedDir3 = 3; int selectedDir4 = 4;
 PFont debugFont;
 
 // file filter
@@ -177,12 +178,30 @@ class MyCanvas extends ControlWindowCanvas {
   // dirs draw
   //
   if (controlWindow.currentTab().id()==1) { // if main tab  
-    if (fileCounter > 0) {
-      for(int i = 0; i< fileCounter; i++) {
+    if (fileCounter1 > 0) {
+      for(int i = 0; i< fileCounter1; i++) {
         if (i == dirClicked) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs[i], 10, 350+(18*i));
+        theApplet.text(dirs1[i], 10+(columnWidth*0), 350+(18*i));
       } // end for
-    } //end if fileCounter
+    } //end if fileCounter1
+    if (fileCounter2 > 0) {
+      for(int i = 0; i< fileCounter2; i++) {
+        if (i == dirClicked) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
+        theApplet.text(dirs2[i], 10+(columnWidth*1), 350+(18*i));
+      } // end for
+    } //end if fileCounter2
+    if (fileCounter3 > 0) {
+      for(int i = 0; i< fileCounter3; i++) {
+        if (i == dirClicked) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
+        theApplet.text(dirs3[i], 10+(columnWidth*2), 350+(18*i));
+      } // end for
+    } //end if fileCounter3
+    if (fileCounter4 > 0) {
+      for(int i = 0; i< fileCounter4; i++) {
+        if (i == dirClicked) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
+        theApplet.text(dirs4[i], 10+(columnWidth*3), 350+(18*i));
+      } // end for
+    } //end if fileCounter4
   } // end if main tab
   
   
@@ -193,17 +212,17 @@ class MyCanvas extends ControlWindowCanvas {
     //theApplet.ellipse(theApplet.mouseX,theApplet.mouseY,20,20);
       // dir click
     if (controlWindow.currentTab().id()==1) { // if main tab 
-      //if (fileCounter > 0) {
-        for(int i = 0; i< fileCounter; i++) {
+      //if (fileCounter1 > 0) {
+        for(int i = 0; i< fileCounter1; i++) {
           if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
             dirClicked = i;
             selectedDir1 = dirClicked;
-            println (theApplet.mouseY + "  dir: " + dirClicked + ", " + dirs[dirClicked]);
+            println (theApplet.mouseY + "  dir: " + dirClicked + ", " + dirs1[dirClicked]);
             //break; // break for
             
           } // end if mouse loc
         } // end for
-      //} //end if fileCounter
+      //} //end if fileCounter1
     } // end if main tab
     
   } // end if theApplet.mousePressed
@@ -293,7 +312,7 @@ void setup() {
   
   
   // dirs setup
-  for(int i = 0; i< 200; i++) { dirs[i]=""; }
+  for(int i = 0; i< 200; i++) { dirs1[i]=""; }
   setInputFolder(defaultFolderPath);
   debugFont = createFont("Arial", 14);
   textFont(debugFont);
@@ -423,33 +442,33 @@ public void draw() {
   // bpm change movie
   if(layer1bpmMovie>0 && millis()-layer1bpmMovieLastTime >= map(layer1bpmMovie,0,240,1000,10)){
     // change movie
-    String tempString = rootFolder + dirs[selectedDir1] +"/";
+    String tempString = rootFolder + dirs1[selectedDir1] +"/";
     fileNames = listFileNames(tempString, txtFilter);
-    tempString = rootFolder + dirs[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+    tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
     myMovie1.delete(); myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play(); myMovie1.loop();
     layer1bpmMovieLastTime=millis();
   }
   if(layer2bpmMovie>0 && millis()-layer2bpmMovieLastTime >= map(layer2bpmMovie,0,240,1000,10)){
     // change movie
-    String tempString = rootFolder + dirs[selectedDir1] +"/";
+    String tempString = rootFolder + dirs1[selectedDir1] +"/";
     fileNames = listFileNames(tempString, txtFilter);
-    tempString = rootFolder + dirs[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+    tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
     myMovie2.delete(); myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play(); myMovie2.loop();
     layer2bpmMovieLastTime=millis();
   }
   if(layer3bpmMovie>0 && millis()-layer3bpmMovieLastTime >= map(layer3bpmMovie,0,240,1000,10)){
     // change movie
-    String tempString = rootFolder + dirs[selectedDir1] +"/";
+    String tempString = rootFolder + dirs1[selectedDir1] +"/";
     fileNames = listFileNames(tempString, txtFilter);
-    tempString = rootFolder + dirs[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+    tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
     myMovie3.delete(); myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play(); myMovie3.loop();
     layer3bpmMovieLastTime=millis();
   }
   if(layer4bpmMovie>0 && millis()-layer4bpmMovieLastTime >= map(layer4bpmMovie,0,240,1000,10)){
     // change movie
-    String tempString = rootFolder + dirs[selectedDir1] +"/";
+    String tempString = rootFolder + dirs1[selectedDir1] +"/";
     fileNames = listFileNames(tempString, txtFilter);
-    tempString = rootFolder + dirs[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+    tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
     myMovie4.delete(); myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play(); myMovie4.loop();
     layer4bpmMovieLastTime=millis();
   }
@@ -608,7 +627,7 @@ void keyPressed(){
        selectedLayer = 3; break;
        
     case 'd':
-      for(int i = 0; i< 200; i++) { dirs[i]=""; } // clear dirs
+      for(int i = 0; i< 200; i++) { dirs1[i]=""; } // clear dirs
       setInputFolder(selectFolder("select library master folder"));
   
       //String folderPath = selectFolder();
@@ -649,13 +668,13 @@ break; // break 'd'
     
     //println ("fileNames[0]: "+fileNames[0]+"\n");
     
-    String tempString = rootFolder + dirs[selectedDir1] +"/";
+    String tempString = rootFolder + dirs1[selectedDir1] +"/";
     fileNames = listFileNames(tempString, txtFilter);
     
-    tempString = rootFolder + dirs[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+    tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
     
-    //String tempString =  dirs[1] + fileNames[int(random(fileNames.length))]; 
-    //String tempString =  dirs[1] + fileNames[0]; // + children[1]; 
+    //String tempString =  dirs1[1] + fileNames[int(random(fileNames.length))]; 
+    //String tempString =  dirs1[1] + fileNames[0]; // + children[1]; 
     
     println ("tempString: "+tempString+"\n");
     
@@ -822,10 +841,10 @@ class FileSystemItem {
   // Depth First Search
   void printDepthFirst() {
     //println("printDepthFirst");
-    // global fileCounter
-    fileCounter = 0;
+    // global fileCounter1
+    fileCounter1 = 0; fileCounter2 = 0; fileCounter3 = 0; fileCounter4 = 0; 
     printDepthFirst(0,-1);
-    //println(fileCounter+" files");
+    //println(fileCounter1+" files");
   }
   
   
@@ -833,9 +852,12 @@ class FileSystemItem {
 
     if (file.isDirectory()) {
       println(file.getName());
-      dirs[fileCounter] = file.getName();
-      indexToParent = fileCounter;
-      fileCounter++;
+      dirs1[fileCounter1] = file.getName();
+      dirs2[fileCounter2] = file.getName();
+      dirs3[fileCounter3] = file.getName();
+      dirs4[fileCounter4] = file.getName();
+      indexToParent = fileCounter1; indexToParent = fileCounter2; indexToParent = fileCounter3; indexToParent = fileCounter4;
+      fileCounter1++; fileCounter2++; fileCounter3++; fileCounter4++;
     }
     
     // now handle the children, if any
