@@ -53,6 +53,7 @@ String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_vid
 //String defaultFolderPath = "C:\\windows";
 String dirs[] = new String[200];
 int fileCounter = 0;
+int selectedDir1 = 1;
 PFont debugFont;
 
 // file filter
@@ -181,12 +182,13 @@ class MyCanvas extends ControlWindowCanvas {
   if(theApplet.mousePressed) {
     //theApplet.ellipse(theApplet.mouseX,theApplet.mouseY,20,20);
       // dir click
-    if (controlWindow.currentTab().name()=="Main") { // if main tab 
+    if (controlWindow.currentTab().id()==1) { // if main tab 
       //if (fileCounter > 0) {
         for(int i = 0; i< fileCounter; i++) {
           if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
             dirClicked = i;
-            println (theApplet.mouseY + "  dir: " + dirClicked);
+            selectedDir1 = dirClicked;
+            println (theApplet.mouseY + "  dir: " + dirClicked + ", " + dirs[dirClicked]);
             //break; // break for
             
           } // end if mouse loc
@@ -591,22 +593,31 @@ break; // break 'd'
   case 'r': //r
     println("rootFolder: "+rootFolder+"\n");
     
-    fileNames = listFileNames(rootFolder, txtFilter);
+    //fileNames = listFileNames(rootFolder, txtFilter);
     
 //    for (int i = 0 ; i < fileNames.length; i++) {
 //      println("filename "+i+": "+ fileNames[i]);
 //    } // end for
     
-    String tempString = rootFolder + "/" + fileNames[int(random(fileNames.length))]; 
+    //String tempString = rootFolder + "/" + fileNames[int(random(fileNames.length))]; // works if master root is selected
+    
+    //println ("fileNames[0]: "+fileNames[0]+"\n");
+    
+    String tempString = rootFolder + dirs[selectedDir1] +"/";
+    fileNames = listFileNames(tempString, txtFilter);
+    
+    tempString = rootFolder + dirs[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];  //xxxx
     
     //String tempString =  dirs[1] + fileNames[int(random(fileNames.length))]; 
     //String tempString =  dirs[1] + fileNames[0]; // + children[1]; 
     
-    //println ("tempString: "+tempString+"\n");
+    println ("tempString: "+tempString+"\n");
     
     myMovie1.delete();
     myMovie1 = new GSMovie(this, tempString);
-    myMovie1.read(); myMovie1.play(); myMovie1.loop();
+    myMovie1.read();
+    //if (myMovie1.isReady() != true) { delay (100); }
+    myMovie1.play(); myMovie1.loop();
     break; // break 'r'
     
   case 'i': //
