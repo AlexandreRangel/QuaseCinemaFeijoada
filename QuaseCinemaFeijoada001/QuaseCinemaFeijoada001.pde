@@ -37,7 +37,7 @@ public GSMovie myMovie1, myMovie2, myMovie3, myMovie4;
 public String[] fileNames;
 public String folderPath = " ";
 //ListBox dirListBox;
-int dirClicked = 100;
+int dirClicked = 1;
 public String rootFolder;
 
 String newMovie = "";
@@ -170,15 +170,23 @@ class MyCanvas extends ControlWindowCanvas {
     //fft.getAvg(0) xxxx
     
   } // end if audio tab
-   
-  // dir names draw
-  if (controlWindow.currentTab().id()==1) { // if main tab 
-    theApplet.fill(0, 255, 0);  
+  
+  //
+  // dirs draw
+  //
+  if (controlWindow.currentTab().id()==1) { // if main tab  
     if (fileCounter > 0) {
-      for(int i = 0; i< fileCounter; i++) { theApplet.text(dirs[i], 10, 350+(18*i)); }
+      for(int i = 0; i< fileCounter; i++) {
+        if (i == dirClicked) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
+        theApplet.text(dirs[i], 10, 350+(18*i));
+      } // end for
     } //end if fileCounter
   } // end if main tab
-   
+  
+  
+  //
+  // dirs click check 
+  //
   if(theApplet.mousePressed) {
     //theApplet.ellipse(theApplet.mouseX,theApplet.mouseY,20,20);
       // dir click
