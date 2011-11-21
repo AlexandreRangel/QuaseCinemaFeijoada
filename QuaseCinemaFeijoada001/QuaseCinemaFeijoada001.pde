@@ -180,25 +180,25 @@ class MyCanvas extends ControlWindowCanvas {
   if (controlWindow.currentTab().id()==1) { // if main tab  
     if (fileCounter1 > 0) {
       for(int i = 0; i< fileCounter1; i++) {
-        if (i == dirClicked) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
+        if (i == selectedDir1) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
         theApplet.text(dirs1[i], 10+(columnWidth*0), 350+(18*i));
       } // end for
     } //end if fileCounter1
     if (fileCounter2 > 0) {
       for(int i = 0; i< fileCounter2; i++) {
-        if (i == dirClicked) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
+        if (i == selectedDir2) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
         theApplet.text(dirs2[i], 10+(columnWidth*1), 350+(18*i));
       } // end for
     } //end if fileCounter2
     if (fileCounter3 > 0) {
       for(int i = 0; i< fileCounter3; i++) {
-        if (i == dirClicked) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
+        if (i == selectedDir3) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
         theApplet.text(dirs3[i], 10+(columnWidth*2), 350+(18*i));
       } // end for
     } //end if fileCounter3
     if (fileCounter4 > 0) {
       for(int i = 0; i< fileCounter4; i++) {
-        if (i == dirClicked) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
+        if (i == selectedDir4) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
         theApplet.text(dirs4[i], 10+(columnWidth*3), 350+(18*i));
       } // end for
     } //end if fileCounter4
@@ -210,8 +210,13 @@ class MyCanvas extends ControlWindowCanvas {
   //
   if(theApplet.mousePressed) {
     //theApplet.ellipse(theApplet.mouseX,theApplet.mouseY,20,20);
-      // dir click
-    if (controlWindow.currentTab().id()==1) { // if main tab 
+    
+    //
+    // dir click
+    //  
+    
+    // if main tab, column 1
+    if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*0) && theApplet.mouseX < (columnWidth*1) ) { 
       //if (fileCounter1 > 0) {
         for(int i = 0; i< fileCounter1; i++) {
           if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
@@ -219,11 +224,43 @@ class MyCanvas extends ControlWindowCanvas {
             selectedDir1 = dirClicked;
             println (theApplet.mouseY + "  dir: " + dirClicked + ", " + dirs1[dirClicked]);
             //break; // break for
-            
           } // end if mouse loc
         } // end for
       //} //end if fileCounter1
-    } // end if main tab
+    } // end if main tab, column 1
+    
+    // if main tab, column 2
+    if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*1) && theApplet.mouseX < (columnWidth*2) ) {  
+      //if (fileCounter1 > 0) {
+        for(int i = 0; i< fileCounter2; i++) {
+          if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
+            selectedDir2 = i;
+          } // end if mouse loc
+        } // end for
+      //} //end if fileCounter2
+    } // end if main tab, column 2
+    
+    // if main tab, column 3
+    if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*2) && theApplet.mouseX < (columnWidth*3) ) { 
+      //if (fileCounter1 > 0) {
+        for(int i = 0; i< fileCounter3; i++) {
+          if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
+            selectedDir3 = i;
+          } // end if mouse loc
+        } // end for
+      //} //end if fileCounter3
+    } // end if main tab, column 3
+    
+    // if main tab, column 4
+    if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*3) && theApplet.mouseX < (columnWidth*4) ) { 
+      //if (fileCounter1 > 0) {
+        for(int i = 0; i< fileCounter4; i++) {
+          if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
+            selectedDir4 = i;
+          } // end if mouse loc
+        } // end for
+      //} //end if fileCounter4
+    } // end if main tab, column 4
     
   } // end if theApplet.mousePressed
 
@@ -450,25 +487,25 @@ public void draw() {
   }
   if(layer2bpmMovie>0 && millis()-layer2bpmMovieLastTime >= map(layer2bpmMovie,0,240,1000,10)){
     // change movie
-    String tempString = rootFolder + dirs1[selectedDir1] +"/";
+    String tempString = rootFolder + dirs2[selectedDir2] +"/";
     fileNames = listFileNames(tempString, txtFilter);
-    tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+    tempString = rootFolder + dirs2[selectedDir2] +"/"+ fileNames[int(random(fileNames.length))];
     myMovie2.delete(); myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play(); myMovie2.loop();
     layer2bpmMovieLastTime=millis();
   }
   if(layer3bpmMovie>0 && millis()-layer3bpmMovieLastTime >= map(layer3bpmMovie,0,240,1000,10)){
     // change movie
-    String tempString = rootFolder + dirs1[selectedDir1] +"/";
+    String tempString = rootFolder + dirs3[selectedDir3] +"/";
     fileNames = listFileNames(tempString, txtFilter);
-    tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+    tempString = rootFolder + dirs3[selectedDir3] +"/"+ fileNames[int(random(fileNames.length))];
     myMovie3.delete(); myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play(); myMovie3.loop();
     layer3bpmMovieLastTime=millis();
   }
   if(layer4bpmMovie>0 && millis()-layer4bpmMovieLastTime >= map(layer4bpmMovie,0,240,1000,10)){
     // change movie
-    String tempString = rootFolder + dirs1[selectedDir1] +"/";
+    String tempString = rootFolder + dirs4[selectedDir4] +"/";
     fileNames = listFileNames(tempString, txtFilter);
-    tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+    tempString = rootFolder + dirs4[selectedDir4] +"/"+ fileNames[int(random(fileNames.length))];
     myMovie4.delete(); myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play(); myMovie4.loop();
     layer4bpmMovieLastTime=millis();
   }
@@ -498,7 +535,7 @@ public void draw() {
       image(myMovie1, 0, 0, outputWidth, outputHeight); 
     } // end if mapping
   } else {
-     myMovie1.pause();
+     myMovie1.stop();
   }// end if layer1visibility
   
   // pre-render layer 2
@@ -519,7 +556,7 @@ public void draw() {
       image(myMovie2, 0, 0, outputWidth, outputHeight); 
     } // end if mapping
   } else {
-     myMovie2.pause();
+     myMovie2.stop();
   }// end if layer2visibility
   
   
@@ -541,7 +578,7 @@ public void draw() {
       image(myMovie3, 0, 0, outputWidth, outputHeight); 
     } // end if mapping
   } else {
-     myMovie3.pause();
+     myMovie3.stop();
   }// end if layer3visibility
   
   // pre-render layer 4
@@ -562,7 +599,7 @@ public void draw() {
       image(myMovie4, 0, 0, outputWidth, outputHeight); 
     } // end if mapping
   } else {
-     myMovie4.pause();
+     myMovie4.stop();
   }// end if layer4visibility
   
   // mapping draw
@@ -658,31 +695,40 @@ break; // break 'd'
   case 'r': //r
     println("rootFolder: "+rootFolder+"\n");
     
-    //fileNames = listFileNames(rootFolder, txtFilter);
-    
-//    for (int i = 0 ; i < fileNames.length; i++) {
-//      println("filename "+i+": "+ fileNames[i]);
-//    } // end for
-    
     //String tempString = rootFolder + "/" + fileNames[int(random(fileNames.length))]; // works if master root is selected
     
-    //println ("fileNames[0]: "+fileNames[0]+"\n");
+    switch (selectedLayer) { 
     
-    String tempString = rootFolder + dirs1[selectedDir1] +"/";
-    fileNames = listFileNames(tempString, txtFilter);
+    case 0: // layer 1
+      String tempString = rootFolder + dirs1[selectedDir1] +"/";
+      fileNames = listFileNames(tempString, txtFilter);
+      tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+      //println ("tempString: "+tempString+"\n");
+      myMovie1.delete(); myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play(); myMovie1.loop();
+      break; // break layer 1
+    case 1: // layer 2
+      tempString = rootFolder + dirs2[selectedDir2] +"/";
+      fileNames = listFileNames(tempString, txtFilter);
+      tempString = rootFolder + dirs2[selectedDir2] +"/"+ fileNames[int(random(fileNames.length))];
+      //println ("tempString: "+tempString+"\n");
+      myMovie2.delete(); myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play(); myMovie2.loop();
+      break; // break layer 2
+    case 2: // layer 3
+      tempString = rootFolder + dirs3[selectedDir3] +"/";
+      fileNames = listFileNames(tempString, txtFilter);
+      tempString = rootFolder + dirs3[selectedDir3] +"/"+ fileNames[int(random(fileNames.length))];
+      //println ("tempString: "+tempString+"\n");
+      myMovie3.delete(); myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play(); myMovie3.loop();
+      break; // break layer 3
+    case 3: // layer 4
+      tempString = rootFolder + dirs4[selectedDir4] +"/";
+      fileNames = listFileNames(tempString, txtFilter);
+      tempString = rootFolder + dirs4[selectedDir4] +"/"+ fileNames[int(random(fileNames.length))];
+      //println ("tempString: "+tempString+"\n");
+      myMovie4.delete(); myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play(); myMovie4.loop();
+      break; // break layer 2
+    } // end switch selectedLayer
     
-    tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
-    
-    //String tempString =  dirs1[1] + fileNames[int(random(fileNames.length))]; 
-    //String tempString =  dirs1[1] + fileNames[0]; // + children[1]; 
-    
-    println ("tempString: "+tempString+"\n");
-    
-    myMovie1.delete();
-    myMovie1 = new GSMovie(this, tempString);
-    myMovie1.read();
-    //if (myMovie1.isReady() != true) { delay (100); }
-    myMovie1.play(); myMovie1.loop();
     break; // break 'r'
     
   case 'i': //
