@@ -3,7 +3,7 @@
 // Alexandre Rangel
 // www.quasecinema.org
 //
-// built with Processing 2.0 alpha 2
+// built with Processing 2.0 alpha 4
 //
 
 import controlP5.*; // controlP5 library
@@ -48,7 +48,8 @@ SDrop drop;
 // dirs pre setup
 // ------ default folder path ------
 //String defaultFolderPath = System.getProperty("user.home")+"/Desktop";
-String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos/";
+String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos";
+//String defaultFolderPath = "/data/";
 //String defaultFolderPath = "/Users/admin/Desktop";
 //String defaultFolderPath = "C:\\windows";
 String dirs1[] = new String[200]; String dirs2[] = new String[200];
@@ -56,6 +57,7 @@ String dirs3[] = new String[200]; String dirs4[] = new String[200];
 int fileCounter1 = 0; int fileCounter2 = 0; int fileCounter3 = 0; int fileCounter4 = 0;
 int selectedDir1 = 1; int selectedDir2 = 2; int selectedDir3 = 3; int selectedDir4 = 4;
 PFont debugFont;
+public String tempString;
 
 // file filter
 java.io.FilenameFilter txtFilter = new java.io.FilenameFilter() {
@@ -306,7 +308,7 @@ void setup() {
   frameRate(60);
   frame.setLocation(screen.width,0);
   //frame.setLocation(1024,0);
-  frame.setLocation(0,0);
+  frame.setLocation(1440,0);
   
   // variables setup
   QCsetupInterface();
@@ -714,7 +716,8 @@ break; // break 'd'
     switch (selectedLayer) { 
     
     case 0: // layer 1
-      String tempString = rootFolder + dirs1[selectedDir1] +"/";
+      tempString = rootFolder + dirs1[selectedDir1] +"/";
+      println ("tempString: "+tempString+"\n");
       fileNames = listFileNames(tempString, txtFilter);
       tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
       //println ("tempString: "+tempString+"\n");
@@ -852,7 +855,7 @@ void setInputFolder(String theFolderPath) {
   println("\n"+theFolderPath+"\n");
   FileSystemItem selectedFolder = new FileSystemItem(new File(theFolderPath));
   selectedFolder.printDepthFirst();
-  rootFolder = theFolderPath;
+  rootFolder = theFolderPath + "/";
   println("\n rootFolder: "+theFolderPath+"\n");
 }
 
