@@ -12,7 +12,7 @@ import codeanticode.gsvideo.*; // GSvideo library
 import javax.media.opengl.GL; // openGL library
 import processing.opengl.*; // openGL library
 
-import sojamo.drop.*; // sDrop libraryr
+import sojamo.drop.*; // sDrop library
 
 import mappingtools.*; // mappingtools library
 
@@ -27,6 +27,7 @@ ControlWindowCanvas cc;
 ColorPicker colorPicker1, colorPicker2, colorPicker3, colorPicker4;
 ListBox outputResolutionList;
 Numberbox outputXposNumberBox, outputYposNumberBox;
+RadioButton layerContentButton1, layerContentButton2, layerContentButton3, layerContentButton4;
 
 public int fpsValue = 0; // fps slider value
 
@@ -103,6 +104,8 @@ public int outputWidth = 1280; public int outputHeight = 1024;
 boolean layer1visibility = true;
 boolean layer2visibility = false; boolean layer3visibility = false; boolean layer4visibility = false;
 
+int layerContent1, layerContent2, layerContent3, layerContent4;
+
 boolean mapping1 = false; boolean mapping2 = false; boolean mapping3 = false; boolean mapping4 = false;
 boolean bmapping1 = false; boolean bmapping2 = false; boolean bmapping3 = false; boolean bmapping4 = false;
 
@@ -123,6 +126,8 @@ public boolean effectPosterize3 = false; public boolean effectPosterize4 = false
 public boolean effectRG1 = false;
 
 public boolean effectRB1 = false;
+
+public boolean effectBW1 = false;
 
 
 public void init(){
@@ -317,7 +322,7 @@ void setup() {
   // GStreamer setup
   //
   
-  GSVideo.localGStreamerPath = "/Users/rangel/Documents/processing/libraries/GSVideo/library/gstreamer/macosx32";
+  GSVideo.localGStreamerPath = sketchPath("data/macosx32");
   
   myMovie1 = new GSMovie(this, "Aviao.mov"); myMovie1.loop();
   myMovie2 = new GSMovie(this, sketchPath("data/Palatnik1.mov")); myMovie2.loop();
@@ -410,6 +415,12 @@ void controlEvent(ControlEvent theEvent) {
     if (theEvent.group() == outputResolutionList) {
       changeResolution = (int (theEvent.group().value()) );
     }
+    
+    if (theEvent.group() == layerContentButton1) {
+      layerContent1 = int(theEvent.group().value());
+      println(layerContent1);
+    }
+    
   }
 }
 
@@ -762,7 +773,7 @@ break; // break 'd'
       if (keyCode == KeyEvent.VK_F5) { controlWindow.activateTab("Mapping"); }
       if (keyCode == KeyEvent.VK_F6) { controlWindow.activateTab("3D"); }
       if (keyCode == KeyEvent.VK_F7) { controlWindow.activateTab("Playlist"); }
-      if (keyCode == KeyEvent.VK_F8) { controlWindow.activateTab("Sound"); }
+      if (keyCode == KeyEvent.VK_F8) { controlWindow.activateTab("Audio"); }
       if (keyCode == KeyEvent.VK_F9) { controlWindow.activateTab("Prefs"); }
       if (keyCode == KeyEvent.VK_F10) { controlWindow.activateTab("Help"); }
     } // end if keyCoded  

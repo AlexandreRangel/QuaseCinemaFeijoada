@@ -7,7 +7,7 @@ void QCsetupInterface() {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   controlP5 = new ControlP5(this);
-  controlWindow = controlP5.addControlWindow("Quase-Cinema Feijoada VJ 0.01",0,0,1024,748); 
+  controlWindow = controlP5.addControlWindow("Quase-Cinema Feijoada Remix 0.01",0,0,1024,748); 
   controlWindow.hideCoordinates();
   controlWindow.setBackground(color(20));
   // for continuous update use ControlWindow.NORMAL  to update a control
@@ -15,6 +15,12 @@ void QCsetupInterface() {
   //controlWindow.setUpdateMode(ControlWindow.NORMAL);
   controlWindow.setUpdateMode(ControlWindow.NORMAL);
   controlWindow.frameRate(30);  
+  
+//  controlP5.setColorForeground(0xffaa0000);
+//  controlP5.setColorBackground(0xff660000);
+//  controlP5.setColorLabel(0xffdddddd);
+//  controlP5.setColorValue(0xffff88ff);
+//  controlP5.setColorActive(0xffff0000);
    
   cc = new MyCanvas(); // create a control window canvas
   cc.pre(); // use cc.post(); to draw on top of the controllers.
@@ -67,6 +73,13 @@ void QCsetupInterface() {
   // interface main - column 1
   controlP5.Controller visibilityToggle1 = controlP5.addToggle("layer1visibility",true,180+(columnWidth*0),24,20,20);
   visibilityToggle1.setLabel("visible"); visibilityToggle1.moveTo(controlWindow,"global");
+  
+  layerContentButton1 = controlP5.addRadioButton("layerContent1",180+(columnWidth*0),109);
+  layerContentButton1.setNoneSelectedAllowed(false); layerContentButton1.setItemsPerRow(1);
+  layerContentButton1.addItem("Movie",0); layerContentButton1.activate(0);
+  layerContentButton1.addItem("Image",1);
+  layerContentButton1.addItem("Camera",2);
+  layerContentButton1.moveTo(controlWindow,"global");
   
   controlP5.Controller playbackSlider1 = controlP5.addSlider("layer1playback",0,1.0,0.0,10+(columnWidth*0),200,int(columnWidth*0.7),14);
   playbackSlider1.setLabel("playback"); playbackSlider1.moveTo(controlWindow);
