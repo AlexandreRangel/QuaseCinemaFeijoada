@@ -8,10 +8,41 @@ void QCeffects() {
   if (effectInvert3) { myMovie3.filter(INVERT); }
   if (effectInvert4) { myMovie4.filter(INVERT); }
 
-  if (effectPosterize1) { myMovie1.filter(POSTERIZE, 3); }
-  if (effectPosterize2) { myMovie2.filter(POSTERIZE, 3); }
-  if (effectPosterize3) { myMovie3.filter(POSTERIZE, 3); }
-  if (effectPosterize4) { myMovie4.filter(POSTERIZE, 3); }
+  if (effectPosterize1) { myMovie1.filter(POSTERIZE, 2); }
+  if (effectPosterize2) { myMovie2.filter(POSTERIZE, 2); }
+  if (effectPosterize3) { myMovie3.filter(POSTERIZE, 2); }
+  if (effectPosterize4) { myMovie4.filter(POSTERIZE, 2); }
+  
+  if (effectRG1) {
+    myMovie1.loadPixels();
+    for (int y = 0; y < myMovie1.height; y++) {
+      for (int x = 0; x < myMovie1.width; x++) {
+        int loc = x + y * myMovie1.width;
+        float r = red(myMovie1.pixels[loc]); float g = green(myMovie1.pixels[loc]); float b = blue(myMovie1.pixels[loc]);
+        
+      if (brightness(myMovie1.pixels[loc]) > 127) {
+        myMovie1.pixels[loc]  = color(255);  // White
+      }  else {
+        myMovie1.pixels[loc]  = color(0);    // Black
+      }
+        
+        //myMovie1.pixels[loc] =  color(g,r,b);          
+      }
+    }
+    myMovie1.updatePixels();
+  } // end effectRG1
+  
+  if (effectRB1) {
+    myMovie1.loadPixels();
+    for (int y = 0; y < myMovie1.height; y++) {
+      for (int x = 0; x < myMovie1.width; x++) {
+        int loc = x + y * myMovie1.width;
+        float r = red(myMovie1.pixels[loc]); float g = green(myMovie1.pixels[loc]); float b = blue(myMovie1.pixels[loc]);
+        myMovie1.pixels[loc] =  color(b,g,r);          
+      }
+    }
+    myMovie1.updatePixels();
+  } // end effectRB1
   
 }
 

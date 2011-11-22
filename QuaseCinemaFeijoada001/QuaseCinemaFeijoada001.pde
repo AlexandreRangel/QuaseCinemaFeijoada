@@ -78,6 +78,7 @@ BezierWarp bw1, bw2, bw3, bw4;
 
 // timer pre setup
 int layer1bpmVisLastTime = 0; int layer2bpmVisLastTime = 0; int layer3bpmVisLastTime = 0; int layer4bpmVisLastTime = 0;
+int layer1bpmTimeLastTime = 0; int layer2bpmTimeLastTime = 0; int layer3bpmTimeLastTime = 0; int layer4bpmTimeLastTime = 0;
 int layer1bpmMovieLastTime = 0; int layer2bpmMovieLastTime = 0; int layer3bpmMovieLastTime = 0; int layer4bpmMovieLastTime = 0;
 
 // audio pre setup
@@ -104,6 +105,7 @@ boolean mapping1 = false; boolean mapping2 = false; boolean mapping3 = false; bo
 boolean bmapping1 = false; boolean bmapping2 = false; boolean bmapping3 = false; boolean bmapping4 = false;
 
 int layer1bpmVis, layer2bpmVis, layer3bpmVis, layer4bpmVis;
+int layer1bpmTime, layer2bpmTime, layer3bpmTime, layer4bpmTime;
 int layer1bpmMovie, layer2bpmMovie, layer3bpmMovie, layer4bpmMovie;
 
 float layer1speed = 1.0; float layer2speed = 1.0; float layer3speed = 1.0; float layer4speed = 1.0;
@@ -114,7 +116,11 @@ public boolean effectInvert1 = false; public boolean effectInvert2 = false;
 public boolean effectInvert3 = false; public boolean effectInvert4 = false; 
 
 public boolean effectPosterize1 = false; public boolean effectPosterize2 = false;
-public boolean effectPosterize3 = false; public boolean effectPosterize4 = false; 
+public boolean effectPosterize3 = false; public boolean effectPosterize4 = false;
+
+public boolean effectRG1 = false;
+
+public boolean effectRB1 = false;
 
 
 public void init(){
@@ -300,7 +306,7 @@ void setup() {
   frameRate(60);
   frame.setLocation(screen.width,0);
   //frame.setLocation(1024,0);
-  frame.setLocation(1440,0);
+  frame.setLocation(0,0);
   
   // variables setup
   QCsetupInterface();
@@ -357,6 +363,7 @@ void setup() {
   
   // timer setup
   layer1bpmVisLastTime=millis(); layer2bpmVisLastTime=millis(); layer3bpmVisLastTime=millis(); layer4bpmVisLastTime=millis();
+  layer1bpmTimeLastTime=millis(); layer2bpmTimeLastTime=millis(); layer3bpmTimeLastTime=millis(); layer4bpmTimeLastTime=millis();
   layer1bpmMovieLastTime=millis(); layer2bpmMovieLastTime=millis(); layer3bpmMovieLastTime=millis(); layer4bpmMovieLastTime=millis();
   
   
@@ -380,12 +387,9 @@ void setup() {
 // --------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------
 
-public void movieEvent(GSMovie gsMovie) {
-  
-  gsMovie.read();
-  
-  QCeffects();
-}
+//public void movieEvent(GSMovie gsMovie) {
+//  //if (gsMovie.available()) { gsMovie.read(); QCeffects(); }
+//}
 
 
 // --------------------------------------------------------------------------------------------------------------
@@ -416,6 +420,11 @@ public void draw() {
   
   background(0);
   
+    if (myMovie1.available()) { myMovie1.read(); QCeffects(); }
+    if (myMovie2.available()) { myMovie2.read(); QCeffects(); }
+    if (myMovie3.available()) { myMovie3.read(); QCeffects(); }
+    if (myMovie4.available()) { myMovie4.read(); QCeffects(); }
+  
   //
   // drop movie
   //
@@ -444,7 +453,8 @@ public void draw() {
   //
   
   // fps
-  if (random(100)>50){ controlP5.controller("fpsValue").setValue(int(frameRate)); }
+  //if (random(100)>50){
+  controlP5.controller("fpsValue").setValue(int(frameRate)); //}
 
   // playback heads
   controlP5.controller("layer1playback").setValue(map(myMovie1.time(),0.0,myMovie1.duration(),0.0,1.0));
@@ -483,6 +493,7 @@ public void draw() {
     fileNames = listFileNames(tempString, txtFilter);
     tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
     myMovie1.delete(); myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play(); myMovie1.loop();
+    myMovie1.jump(random(myMovie1.duration()));
     layer1bpmMovieLastTime=millis();
   }
   if(layer2bpmMovie>0 && millis()-layer2bpmMovieLastTime >= map(layer2bpmMovie,0,240,1000,10)){
@@ -491,6 +502,7 @@ public void draw() {
     fileNames = listFileNames(tempString, txtFilter);
     tempString = rootFolder + dirs2[selectedDir2] +"/"+ fileNames[int(random(fileNames.length))];
     myMovie2.delete(); myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play(); myMovie2.loop();
+    myMovie2.jump(random(myMovie2.duration()));
     layer2bpmMovieLastTime=millis();
   }
   if(layer3bpmMovie>0 && millis()-layer3bpmMovieLastTime >= map(layer3bpmMovie,0,240,1000,10)){
@@ -499,6 +511,7 @@ public void draw() {
     fileNames = listFileNames(tempString, txtFilter);
     tempString = rootFolder + dirs3[selectedDir3] +"/"+ fileNames[int(random(fileNames.length))];
     myMovie3.delete(); myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play(); myMovie3.loop();
+    myMovie3.jump(random(0,myMovie3.duration()));
     layer3bpmMovieLastTime=millis();
   }
   if(layer4bpmMovie>0 && millis()-layer4bpmMovieLastTime >= map(layer4bpmMovie,0,240,1000,10)){
@@ -507,6 +520,7 @@ public void draw() {
     fileNames = listFileNames(tempString, txtFilter);
     tempString = rootFolder + dirs4[selectedDir4] +"/"+ fileNames[int(random(fileNames.length))];
     myMovie4.delete(); myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play(); myMovie4.loop();
+    myMovie4.jump(random(0,myMovie4.duration()));
     layer4bpmMovieLastTime=millis();
   }
   

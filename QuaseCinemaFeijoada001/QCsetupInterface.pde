@@ -121,6 +121,12 @@ void QCsetupInterface() {
   controlP5.Controller posterizeToggle1 = controlP5.addToggle("effectPosterize1",false,50+(columnWidth*0),265,20,20);
   posterizeToggle1.setLabel("poster"); posterizeToggle1.moveTo(controlWindow,"Effects");
   
+  controlP5.Controller effectRgToggle1 = controlP5.addToggle("effectRG1",false,10+(columnWidth*0),315,20,20);
+  effectRgToggle1.setLabel("R -> G"); effectRgToggle1.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectRbToggle1 = controlP5.addToggle("effectRB1",false,50+(columnWidth*0),315,20,20);
+  effectRbToggle1.setLabel("R -> B"); effectRbToggle1.moveTo(controlWindow,"Effects");
+  
   
   // interface effects - column 2
   colorPicker2 = controlP5.addColorPicker("layer2color",10+(columnWidth*1),200,int(columnWidth*0.9),20);
@@ -164,14 +170,20 @@ void QCsetupInterface() {
   controlP5.Controller bpmVisSlider1 = controlP5.addSlider("layer1bpmVis",0,240,0,10+(columnWidth*0),220,int(columnWidth*0.7),14);
   bpmVisSlider1.setLabel("bpm vis"); bpmVisSlider1.moveTo(controlWindow,"Rhythm");
   
-  controlP5.Controller bpmMovieSlider1 = controlP5.addSlider("layer1bpmMovie",0,240,0,10+(columnWidth*0),240,int(columnWidth*0.7),14);
+  controlP5.Controller bpmTimeSlider1 = controlP5.addSlider("layer1bpmTime",0,240,0,10+(columnWidth*0),240,int(columnWidth*0.7),14);
+  bpmTimeSlider1.setLabel("bpm time"); bpmTimeSlider1.moveTo(controlWindow,"Rhythm");
+  
+  controlP5.Controller bpmMovieSlider1 = controlP5.addSlider("layer1bpmMovie",0,240,0,10+(columnWidth*0),260,int(columnWidth*0.7),14);
   bpmMovieSlider1.setLabel("bpm movie"); bpmMovieSlider1.moveTo(controlWindow,"Rhythm");
   
   // interface bpm - column 2  
   controlP5.Controller bpmVisSlider2 = controlP5.addSlider("layer2bpmVis",0,240,0,10+(columnWidth*1),220,int(columnWidth*0.7),14);
   bpmVisSlider2.setLabel("bpm vis"); bpmVisSlider2.moveTo(controlWindow,"Rhythm");
   
-  controlP5.Controller bpmMovieSlider2 = controlP5.addSlider("layer2bpmMovie",0,240,0,10+(columnWidth*1),240,int(columnWidth*0.7),14);
+  controlP5.Controller bpmTimeSlider2 = controlP5.addSlider("layer2bpmTime",0,240,0,10+(columnWidth*1),240,int(columnWidth*0.7),14);
+  bpmTimeSlider2.setLabel("bpm time"); bpmTimeSlider2.moveTo(controlWindow,"Rhythm");
+  
+  controlP5.Controller bpmMovieSlider2 = controlP5.addSlider("layer2bpmMovie",0,240,0,10+(columnWidth*1),260,int(columnWidth*0.7),14);
   bpmMovieSlider2.setLabel("bpm movie"); bpmMovieSlider2.moveTo(controlWindow,"Rhythm");
   
   
@@ -179,7 +191,10 @@ void QCsetupInterface() {
   controlP5.Controller bpmVisSlider3 = controlP5.addSlider("layer3bpmVis",0,240,0,10+(columnWidth*2),220,int(columnWidth*0.7),14);
   bpmVisSlider3.setLabel("bpm vis"); bpmVisSlider3.moveTo(controlWindow,"Rhythm");
   
-  controlP5.Controller bpmMovieSlider3 = controlP5.addSlider("layer3bpmMovie",0,240,0,10+(columnWidth*2),240,int(columnWidth*0.7),14);
+  controlP5.Controller bpmTimeSlider3 = controlP5.addSlider("layer3bpmTime",0,240,0,10+(columnWidth*2),240,int(columnWidth*0.7),14);
+  bpmTimeSlider3.setLabel("bpm time"); bpmTimeSlider3.moveTo(controlWindow,"Rhythm");
+  
+  controlP5.Controller bpmMovieSlider3 = controlP5.addSlider("layer3bpmMovie",0,240,0,10+(columnWidth*2),260,int(columnWidth*0.7),14);
   bpmMovieSlider3.setLabel("bpm movie"); bpmMovieSlider3.moveTo(controlWindow,"Rhythm");
   
   
@@ -187,7 +202,10 @@ void QCsetupInterface() {
   controlP5.Controller bpmVisSlider4 = controlP5.addSlider("layer4bpmVis",0,240,0,10+(columnWidth*3),220,int(columnWidth*0.7),14);
   bpmVisSlider4.setLabel("bpm vis"); bpmVisSlider4.moveTo(controlWindow,"Rhythm");
   
-  controlP5.Controller bpmMovieSlider4 = controlP5.addSlider("layer4bpmMovie",0,240,0,10+(columnWidth*3),240,int(columnWidth*0.7),14);
+  controlP5.Controller bpmTimeSlider4 = controlP5.addSlider("layer4bpmTime",0,240,0,10+(columnWidth*3),240,int(columnWidth*0.7),14);
+  bpmTimeSlider4.setLabel("bpm time"); bpmTimeSlider4.moveTo(controlWindow,"Rhythm");
+  
+  controlP5.Controller bpmMovieSlider4 = controlP5.addSlider("layer4bpmMovie",0,240,0,10+(columnWidth*3),260,int(columnWidth*0.7),14);
   bpmMovieSlider4.setLabel("bpm movie"); bpmMovieSlider4.moveTo(controlWindow,"Rhythm");
   
   
