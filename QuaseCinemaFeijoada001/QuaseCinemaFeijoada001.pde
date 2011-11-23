@@ -1,21 +1,18 @@
 //
-// Quase-Cinema Feijoada 0.01
+// Quase-Cinema Feijoada Remix 0.01
 // Alexandre Rangel
 // www.quasecinema.org
 //
 // built with Processing 2.0 alpha 4
 //
 
-import controlP5.*; // controlP5 library
-import codeanticode.gsvideo.*; // GSvideo library
-
-import javax.media.opengl.GL; // openGL library
-import processing.opengl.*; // openGL library
-
-import sojamo.drop.*; // sDrop library
-
-import mappingtools.*; // mappingtools library
-
+// libraries
+import controlP5.*; // controlP5 0.6.12 www.sojamo.de/libraries/controlP5
+import codeanticode.gsvideo.*; // GSvideo 1.0.0
+import javax.media.opengl.GL; // openGL
+import processing.opengl.*; // openGL
+import sojamo.drop.*; // sDrop 0.1.4 http://www.sojamo.de/libraries/drop
+import mappingtools.*; // mappingtools 0.0.2 http://www.patricksaintdenis.com
 import ddf.minim.analysis.*; // minim library
 import ddf.minim.*;
 
@@ -135,6 +132,9 @@ public boolean effectBG3 = false; public boolean effectBG4 = false;
 
 public boolean effectBW1 = false; public boolean effectBW2 = false;
 public boolean effectBW3 = false; public boolean effectBW4 = false;
+
+public int effectBWlimit1 = 127; public int effectBWlimit2 = 127;
+public int effectBWlimit3 = 127; public int effectBWlimit4 = 127;
 
 
 public void init(){

@@ -76,9 +76,9 @@ void QCsetupInterface() {
   
   layerContentButton1 = controlP5.addRadioButton("layerContent1",180+(columnWidth*0),109);
   layerContentButton1.setNoneSelectedAllowed(false); layerContentButton1.setItemsPerRow(1);
-  layerContentButton1.addItem("Movie",0); layerContentButton1.activate(0);
-  layerContentButton1.addItem("Image",1);
-  layerContentButton1.addItem("Camera",2);
+  layerContentButton1.addItem("Movie1",0); layerContentButton1.activate(0);
+  layerContentButton1.addItem("Image1",1);
+  layerContentButton1.addItem("Camera1",2);
   layerContentButton1.moveTo(controlWindow,"global");
   
   controlP5.Controller playbackSlider1 = controlP5.addSlider("layer1playback",0,1.0,0.0,10+(columnWidth*0),200,int(columnWidth*0.7),14);
@@ -91,6 +91,13 @@ void QCsetupInterface() {
   controlP5.Controller visibilityToggle2 = controlP5.addToggle("layer2visibility",false,180+(columnWidth*1),24,20,20);
   visibilityToggle2.setLabel("visible"); visibilityToggle2.moveTo(controlWindow,"global");
   
+  layerContentButton2 = controlP5.addRadioButton("layerContent2",180+(columnWidth*1),109);
+  layerContentButton2.setNoneSelectedAllowed(false); layerContentButton2.setItemsPerRow(1);
+  layerContentButton2.addItem("Movie2",0); layerContentButton2.activate(0);
+  layerContentButton2.addItem("Image2",1);
+  layerContentButton2.addItem("Camera2",2);
+  layerContentButton2.moveTo(controlWindow,"global");
+  
   controlP5.Controller playbackSlider2 = controlP5.addSlider("layer2playback",0,1.0,0.0,10+(columnWidth*1),200,int(columnWidth*0.7),14);
   playbackSlider2.setLabel("playback"); playbackSlider2.moveTo(controlWindow);
   
@@ -102,6 +109,13 @@ void QCsetupInterface() {
   controlP5.Controller visibilityToggle3 = controlP5.addToggle("layer3visibility",false,180+(columnWidth*2),24,20,20);
   visibilityToggle3.setLabel("visible"); visibilityToggle3.moveTo(controlWindow,"global");
   
+  layerContentButton3 = controlP5.addRadioButton("layerContent3",180+(columnWidth*2),109);
+  layerContentButton3.setNoneSelectedAllowed(false); layerContentButton3.setItemsPerRow(1);
+  layerContentButton3.addItem("Movie3",0); layerContentButton3.activate(0);
+  layerContentButton3.addItem("Image3",1);
+  layerContentButton3.addItem("Camera3",2);
+  layerContentButton3.moveTo(controlWindow,"global");
+  
   controlP5.Controller playbackSlider3 = controlP5.addSlider("layer3playback",0,1.0,0.0,10+(columnWidth*2),200,int(columnWidth*0.7),14);
   playbackSlider3.setLabel("playback"); playbackSlider3.moveTo(controlWindow);
   
@@ -112,6 +126,13 @@ void QCsetupInterface() {
   // interface main - column 4
   controlP5.Controller visibilityToggle4 = controlP5.addToggle("layer4visibility",false,180+(columnWidth*3),24,20,20);
   visibilityToggle4.setLabel("visible"); visibilityToggle4.moveTo(controlWindow,"global");
+  
+  layerContentButton4 = controlP5.addRadioButton("layerContent4",180+(columnWidth*3),109);
+  layerContentButton4.setNoneSelectedAllowed(false); layerContentButton4.setItemsPerRow(1);
+  layerContentButton4.addItem("Movie4",0); layerContentButton4.activate(0);
+  layerContentButton4.addItem("Image4",1);
+  layerContentButton4.addItem("Camera4",2);
+  layerContentButton4.moveTo(controlWindow,"global");
   
   controlP5.Controller playbackSlider4 = controlP5.addSlider("layer4playback",0,1.0,0.0,10+(columnWidth*3),200,int(columnWidth*0.7),14);
   playbackSlider4.setLabel("playback"); playbackSlider4.moveTo(controlWindow);
@@ -145,6 +166,8 @@ void QCsetupInterface() {
   
   controlP5.Controller effectBWToggle1 = controlP5.addToggle("effectBW1",false,10+(columnWidth*0),355,20,20);
   effectBWToggle1.setLabel("BW"); effectBWToggle1.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectBWlimit1slider = controlP5.addSlider("effectBWlimit1",0,255,127,50+(columnWidth*0),355,int(columnWidth*0.6),12);
+  effectBWlimit1slider.setLabel("limit"); effectBWlimit1slider.moveTo(controlWindow,"Effects");
   
   
   // interface effects - column 2

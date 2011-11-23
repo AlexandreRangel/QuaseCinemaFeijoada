@@ -73,7 +73,7 @@ void QCeffects() {
         int loc = x + y * myMovie1.width;
         float r = red(myMovie1.pixels[loc]); float g = green(myMovie1.pixels[loc]); float b = blue(myMovie1.pixels[loc]);
         
-        if (brightness(myMovie1.pixels[loc]) > 127) { myMovie1.pixels[loc]  = color(255);  // make pixel white
+        if (brightness(myMovie1.pixels[loc]) > effectBWlimit1) { myMovie1.pixels[loc]  = color(255);  // make pixel white
         }  else { myMovie1.pixels[loc]  = color(0); }    // make pixel black
         
       }
