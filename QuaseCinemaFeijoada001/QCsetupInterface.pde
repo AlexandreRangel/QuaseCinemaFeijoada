@@ -140,6 +140,12 @@ void QCsetupInterface() {
   controlP5.Controller effectRbToggle1 = controlP5.addToggle("effectRB1",false,50+(columnWidth*0),315,20,20);
   effectRbToggle1.setLabel("R -> B"); effectRbToggle1.moveTo(controlWindow,"Effects");
   
+  controlP5.Controller effectGbToggle1 = controlP5.addToggle("effectBG1",false,90+(columnWidth*0),315,20,20);
+  effectGbToggle1.setLabel("G -> B"); effectGbToggle1.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectBWToggle1 = controlP5.addToggle("effectBW1",false,10+(columnWidth*0),355,20,20);
+  effectBWToggle1.setLabel("BW"); effectBWToggle1.moveTo(controlWindow,"Effects");
+  
   
   // interface effects - column 2
   colorPicker2 = controlP5.addColorPicker("layer2color",10+(columnWidth*1),200,int(columnWidth*0.9),20);

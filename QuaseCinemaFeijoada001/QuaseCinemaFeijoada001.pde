@@ -117,17 +117,24 @@ float layer1speed = 1.0; float layer2speed = 1.0; float layer3speed = 1.0; float
 //float layer1transparency = 255; float layer2transparency = 255; float layer3transparency = 255; float layer4transparency = 255;
 public float layer1playback, layer2playback, layer3playback, layer4playback;
 
+// effects pre setup
 public boolean effectInvert1 = false; public boolean effectInvert2 = false;
 public boolean effectInvert3 = false; public boolean effectInvert4 = false; 
 
 public boolean effectPosterize1 = false; public boolean effectPosterize2 = false;
 public boolean effectPosterize3 = false; public boolean effectPosterize4 = false;
 
-public boolean effectRG1 = false;
+public boolean effectRG1 = false; public boolean effectRG2 = false;
+public boolean effectRG3 = false; public boolean effectRG4 = false;
 
-public boolean effectRB1 = false;
+public boolean effectRB1 = false; public boolean effectRB2 = false;
+public boolean effectRB3 = false; public boolean effectRB4 = false;
 
-public boolean effectBW1 = false;
+public boolean effectBG1 = false; public boolean effectBG2 = false;
+public boolean effectBG3 = false; public boolean effectBG4 = false;
+
+public boolean effectBW1 = false; public boolean effectBW2 = false;
+public boolean effectBW3 = false; public boolean effectBW4 = false;
 
 
 public void init(){
@@ -318,16 +325,6 @@ void setup() {
   // variables setup
   QCsetupInterface();
   
-  //
-  // GStreamer setup
-  //
-  
-  GSVideo.localGStreamerPath = sketchPath("data/macosx32");
-  
-  myMovie1 = new GSMovie(this, "Aviao.mov"); myMovie1.loop();
-  myMovie2 = new GSMovie(this, sketchPath("data/Palatnik1.mov")); myMovie2.loop();
-  myMovie3 = new GSMovie(this, sketchPath("data/Palatnik2.mov")); myMovie3.loop();
-  myMovie4 = new GSMovie(this, sketchPath("data/Palatnik3.mov")); myMovie4.loop();
   
   //
   // projectedQuads setup
@@ -367,6 +364,37 @@ void setup() {
   debugFont = createFont("Arial", 14);
   textFont(debugFont);
   
+  //
+  // GStreamer setup
+  //
+  
+  GSVideo.localGStreamerPath = sketchPath("code/macosx64");
+  
+  //myMovie1 = new GSMovie(this, "Aviao.mov"); myMovie1.loop();
+//  myMovie2 = new GSMovie(this, sketchPath("data/Palatnik1.mov")); myMovie2.loop();
+//  myMovie3 = new GSMovie(this, sketchPath("data/Palatnik2.mov")); myMovie3.loop();
+//  myMovie4 = new GSMovie(this, sketchPath("data/Palatnik3.mov")); myMovie4.loop();
+  
+  tempString = rootFolder + dirs1[selectedDir1] +"/";
+  fileNames = listFileNames(tempString, txtFilter);
+  tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+  myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play(); myMovie1.loop();
+  
+  tempString = rootFolder + dirs2[selectedDir2] +"/";
+  fileNames = listFileNames(tempString, txtFilter);
+  tempString = rootFolder + dirs2[selectedDir2] +"/"+ fileNames[int(random(fileNames.length))];
+  myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play(); myMovie2.loop();
+  
+  tempString = rootFolder + dirs3[selectedDir3] +"/";
+  fileNames = listFileNames(tempString, txtFilter);
+  tempString = rootFolder + dirs3[selectedDir3] +"/"+ fileNames[int(random(fileNames.length))];
+  myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play(); myMovie3.loop();
+  
+  tempString = rootFolder + dirs4[selectedDir4] +"/";
+  fileNames = listFileNames(tempString, txtFilter);
+  tempString = rootFolder + dirs4[selectedDir4] +"/"+ fileNames[int(random(fileNames.length))];
+  myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play(); myMovie4.loop();
+      
   
   // timer setup
   layer1bpmVisLastTime=millis(); layer2bpmVisLastTime=millis(); layer3bpmVisLastTime=millis(); layer4bpmVisLastTime=millis();
@@ -418,7 +446,7 @@ void controlEvent(ControlEvent theEvent) {
     
     if (theEvent.group() == layerContentButton1) {
       layerContent1 = int(theEvent.group().value());
-      println(layerContent1);
+      println("layerContent1: "+layerContent1);
     }
     
   }
@@ -433,10 +461,10 @@ public void draw() {
   
   background(0);
   
-    if (myMovie1.available()) { myMovie1.read(); QCeffects(); }
-    if (myMovie2.available()) { myMovie2.read(); QCeffects(); }
-    if (myMovie3.available()) { myMovie3.read(); QCeffects(); }
-    if (myMovie4.available()) { myMovie4.read(); QCeffects(); }
+  if (myMovie1.available()) { myMovie1.read(); QCeffects(); }
+  if (myMovie2.available()) { myMovie2.read(); QCeffects(); }
+  if (myMovie3.available()) { myMovie3.read(); QCeffects(); }
+  if (myMovie4.available()) { myMovie4.read(); QCeffects(); }
   
   //
   // drop movie
