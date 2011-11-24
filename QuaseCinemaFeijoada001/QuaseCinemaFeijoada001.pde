@@ -25,6 +25,7 @@ ColorPicker colorPicker1, colorPicker2, colorPicker3, colorPicker4;
 ListBox outputResolutionList;
 Numberbox outputXposNumberBox, outputYposNumberBox;
 RadioButton layerContentButton1, layerContentButton2, layerContentButton3, layerContentButton4;
+RadioButton layerBlendButton1, layerBlendButton2, layerBlendButton3, layerBlendButton4;
 
 public int fpsValue = 0; // fps slider value
 
@@ -461,10 +462,10 @@ public void draw() {
   
   background(0);
   
-  if (myMovie1.available()) { myMovie1.read(); QCeffects(); }
-  if (myMovie2.available()) { myMovie2.read(); QCeffects(); }
-  if (myMovie3.available()) { myMovie3.read(); QCeffects(); }
-  if (myMovie4.available()) { myMovie4.read(); QCeffects(); }
+  if (myMovie1.available()) { myMovie1.read(); QCeffects1(); }
+  if (myMovie2.available()) { myMovie2.read(); QCeffects2(); }
+  if (myMovie3.available()) { myMovie3.read(); QCeffects3(); }
+  if (myMovie4.available()) { myMovie4.read(); QCeffects4(); }
   
   //
   // drop movie

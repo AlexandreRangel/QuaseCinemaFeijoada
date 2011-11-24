@@ -146,6 +146,7 @@ void QCsetupInterface() {
   //
   
   // interface effects - column 1
+  
   colorPicker1 = controlP5.addColorPicker("layer1color",10+(columnWidth*0),200,int(columnWidth*0.9),20);
   colorPicker1.moveTo(controlWindow,"Effects");
   
@@ -169,8 +170,17 @@ void QCsetupInterface() {
   controlP5.Controller effectBWlimit1slider = controlP5.addSlider("effectBWlimit1",0,255,127,50+(columnWidth*0),355,int(columnWidth*0.6),12);
   effectBWlimit1slider.setLabel("limit"); effectBWlimit1slider.moveTo(controlWindow,"Effects");
   
+  layerBlendButton1 = controlP5.addRadioButton("layerBlend1",10+(columnWidth*0),400);
+  layerBlendButton1.setNoneSelectedAllowed(false); layerBlendButton1.setItemsPerRow(1);
+  layerBlendButton1.addItem("Normal",0); layerBlendButton1.activate(0);
+  layerBlendButton1.addItem("Lightest",1);
+  layerBlendButton1.addItem("Add",2);
+  layerBlendButton1.addItem("Darkest",3);
+  layerBlendButton1.addItem("Subtract",4);
+  layerBlendButton1.moveTo(controlWindow,"Effects");
   
   // interface effects - column 2
+  
   colorPicker2 = controlP5.addColorPicker("layer2color",10+(columnWidth*1),200,int(columnWidth*0.9),20);
   colorPicker2.moveTo(controlWindow,"Effects");
   
@@ -180,8 +190,23 @@ void QCsetupInterface() {
   controlP5.Controller posterizeToggle2 = controlP5.addToggle("effectPosterize2",false,50+(columnWidth*1),265,20,20);
   posterizeToggle2.setLabel("poster"); posterizeToggle2.moveTo(controlWindow,"Effects");
   
+  controlP5.Controller effectRgToggle2 = controlP5.addToggle("effectRG2",false,10+(columnWidth*1),315,20,20);
+  effectRgToggle2.setLabel("R -> G"); effectRgToggle2.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectRbToggle2 = controlP5.addToggle("effectRB2",false,50+(columnWidth*1),315,20,20);
+  effectRbToggle2.setLabel("R -> B"); effectRbToggle2.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectGbToggle2 = controlP5.addToggle("effectBG2",false,90+(columnWidth*1),315,20,20);
+  effectGbToggle2.setLabel("G -> B"); effectGbToggle2.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectBWToggle2 = controlP5.addToggle("effectBW2",false,10+(columnWidth*1),355,20,20);
+  effectBWToggle2.setLabel("BW"); effectBWToggle2.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectBWlimit2slider = controlP5.addSlider("effectBWlimit2",0,255,127,50+(columnWidth*1),355,int(columnWidth*0.6),12);
+  effectBWlimit2slider.setLabel("limit"); effectBWlimit2slider.moveTo(controlWindow,"Effects");
+  
   
   // interface effects - column 3
+  
   colorPicker3 = controlP5.addColorPicker("layer3color",10+(columnWidth*2),200,int(columnWidth*0.9),20);
   colorPicker3.moveTo(controlWindow,"Effects");
   
@@ -193,6 +218,7 @@ void QCsetupInterface() {
 
   
   // interface effects - column 4
+  
   colorPicker4 = controlP5.addColorPicker("layer4color",10+(columnWidth*3),200,int(columnWidth*0.9),20);
   colorPicker4.moveTo(controlWindow,"Effects");
   
