@@ -167,10 +167,20 @@ void QCsetupInterface() {
   
   controlP5.Controller effectBWToggle1 = controlP5.addToggle("effectBW1",false,10+(columnWidth*0),355,20,20);
   effectBWToggle1.setLabel("BW"); effectBWToggle1.moveTo(controlWindow,"Effects");
-  controlP5.Controller effectBWlimit1slider = controlP5.addSlider("effectBWlimit1",0,255,127,50+(columnWidth*0),355,int(columnWidth*0.6),12);
+  controlP5.Controller effectBWlimit1slider = controlP5.addSlider("effectBWlimit1",0,255,127,40+(columnWidth*0),355,int(columnWidth*0.7),12);
   effectBWlimit1slider.setLabel("limit"); effectBWlimit1slider.moveTo(controlWindow,"Effects");
   
-  layerBlendButton1 = controlP5.addRadioButton("layerBlend1",10+(columnWidth*0),400);
+  controlP5.Controller effectContrastToggle1 = controlP5.addToggle("effectContrast1",false,10+(columnWidth*0),395,20,20);
+  effectContrastToggle1.setLabel("Contrast"); effectContrastToggle1.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectContrastLimit1slider = controlP5.addSlider("effectContrastLimit1",0,256,0,40+(columnWidth*0),395,int(columnWidth*0.7),12);
+  effectContrastLimit1slider.setLabel("amount"); effectContrastLimit1slider.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectSaturationToggle1 = controlP5.addToggle("effectSaturation1",false,10+(columnWidth*0),435,20,20);
+  effectSaturationToggle1.setLabel("Saturation"); effectSaturationToggle1.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectSaturationLimit1slider = controlP5.addSlider("effectSaturationLimit1",0,256,0,40+(columnWidth*0),435,int(columnWidth*0.7),12);
+  effectSaturationLimit1slider.setLabel("amount"); effectSaturationLimit1slider.moveTo(controlWindow,"Effects");
+  
+  layerBlendButton1 = controlP5.addRadioButton("layerBlend1",10+(columnWidth*0),500);
   layerBlendButton1.setNoneSelectedAllowed(false); layerBlendButton1.setItemsPerRow(1);
   layerBlendButton1.addItem("Normal",0); layerBlendButton1.activate(0);
   layerBlendButton1.addItem("Lightest",1);
@@ -204,6 +214,15 @@ void QCsetupInterface() {
   controlP5.Controller effectBWlimit2slider = controlP5.addSlider("effectBWlimit2",0,255,127,50+(columnWidth*1),355,int(columnWidth*0.6),12);
   effectBWlimit2slider.setLabel("limit"); effectBWlimit2slider.moveTo(controlWindow,"Effects");
   
+  controlP5.Controller effectContrastToggle2 = controlP5.addToggle("effectContrast2",false,10+(columnWidth*1),395,20,20);
+  effectContrastToggle2.setLabel("Contrast"); effectContrastToggle2.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectContrastLimit2slider = controlP5.addSlider("effectContrastLimit2",0,256,0,40+(columnWidth*1),395,int(columnWidth*0.7),12);
+  effectContrastLimit2slider.setLabel("amount"); effectContrastLimit2slider.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectSaturationToggle2 = controlP5.addToggle("effectSaturation2",false,10+(columnWidth*1),435,20,20);
+  effectSaturationToggle2.setLabel("Saturation"); effectSaturationToggle2.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectSaturationLimit2slider = controlP5.addSlider("effectSaturationLimit2",0,256,0,40+(columnWidth*1),435,int(columnWidth*0.7),12);
+  effectSaturationLimit2slider.setLabel("amount"); effectSaturationLimit2slider.moveTo(controlWindow,"Effects");
   
   // interface effects - column 3
   
@@ -216,6 +235,29 @@ void QCsetupInterface() {
   controlP5.Controller posterizeToggle3 = controlP5.addToggle("effectPosterize3",false,50+(columnWidth*2),265,20,20);
   posterizeToggle3.setLabel("poster"); posterizeToggle3.moveTo(controlWindow,"Effects");
 
+  controlP5.Controller effectRgToggle3 = controlP5.addToggle("effectRG3",false,10+(columnWidth*2),315,20,20);
+  effectRgToggle3.setLabel("R -> G"); effectRgToggle3.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectRbToggle3 = controlP5.addToggle("effectRB3",false,50+(columnWidth*2),315,20,20);
+  effectRbToggle3.setLabel("R -> B"); effectRbToggle3.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectGbToggle3 = controlP5.addToggle("effectBG3",false,90+(columnWidth*2),315,20,20);
+  effectGbToggle3.setLabel("G -> B"); effectGbToggle3.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectBWToggle3 = controlP5.addToggle("effectBW3",false,10+(columnWidth*2),355,20,20);
+  effectBWToggle3.setLabel("BW"); effectBWToggle3.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectBWlimit3slider = controlP5.addSlider("effectBWlimit3",0,255,127,50+(columnWidth*2),355,int(columnWidth*0.6),12);
+  effectBWlimit3slider.setLabel("limit"); effectBWlimit3slider.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectContrastToggle3 = controlP5.addToggle("effectContrast3",false,10+(columnWidth*2),395,20,20);
+  effectContrastToggle3.setLabel("Contrast"); effectContrastToggle3.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectContrastLimit3slider = controlP5.addSlider("effectContrastLimit3",0,256,0,40+(columnWidth*2),395,int(columnWidth*0.7),12);
+  effectContrastLimit3slider.setLabel("amount"); effectContrastLimit3slider.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectSaturationToggle3 = controlP5.addToggle("effectSaturation3",false,10+(columnWidth*2),435,20,20);
+  effectSaturationToggle3.setLabel("Saturation"); effectSaturationToggle3.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectSaturationLimit3slider = controlP5.addSlider("effectSaturationLimit3",0,256,0,40+(columnWidth*2),435,int(columnWidth*0.7),12);
+  effectSaturationLimit3slider.setLabel("amount"); effectSaturationLimit3slider.moveTo(controlWindow,"Effects");
   
   // interface effects - column 4
   
@@ -228,6 +270,29 @@ void QCsetupInterface() {
   controlP5.Controller posterizeToggle4 = controlP5.addToggle("effectPosterize4",false,50+(columnWidth*3),265,20,20);
   posterizeToggle4.setLabel("poster"); posterizeToggle4.moveTo(controlWindow,"Effects");
   
+  controlP5.Controller effectRgToggle4 = controlP5.addToggle("effectRG4",false,10+(columnWidth*3),315,20,20);
+  effectRgToggle4.setLabel("R -> G"); effectRgToggle4.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectRbToggle4 = controlP5.addToggle("effectRB4",false,50+(columnWidth*3),315,20,20);
+  effectRbToggle4.setLabel("R -> B"); effectRbToggle4.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectGbToggle4 = controlP5.addToggle("effectBG4",false,90+(columnWidth*3),315,20,20);
+  effectGbToggle4.setLabel("G -> B"); effectGbToggle4.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectBWToggle4 = controlP5.addToggle("effectBW4",false,10+(columnWidth*3),355,20,20);
+  effectBWToggle4.setLabel("BW"); effectBWToggle4.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectBWlimit4slider = controlP5.addSlider("effectBWlimit4",0,255,127,50+(columnWidth*3),355,int(columnWidth*0.6),12);
+  effectBWlimit4slider.setLabel("limit"); effectBWlimit4slider.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectContrastToggle4 = controlP5.addToggle("effectContrast4",false,10+(columnWidth*3),395,20,20);
+  effectContrastToggle4.setLabel("Contrast"); effectContrastToggle4.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectContrastLimit4slider = controlP5.addSlider("effectContrastLimit4",0,256,0,40+(columnWidth*3),395,int(columnWidth*0.7),12);
+  effectContrastLimit4slider.setLabel("amount"); effectContrastLimit4slider.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectSaturationToggle4 = controlP5.addToggle("effectSaturation4",false,10+(columnWidth*3),435,20,20);
+  effectSaturationToggle4.setLabel("Saturation"); effectSaturationToggle4.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectSaturationLimit4slider = controlP5.addSlider("effectSaturationLimit4",0,256,0,40+(columnWidth*3),435,int(columnWidth*0.7),12);
+  effectSaturationLimit4slider.setLabel("amount"); effectSaturationLimit4slider.moveTo(controlWindow,"Effects");
   
   //
   // interface

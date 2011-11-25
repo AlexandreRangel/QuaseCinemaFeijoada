@@ -15,7 +15,7 @@ void QCeffects1() {
   
   // pixel effects start up
   
-  if (effectRG1 || effectRB1 || effectBG1 || effectBW1)
+  if (effectRG1 || effectRB1 || effectBG1 || effectBW1 || effectContrast1 || effectSaturation1)
   { myMovie1.loadPixels(); }
   
   
@@ -57,17 +57,47 @@ void QCeffects1() {
         int loc = x + y * myMovie1.width;
         float r = red(myMovie1.pixels[loc]); float g = green(myMovie1.pixels[loc]); float b = blue(myMovie1.pixels[loc]);
         
-        if (brightness(myMovie1.pixels[loc]) > effectBWlimit1) { myMovie1.pixels[loc]  = color(255);  // make pixel white
-        }  else { myMovie1.pixels[loc]  = color(0); }    // make pixel black
+        if (brightness(myMovie1.pixels[loc]) > effectBWlimit1) { myMovie1.pixels[loc]  = color(255); // make pixel white
+        } else { myMovie1.pixels[loc]  = color(0); } // make pixel black
         
       }
     }
   } // end effectBW1
   
+  if (effectContrast1) { // contrast layer 1
+    for (int y = 0; y < myMovie1.height; y++) {
+      for (int x = 0; x < myMovie1.width; x++) {
+        int loc = x + y * myMovie1.width;
+        float r = red(myMovie1.pixels[loc]); float g = green(myMovie1.pixels[loc]); float b = blue(myMovie1.pixels[loc]);
+        
+        if (brightness(myMovie1.pixels[loc]) > 127) {
+          myMovie1.pixels[loc]  = color(r+effectContrastLimit1,g+effectContrastLimit1,b+effectContrastLimit1);  // make pixel lighter
+        } else {
+          myMovie1.pixels[loc]  = color(r-effectContrastLimit1,g-effectContrastLimit1,b-effectContrastLimit1); // make pixel darker
+        } // end if
+        
+      }
+    }
+  } // end effectContrast1
+  
+  if (effectSaturation1) { // saturation layer 1
+    for (int y = 0; y < myMovie1.height; y++) {
+      for (int x = 0; x < myMovie1.width; x++) {
+        int loc = x + y * myMovie1.width;
+        
+        colorMode(HSB);
+        float h = hue(myMovie1.pixels[loc]); float s = saturation(myMovie1.pixels[loc]); float b = brightness(myMovie1.pixels[loc]);
+        myMovie1.pixels[loc]  = color(h,s+effectSaturationLimit1,b);  // make pixel lighter
+        colorMode(RGB);
+        
+      }
+    }
+  } // end effectSaturation1
+  
  
   // effects wrap up
   
-  if (effectRG1 || effectRB1 || effectBG1 || effectBW1)
+  if (effectRG1 || effectRB1 || effectBG1 || effectBW1 || effectContrast1 || effectSaturation1)
   { myMovie1.updatePixels(); }
   
 } // end QCeffects1()
@@ -87,7 +117,7 @@ void QCeffects2() {
   
   // pixel effects start up
   
-  if (effectRG2 || effectRB2 || effectBG2 || effectBW2)
+  if (effectRG2 || effectRB2 || effectBG2 || effectBW2 || effectContrast2 || effectSaturation2)
   { myMovie2.loadPixels(); }
   
   
@@ -136,10 +166,39 @@ void QCeffects2() {
     }
   } // end effectBW2
   
+  if (effectContrast2) { // contrast layer 2
+    for (int y = 0; y < myMovie2.height; y++) {
+      for (int x = 0; x < myMovie2.width; x++) {
+        int loc = x + y * myMovie2.width;
+        float r = red(myMovie2.pixels[loc]); float g = green(myMovie2.pixels[loc]); float b = blue(myMovie2.pixels[loc]);
+        
+        if (brightness(myMovie2.pixels[loc]) > 127) {
+          myMovie2.pixels[loc]  = color(r+effectContrastLimit2,g+effectContrastLimit2,b+effectContrastLimit2);  // make pixel lighter
+        } else {
+          myMovie2.pixels[loc]  = color(r-effectContrastLimit2,g-effectContrastLimit2,b-effectContrastLimit2); // make pixel darker
+        } // end if
+        
+      }
+    }
+  } // end effectContrast2
+  
+  if (effectSaturation2) { // saturation layer 2
+    for (int y = 0; y < myMovie2.height; y++) {
+      for (int x = 0; x < myMovie2.width; x++) {
+        int loc = x + y * myMovie2.width;
+        
+        colorMode(HSB);
+        float h = hue(myMovie2.pixels[loc]); float s = saturation(myMovie2.pixels[loc]); float b = brightness(myMovie2.pixels[loc]);
+        myMovie2.pixels[loc]  = color(h,s+effectSaturationLimit2,b);  // make pixel lighter
+        colorMode(RGB);
+        
+      }
+    }
+  } // end effectSaturation2
   
   // effects wrap up
   
-  if (effectRG2 || effectRB2 || effectBG2 || effectBW2)
+  if (effectRG2 || effectRB2 || effectBG2 || effectBW2 || effectContrast2 || effectSaturation2)
   { myMovie2.updatePixels(); }
   
   //QCblend2();
@@ -162,59 +221,90 @@ void QCeffects3() {
   
   // pixel effects start up
   
-  if (effectRG3 || effectRB3 || effectBG3 || effectBW3)
+  if (effectRG3 || effectRB3 || effectBG3 || effectBW3 || effectContrast3 || effectSaturation3)
   { myMovie3.loadPixels(); }
 
   
-  // effects layer 1
+  //
+  // effects layer 3
+  //
   
-  if (effectRG1) { // red x green layer 1
-    for (int y = 0; y < myMovie1.height; y++) {
-      for (int x = 0; x < myMovie1.width; x++) {
-        int loc = x + y * myMovie1.width;
-        float r = red(myMovie1.pixels[loc]); float g = green(myMovie1.pixels[loc]); float b = blue(myMovie1.pixels[loc]);
-        myMovie1.pixels[loc] =  color(g,r,b);          
+  if (effectRG3) { // red x green layer 3
+    for (int y = 0; y < myMovie3.height; y++) {
+      for (int x = 0; x < myMovie3.width; x++) {
+        int loc = x + y * myMovie3.width;
+        float r = red(myMovie3.pixels[loc]); float g = green(myMovie3.pixels[loc]); float b = blue(myMovie3.pixels[loc]);
+        myMovie3.pixels[loc] =  color(g,r,b);          
       }
     }
-  } // end effectRG1
+  } // end effectRG3
   
-  if (effectRB1) { // red x green layer 1
-    for (int y = 0; y < myMovie1.height; y++) {
-      for (int x = 0; x < myMovie1.width; x++) {
-        int loc = x + y * myMovie1.width;
-        float r = red(myMovie1.pixels[loc]); float g = green(myMovie1.pixels[loc]); float b = blue(myMovie1.pixels[loc]);
-        myMovie1.pixels[loc] =  color(b,g,r);          
+  if (effectRB3) { // red x green layer 3
+    for (int y = 0; y < myMovie3.height; y++) {
+      for (int x = 0; x < myMovie3.width; x++) {
+        int loc = x + y * myMovie3.width;
+        float r = red(myMovie3.pixels[loc]); float g = green(myMovie3.pixels[loc]); float b = blue(myMovie3.pixels[loc]);
+        myMovie3.pixels[loc] =  color(b,g,r);          
       }
     }
-  } // end effectRB1
+  } // end effectRB3
   
-  if (effectBG1) { // blue x green layer 1
-    for (int y = 0; y < myMovie1.height; y++) {
-      for (int x = 0; x < myMovie1.width; x++) {
-        int loc = x + y * myMovie1.width;
-        float r = red(myMovie1.pixels[loc]); float g = green(myMovie1.pixels[loc]); float b = blue(myMovie1.pixels[loc]);
-        myMovie1.pixels[loc] =  color(r,b,g);          
+  if (effectBG3) { // blue x green layer 3
+    for (int y = 0; y < myMovie3.height; y++) {
+      for (int x = 0; x < myMovie3.width; x++) {
+        int loc = x + y * myMovie3.width;
+        float r = red(myMovie3.pixels[loc]); float g = green(myMovie3.pixels[loc]); float b = blue(myMovie3.pixels[loc]);
+        myMovie3.pixels[loc] =  color(r,b,g);          
       }
     }
-  } // end effectBg1
+  } // end effectBg3
   
-  if (effectBW1) { // black and white layer 1
-    for (int y = 0; y < myMovie1.height; y++) {
-      for (int x = 0; x < myMovie1.width; x++) {
-        int loc = x + y * myMovie1.width;
-        float r = red(myMovie1.pixels[loc]); float g = green(myMovie1.pixels[loc]); float b = blue(myMovie1.pixels[loc]);
+  if (effectBW3) { // black and white layer 3
+    for (int y = 0; y < myMovie3.height; y++) {
+      for (int x = 0; x < myMovie3.width; x++) {
+        int loc = x + y * myMovie3.width;
+        float r = red(myMovie3.pixels[loc]); float g = green(myMovie3.pixels[loc]); float b = blue(myMovie3.pixels[loc]);
         
-        if (brightness(myMovie1.pixels[loc]) > effectBWlimit1) { myMovie1.pixels[loc]  = color(255);  // make pixel white
-        }  else { myMovie1.pixels[loc]  = color(0); }    // make pixel black
+        if (brightness(myMovie3.pixels[loc]) > effectBWlimit3) { myMovie3.pixels[loc]  = color(255);  // make pixel white
+        }  else { myMovie3.pixels[loc]  = color(0); }    // make pixel black
         
       }
     }
-  } // end effectBW1
+  } // end effectBW3
   
+    if (effectContrast3) { // contrast layer 3
+    for (int y = 0; y < myMovie3.height; y++) {
+      for (int x = 0; x < myMovie3.width; x++) {
+        int loc = x + y * myMovie3.width;
+        float r = red(myMovie3.pixels[loc]); float g = green(myMovie3.pixels[loc]); float b = blue(myMovie3.pixels[loc]);
+        
+        if (brightness(myMovie3.pixels[loc]) > 127) {
+          myMovie3.pixels[loc]  = color(r+effectContrastLimit3,g+effectContrastLimit3,b+effectContrastLimit3);  // make pixel lighter
+        } else {
+          myMovie3.pixels[loc]  = color(r-effectContrastLimit3,g-effectContrastLimit3,b-effectContrastLimit3); // make pixel darker
+        } // end if
+        
+      }
+    }
+  } // end effectContrast3
+  
+  if (effectSaturation3) { // saturation layer 3
+    for (int y = 0; y < myMovie3.height; y++) {
+      for (int x = 0; x < myMovie3.width; x++) {
+        int loc = x + y * myMovie3.width;
+        
+        colorMode(HSB);
+        float h = hue(myMovie3.pixels[loc]); float s = saturation(myMovie3.pixels[loc]); float b = brightness(myMovie3.pixels[loc]);
+        myMovie3.pixels[loc]  = color(h,s+effectSaturationLimit3,b);  // make pixel lighter
+        colorMode(RGB);
+        
+      }
+    }
+  } // end effectSaturation3
   
   // effects wrap up
  
-  if (effectRG3 || effectRB3 || effectBG3 || effectBW3)
+  if (effectRG3 || effectRB3 || effectBG3 || effectBW3 || effectContrast3 || effectSaturation3)
   { myMovie3.updatePixels(); }
   
   //QCblend3();
@@ -238,59 +328,90 @@ void QCeffects4() {
   
   // pixel effects start up
   
-  if (effectRG4 || effectRB4 || effectBG4 || effectBW4)
+  if (effectRG4 || effectRB4 || effectBG4 || effectBW4 || effectContrast4 || effectSaturation4)
   { myMovie4.loadPixels(); }
   
   
+  //
   // effects layer 4
+  //
   
-  if (effectRG1) { // red x green layer 1
-    for (int y = 0; y < myMovie1.height; y++) {
-      for (int x = 0; x < myMovie1.width; x++) {
-        int loc = x + y * myMovie1.width;
-        float r = red(myMovie1.pixels[loc]); float g = green(myMovie1.pixels[loc]); float b = blue(myMovie1.pixels[loc]);
-        myMovie1.pixels[loc] =  color(g,r,b);          
+  if (effectRG4) { // red x green layer 4
+    for (int y = 0; y < myMovie4.height; y++) {
+      for (int x = 0; x < myMovie4.width; x++) {
+        int loc = x + y * myMovie4.width;
+        float r = red(myMovie4.pixels[loc]); float g = green(myMovie4.pixels[loc]); float b = blue(myMovie4.pixels[loc]);
+        myMovie4.pixels[loc] =  color(g,r,b);          
       }
     }
-  } // end effectRG1
+  } // end effectRG4
   
-  if (effectRB1) { // red x green layer 1
-    for (int y = 0; y < myMovie1.height; y++) {
-      for (int x = 0; x < myMovie1.width; x++) {
-        int loc = x + y * myMovie1.width;
-        float r = red(myMovie1.pixels[loc]); float g = green(myMovie1.pixels[loc]); float b = blue(myMovie1.pixels[loc]);
-        myMovie1.pixels[loc] =  color(b,g,r);          
+  if (effectRB4) { // red x green layer 4
+    for (int y = 0; y < myMovie4.height; y++) {
+      for (int x = 0; x < myMovie4.width; x++) {
+        int loc = x + y * myMovie4.width;
+        float r = red(myMovie4.pixels[loc]); float g = green(myMovie4.pixels[loc]); float b = blue(myMovie4.pixels[loc]);
+        myMovie4.pixels[loc] =  color(b,g,r);          
       }
     }
-  } // end effectRB1
+  } // end effectRB4
   
-  if (effectBG1) { // blue x green layer 1
-    for (int y = 0; y < myMovie1.height; y++) {
-      for (int x = 0; x < myMovie1.width; x++) {
-        int loc = x + y * myMovie1.width;
-        float r = red(myMovie1.pixels[loc]); float g = green(myMovie1.pixels[loc]); float b = blue(myMovie1.pixels[loc]);
-        myMovie1.pixels[loc] =  color(r,b,g);          
+  if (effectBG4) { // blue x green layer 4
+    for (int y = 0; y < myMovie4.height; y++) {
+      for (int x = 0; x < myMovie4.width; x++) {
+        int loc = x + y * myMovie4.width;
+        float r = red(myMovie4.pixels[loc]); float g = green(myMovie4.pixels[loc]); float b = blue(myMovie4.pixels[loc]);
+        myMovie4.pixels[loc] =  color(r,b,g);          
       }
     }
-  } // end effectBg1
+  } // end effectBg4
   
-  if (effectBW1) { // black and white layer 1
-    for (int y = 0; y < myMovie1.height; y++) {
-      for (int x = 0; x < myMovie1.width; x++) {
-        int loc = x + y * myMovie1.width;
-        float r = red(myMovie1.pixels[loc]); float g = green(myMovie1.pixels[loc]); float b = blue(myMovie1.pixels[loc]);
+  if (effectBW4) { // black and white layer 4
+    for (int y = 0; y < myMovie4.height; y++) {
+      for (int x = 0; x < myMovie4.width; x++) {
+        int loc = x + y * myMovie4.width;
+        float r = red(myMovie4.pixels[loc]); float g = green(myMovie4.pixels[loc]); float b = blue(myMovie4.pixels[loc]);
         
-        if (brightness(myMovie1.pixels[loc]) > effectBWlimit1) { myMovie1.pixels[loc]  = color(255);  // make pixel white
-        }  else { myMovie1.pixels[loc]  = color(0); }    // make pixel black
+        if (brightness(myMovie4.pixels[loc]) > effectBWlimit4) { myMovie4.pixels[loc]  = color(255);  // make pixel white
+        }  else { myMovie4.pixels[loc]  = color(0); }    // make pixel black
         
       }
     }
-  } // end effectBW1
+  } // end effectBW4
   
+    if (effectContrast4) { // contrast layer 4
+    for (int y = 0; y < myMovie4.height; y++) {
+      for (int x = 0; x < myMovie4.width; x++) {
+        int loc = x + y * myMovie4.width;
+        float r = red(myMovie4.pixels[loc]); float g = green(myMovie4.pixels[loc]); float b = blue(myMovie4.pixels[loc]);
+        
+        if (brightness(myMovie4.pixels[loc]) > 127) {
+          myMovie4.pixels[loc]  = color(r+effectContrastLimit4,g+effectContrastLimit4,b+effectContrastLimit4);  // make pixel lighter
+        } else {
+          myMovie4.pixels[loc]  = color(r-effectContrastLimit4,g-effectContrastLimit4,b-effectContrastLimit4); // make pixel darker
+        } // end if
+        
+      }
+    }
+  } // end effectContrast4
+  
+  if (effectSaturation4) { // saturation layer 4
+    for (int y = 0; y < myMovie4.height; y++) {
+      for (int x = 0; x < myMovie4.width; x++) {
+        int loc = x + y * myMovie4.width;
+        
+        colorMode(HSB);
+        float h = hue(myMovie4.pixels[loc]); float s = saturation(myMovie4.pixels[loc]); float b = brightness(myMovie4.pixels[loc]);
+        myMovie4.pixels[loc]  = color(h,s+effectSaturationLimit4,b);  // make pixel lighter
+        colorMode(RGB);
+        
+      }
+    }
+  } // end effectSaturation4
   
   // effects wrap up
   
-  if (effectRG4 || effectRB4 || effectBG4 || effectBW4)
+  if (effectRG4 || effectRB4 || effectBG4 || effectBW4 || effectContrast4 || effectSaturation4)
   { myMovie4.updatePixels(); }
   
   //QCblend4();

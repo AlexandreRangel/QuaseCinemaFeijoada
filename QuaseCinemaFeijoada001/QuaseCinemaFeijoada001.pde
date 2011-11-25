@@ -133,10 +133,18 @@ public boolean effectBG3 = false; public boolean effectBG4 = false;
 
 public boolean effectBW1 = false; public boolean effectBW2 = false;
 public boolean effectBW3 = false; public boolean effectBW4 = false;
-
 public int effectBWlimit1 = 127; public int effectBWlimit2 = 127;
 public int effectBWlimit3 = 127; public int effectBWlimit4 = 127;
 
+public boolean effectContrast1 = false; public boolean effectContrast2 = false;
+public boolean effectContrast3 = false; public boolean effectContrast4 = false;
+public int effectContrastLimit1 = 0; public int effectContrastLimit2 = 0;
+public int effectContrastLimit3 = 0; public int effectContrastLimit4 = 0;
+
+public boolean effectSaturation1 = false; public boolean effectSaturation2 = false;
+public boolean effectSaturation3 = false; public boolean effectSaturation4 = false;
+public int effectSaturationLimit1 = 0; public int effectSaturationLimit2 = 0;
+public int effectSaturationLimit3 = 0; public int effectSaturationLimit4 = 0;
 
 public void init(){
   frame.removeNotify();
@@ -321,7 +329,7 @@ void setup() {
   frameRate(60);
   frame.setLocation(screen.width,0);
   //frame.setLocation(1024,0);
-  frame.setLocation(1440,0);
+  frame.setLocation(0,0);
   
   // variables setup
   QCsetupInterface();
@@ -510,26 +518,54 @@ public void draw() {
   // timer update
   //
   
+  //
   // bpm visibility
-  if(layer1bpmVis>0 && millis()-layer1bpmVisLastTime >= map(layer1bpmVis,0,240,1000,10)){
+  //
+  
+  if(layer1bpmVis>0 && millis()-layer1bpmVisLastTime >= map(layer1bpmVis,0,240,1000,10)){ // layer 1
     layer1visibility = !(layer1visibility);
     layer1bpmVisLastTime=millis();
   }
-  if(layer2bpmVis>0 && millis()-layer2bpmVisLastTime >= map(layer2bpmVis,0,240,1000,10)){
+  if(layer2bpmVis>0 && millis()-layer2bpmVisLastTime >= map(layer2bpmVis,0,240,1000,10)){ // layer 2
     layer2visibility = !(layer2visibility);
     layer2bpmVisLastTime=millis();
   }
-  if(layer3bpmVis>0 && millis()-layer3bpmVisLastTime >= map(layer3bpmVis,0,240,1000,10)){
+  if(layer3bpmVis>0 && millis()-layer3bpmVisLastTime >= map(layer3bpmVis,0,240,1000,10)){ // layer 3
     layer3visibility = !(layer3visibility);
     layer3bpmVisLastTime=millis();
   }
-  if(layer4bpmVis>0 && millis()-layer4bpmVisLastTime >= map(layer4bpmVis,0,240,1000,10)){
+  if(layer4bpmVis>0 && millis()-layer4bpmVisLastTime >= map(layer4bpmVis,0,240,1000,10)){ // layer 4
     layer4visibility = !(layer4visibility);
     layer4bpmVisLastTime=millis();
   }
   
+  //
+  // bpm movie time
+  //
+  
+  if(layer1bpmTime>0 && millis()-layer1bpmTimeLastTime >= map(layer1bpmTime,0,240,1000,10)){ // layer 1
+    myMovie1.jump(random(myMovie1.duration()));
+    layer1bpmTimeLastTime=millis();
+  }
+  if(layer2bpmTime>0 && millis()-layer2bpmTimeLastTime >= map(layer2bpmTime,0,240,1000,10)){ // layer 2
+    myMovie2.jump(random(myMovie2.duration()));
+    layer2bpmTimeLastTime=millis();
+  }
+  if(layer3bpmTime>0 && millis()-layer3bpmTimeLastTime >= map(layer3bpmTime,0,240,1000,10)){ // layer 3
+    myMovie3.jump(random(myMovie3.duration()));
+    layer3bpmTimeLastTime=millis();
+  }
+  if(layer4bpmTime>0 && millis()-layer4bpmTimeLastTime >= map(layer4bpmTime,0,240,1000,10)){ // layer 4
+    myMovie4.jump(random(myMovie4.duration()));
+    layer4bpmTimeLastTime=millis();
+  }
+  
+  
+  //
   // bpm change movie
-  if(layer1bpmMovie>0 && millis()-layer1bpmMovieLastTime >= map(layer1bpmMovie,0,240,1000,10)){
+  //
+  
+  if(layer1bpmMovie>0 && millis()-layer1bpmMovieLastTime >= map(layer1bpmMovie,0,240,1000,10)){ // layer 1
     // change movie
     String tempString = rootFolder + dirs1[selectedDir1] +"/";
     fileNames = listFileNames(tempString, txtFilter);
@@ -538,7 +574,7 @@ public void draw() {
     myMovie1.jump(random(myMovie1.duration()));
     layer1bpmMovieLastTime=millis();
   }
-  if(layer2bpmMovie>0 && millis()-layer2bpmMovieLastTime >= map(layer2bpmMovie,0,240,1000,10)){
+  if(layer2bpmMovie>0 && millis()-layer2bpmMovieLastTime >= map(layer2bpmMovie,0,240,1000,10)){ // layer 2
     // change movie
     String tempString = rootFolder + dirs2[selectedDir2] +"/";
     fileNames = listFileNames(tempString, txtFilter);
@@ -547,7 +583,7 @@ public void draw() {
     myMovie2.jump(random(myMovie2.duration()));
     layer2bpmMovieLastTime=millis();
   }
-  if(layer3bpmMovie>0 && millis()-layer3bpmMovieLastTime >= map(layer3bpmMovie,0,240,1000,10)){
+  if(layer3bpmMovie>0 && millis()-layer3bpmMovieLastTime >= map(layer3bpmMovie,0,240,1000,10)){ // layer 3
     // change movie
     String tempString = rootFolder + dirs3[selectedDir3] +"/";
     fileNames = listFileNames(tempString, txtFilter);
@@ -556,7 +592,7 @@ public void draw() {
     myMovie3.jump(random(0,myMovie3.duration()));
     layer3bpmMovieLastTime=millis();
   }
-  if(layer4bpmMovie>0 && millis()-layer4bpmMovieLastTime >= map(layer4bpmMovie,0,240,1000,10)){
+  if(layer4bpmMovie>0 && millis()-layer4bpmMovieLastTime >= map(layer4bpmMovie,0,240,1000,10)){ // layer 4
     // change movie
     String tempString = rootFolder + dirs4[selectedDir4] +"/";
     fileNames = listFileNames(tempString, txtFilter);

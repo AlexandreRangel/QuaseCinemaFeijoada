@@ -15,9 +15,6 @@ bpm toggles visibility interface
 dlete key to toggle visibility
 MP3 controls (volume, song, pan)
 FFT
-pixel filters (color channel changes, etc)
-movie directory interface
-dynamic layers add
-5 layers
+movie directory icon
 camera layer toggle
 camera choose
