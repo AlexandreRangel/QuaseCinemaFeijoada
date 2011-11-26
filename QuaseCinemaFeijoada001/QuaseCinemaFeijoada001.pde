@@ -54,6 +54,7 @@ String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_vid
 String dirs1[] = new String[200]; String dirs2[] = new String[200];
 String dirs3[] = new String[200]; String dirs4[] = new String[200];
 int fileCounter1 = 0; int fileCounter2 = 0; int fileCounter3 = 0; int fileCounter4 = 0;
+int fileCounter1limit = 20; int fileCounter2limit = 20; int fileCounter3limit = 20; int fileCounter4limit = 20;
 int selectedDir1 = 1; int selectedDir2 = 2; int selectedDir3 = 3; int selectedDir4 = 4;
 PFont debugFont;
 public String tempString;
@@ -146,6 +147,11 @@ public boolean effectSaturation3 = false; public boolean effectSaturation4 = fal
 public int effectSaturationLimit1 = 0; public int effectSaturationLimit2 = 0;
 public int effectSaturationLimit3 = 0; public int effectSaturationLimit4 = 0;
 
+public boolean effectHue1 = false; public boolean effectHue2 = false;
+public boolean effectHue3 = false; public boolean effectHue4 = false;
+public int effectHueLimit1 = 0; public int effectHueLimit2 = 0;
+public int effectHueLimit3 = 0; public int effectHueLimit4 = 0;
+
 public void init(){
   frame.removeNotify();
   frame.setUndecorated(true);
@@ -204,29 +210,29 @@ class MyCanvas extends ControlWindowCanvas {
   } // end if audio tab
   
   //
-  // dirs draw
+  // dir draw
   //
   if (controlWindow.currentTab().id()==1) { // if main tab  
     if (fileCounter1 > 0) {
-      for(int i = 0; i< fileCounter1; i++) {
+      for(int i = 0; i< fileCounter1limit; i++) {
         if (i == selectedDir1) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
         theApplet.text(dirs1[i], 10+(columnWidth*0), 350+(18*i));
       } // end for
     } //end if fileCounter1
     if (fileCounter2 > 0) {
-      for(int i = 0; i< fileCounter2; i++) {
+      for(int i = 0; i< fileCounter2limit; i++) {
         if (i == selectedDir2) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
         theApplet.text(dirs2[i], 10+(columnWidth*1), 350+(18*i));
       } // end for
     } //end if fileCounter2
     if (fileCounter3 > 0) {
-      for(int i = 0; i< fileCounter3; i++) {
+      for(int i = 0; i< fileCounter3limit; i++) {
         if (i == selectedDir3) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
         theApplet.text(dirs3[i], 10+(columnWidth*2), 350+(18*i));
       } // end for
     } //end if fileCounter3
     if (fileCounter4 > 0) {
-      for(int i = 0; i< fileCounter4; i++) {
+      for(int i = 0; i< fileCounter4limit; i++) {
         if (i == selectedDir4) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
         theApplet.text(dirs4[i], 10+(columnWidth*3), 350+(18*i));
       } // end for
@@ -238,7 +244,6 @@ class MyCanvas extends ControlWindowCanvas {
   // dirs click check 
   //
   if(theApplet.mousePressed) {
-    //theApplet.ellipse(theApplet.mouseX,theApplet.mouseY,20,20);
     
     //
     // dir click
@@ -247,12 +252,11 @@ class MyCanvas extends ControlWindowCanvas {
     // if main tab, column 1
     if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*0) && theApplet.mouseX < (columnWidth*1) ) { 
       //if (fileCounter1 > 0) {
-        for(int i = 0; i< fileCounter1; i++) {
+        for(int i = 0; i< fileCounter1limit; i++) {
           if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
             dirClicked = i;
             selectedDir1 = dirClicked;
-            println (theApplet.mouseY + "  dir: " + dirClicked + ", " + dirs1[dirClicked]);
-            //break; // break for
+            // println (theApplet.mouseY + "  dir: " + dirClicked + ", " + dirs1[dirClicked]);
           } // end if mouse loc
         } // end for
       //} //end if fileCounter1
@@ -261,7 +265,7 @@ class MyCanvas extends ControlWindowCanvas {
     // if main tab, column 2
     if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*1) && theApplet.mouseX < (columnWidth*2) ) {  
       //if (fileCounter1 > 0) {
-        for(int i = 0; i< fileCounter2; i++) {
+        for(int i = 0; i< fileCounter2limit; i++) {
           if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
             selectedDir2 = i;
           } // end if mouse loc
@@ -272,7 +276,7 @@ class MyCanvas extends ControlWindowCanvas {
     // if main tab, column 3
     if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*2) && theApplet.mouseX < (columnWidth*3) ) { 
       //if (fileCounter1 > 0) {
-        for(int i = 0; i< fileCounter3; i++) {
+        for(int i = 0; i< fileCounter3limit; i++) {
           if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
             selectedDir3 = i;
           } // end if mouse loc
@@ -283,7 +287,7 @@ class MyCanvas extends ControlWindowCanvas {
     // if main tab, column 4
     if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*3) && theApplet.mouseX < (columnWidth*4) ) { 
       //if (fileCounter1 > 0) {
-        for(int i = 0; i< fileCounter4; i++) {
+        for(int i = 0; i< fileCounter4limit; i++) {
           if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
             selectedDir4 = i;
           } // end if mouse loc
@@ -325,11 +329,11 @@ File[] listFiles(String dir) {
 void setup() {
   size(outputWidth, outputHeight, OPENGL);
   //hint(ENABLE_OPENGL_4X_SMOOTH);
-  frame.setResizable(true);
+  frame.setResizable(false);
   frameRate(60);
   frame.setLocation(screen.width,0);
   //frame.setLocation(1024,0);
-  frame.setLocation(0,0);
+  frame.setLocation(1440,0);
   
   // variables setup
   QCsetupInterface();

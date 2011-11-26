@@ -180,7 +180,12 @@ void QCsetupInterface() {
   controlP5.Controller effectSaturationLimit1slider = controlP5.addSlider("effectSaturationLimit1",0,256,0,40+(columnWidth*0),435,int(columnWidth*0.7),12);
   effectSaturationLimit1slider.setLabel("amount"); effectSaturationLimit1slider.moveTo(controlWindow,"Effects");
   
-  layerBlendButton1 = controlP5.addRadioButton("layerBlend1",10+(columnWidth*0),500);
+  controlP5.Controller effectHueToggle1 = controlP5.addToggle("effectHue1",false,10+(columnWidth*0),475,20,20);
+  effectHueToggle1.setLabel("Hue"); effectHueToggle1.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectHueLimit1slider = controlP5.addSlider("effectHueLimit1",0,256,0,40+(columnWidth*0),475,int(columnWidth*0.7),12);
+  effectHueLimit1slider.setLabel("amount"); effectHueLimit1slider.moveTo(controlWindow,"Effects");
+  
+  layerBlendButton1 = controlP5.addRadioButton("layerBlend1",10+(columnWidth*0),600);
   layerBlendButton1.setNoneSelectedAllowed(false); layerBlendButton1.setItemsPerRow(1);
   layerBlendButton1.addItem("Normal",0); layerBlendButton1.activate(0);
   layerBlendButton1.addItem("Lightest",1);
@@ -224,6 +229,11 @@ void QCsetupInterface() {
   controlP5.Controller effectSaturationLimit2slider = controlP5.addSlider("effectSaturationLimit2",0,256,0,40+(columnWidth*1),435,int(columnWidth*0.7),12);
   effectSaturationLimit2slider.setLabel("amount"); effectSaturationLimit2slider.moveTo(controlWindow,"Effects");
   
+  controlP5.Controller effectHueToggle2 = controlP5.addToggle("effectHue2",false,10+(columnWidth*1),475,20,20);
+  effectHueToggle2.setLabel("Hue"); effectHueToggle2.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectHueLimit2slider = controlP5.addSlider("effectHueLimit2",0,256,0,40+(columnWidth*1),475,int(columnWidth*0.7),12);
+  effectHueLimit2slider.setLabel("amount"); effectHueLimit2slider.moveTo(controlWindow,"Effects");
+  
   // interface effects - column 3
   
   colorPicker3 = controlP5.addColorPicker("layer3color",10+(columnWidth*2),200,int(columnWidth*0.9),20);
@@ -259,6 +269,12 @@ void QCsetupInterface() {
   controlP5.Controller effectSaturationLimit3slider = controlP5.addSlider("effectSaturationLimit3",0,256,0,40+(columnWidth*2),435,int(columnWidth*0.7),12);
   effectSaturationLimit3slider.setLabel("amount"); effectSaturationLimit3slider.moveTo(controlWindow,"Effects");
   
+  controlP5.Controller effectHueToggle3 = controlP5.addToggle("effectHue3",false,10+(columnWidth*2),475,20,20);
+  effectHueToggle3.setLabel("Hue"); effectHueToggle3.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectHueLimit3slider = controlP5.addSlider("effectHueLimit3",0,256,0,40+(columnWidth*2),475,int(columnWidth*0.7),12);
+  effectHueLimit3slider.setLabel("amount"); effectHueLimit3slider.moveTo(controlWindow,"Effects");
+  
+  
   // interface effects - column 4
   
   colorPicker4 = controlP5.addColorPicker("layer4color",10+(columnWidth*3),200,int(columnWidth*0.9),20);
@@ -293,6 +309,11 @@ void QCsetupInterface() {
   effectSaturationToggle4.setLabel("Saturation"); effectSaturationToggle4.moveTo(controlWindow,"Effects");
   controlP5.Controller effectSaturationLimit4slider = controlP5.addSlider("effectSaturationLimit4",0,256,0,40+(columnWidth*3),435,int(columnWidth*0.7),12);
   effectSaturationLimit4slider.setLabel("amount"); effectSaturationLimit4slider.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller effectHueToggle4 = controlP5.addToggle("effectHue4",false,10+(columnWidth*3),475,20,20);
+  effectHueToggle4.setLabel("Hue"); effectHueToggle4.moveTo(controlWindow,"Effects");
+  controlP5.Controller effectHueLimit4slider = controlP5.addSlider("effectHueLimit4",0,256,0,40+(columnWidth*3),475,int(columnWidth*0.7),12);
+  effectHueLimit4slider.setLabel("amount"); effectHueLimit4slider.moveTo(controlWindow,"Effects");
   
   //
   // interface

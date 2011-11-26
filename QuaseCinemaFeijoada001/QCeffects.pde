@@ -15,7 +15,7 @@ void QCeffects1() {
   
   // pixel effects start up
   
-  if (effectRG1 || effectRB1 || effectBG1 || effectBW1 || effectContrast1 || effectSaturation1)
+  if (effectRG1 || effectRB1 || effectBG1 || effectBW1 || effectContrast1 || effectSaturation1 || effectHue1)
   { myMovie1.loadPixels(); }
   
   
@@ -94,10 +94,23 @@ void QCeffects1() {
     }
   } // end effectSaturation1
   
+  if (effectHue1) { // hue layer 1
+    for (int y = 0; y < myMovie1.height; y++) {
+      for (int x = 0; x < myMovie1.width; x++) {
+        int loc = x + y * myMovie1.width;
+        
+        colorMode(HSB);
+        myMovie1.pixels[loc]  = color(hue(myMovie1.pixels[loc])+effectHueLimit1,saturation(myMovie1.pixels[loc]),brightness(myMovie1.pixels[loc]));
+        colorMode(RGB);
+        
+      }
+    }
+  } // end effectHue1
+  
  
   // effects wrap up
   
-  if (effectRG1 || effectRB1 || effectBG1 || effectBW1 || effectContrast1 || effectSaturation1)
+  if (effectRG1 || effectRB1 || effectBG1 || effectBW1 || effectContrast1 || effectSaturation1 || effectHue1)
   { myMovie1.updatePixels(); }
   
 } // end QCeffects1()
@@ -117,7 +130,7 @@ void QCeffects2() {
   
   // pixel effects start up
   
-  if (effectRG2 || effectRB2 || effectBG2 || effectBW2 || effectContrast2 || effectSaturation2)
+  if (effectRG2 || effectRB2 || effectBG2 || effectBW2 || effectContrast2 || effectSaturation2 || effectHue2)
   { myMovie2.loadPixels(); }
   
   
@@ -196,9 +209,22 @@ void QCeffects2() {
     }
   } // end effectSaturation2
   
+  if (effectHue2) { // hue layer 2
+    for (int y = 0; y < myMovie2.height; y++) {
+      for (int x = 0; x < myMovie2.width; x++) {
+        int loc = x + y * myMovie2.width;
+        
+        colorMode(HSB);
+        myMovie2.pixels[loc]  = color(hue(myMovie2.pixels[loc])+effectHueLimit2,saturation(myMovie2.pixels[loc]),brightness(myMovie2.pixels[loc]));
+        colorMode(RGB);
+        
+      }
+    }
+  } // end effectHue2
+  
   // effects wrap up
   
-  if (effectRG2 || effectRB2 || effectBG2 || effectBW2 || effectContrast2 || effectSaturation2)
+  if (effectRG2 || effectRB2 || effectBG2 || effectBW2 || effectContrast2 || effectSaturation2 || effectHue2)
   { myMovie2.updatePixels(); }
   
   //QCblend2();
@@ -221,7 +247,7 @@ void QCeffects3() {
   
   // pixel effects start up
   
-  if (effectRG3 || effectRB3 || effectBG3 || effectBW3 || effectContrast3 || effectSaturation3)
+  if (effectRG3 || effectRB3 || effectBG3 || effectBW3 || effectContrast3 || effectSaturation3 || effectHue3)
   { myMovie3.loadPixels(); }
 
   
@@ -302,9 +328,22 @@ void QCeffects3() {
     }
   } // end effectSaturation3
   
+  if (effectHue3) { // hue layer 3
+    for (int y = 0; y < myMovie3.height; y++) {
+      for (int x = 0; x < myMovie3.width; x++) {
+        int loc = x + y * myMovie3.width;
+        
+        colorMode(HSB);
+        myMovie3.pixels[loc]  = color(hue(myMovie3.pixels[loc])+effectHueLimit3,saturation(myMovie3.pixels[loc]),brightness(myMovie3.pixels[loc]));
+        colorMode(RGB);
+        
+      }
+    }
+  } // end effectHue3
+  
   // effects wrap up
  
-  if (effectRG3 || effectRB3 || effectBG3 || effectBW3 || effectContrast3 || effectSaturation3)
+  if (effectRG3 || effectRB3 || effectBG3 || effectBW3 || effectContrast3 || effectSaturation3 || effectHue3)
   { myMovie3.updatePixels(); }
   
   //QCblend3();
@@ -328,7 +367,7 @@ void QCeffects4() {
   
   // pixel effects start up
   
-  if (effectRG4 || effectRB4 || effectBG4 || effectBW4 || effectContrast4 || effectSaturation4)
+  if (effectRG4 || effectRB4 || effectBG4 || effectBW4 || effectContrast4 || effectSaturation4 || effectHue4)
   { myMovie4.loadPixels(); }
   
   
@@ -409,9 +448,22 @@ void QCeffects4() {
     }
   } // end effectSaturation4
   
+  if (effectHue4) { // hue layer 4
+    for (int y = 0; y < myMovie4.height; y++) {
+      for (int x = 0; x < myMovie4.width; x++) {
+        int loc = x + y * myMovie4.width;
+        
+        colorMode(HSB);
+        myMovie4.pixels[loc]  = color(hue(myMovie4.pixels[loc])+effectHueLimit4,saturation(myMovie4.pixels[loc]),brightness(myMovie4.pixels[loc]));
+        colorMode(RGB);
+        
+      }
+    }
+  } // end effectHue4
+  
   // effects wrap up
   
-  if (effectRG4 || effectRB4 || effectBG4 || effectBW4 || effectContrast4 || effectSaturation4)
+  if (effectRG4 || effectRB4 || effectBG4 || effectBW4 || effectContrast4 || effectSaturation4 || effectHue4)
   { myMovie4.updatePixels(); }
   
   //QCblend4();
