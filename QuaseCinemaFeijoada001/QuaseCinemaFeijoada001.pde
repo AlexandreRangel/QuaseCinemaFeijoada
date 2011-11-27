@@ -169,9 +169,12 @@ class MyCanvas extends ControlWindowCanvas {
   public void draw(PApplet theApplet) {
     
     
-    // layer base
-    theApplet.fill(40);
-    theApplet.rect(1+(columnWidth*selectedLayer),20,columnWidth,700);
+    // layer column
+    if (controlWindow.currentTab().id() < 8) {
+      theApplet.fill(40); theApplet.stroke(#E8E8E8);
+      theApplet.rect(1+(columnWidth*selectedLayer),20,columnWidth,700);
+      theApplet.noStroke();
+    }
     
     // layer icons
     if (frameCount > 1) {

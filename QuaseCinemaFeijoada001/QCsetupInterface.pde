@@ -16,11 +16,11 @@ void QCsetupInterface() {
   controlWindow.setUpdateMode(ControlWindow.NORMAL);
   controlWindow.frameRate(30);  
   
-//  controlP5.setColorForeground(0xffaa0000);
-//  controlP5.setColorBackground(0xff660000);
-//  controlP5.setColorLabel(0xffdddddd);
-//  controlP5.setColorValue(0xffff88ff);
-//  controlP5.setColorActive(0xffff0000);
+  controlP5.setColorForeground(#0AA000);
+  controlP5.setColorBackground(#343434);
+  controlP5.setColorLabel(#B7B7B7);
+  controlP5.setColorValue(#E5E5E5);
+  controlP5.setColorActive(#00FF00);
    
   cc = new MyCanvas(); // create a control window canvas
   cc.pre(); // use cc.post(); to draw on top of the controllers.
