@@ -7,8 +7,8 @@
 //
 
 // libraries
-import controlP5.*; // controlP5 0.6.12 www.sojamo.de/libraries/controlP5
-import codeanticode.gsvideo.*; // GSvideo 1.0.0
+import controlP5.*; // controlP5 0.6.12 http://www.sojamo.de/libraries/controlP5
+import codeanticode.gsvideo.*; // GSvideo 1.0.0 http://gsvideo.sourceforge.net/
 import javax.media.opengl.GL; // openGL
 import processing.opengl.*; // openGL
 import sojamo.drop.*; // sDrop 0.1.4 http://www.sojamo.de/libraries/drop
@@ -32,19 +32,18 @@ public int fpsValue = 0; // fps slider value
 // movies
 public GSMovie myMovie1, myMovie2, myMovie3, myMovie4;
 
-// directory
-public String[] fileNames;
-public String folderPath = " ";
-//ListBox dirListBox;
-int dirClicked = 1;
-public String rootFolder;
-
 String newMovie = "";
 public boolean changeMovie = false;
 
 SDrop drop;
 
 // dirs pre setup
+public String[] fileNames;
+public String folderPath = " ";
+//ListBox dirListBox;
+int dirClicked = 1;
+public String rootFolder;
+
 // ------ default folder path ------
 //String defaultFolderPath = System.getProperty("user.home")+"/Desktop";
 String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos";
@@ -59,16 +58,14 @@ int selectedDir1 = 1; int selectedDir2 = 2; int selectedDir3 = 3; int selectedDi
 PFont debugFont;
 public String tempString;
 
-// file filter
-java.io.FilenameFilter txtFilter = new java.io.FilenameFilter() {
-  boolean accept(File dir, String name) {
-    return name.toLowerCase().endsWith(".mov")
-    || name.toLowerCase().endsWith(".avi")
-    || name.toLowerCase().endsWith(".mp4")
-    || name.toLowerCase().endsWith(".ogg")
-    || name.toLowerCase().endsWith(".mpg");
-  }
-};
+// mp3 pre setup
+public String[] fileNamesMp3;
+String defaultFolderPathMp3 = "/Users/rangel/Documents/MP3-Performance";
+String dirsMp3[] = new String[200];
+int selectedDirMp3 = 0;
+int fileCounterMp3 = 0; 
+int fileCounterLimitMp3 = 20; 
+
 
 //  quad mapping pre setup
 String configFile = "data/quadsconfig.txt";
@@ -188,30 +185,12 @@ class MyCanvas extends ControlWindowCanvas {
       theApplet.rect(8+(columnWidth*3), 24, 164, 124);
       theApplet.image(myMovie4, 10+(columnWidth*3), 26, 160, 120);
     }
-   
-  // audio tab draw
-  if (controlWindow.currentTab().name()=="Audio") { // if audio tab
-    //rectMode(CORNERS);
-    //theApplet.fill(255);
-    // perform a forward FFT on the samples in jingle's mix buffer
-    // note that if jingle were a MONO file, this would be the same as using jingle.left or jingle.right
-    //fft.forward(audio1.mix);
-    // avgWidth() returns the number of frequency bands each average represents
-    // we'll use it as the width of our rectangles
-    
-    //int w = int(200/fft.avgSize());
-    //for(int i = 0; i < fft.avgSize(); i++) {
-      // draw a rectangle for each average, multiply the value by 5 so we can see it better
-     // theApplet.rect(i*w, theApplet.screenHeight, i*w + w, theApplet.screenHeight - fft.getAvg(i)*5);
-    //} // end for
-    
-    //fft.getAvg(0) xxxx
-    
-  } // end if audio tab
+  
   
   //
   // dir draw
   //
+  
   if (controlWindow.currentTab().id()==1) { // if main tab  
     if (fileCounter1 > 0) {
       for(int i = 0; i< fileCounter1limit; i++) {
@@ -292,32 +271,50 @@ class MyCanvas extends ControlWindowCanvas {
             selectedDir4 = i;
           } // end if mouse loc
         } // end for
-      //} //end if fileCounter4
+      //} //end if fileCounter4  
     } // end if main tab, column 4
     
   } // end if theApplet.mousePressed
 
+
+  // 
+  // audio tab draw
+  //
+  
+  if (controlWindow.currentTab().id()==8) { // if audio tab
+  
+    // mp3 dir draw
+    if (fileNamesMp3.length > 0) {
+      for(int i = 0; i< fileNamesMp3.length; i++) { // TODO: use limit
+        if (i == selectedDirMp3) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
+        theApplet.text(fileNamesMp3[i], 10+(columnWidth*0), 350+(18*i));
+      } // end for
+    } //end if fileCounter1
+    
+    //rectMode(CORNERS);
+    //theApplet.fill(255);
+    // perform a forward FFT on the samples in jingle's mix buffer
+    // note that if jingle were a MONO file, this would be the same as using jingle.left or jingle.right
+    //fft.forward(audio1.mix);
+    // avgWidth() returns the number of frequency bands each average represents
+    // we'll use it as the width of our rectangles
+    
+    //int w = int(200/fft.avgSize());
+    //for(int i = 0; i < fft.avgSize(); i++) {
+      // draw a rectangle for each average, multiply the value by 5 so we can see it better
+     // theApplet.rect(i*w, theApplet.screenHeight, i*w + w, theApplet.screenHeight - fft.getAvg(i)*5);
+    //} // end for
+    
+    //fft.getAvg(0)
+    
+    
+    
+  } // end if audio tab
+  
+  
   // dropArea1.draw();
     
   }
-}
-
-// --------------------------------------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------------------------------------
-
-// select an input dir
-File[] listFiles(String dir) {
-  
-    File file = new File(dir);
-
-    if (file.isDirectory()) {
-	File[] files = file.listFiles();
-	return files;
-    } else {
-	// If it's not a directory
-	return null;
-    }
 }
 
 
@@ -376,6 +373,13 @@ void setup() {
   setInputFolder(defaultFolderPath);
   debugFont = createFont("Arial", 14);
   textFont(debugFont);
+  
+  // mp3 setup
+  for(int i = 0; i< 200; i++) { dirsMp3[i]=""; }
+  
+  tempString = defaultFolderPathMp3 +"/";
+  fileNamesMp3 = listFileNames(tempString, txtFilterMp3);
+  println(fileNamesMp3);
   
   //
   // GStreamer setup
@@ -854,24 +858,6 @@ break; // break 'd'
 // --------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------
 
-
-// This function returns all the files in a directory as an array of Strings  
-String[] listFileNames(String dir,java.io.FilenameFilter extension) {
-  File file = new File(dir);
-  if (file.isDirectory()) {
-    String names[] = file.list(extension);
-    return names;
-  } else {
-    // If it's not a directory
-    return null;
-  }
-}
-
-
-// --------------------------------------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------------------------------------
-
   void dropEvent(DropEvent theDropEvent) {
     if(theDropEvent.isFile()) {
       File myFile = theDropEvent.file();
@@ -910,11 +896,6 @@ public void stop() {
 } 
   
       
-      
-      
-      
-      
-      
       //println(myMouseX);
 //      if ((mouseX - controlWindow.position()) < (columnWidth*2) ) {
 //          myMovie2 = new GSMovie(this, theDropEvent.toString()); myMovie2.read();
@@ -927,89 +908,4 @@ public void stop() {
 //  }
 //}
 
-
-
-// ------ folder selection dialog + init visualization ------
-void setInputFolder(String theFolderPath) {
-  // get files on harddisk
-  println("\n"+theFolderPath+"\n");
-  FileSystemItem selectedFolder = new FileSystemItem(new File(theFolderPath));
-  selectedFolder.printDepthFirst();
-  rootFolder = theFolderPath + "/";
-  println("\n rootFolder: "+theFolderPath+"\n");
-}
-
-class FileSystemItem {
-  File file;
-  public FileSystemItem[] children;
-  int childCount;
-
-  // ------ constructor ------
-  FileSystemItem(File theFile) {
-    file = theFile;
-
-    if (file.isDirectory()) {
-      String[] contents = file.list();
-      if (contents != null) {
-        // Sort the file names in case insensitive order
-        contents = sort(contents);
-
-        children = new FileSystemItem[contents.length];
-        for (int i = 0 ; i < contents.length; i++) {
-          // skip the . and .. directory entries on Unix systems
-          if (contents[i].equals(".") || contents[i].equals("..")
-            || contents[i].substring(0,1).equals(".")) {
-            continue;
-          }
-          File childFile = new File(file, contents[i]);
-          // skip any file that appears to be a symbolic link
-          try {
-            String absPath = childFile.getAbsolutePath();
-            String canPath = childFile.getCanonicalPath();
-            if (!absPath.equals(canPath)) continue;
-          }
-          catch (IOException e) {
-          }
-          FileSystemItem child = new FileSystemItem(childFile);
-          children[childCount] = child;
-          childCount++;
-        }
-      }
-    }
-  }
-
-
-
-  // ------ print and debug functions ------
-  // Depth First Search
-  void printDepthFirst() {
-    //println("printDepthFirst");
-    // global fileCounter1
-    fileCounter1 = 0; fileCounter2 = 0; fileCounter3 = 0; fileCounter4 = 0; 
-    printDepthFirst(0,-1);
-    //println(fileCounter1+" files");
-  }
-  
-  
-  void printDepthFirst(int depth, int indexToParent) {
-
-    if (file.isDirectory()) {
-      println(file.getName());
-      dirs1[fileCounter1] = file.getName();
-      dirs2[fileCounter2] = file.getName();
-      dirs3[fileCounter3] = file.getName();
-      dirs4[fileCounter4] = file.getName();
-      indexToParent = fileCounter1; indexToParent = fileCounter2; indexToParent = fileCounter3; indexToParent = fileCounter4;
-      fileCounter1++; fileCounter2++; fileCounter3++; fileCounter4++;
-    }
-    
-    // now handle the children, if any
-    for (int i = 0; i < childCount; i++) {
-      if (depth == 1) { break; }
-      children[i].printDepthFirst(depth+1,indexToParent);
-    } // end for
-    
-  }
-
-}
 
