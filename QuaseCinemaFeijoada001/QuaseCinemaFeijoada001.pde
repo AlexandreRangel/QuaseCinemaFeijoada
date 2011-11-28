@@ -60,7 +60,7 @@ public String tempString;
 public String[] fileNamesMp3;
 String defaultFolderPathMp3 = "/Users/rangel/Documents/MP3-Performance";
 String dirsMp3[] = new String[200];
-int selectedDirMp3 = 0;
+int selectedDirMp3;
 int fileCounterMp3 = 0; 
 int fileCounterLimitMp3 = 20; 
 
@@ -209,13 +209,7 @@ void setup() {
   setInputFolder(defaultFolderPath);
   debugFont = createFont("Arial", 14);
   textFont(debugFont);
-  
-  // mp3 setup
-  for(int i = 0; i< 200; i++) { dirsMp3[i]=""; }
-  
-  tempString = defaultFolderPathMp3 +"/";
-  fileNamesMp3 = listFileNames(tempString, txtFilterMp3);
-  println(fileNamesMp3);
+ 
   
   //
   // GStreamer setup
@@ -256,17 +250,23 @@ void setup() {
   
   
   // audio setup
+  for(int i = 0; i< 200; i++) { dirsMp3[i]=""; }
+  
+  tempString = defaultFolderPathMp3 +"/";
+  fileNamesMp3 = listFileNames(tempString, txtFilterMp3);
+  println(fileNamesMp3);
+  
   minim = new Minim(this);
-  audio1 = minim.loadFile("audio1.mp3", 2048);
-  // loop the file
+  //audio1 = minim.loadFile("audio1.mp3", 2048);
+  //audio1 = minim.loadFile("audio1.mp3", 512);
+  selectedDirMp3 = int(random(fileNamesMp3.length));
+  tempString = defaultFolderPathMp3 +"/"+fileNamesMp3[selectedDirMp3];
+  audio1 = minim.loadFile(tempString,512);
   audio1.loop();
   // create an FFT object that has a time-domain buffer the same size as jingle's sample buffer
-  // note that this needs to be a power of two 
-  // and that it means the size of the spectrum will be 1024. 
-  // see the online tutorial for more info.
+  // note that this needs to be a power of two  and that it means the size of the spectrum will be 1024. 
   fft = new FFT(audio1.bufferSize(), audio1.sampleRate());
-  // calculate averages based on a miminum octave width of 22 Hz
-  // split each octave into three bands
+  // calculate averages based on a miminum octave width of 22 Hz split each octave into three bands
   fft.logAverages(22, 3);
   
   // midi setup
@@ -473,7 +473,7 @@ public void draw() {
       image(myMovie1, 0, 0, outputWidth, outputHeight); 
     } // end if mapping
   } else {
-     myMovie1.stop();
+     myMovie1.pause();
   }// end if layer1visibility
   
   // pre-render layer 2
@@ -494,7 +494,7 @@ public void draw() {
       image(myMovie2, 0, 0, outputWidth, outputHeight); 
     } // end if mapping
   } else {
-     myMovie2.stop();
+     myMovie2.pause();
   }// end if layer2visibility
   
   
@@ -516,7 +516,7 @@ public void draw() {
       image(myMovie3, 0, 0, outputWidth, outputHeight); 
     } // end if mapping
   } else {
-     myMovie3.stop();
+     myMovie3.pause();
   }// end if layer3visibility
   
   // pre-render layer 4
@@ -537,7 +537,7 @@ public void draw() {
       image(myMovie4, 0, 0, outputWidth, outputHeight); 
     } // end if mapping
   } else {
-     myMovie4.stop();
+     myMovie4.pause();
   }// end if layer4visibility
   
   // mapping draw
@@ -622,9 +622,7 @@ void mouseDragged(){
 public void stop() {
   myMovie1.stop(); myMovie2.stop(); myMovie3.stop(); myMovie4.stop(); 
   myMovie1.delete(); myMovie2.delete(); myMovie3.delete(); myMovie4.delete();
-  
   audio1.close(); minim.stop();
-  
   super.stop();
 } 
   

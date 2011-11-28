@@ -132,7 +132,7 @@ class MyCanvas extends ControlWindowCanvas {
 
 
   // 
-  // audio tab draw
+  // audio draw
   //
   
   if (controlWindow.currentTab().id()==8) { // if audio tab
@@ -144,6 +144,7 @@ class MyCanvas extends ControlWindowCanvas {
         theApplet.text(fileNamesMp3[i], 10+(columnWidth*0), 350+(18*i));
       } // end for
     } //end if fileCounter1
+    
     
     //rectMode(CORNERS);
     //theApplet.fill(255);
