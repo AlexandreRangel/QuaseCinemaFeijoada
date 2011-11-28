@@ -9,12 +9,11 @@
 // libraries
 import controlP5.*; // controlP5 0.6.12 http://www.sojamo.de/libraries/controlP5
 import codeanticode.gsvideo.*; // GSvideo 1.0.0 http://gsvideo.sourceforge.net/
-import javax.media.opengl.GL; // openGL
-import processing.opengl.*; // openGL
+import processing.opengl.*; import javax.media.opengl.GL; // openGL
 import sojamo.drop.*; // sDrop 0.1.4 http://www.sojamo.de/libraries/drop
 import mappingtools.*; // mappingtools 0.0.2 http://www.patricksaintdenis.com
-import ddf.minim.analysis.*; // minim library
-import ddf.minim.*;
+import ddf.minim.*; import ddf.minim.analysis.*; // minim http://code.compartmental.net/tools/minim
+import themidibus.*; MidiBus myBus; // The MidiBus http://smallbutdigital.com/themidibus.php
 
 // controlP5
 ControlP5 controlP5;
@@ -156,170 +155,6 @@ public void init(){
   super.init();
 }
 
-// --------------------------------------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------------------------------------
-
-//
-// interface draw canvas screen
-//
-
-class MyCanvas extends ControlWindowCanvas {
-  
-  public void draw(PApplet theApplet) {
-    
-    
-    // layer column
-    if (controlWindow.currentTab().id() < 8) {
-      theApplet.fill(40); theApplet.stroke(#E8E8E8);
-      theApplet.rect(1+(columnWidth*selectedLayer),20,columnWidth,700);
-      theApplet.noStroke();
-    }
-    
-    // layer icons
-    if (frameCount > 1) {
-      theApplet.fill(128);
-      theApplet.rect(8+(columnWidth*0), 24, 164, 124);
-      theApplet.image(myMovie1, 10+(columnWidth*0), 26, 160, 120);
-      theApplet.rect(8+(columnWidth*1), 24, 164, 124);
-      theApplet.image(myMovie2, 10+(columnWidth*1), 26, 160, 120);
-      theApplet.rect(8+(columnWidth*2), 24, 164, 124);
-      theApplet.image(myMovie3, 10+(columnWidth*2), 26, 160, 120);
-      theApplet.rect(8+(columnWidth*3), 24, 164, 124);
-      theApplet.image(myMovie4, 10+(columnWidth*3), 26, 160, 120);
-    }
-  
-  
-  //
-  // dir draw
-  //
-  
-  if (controlWindow.currentTab().id()==1) { // if main tab  
-    if (fileCounter1 > 0) {
-      for(int i = 0; i< fileCounter1limit; i++) {
-        if (i == selectedDir1) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs1[i], 10+(columnWidth*0), 350+(18*i));
-      } // end for
-    } //end if fileCounter1
-    if (fileCounter2 > 0) {
-      for(int i = 0; i< fileCounter2limit; i++) {
-        if (i == selectedDir2) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs2[i], 10+(columnWidth*1), 350+(18*i));
-      } // end for
-    } //end if fileCounter2
-    if (fileCounter3 > 0) {
-      for(int i = 0; i< fileCounter3limit; i++) {
-        if (i == selectedDir3) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs3[i], 10+(columnWidth*2), 350+(18*i));
-      } // end for
-    } //end if fileCounter3
-    if (fileCounter4 > 0) {
-      for(int i = 0; i< fileCounter4limit; i++) {
-        if (i == selectedDir4) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs4[i], 10+(columnWidth*3), 350+(18*i));
-      } // end for
-    } //end if fileCounter4
-  } // end if main tab
-  
-  
-  //
-  // dirs click check 
-  //
-  if(theApplet.mousePressed) {
-    
-    //
-    // dir click
-    //  
-    
-    // if main tab, column 1
-    if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*0) && theApplet.mouseX < (columnWidth*1) ) { 
-      //if (fileCounter1 > 0) {
-        for(int i = 0; i< fileCounter1limit; i++) {
-          if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
-            dirClicked = i;
-            selectedDir1 = dirClicked;
-            // println (theApplet.mouseY + "  dir: " + dirClicked + ", " + dirs1[dirClicked]);
-          } // end if mouse loc
-        } // end for
-      //} //end if fileCounter1
-    } // end if main tab, column 1
-    
-    // if main tab, column 2
-    if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*1) && theApplet.mouseX < (columnWidth*2) ) {  
-      //if (fileCounter1 > 0) {
-        for(int i = 0; i< fileCounter2limit; i++) {
-          if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
-            selectedDir2 = i;
-          } // end if mouse loc
-        } // end for
-      //} //end if fileCounter2
-    } // end if main tab, column 2
-    
-    // if main tab, column 3
-    if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*2) && theApplet.mouseX < (columnWidth*3) ) { 
-      //if (fileCounter1 > 0) {
-        for(int i = 0; i< fileCounter3limit; i++) {
-          if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
-            selectedDir3 = i;
-          } // end if mouse loc
-        } // end for
-      //} //end if fileCounter3
-    } // end if main tab, column 3
-    
-    // if main tab, column 4
-    if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*3) && theApplet.mouseX < (columnWidth*4) ) { 
-      //if (fileCounter1 > 0) {
-        for(int i = 0; i< fileCounter4limit; i++) {
-          if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
-            selectedDir4 = i;
-          } // end if mouse loc
-        } // end for
-      //} //end if fileCounter4  
-    } // end if main tab, column 4
-    
-  } // end if theApplet.mousePressed
-
-
-  // 
-  // audio tab draw
-  //
-  
-  if (controlWindow.currentTab().id()==8) { // if audio tab
-  
-    // mp3 dir draw
-    if (fileNamesMp3.length > 0) {
-      for(int i = 0; i< fileNamesMp3.length; i++) { // TODO: use limit
-        if (i == selectedDirMp3) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(fileNamesMp3[i], 10+(columnWidth*0), 350+(18*i));
-      } // end for
-    } //end if fileCounter1
-    
-    //rectMode(CORNERS);
-    //theApplet.fill(255);
-    // perform a forward FFT on the samples in jingle's mix buffer
-    // note that if jingle were a MONO file, this would be the same as using jingle.left or jingle.right
-    //fft.forward(audio1.mix);
-    // avgWidth() returns the number of frequency bands each average represents
-    // we'll use it as the width of our rectangles
-    
-    //int w = int(200/fft.avgSize());
-    //for(int i = 0; i < fft.avgSize(); i++) {
-      // draw a rectangle for each average, multiply the value by 5 so we can see it better
-     // theApplet.rect(i*w, theApplet.screenHeight, i*w + w, theApplet.screenHeight - fft.getAvg(i)*5);
-    //} // end for
-    
-    //fft.getAvg(0)
-    
-    
-    
-  } // end if audio tab
-  
-  
-  // dropArea1.draw();
-    
-  }
-}
-
 
 // --------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------
@@ -329,10 +164,9 @@ class MyCanvas extends ControlWindowCanvas {
 void setup() {
   size(outputWidth, outputHeight, OPENGL);
   //hint(ENABLE_OPENGL_4X_SMOOTH);
-  frame.setResizable(false);
+  frame.setResizable(true);
   frameRate(60);
-  frame.setLocation(screen.width,0);
-  //frame.setLocation(1024,0);
+  //frame.setLocation(screen.width,0);
   frame.setLocation(1440,0);
   
   // variables setup
@@ -436,6 +270,9 @@ void setup() {
   // split each octave into three bands
   fft.logAverages(22, 3);
   
+  // midi setup
+
+  
 } // end setup
 
 // --------------------------------------------------------------------------------------------------------------
@@ -514,8 +351,7 @@ public void draw() {
   //
   
   // fps
-  //if (random(100)>50){
-  controlP5.controller("fpsValue").setValue(int(frameRate)); //}
+  if (random(100)>90){ controlP5.controller("fpsValue").setValue(int(frameRate)); }
 
   // playback heads
   controlP5.controller("layer1playback").setValue(map(myMovie1.time(),0.0,myMovie1.duration(),0.0,1.0));
@@ -747,114 +583,6 @@ void mouseDragged(){
   
   //frame.setLocation(MouseInfo.getPointerInfo().getLocation().x-mX, MouseInfo.getPointerInfo().getLocation().y-mY);
 }
-
-// --------------------------------------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------------------------------------
-
-void keyPressed(){
- 
-  projectedQuads.keyPressed();
-  
-  switch(key) {
-    case '1':
-       selectedLayer = 0; break; 
-    case '2':
-       selectedLayer = 1; break;
-    case '3':
-       selectedLayer = 2; break;
-    case '4':
-       selectedLayer = 3; break;
-       
-    case 'd':
-      for(int i = 0; i< 200; i++) { dirs1[i]=""; } // clear dirs
-      setInputFolder(selectFolder("select library master folder"));
-  
-      //String folderPath = selectFolder();
-//    if (folderPath == null) {
-//      println("No folder was selected..."); // if no folder was selected
-//    } 
-//    else {
-//      // println(folderPath);
-//      fileNames = listFileNames(folderPath, txtFilter);
-//      println("filenames: \n"+ fileNames[0]);
-//      //dirListBox.addItem(fileNames[0],0);
-////      for(int i=0;i<fileNames.length;i++) { //
-////        dirListBox.addItem(fileNames[i],i);
-////      }
-//      
-//    }
-break; // break 'd'
-    
-  case 'u':
-    //myMovie.stop(); myMovie2.delete();
-    myMovie1 = new GSMovie(this, "Palatnik2.mov");
-    //myMovie1.read(); myMovie1.play();
-    //file = File.getParentFile();
-    //myMovie1.loadMovie();
-    
-    break; // break 'u'
-    
-  case 'r': //r
-    println("rootFolder: "+rootFolder+"\n");
-    
-    //String tempString = rootFolder + "/" + fileNames[int(random(fileNames.length))]; // works if master root is selected
-    
-    switch (selectedLayer) { 
-    
-    case 0: // layer 1
-      tempString = rootFolder + dirs1[selectedDir1] +"/";
-      println ("tempString: "+tempString+"\n");
-      fileNames = listFileNames(tempString, txtFilter);
-      tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
-      //println ("tempString: "+tempString+"\n");
-      myMovie1.delete(); myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play(); myMovie1.loop();
-      break; // break layer 1
-    case 1: // layer 2
-      tempString = rootFolder + dirs2[selectedDir2] +"/";
-      fileNames = listFileNames(tempString, txtFilter);
-      tempString = rootFolder + dirs2[selectedDir2] +"/"+ fileNames[int(random(fileNames.length))];
-      //println ("tempString: "+tempString+"\n");
-      myMovie2.delete(); myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play(); myMovie2.loop();
-      break; // break layer 2
-    case 2: // layer 3
-      tempString = rootFolder + dirs3[selectedDir3] +"/";
-      fileNames = listFileNames(tempString, txtFilter);
-      tempString = rootFolder + dirs3[selectedDir3] +"/"+ fileNames[int(random(fileNames.length))];
-      //println ("tempString: "+tempString+"\n");
-      myMovie3.delete(); myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play(); myMovie3.loop();
-      break; // break layer 3
-    case 3: // layer 4
-      tempString = rootFolder + dirs4[selectedDir4] +"/";
-      fileNames = listFileNames(tempString, txtFilter);
-      tempString = rootFolder + dirs4[selectedDir4] +"/"+ fileNames[int(random(fileNames.length))];
-      //println ("tempString: "+tempString+"\n");
-      myMovie4.delete(); myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play(); myMovie4.loop();
-      break; // break layer 2
-    } // end switch selectedLayer
-    
-    break; // break 'r'
-    
-  case 'i': //
-   effectInvert1 = !(effectInvert1);
-  break; // break 'i'
-    
-  } // end switch key
-  
-  if (key == CODED) {
-      if (keyCode == KeyEvent.VK_F1) { controlWindow.activateTab("default"); }
-      if (keyCode == KeyEvent.VK_F2) { controlWindow.activateTab("Effects"); }
-      if (keyCode == KeyEvent.VK_F3) { controlWindow.activateTab("Rhythm"); }
-      if (keyCode == KeyEvent.VK_F4) { controlWindow.activateTab("Sequencer"); }
-      if (keyCode == KeyEvent.VK_F5) { controlWindow.activateTab("Mapping"); }
-      if (keyCode == KeyEvent.VK_F6) { controlWindow.activateTab("3D"); }
-      if (keyCode == KeyEvent.VK_F7) { controlWindow.activateTab("Playlist"); }
-      if (keyCode == KeyEvent.VK_F8) { controlWindow.activateTab("Audio"); }
-      if (keyCode == KeyEvent.VK_F9) { controlWindow.activateTab("Prefs"); }
-      if (keyCode == KeyEvent.VK_F10) { controlWindow.activateTab("Help"); }
-    } // end if keyCoded  
-    
-} // end keyPressed
 
 
 // --------------------------------------------------------------------------------------------------------------

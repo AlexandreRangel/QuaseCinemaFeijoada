@@ -35,7 +35,7 @@ void QCchangeResolution() { // update resolution
       changeResolution = 100;
       break;
     case 8:
-      outputWidth = 1920; outputHeight = 1080; frame.setSize(outputWidth,outputHeight);
+      outputWidth = 1600; outputHeight = 1200; frame.setSize(outputWidth,outputHeight);
       changeResolution = 100;
       break;
     case 9:
