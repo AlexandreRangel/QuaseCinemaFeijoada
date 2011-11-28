@@ -16,11 +16,10 @@ import ddf.minim.*; import ddf.minim.analysis.*; // minim http://code.compartmen
 import themidibus.*; MidiBus myBus; // The MidiBus http://smallbutdigital.com/themidibus.php
 
 // controlP5
-ControlP5 controlP5;
-ControlWindow controlWindow;
-ControlWindowCanvas cc;
+ControlP5 controlP5; ControlWindow controlWindow; ControlWindowCanvas cc;
 
 ColorPicker colorPicker1, colorPicker2, colorPicker3, colorPicker4;
+int layerOpacity1 = 255; int layerOpacity2 = 255; int layerOpacity3 = 255; int layerOpacity4 = 255;
 ListBox outputResolutionList;
 Numberbox outputXposNumberBox, outputYposNumberBox;
 RadioButton layerContentButton1, layerContentButton2, layerContentButton3, layerContentButton4;
@@ -271,7 +270,7 @@ void setup() {
   fft.logAverages(22, 3);
   
   // midi setup
-
+  MidiBus.list(); myBus = new MidiBus(this, 1, 1); // slows the app down 30%
   
 } // end setup
 
@@ -370,19 +369,19 @@ public void draw() {
   //
   
   if(layer1bpmVis>0 && millis()-layer1bpmVisLastTime >= map(layer1bpmVis,0,240,1000,10)){ // layer 1
-    layer1visibility = !(layer1visibility);
+    layer1visibility = !(layer1visibility); ((Toggle)controlP5.controller("layer1visibility")).toggle();
     layer1bpmVisLastTime=millis();
   }
   if(layer2bpmVis>0 && millis()-layer2bpmVisLastTime >= map(layer2bpmVis,0,240,1000,10)){ // layer 2
-    layer2visibility = !(layer2visibility);
+    layer2visibility = !(layer2visibility); ((Toggle)controlP5.controller("layer2visibility")).toggle();
     layer2bpmVisLastTime=millis();
   }
   if(layer3bpmVis>0 && millis()-layer3bpmVisLastTime >= map(layer3bpmVis,0,240,1000,10)){ // layer 3
-    layer3visibility = !(layer3visibility);
+    layer3visibility = !(layer3visibility); ((Toggle)controlP5.controller("layer3visibility")).toggle();
     layer3bpmVisLastTime=millis();
   }
   if(layer4bpmVis>0 && millis()-layer4bpmVisLastTime >= map(layer4bpmVis,0,240,1000,10)){ // layer 4
-    layer4visibility = !(layer4visibility);
+    layer4visibility = !(layer4visibility); ((Toggle)controlP5.controller("layer4visibility")).toggle();
     layer4bpmVisLastTime=millis();
   }
   
@@ -457,8 +456,8 @@ public void draw() {
   
   // pre-render layer 1
   if (layer1visibility) {
-    //tint(fft.getAvg(5)*255, green(colorPicker1.getColorValue()), 0);
-    tint(colorPicker1.getColorValue());
+    //tint(fft.getAvg(5)*255, green(colorPicker1.getColorValue()), 0); // colorPicker1.getColorValue()
+    tint(red(colorPicker1.getColorValue()),green(colorPicker1.getColorValue()),blue(colorPicker1.getColorValue()),layerOpacity1);
     myMovie1.play();
     myMovie1.speed(layer1speed);
     if (mapping1) { // quad mapping
@@ -479,7 +478,7 @@ public void draw() {
   
   // pre-render layer 2
   if (layer2visibility) {
-    tint(colorPicker2.getColorValue());
+    tint(red(colorPicker2.getColorValue()),green(colorPicker2.getColorValue()),blue(colorPicker2.getColorValue()),layerOpacity2);
     myMovie2.play();
     myMovie2.speed(layer2speed);
     if (mapping2) { // quad mapping
@@ -501,7 +500,7 @@ public void draw() {
   
   // pre-render layer 3
   if (layer3visibility) {
-    tint(colorPicker3.getColorValue());
+    tint(red(colorPicker3.getColorValue()),green(colorPicker3.getColorValue()),blue(colorPicker3.getColorValue()),layerOpacity3);
     myMovie3.play();
     myMovie3.speed(layer3speed);
     if (mapping3) { // quad mapping
@@ -522,7 +521,7 @@ public void draw() {
   
   // pre-render layer 4
   if (layer4visibility) {
-    tint(colorPicker4.getColorValue());
+    tint(red(colorPicker4.getColorValue()),green(colorPicker4.getColorValue()),blue(colorPicker4.getColorValue()),layerOpacity4);
     myMovie4.play();
     myMovie4.speed(layer4speed);
     if (mapping4) { // quad mapping
@@ -554,6 +553,9 @@ public void draw() {
   } 
   
   if (changeResolution != 100) { QCchangeResolution(); }
+  
+  // midi
+  //myBus.sendControllerChange(channel, number, value); // Send a controllerChange
   
 } // end draw
 
