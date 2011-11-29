@@ -51,8 +51,9 @@ String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_vid
 String dirs1[] = new String[200]; String dirs2[] = new String[200];
 String dirs3[] = new String[200]; String dirs4[] = new String[200];
 int fileCounter1 = 0; int fileCounter2 = 0; int fileCounter3 = 0; int fileCounter4 = 0;
-int fileCounter1limit = 20; int fileCounter2limit = 20; int fileCounter3limit = 20; int fileCounter4limit = 20;
+int fileCounter1limit = 21; int fileCounter2limit = 21; int fileCounter3limit = 21; int fileCounter4limit = 21;
 int selectedDir1 = 1; int selectedDir2 = 2; int selectedDir3 = 3; int selectedDir4 = 4;
+int dirButtons1 = 0; int dirButtons2 = 0; int dirButtons3 = 0; int dirButtons4 = 0;
 PFont debugFont;
 public String tempString;
 
@@ -108,8 +109,9 @@ int layer1bpmTime, layer2bpmTime, layer3bpmTime, layer4bpmTime;
 int layer1bpmMovie, layer2bpmMovie, layer3bpmMovie, layer4bpmMovie;
 
 float layer1speed = 1.0; float layer2speed = 1.0; float layer3speed = 1.0; float layer4speed = 1.0;
-//float layer1transparency = 255; float layer2transparency = 255; float layer3transparency = 255; float layer4transparency = 255;
 public float layer1playback, layer2playback, layer3playback, layer4playback;
+
+float layer1volume = 0.0; float layer2volume = 0.0; float layer3volume = 0.0; float layer4volume = 0.0;
 
 // effects pre setup
 public boolean effectInvert1 = false; public boolean effectInvert2 = false;
@@ -179,7 +181,7 @@ void setup() {
   projectedQuads = new ProjectedQuads();  
   projectedQuads.load(configFile);  
   
-  //we want to display 3 quads so if there was no config file or less than 3 were defined we increase num to 3
+  //we want to show 4 quads so if there was no config file or less than 3 quads, increase num to 3
   if (projectedQuads.getNumQuads() < 4) { projectedQuads.setNumQuads(4); }
   
   quadGraphics1 = createGraphics(640, 480, OPENGL);
@@ -253,21 +255,20 @@ void setup() {
   for(int i = 0; i< 200; i++) { dirsMp3[i]=""; }
   
   tempString = defaultFolderPathMp3 +"/";
-  fileNamesMp3 = listFileNames(tempString, txtFilterMp3);
-  println(fileNamesMp3);
+  fileNamesMp3 = listFileNames(tempString, txtFilterMp3); //println(fileNamesMp3);
   
   minim = new Minim(this);
   //audio1 = minim.loadFile("audio1.mp3", 2048);
-  //audio1 = minim.loadFile("audio1.mp3", 512);
   selectedDirMp3 = int(random(fileNamesMp3.length));
   tempString = defaultFolderPathMp3 +"/"+fileNamesMp3[selectedDirMp3];
   audio1 = minim.loadFile(tempString,512);
   audio1.loop();
   // create an FFT object that has a time-domain buffer the same size as jingle's sample buffer
   // note that this needs to be a power of two  and that it means the size of the spectrum will be 1024. 
-  fft = new FFT(audio1.bufferSize(), audio1.sampleRate());
+  //fft = new FFT(audio1.bufferSize(), audio1.sampleRate());
+  
   // calculate averages based on a miminum octave width of 22 Hz split each octave into three bands
-  fft.logAverages(22, 3);
+  //fft.logAverages(22, 3);
   
   // midi setup
   MidiBus.list(); myBus = new MidiBus(this, 1, 1); // slows the app down 30%

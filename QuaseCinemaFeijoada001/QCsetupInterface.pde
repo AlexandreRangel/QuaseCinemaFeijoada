@@ -1,6 +1,6 @@
 void QCsetupInterface() {
   
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
   //  controlP5 setup
   //
@@ -427,7 +427,17 @@ void QCsetupInterface() {
   // prefs tab
   //
   
+  controlP5.Controller layer1volumeSlider = controlP5.addSlider("layer1volume",0,1.0,0.0,10+(columnWidth*0),180,int(columnWidth*0.7),14);
+  layer1volumeSlider.setLabel("volume1"); layer1volumeSlider.moveTo(controlWindow,"Audio");
   
+  controlP5.Controller layer2volumeSlider = controlP5.addSlider("layer2volume",0,1.0,0.0,10+(columnWidth*1),180,int(columnWidth*0.7),14);
+  layer2volumeSlider.setLabel("volume2"); layer2volumeSlider.moveTo(controlWindow,"Audio");
+  
+  controlP5.Controller layer3volumeSlider = controlP5.addSlider("layer3volume",0,1.0,0.0,10+(columnWidth*2),180,int(columnWidth*0.7),14);
+  layer3volumeSlider.setLabel("volume3"); layer3volumeSlider.moveTo(controlWindow,"Audio");
+  
+  controlP5.Controller layer4volumeSlider = controlP5.addSlider("layer4volume",0,1.0,0.0,10+(columnWidth*3),180,int(columnWidth*0.7),14);
+  layer4volumeSlider.setLabel("volume4"); layer4volumeSlider.moveTo(controlWindow,"Audio");
   
   
   //

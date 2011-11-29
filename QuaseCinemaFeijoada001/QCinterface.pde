@@ -22,7 +22,12 @@ class MyCanvas extends ControlWindowCanvas {
       theApplet.rect(1+(columnWidth*selectedLayer),20,int(columnWidth*0.97),700); theApplet.noStroke();
     }
     
-    if (controlWindow.currentTab().id() > 7) {
+    if (controlWindow.currentTab().id() == 8) { // audio tab
+      // all layers at top
+      theApplet.fill(40); theApplet.rect(5,20,interfaceWidth-10,200);
+    }
+    
+    if (controlWindow.currentTab().id() > 8) {
       // all layers at top
       theApplet.fill(40); theApplet.rect(5,20,interfaceWidth-10,140);
     }
@@ -45,29 +50,47 @@ class MyCanvas extends ControlWindowCanvas {
   // dir draw
   //
   
-  if (controlWindow.currentTab().id()==1) { // if main tab  
+  if (controlWindow.currentTab().id()==1) { // main tab  
+    
+    // dir 1
     if (fileCounter1 > 0) {
       for(int i = 0; i< fileCounter1limit; i++) {
         if (i == selectedDir1) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs1[i], 10+(columnWidth*0), 350+(18*i));
+        theApplet.text(dirs1[i], 10+(columnWidth*0), 320+(18*i));
       } // end for
+      
+      dirButtons1 = (fileCounter1/fileCounter1limit)+1;
+      for(int i = 0; i< (dirButtons1); i++) {
+        //if (i == selectedDir1) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
+        theApplet.ellipse((columnWidth*0)+(i*14),700,14,14);
+      } // end for
+    
+  
     } //end if fileCounter1
+    
+    
+    
+    // dir 2
     if (fileCounter2 > 0) {
       for(int i = 0; i< fileCounter2limit; i++) {
         if (i == selectedDir2) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs2[i], 10+(columnWidth*1), 350+(18*i));
+        theApplet.text(dirs2[i], 10+(columnWidth*1), 320+(18*i));
       } // end for
     } //end if fileCounter2
+    
+    // dir 3
     if (fileCounter3 > 0) {
       for(int i = 0; i< fileCounter3limit; i++) {
         if (i == selectedDir3) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs3[i], 10+(columnWidth*2), 350+(18*i));
+        theApplet.text(dirs3[i], 10+(columnWidth*2), 320+(18*i));
       } // end for
     } //end if fileCounter3
+    
+    // dir 4
     if (fileCounter4 > 0) {
       for(int i = 0; i< fileCounter4limit; i++) {
         if (i == selectedDir4) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs4[i], 10+(columnWidth*3), 350+(18*i));
+        theApplet.text(dirs4[i], 10+(columnWidth*3), 320+(18*i));
       } // end for
     } //end if fileCounter4
   } // end if main tab
@@ -86,7 +109,7 @@ class MyCanvas extends ControlWindowCanvas {
     if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*0) && theApplet.mouseX < (columnWidth*1) ) { 
       //if (fileCounter1 > 0) {
         for(int i = 0; i< fileCounter1limit; i++) {
-          if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
+          if ((theApplet.mouseY < (320+(18*i))) && (theApplet.mouseY > (302+(18*(i))))) {
             dirClicked = i;
             selectedDir1 = dirClicked;
             // println (theApplet.mouseY + "  dir: " + dirClicked + ", " + dirs1[dirClicked]);
@@ -99,7 +122,7 @@ class MyCanvas extends ControlWindowCanvas {
     if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*1) && theApplet.mouseX < (columnWidth*2) ) {  
       //if (fileCounter1 > 0) {
         for(int i = 0; i< fileCounter2limit; i++) {
-          if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
+          if ((theApplet.mouseY < (320+(18*i))) && (theApplet.mouseY > (302+(18*(i))))) {
             selectedDir2 = i;
           } // end if mouse loc
         } // end for
@@ -110,7 +133,7 @@ class MyCanvas extends ControlWindowCanvas {
     if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*2) && theApplet.mouseX < (columnWidth*3) ) { 
       //if (fileCounter1 > 0) {
         for(int i = 0; i< fileCounter3limit; i++) {
-          if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
+          if ((theApplet.mouseY < (320+(18*i))) && (theApplet.mouseY > (302+(18*(i))))) {
             selectedDir3 = i;
           } // end if mouse loc
         } // end for
@@ -121,7 +144,7 @@ class MyCanvas extends ControlWindowCanvas {
     if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*3) && theApplet.mouseX < (columnWidth*4) ) { 
       //if (fileCounter1 > 0) {
         for(int i = 0; i< fileCounter4limit; i++) {
-          if ((theApplet.mouseY < (350+(18*i))) && (theApplet.mouseY > (332+(18*(i))))) {
+          if ((theApplet.mouseY < (320+(18*i))) && (theApplet.mouseY > (302+(18*(i))))) {
             selectedDir4 = i;
           } // end if mouse loc
         } // end for

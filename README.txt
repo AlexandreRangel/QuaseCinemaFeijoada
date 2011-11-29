@@ -8,11 +8,8 @@ www.quasecinema.org
 
 TO DO list
 
-MIDI input hardware integration
-MIDI software integration
+still media
 OSC integration
-bpm toggles visibility interface
-dlete key to toggle visibility
 MP3 controls (volume, song, pan)
 FFT
 movie directory icon
