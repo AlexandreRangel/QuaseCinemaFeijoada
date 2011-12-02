@@ -9,6 +9,9 @@ www.quasecinema.org
 TO DO list
 
 still media
+webcam
+directory movie icons
+directory paginf
 OSC integration
 MP3 controls (volume, song, pan)
 FFT

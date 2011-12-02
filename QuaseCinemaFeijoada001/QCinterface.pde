@@ -15,11 +15,11 @@ class MyCanvas extends ControlWindowCanvas {
     if (controlWindow.currentTab().id() < 8) {
       // not selected layers
       for(int i = 0; i< 4; i++) {
-        theApplet.fill(30); theApplet.rect(1+(columnWidth*i),20,int(columnWidth*0.97),700);
+        theApplet.fill(30); theApplet.rect(1+(columnWidth*i),20,int(columnWidth*0.98),700);
       } // end for
       // selected layer
       theApplet.fill(40); theApplet.stroke(#E8E8E8);
-      theApplet.rect(1+(columnWidth*selectedLayer),20,int(columnWidth*0.97),700); theApplet.noStroke();
+      theApplet.rect(1+(columnWidth*selectedLayer),20,int(columnWidth*0.98),700); theApplet.noStroke();
     }
     
     if (controlWindow.currentTab().id() == 8) { // audio tab
@@ -59,13 +59,12 @@ class MyCanvas extends ControlWindowCanvas {
         theApplet.text(dirs1[i], 10+(columnWidth*0), 320+(18*i));
       } // end for
       
-      dirButtons1 = (fileCounter1/fileCounter1limit)+1;
-      for(int i = 0; i< (dirButtons1); i++) {
-        //if (i == selectedDir1) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.ellipse((columnWidth*0)+(i*14),700,14,14);
+      dirPages1 = (fileCounter1/fileCounter1limit)+1;
+      for(int i = 0; i< (dirPages1); i++) {
+        if (i==dirPageSelected1) {theApplet.stroke(255,0,0);theApplet.fill(200,0,0);} else {theApplet.stroke(0,255,0);theApplet.fill(0,200,0);} // page icon color
+        theApplet.ellipse(10+(columnWidth*0)+(i*17),700,13,13);
       } // end for
     
-  
     } //end if fileCounter1
     
     
@@ -76,6 +75,13 @@ class MyCanvas extends ControlWindowCanvas {
         if (i == selectedDir2) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
         theApplet.text(dirs2[i], 10+(columnWidth*1), 320+(18*i));
       } // end for
+      
+      dirPages2 = (fileCounter2/fileCounter2limit)+1;
+      for(int i = 0; i< (dirPages2); i++) {
+        if (i==dirPageSelected2) {theApplet.stroke(255,0,0);theApplet.fill(200,0,0);} else {theApplet.stroke(0,255,0);theApplet.fill(0,200,0);} // page icon color
+        theApplet.ellipse(10+(columnWidth*1)+(i*17),700,13,13);
+      } // end for
+      
     } //end if fileCounter2
     
     // dir 3
@@ -84,6 +90,13 @@ class MyCanvas extends ControlWindowCanvas {
         if (i == selectedDir3) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
         theApplet.text(dirs3[i], 10+(columnWidth*2), 320+(18*i));
       } // end for
+      
+      dirPages3 = (fileCounter3/fileCounter3limit)+1;
+      for(int i = 0; i< (dirPages3); i++) {
+        if (i==dirPageSelected3) {theApplet.stroke(255,0,0);theApplet.fill(200,0,0);} else {theApplet.stroke(0,255,0);theApplet.fill(0,200,0);} // page icon color
+        theApplet.ellipse(10+(columnWidth*2)+(i*17),700,13,13);
+      } // end for
+      
     } //end if fileCounter3
     
     // dir 4
@@ -92,6 +105,13 @@ class MyCanvas extends ControlWindowCanvas {
         if (i == selectedDir4) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
         theApplet.text(dirs4[i], 10+(columnWidth*3), 320+(18*i));
       } // end for
+      
+      dirPages4 = (fileCounter4/fileCounter4limit)+1;
+      for(int i = 0; i< (dirPages4); i++) {
+        if (i==dirPageSelected4) {theApplet.stroke(255,0,0);theApplet.fill(200,0,0);} else {theApplet.stroke(0,255,0);theApplet.fill(0,200,0);} // page icon color
+        theApplet.ellipse(10+(columnWidth*3)+(i*17),700,13,13);
+      } // end for
+      
     } //end if fileCounter4
   } // end if main tab
   

@@ -38,7 +38,6 @@ SDrop drop;
 // dirs pre setup
 public String[] fileNames;
 public String folderPath = " ";
-//ListBox dirListBox;
 int dirClicked = 1;
 public String rootFolder;
 
@@ -53,7 +52,8 @@ String dirs3[] = new String[200]; String dirs4[] = new String[200];
 int fileCounter1 = 0; int fileCounter2 = 0; int fileCounter3 = 0; int fileCounter4 = 0;
 int fileCounter1limit = 21; int fileCounter2limit = 21; int fileCounter3limit = 21; int fileCounter4limit = 21;
 int selectedDir1 = 1; int selectedDir2 = 2; int selectedDir3 = 3; int selectedDir4 = 4;
-int dirButtons1 = 0; int dirButtons2 = 0; int dirButtons3 = 0; int dirButtons4 = 0;
+int dirPages1 = 0; int dirPages2 = 0; int dirPages3 = 0; int dirPages4 = 0;
+int dirPageSelected1 = 0; int dirPageSelected2 = 0; int dirPageSelected3 = 0; int dirPageSelected4 = 0;
 PFont debugFont;
 public String tempString;
 
@@ -163,12 +163,10 @@ public void init(){
 
 
 void setup() {
-  size(outputWidth, outputHeight, OPENGL);
-  //hint(ENABLE_OPENGL_4X_SMOOTH);
+  size(outputWidth, outputHeight, OPENGL); //hint(ENABLE_OPENGL_4X_SMOOTH);
   frame.setResizable(true);
   frameRate(60);
-  //frame.setLocation(screen.width,0);
-  frame.setLocation(1440,0);
+  frame.setLocation(0,0); //frame.setLocation(screen.width,0);
   
   // variables setup
   QCsetupInterface();
@@ -258,16 +256,12 @@ void setup() {
   fileNamesMp3 = listFileNames(tempString, txtFilterMp3); //println(fileNamesMp3);
   
   minim = new Minim(this);
-  //audio1 = minim.loadFile("audio1.mp3", 2048);
   selectedDirMp3 = int(random(fileNamesMp3.length));
   tempString = defaultFolderPathMp3 +"/"+fileNamesMp3[selectedDirMp3];
+  //audio1 = minim.loadFile("audio1.mp3", 2048);
   audio1 = minim.loadFile(tempString,512);
   audio1.loop();
-  // create an FFT object that has a time-domain buffer the same size as jingle's sample buffer
-  // note that this needs to be a power of two  and that it means the size of the spectrum will be 1024. 
   //fft = new FFT(audio1.bufferSize(), audio1.sampleRate());
-  
-  // calculate averages based on a miminum octave width of 22 Hz split each octave into three bands
   //fft.logAverages(22, 3);
   
   // midi setup
@@ -351,7 +345,7 @@ public void draw() {
   //
   
   // fps
-  if (random(100)>90){ controlP5.controller("fpsValue").setValue(int(frameRate)); }
+  if (random(100)>50){ controlP5.controller("fpsValue").setValue(int(frameRate)); }
 
   // playback heads
   controlP5.controller("layer1playback").setValue(map(myMovie1.time(),0.0,myMovie1.duration(),0.0,1.0));

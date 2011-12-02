@@ -32,15 +32,14 @@ void keyPressed(){
 //    }
 break; // break 'd'
     
-  case 'u':
-    //myMovie.stop(); myMovie2.delete();
-    myMovie1 = new GSMovie(this, "Palatnik2.mov");
-    //myMovie1.read(); myMovie1.play();
-    //file = File.getParentFile();
-    //myMovie1.loadMovie();
-    
-    break; // break 'u'
-    
+  case 'M':
+    selectedDirMp3 = int(random(fileNamesMp3.length));
+    tempString = defaultFolderPathMp3 +"/"+fileNamesMp3[selectedDirMp3];
+    audio1.close();
+    audio1 = minim.loadFile(tempString,512);
+    audio1.loop();
+    break;
+  
   case 'r': //r
     //println("rootFolder: "+rootFolder+"\n");
     //String tempString = rootFolder + "/" + fileNames[int(random(fileNames.length))]; // works if master root is selected
