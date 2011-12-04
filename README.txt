@@ -2,19 +2,6 @@ Quase-Cinema Feijoada VJ software
 
 made with Processing 2.0 alpha 4
 
-Alexandre Rangel
+Alexandre Rangel - VJ Xorume
 www.quasecinema.org
-
-
-TO DO list
-
-still media
-webcam
-directory movie icons
-directory paginf
-OSC integration
-MP3 controls (volume, song, pan)
-FFT
-movie directory icon
-camera layer toggle
-camera choose
+www.quasecinema.org/forum
