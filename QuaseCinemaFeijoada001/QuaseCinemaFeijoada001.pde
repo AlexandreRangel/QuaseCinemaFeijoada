@@ -6,6 +6,18 @@
 // built with Processing 2.0 alpha 4
 //
 
+// SET THE TWO NEXT STRINGS FOR YOUR PATHS:
+// default MP3 directory and
+// default movie folders path (path containing movie directories)
+
+String defaultFolderPathMp3 = "/Users/rangel/Documents/MP3-Performance";
+String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos";
+
+//String defaultFolderPath = System.getProperty("user.home")+"/Desktop"; // desktop example
+//String defaultFolderPath = "/Users/admin/Desktop"; // Unix path example
+//String defaultFolderPath = "C:\\windows"; // windows path example
+
+
 // libraries
 import controlP5.*; // controlP5 0.6.12 http://www.sojamo.de/libraries/controlP5
 import codeanticode.gsvideo.*; // GSvideo 1.0.0 http://gsvideo.sourceforge.net/
@@ -41,12 +53,6 @@ public String folderPath = " ";
 int dirClicked = 1;
 public String rootFolder;
 
-// ------ default folder path ------
-//String defaultFolderPath = System.getProperty("user.home")+"/Desktop";
-String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos";
-//String defaultFolderPath = "/data/";
-//String defaultFolderPath = "/Users/admin/Desktop";
-//String defaultFolderPath = "C:\\windows";
 String dirs1[] = new String[200]; String dirs2[] = new String[200];
 String dirs3[] = new String[200]; String dirs4[] = new String[200];
 int fileCounter1 = 0; int fileCounter2 = 0; int fileCounter3 = 0; int fileCounter4 = 0;
@@ -59,7 +65,6 @@ public String tempString;
 
 // mp3 pre setup
 public String[] fileNamesMp3;
-String defaultFolderPathMp3 = "/Users/rangel/Documents/MP3-Performance";
 String dirsMp3[] = new String[200];
 int selectedDirMp3;
 int fileCounterMp3 = 0; 
@@ -217,11 +222,6 @@ void setup() {
   
   GSVideo.localGStreamerPath = sketchPath("code/macosx64");
   
-  //myMovie1 = new GSMovie(this, "Aviao.mov"); myMovie1.loop();
-//  myMovie2 = new GSMovie(this, sketchPath("data/Palatnik1.mov")); myMovie2.loop();
-//  myMovie3 = new GSMovie(this, sketchPath("data/Palatnik2.mov")); myMovie3.loop();
-//  myMovie4 = new GSMovie(this, sketchPath("data/Palatnik3.mov")); myMovie4.loop();
-  
   tempString = rootFolder + dirs1[selectedDir1] +"/";
   fileNames = listFileNames(tempString, txtFilter);
   tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
@@ -265,7 +265,7 @@ void setup() {
   //fft.logAverages(22, 3);
   
   // midi setup
-  MidiBus.list(); myBus = new MidiBus(this, 1, 1); // slows the app down 30%
+  MidiBus.list(); myBus = new MidiBus(this, 1, 1);
   
 } // end setup
 
