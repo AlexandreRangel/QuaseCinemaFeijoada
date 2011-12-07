@@ -17,6 +17,9 @@ String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_vid
 //String defaultFolderPath = "/Users/admin/Desktop"; // Unix path example
 //String defaultFolderPath = "C:\\windows"; // windows path example
 
+// set to output size (can be changed on prefs tab). See also frame.setLocation
+public int outputWidth = 1024; public int outputHeight = 768;
+
 
 // libraries
 import controlP5.*; // controlP5 0.6.12 http://www.sojamo.de/libraries/controlP5
@@ -99,7 +102,6 @@ float fade = 0.0;
 
 public int changeResolution = 100; // changeResolution = 100 means don't change resolution on the draw loop
 //public int outputWidth = 1024; public int outputHeight = 768;
-public int outputWidth = 1280; public int outputHeight = 1024;
 
 boolean layer1visibility = true;
 boolean layer2visibility = false; boolean layer3visibility = false; boolean layer4visibility = false;
@@ -171,7 +173,8 @@ void setup() {
   size(outputWidth, outputHeight, OPENGL); //hint(ENABLE_OPENGL_4X_SMOOTH);
   frame.setResizable(true);
   frameRate(60);
-  frame.setLocation(0,0); //frame.setLocation(screen.width,0);
+  // set to output location
+  frame.setLocation(1440,0); //frame.setLocation(screen.width,0);
   
   // variables setup
   QCsetupInterface();
