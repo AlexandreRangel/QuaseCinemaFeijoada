@@ -10,15 +10,15 @@
 // default MP3 directory and
 // default movie folders path (path containing movie directories)
 
-String defaultFolderPathMp3 = "/Users/rangel/Documents/MP3-Performance";
-String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos";
+String defaultFolderPathMp3 = "/Users/rangel/Documents/MP3-Performance"; // MP3 files here
+String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos"; // video DIRECTORIES here
 
 //String defaultFolderPath = System.getProperty("user.home")+"/Desktop"; // desktop example
 //String defaultFolderPath = "/Users/admin/Desktop"; // Unix path example
 //String defaultFolderPath = "C:\\windows"; // windows path example
 
-// set to output size (can be changed on prefs tab). See also frame.setLocation
-public int outputWidth = 1024; public int outputHeight = 768;
+// set to output size (can be changed prefs tab, while running). See also frame.setLocation
+public int outputWidth = 1430; public int outputHeight = 900;
 
 
 // libraries
@@ -101,7 +101,6 @@ int columnWidth = int (interfaceWidth/4);
 float fade = 0.0;
 
 public int changeResolution = 100; // changeResolution = 100 means don't change resolution on the draw loop
-//public int outputWidth = 1024; public int outputHeight = 768;
 
 boolean layer1visibility = true;
 boolean layer2visibility = false; boolean layer3visibility = false; boolean layer4visibility = false;
@@ -173,8 +172,8 @@ void setup() {
   size(outputWidth, outputHeight, OPENGL); //hint(ENABLE_OPENGL_4X_SMOOTH);
   frame.setResizable(true);
   frameRate(60);
-  // set to output location
-  frame.setLocation(1440,0); //frame.setLocation(screen.width,0);
+  // set to output location (position of second display, usually 1440,0)
+  frame.setLocation(0,0); //frame.setLocation(screen.width,0);
   
   // variables setup
   QCsetupInterface();
@@ -223,7 +222,7 @@ void setup() {
   // GStreamer setup
   //
   
-  GSVideo.localGStreamerPath = sketchPath("code/macosx64");
+  GSVideo.localGStreamerPath = sketchPath("code/gstreamer/macosx64");
   
   tempString = rootFolder + dirs1[selectedDir1] +"/";
   fileNames = listFileNames(tempString, txtFilter);
@@ -262,8 +261,8 @@ void setup() {
   selectedDirMp3 = int(random(fileNamesMp3.length));
   tempString = defaultFolderPathMp3 +"/"+fileNamesMp3[selectedDirMp3];
   //audio1 = minim.loadFile("audio1.mp3", 2048);
-  audio1 = minim.loadFile(tempString,512);
-  audio1.loop();
+  //audio1 = minim.loadFile(tempString,512);
+  //audio1.loop();
   //fft = new FFT(audio1.bufferSize(), audio1.sampleRate());
   //fft.logAverages(22, 3);
   
