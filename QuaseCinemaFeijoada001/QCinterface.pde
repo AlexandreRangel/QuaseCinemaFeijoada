@@ -1,10 +1,17 @@
-//
-// interface draw canvas draw and click
-//
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// interface canvas screen draw
+// interface draw canvas draw, click check and events
 //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// interface screen draw (canvas)
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 class MyCanvas extends ControlWindowCanvas {
   
@@ -116,6 +123,13 @@ class MyCanvas extends ControlWindowCanvas {
   } // end if main tab
   
   
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// mouse click checks
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+  
   //
   // dirs click check 
   //
@@ -214,3 +228,44 @@ class MyCanvas extends ControlWindowCanvas {
     
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// events
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void controlEvent(ControlEvent theEvent) {
+  // ListBox is if type ControlGroup.
+  // 1 controlEvent will be executed, where the event originates from a ControlGroup. therefore
+  // you need to check the Event with if (theEvent.isGroup()) to avoid an error message from controlP5.
+  
+  if (theEvent.isGroup()) {
+    // an event from a group e.g. scrollList
+    //println(theEvent.group().value()+" from "+theEvent.group());
+    
+    // change resolution event
+    if (theEvent.group() == outputResolutionList) {
+      changeResolution = (int (theEvent.group().value()) );
+    }
+    
+    // layer content 1 event
+    if (theEvent.group() == layerContentButton1) {
+      layerContent1 = int(theEvent.group().value());
+      println("layerContent1: "+layerContent1);
+    }
+    
+  } // end if event groups
+  
+  
+  if(theEvent.isController()) { 
+  
+    // move output event
+    if(theEvent.controller().name()=="outputXpos" || theEvent.controller().name()=="outputYpos") {
+      QCmoveOutput();
+    }
+  
+  } // end if controllers
+
+  
+} // end controlEvent

@@ -1,10 +1,10 @@
 void QCsetupInterface() {
   
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
   //  controlP5 setup
   //
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   controlP5 = new ControlP5(this);
   controlWindow = controlP5.addControlWindow("Quase-Cinema Feijoada Remix 0.01",0,0,1024,748); 
@@ -65,10 +65,12 @@ void QCsetupInterface() {
   controlP5.Controller myFPS = controlP5.addSlider("fpsValue",0,60,0,(columnWidth*2),733,int(columnWidth*0.88),10);
   myFPS.moveTo(controlWindow,"global"); myFPS.captionLabel().set("fps");
   
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
   // interface
   // main tab
   //
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   // interface main - column 1
   controlP5.Controller visibilityToggle1 = controlP5.addToggle("layer1visibility",true,180+(columnWidth*0),24,20,20);
@@ -140,10 +142,12 @@ void QCsetupInterface() {
   controlP5.Controller speedSlider4 = controlP5.addSlider("layer4speed",0,5.0,1.0,10+(columnWidth*3),220,int(columnWidth*0.7),14);
   speedSlider4.setLabel("speed"); speedSlider4.moveTo(controlWindow);
   
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
   // interface
   // effects tab
   //
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   // interface effects - column 1
   
@@ -315,10 +319,12 @@ void QCsetupInterface() {
   controlP5.Controller effectHueLimit4slider = controlP5.addSlider("effectHueLimit4",0,256,0,40+(columnWidth*3),475,int(columnWidth*0.7),12);
   effectHueLimit4slider.setLabel("amount"); effectHueLimit4slider.moveTo(controlWindow,"Effects");
   
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
   // interface
   // bpm tab
   //
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   // interface bpm - column 1
   controlP5.Controller bpmVisSlider1 = controlP5.addSlider("layer1bpmVis",0,240,0,10+(columnWidth*0),210,int(columnWidth*0.7),14);
@@ -363,10 +369,12 @@ void QCsetupInterface() {
   bpmMovieSlider4.setLabel("bpm movie"); bpmMovieSlider4.moveTo(controlWindow,"Rhythm");
   
   
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
   // interface
   // sequencer tab
   //
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   // sequencer - column 1
   controlP5.Controller sequencerSlider1 = controlP5.addMatrix("layer1sequencer", 8, 4, 10+(columnWidth*0), 240, int(columnWidth*0.92), 160);
@@ -385,10 +393,12 @@ void QCsetupInterface() {
   sequencerSlider4.setLabel("sequencer"); sequencerSlider4.moveTo(controlWindow,"Sequencer");
   
   
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
   // interface
   // mapping tab
   //
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   // interface mapping - column 1
   controlP5.Controller mappingToggle1 = controlP5.addToggle("mapping1",false,50+(columnWidth*0),265,20,20);
@@ -422,10 +432,12 @@ void QCsetupInterface() {
   bmappingToggle4.setLabel("berzier mapping"); bmappingToggle4.moveTo(controlWindow,"Mapping");
   
   
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
   // audio
   // prefs tab
   //
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   controlP5.Controller layer1volumeSlider = controlP5.addSlider("layer1volume",0,1.0,0.0,10+(columnWidth*0),180,int(columnWidth*0.7),14);
   layer1volumeSlider.setLabel("volume1"); layer1volumeSlider.moveTo(controlWindow,"Audio");
@@ -439,11 +451,12 @@ void QCsetupInterface() {
   controlP5.Controller layer4volumeSlider = controlP5.addSlider("layer4volume",0,1.0,0.0,10+(columnWidth*3),180,int(columnWidth*0.7),14);
   layer4volumeSlider.setLabel("volume4"); layer4volumeSlider.moveTo(controlWindow,"Audio");
   
-  
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
   // interface
   // prefs tab
   //
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   outputResolutionList = controlP5.addListBox("outputResolution",10,200,int(columnWidth*0.9),240);
   outputResolutionList.setLabel("output resolution");
@@ -474,5 +487,27 @@ void QCsetupInterface() {
   //controlP5.outputYposNumberBox.setMultiplier(1); // set the sensitifity of the numberbox
   //outputYposNumberBox.setDirection(Controller.HORIZONTAL); // change the control direction to left/right
   outputYposNumberBox.moveTo(controlWindow,"Prefs");
+  
+  
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //
+  // interface
+  // help tab
+  //
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+  textHelp = controlP5.addTextarea("helpText",
+  "Shortcuts:\n\n\n"+
+  "F1-F8: changes interface panels\n\n"+
+  "1-4: selects layers 1 to 4\n\n"+
+  "enter: toggle selected layer visibility on/off\n\n"+
+  "d: selects root movie directory (with other dirs. inside)\n\n"+
+  "r: randomize movie on selected layer:\n\n"+
+  "M: randomize audio\n\n"+
+  "c: mapping control points visibility on/off\n\n",
+  10,200,int(columnWidth*1.9),600);
+  textHelp.setFont(ControlP5.grixel);
+  textHelp.moveTo(controlWindow,"Help");
+
   
 } // end QC setupInterface

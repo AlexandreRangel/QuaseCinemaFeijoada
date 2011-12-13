@@ -1,5 +1,5 @@
 //
-// Quase-Cinema Feijoada Remix 0.01
+// Quase-Cinema Feijoada Remix 0.01 - 2011.12.13
 // Alexandre Rangel
 // www.quasecinema.org
 //
@@ -18,7 +18,8 @@ String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_vid
 //String defaultFolderPath = "C:\\windows"; // windows path example
 
 // set to output size (can be changed prefs tab, while running). See also frame.setLocation
-public int outputWidth = 1430; public int outputHeight = 900;
+public int outputWidth = 1024; public int outputHeight = 768;
+public int outputXpos = 1440; public int outputYpos = 0;
 
 
 // libraries
@@ -39,8 +40,8 @@ ListBox outputResolutionList;
 Numberbox outputXposNumberBox, outputYposNumberBox;
 RadioButton layerContentButton1, layerContentButton2, layerContentButton3, layerContentButton4;
 RadioButton layerBlendButton1, layerBlendButton2, layerBlendButton3, layerBlendButton4;
-
 public int fpsValue = 0; // fps slider value
+Textarea textHelp;
 
 // movies
 public GSMovie myMovie1, myMovie2, myMovie3, myMovie4;
@@ -173,7 +174,7 @@ void setup() {
   frame.setResizable(true);
   frameRate(60);
   // set to output location (position of second display, usually 1440,0)
-  frame.setLocation(0,0); //frame.setLocation(screen.width,0);
+  frame.setLocation(outputXpos,outputYpos); // maybe frame.setLocation(screen.width,0);
   
   // variables setup
   QCsetupInterface();
@@ -279,31 +280,6 @@ void setup() {
 //  //if (gsMovie.available()) { gsMovie.read(); QCeffects(); }
 //}
 
-
-// --------------------------------------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------------------------------------
-
-void controlEvent(ControlEvent theEvent) {
-  // ListBox is if type ControlGroup.
-  // 1 controlEvent will be executed, where the event originates from a ControlGroup. therefore
-  // you need to check the Event with if (theEvent.isGroup()) to avoid an error message from controlP5.
-  
-  if (theEvent.isGroup()) {
-    // an event from a group e.g. scrollList
-    //println(theEvent.group().value()+" from "+theEvent.group());
-    
-    if (theEvent.group() == outputResolutionList) {
-      changeResolution = (int (theEvent.group().value()) );
-    }
-    
-    if (theEvent.group() == layerContentButton1) {
-      layerContent1 = int(theEvent.group().value());
-      println("layerContent1: "+layerContent1);
-    }
-    
-  }
-}
 
 // --------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------

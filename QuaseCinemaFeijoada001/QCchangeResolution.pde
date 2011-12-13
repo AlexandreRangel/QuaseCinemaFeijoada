@@ -1,4 +1,8 @@
 
+void QCmoveOutput() {
+  frame.setLocation(outputXpos,outputYpos);
+}
+
 void QCchangeResolution() { // update resolution
 
   switch (changeResolution) {
