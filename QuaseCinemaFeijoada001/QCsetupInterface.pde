@@ -83,6 +83,9 @@ void QCsetupInterface() {
   layerContentButton1.addItem("Camera1",2);
   layerContentButton1.moveTo(controlWindow,"global");
   
+  controlP5.Controller loopToggle1 = controlP5.addToggle("layer1loop",true,10+(columnWidth*0),160,15,15);
+  loopToggle1.setLabel("loop"); loopToggle1.moveTo(controlWindow);
+  
   controlP5.Controller playbackSlider1 = controlP5.addSlider("layer1playback",0,1.0,0.0,10+(columnWidth*0),200,int(columnWidth*0.7),14);
   playbackSlider1.setLabel("playback"); playbackSlider1.moveTo(controlWindow);
   
@@ -99,6 +102,9 @@ void QCsetupInterface() {
   layerContentButton2.addItem("Image2",1);
   layerContentButton2.addItem("Camera2",2);
   layerContentButton2.moveTo(controlWindow,"global");
+  
+  controlP5.Controller loopToggle2 = controlP5.addToggle("layer2loop",true,10+(columnWidth*1),160,15,15);
+  loopToggle2.setLabel("loop"); loopToggle2.moveTo(controlWindow);
   
   controlP5.Controller playbackSlider2 = controlP5.addSlider("layer2playback",0,1.0,0.0,10+(columnWidth*1),200,int(columnWidth*0.7),14);
   playbackSlider2.setLabel("playback"); playbackSlider2.moveTo(controlWindow);
@@ -118,6 +124,9 @@ void QCsetupInterface() {
   layerContentButton3.addItem("Camera3",2);
   layerContentButton3.moveTo(controlWindow,"global");
   
+  controlP5.Controller loopToggle3 = controlP5.addToggle("layer3loop",true,10+(columnWidth*2),160,15,15);
+  loopToggle3.setLabel("loop"); loopToggle3.moveTo(controlWindow);
+  
   controlP5.Controller playbackSlider3 = controlP5.addSlider("layer3playback",0,1.0,0.0,10+(columnWidth*2),200,int(columnWidth*0.7),14);
   playbackSlider3.setLabel("playback"); playbackSlider3.moveTo(controlWindow);
   
@@ -135,6 +144,9 @@ void QCsetupInterface() {
   layerContentButton4.addItem("Image4",1);
   layerContentButton4.addItem("Camera4",2);
   layerContentButton4.moveTo(controlWindow,"global");
+  
+  controlP5.Controller loopToggle4 = controlP5.addToggle("layer4loop",true,10+(columnWidth*3),160,15,15);
+  loopToggle4.setLabel("loop"); loopToggle4.moveTo(controlWindow);
   
   controlP5.Controller playbackSlider4 = controlP5.addSlider("layer4playback",0,1.0,0.0,10+(columnWidth*3),200,int(columnWidth*0.7),14);
   playbackSlider4.setLabel("playback"); playbackSlider4.moveTo(controlWindow);
@@ -497,15 +509,18 @@ void QCsetupInterface() {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   textHelp = controlP5.addTextarea("helpText",
+  "Quase-Cinema Feijoada Remix\n\n"+
+  "Alexandre Rangel, 2011\n\n"+
+  "www.quasecinema.org\n\n\n\n"+
   "Shortcuts:\n\n\n"+
-  "F1-F8: changes interface panels\n\n"+
-  "1-4: selects layers 1 to 4\n\n"+
+  "F1 - F8: changes interface panels\n\n"+
+  "1 - 4: selects layers 1 to 4\n\n"+
   "enter: toggle selected layer visibility on/off\n\n"+
   "d: selects root movie directory (with other dirs. inside)\n\n"+
   "r: randomize movie on selected layer:\n\n"+
   "M: randomize audio\n\n"+
   "c: mapping control points visibility on/off\n\n",
-  10,200,int(columnWidth*1.9),600);
+  10,170,int(columnWidth*1.9),600);
   textHelp.setFont(ControlP5.grixel);
   textHelp.moveTo(controlWindow,"Help");
 
