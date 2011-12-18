@@ -1,14 +1,14 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// interface draw canvas draw, click check and events
+//  interface draw canvas draw, click check and interface events
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// interface screen draw (canvas)
+//  interface screen draw (canvas)
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -260,11 +260,17 @@ void controlEvent(ControlEvent theEvent) {
       println("layerContent1: "+layerContent1);
     }
     
-  } // end if event groups
+    // composite
+    if (theEvent.group().name() == "layerComposite1") { layerComposite1select = int(theEvent.group().value()); }
+    if (theEvent.group().name() == "layerComposite2") { layerComposite2select = int(theEvent.group().value()); }
+    if (theEvent.group().name() == "layerComposite3") { layerComposite3select = int(theEvent.group().value()); }
+    if (theEvent.group().name() == "layerComposite4") { layerComposite4select = int(theEvent.group().value()); }
+       
+  } // end if event is group
   
   
   if(theEvent.isController()) { 
-  
+    
     // move output event
     if(theEvent.controller().name()=="outputXpos" || theEvent.controller().name()=="outputYpos") {
       QCmoveOutput();

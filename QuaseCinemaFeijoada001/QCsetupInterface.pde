@@ -7,7 +7,7 @@ void QCsetupInterface() {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   controlP5 = new ControlP5(this);
-  controlWindow = controlP5.addControlWindow("Quase-Cinema Feijoada Remix 0.01",0,0,1024,748); 
+  controlWindow = controlP5.addControlWindow("Quase-Cinema Feijoada Remix 0.01+",0,0,1024,748); 
   controlWindow.hideCoordinates();
   controlWindow.setBackground(color(20));
   // for continuous update use ControlWindow.NORMAL  to update a control
@@ -156,8 +156,8 @@ void QCsetupInterface() {
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
-  // interface
-  // effects tab
+  //  interface
+  //  effects tab
   //
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
@@ -165,6 +165,12 @@ void QCsetupInterface() {
   
   colorPicker1 = controlP5.addColorPicker("layer1color",10+(columnWidth*0),200,int(columnWidth*0.9),20);
   colorPicker1.moveTo(controlWindow,"Effects");
+  
+  layerComposite1Menu = controlP5.addDropdownList("layerComposite1",10+(columnWidth*0),180,100,60);
+  layerComposite1Menu.captionLabel().set("Composition");
+  layerComposite1Menu.setItemHeight(16);layerComposite1Menu.setBarHeight(16);layerComposite1Menu.captionLabel().style().marginTop = 3;
+  layerComposite1Menu.addItem("Normal",0); layerComposite1Menu.addItem("Lighten",1); layerComposite1Menu.addItem("Darken",2);
+  layerComposite1Menu.moveTo(controlWindow,"Effects");
   
   controlP5.Controller invertToggle1 = controlP5.addToggle("effectInvert1",false,10+(columnWidth*0),265,20,20);
   invertToggle1.setLabel("invert"); invertToggle1.moveTo(controlWindow,"Effects");
@@ -201,19 +207,16 @@ void QCsetupInterface() {
   controlP5.Controller effectHueLimit1slider = controlP5.addSlider("effectHueLimit1",0,256,0,40+(columnWidth*0),475,int(columnWidth*0.7),12);
   effectHueLimit1slider.setLabel("amount"); effectHueLimit1slider.moveTo(controlWindow,"Effects");
   
-  layerBlendButton1 = controlP5.addRadioButton("layerBlend1",10+(columnWidth*0),600);
-  layerBlendButton1.setNoneSelectedAllowed(false); layerBlendButton1.setItemsPerRow(1);
-  layerBlendButton1.addItem("Normal",0); layerBlendButton1.activate(0);
-  layerBlendButton1.addItem("Lightest",1);
-  layerBlendButton1.addItem("Add",2);
-  layerBlendButton1.addItem("Darkest",3);
-  layerBlendButton1.addItem("Subtract",4);
-  layerBlendButton1.moveTo(controlWindow,"Effects");
-  
   // interface effects - column 2
   
   colorPicker2 = controlP5.addColorPicker("layer2color",10+(columnWidth*1),200,int(columnWidth*0.9),20);
   colorPicker2.moveTo(controlWindow,"Effects");
+  
+  layerComposite2Menu = controlP5.addDropdownList("layerComposite2",10+(columnWidth*1),180,100,60);
+  layerComposite2Menu.captionLabel().set("Composition");
+  layerComposite2Menu.setItemHeight(16);layerComposite2Menu.setBarHeight(16);layerComposite2Menu.captionLabel().style().marginTop = 3;
+  layerComposite2Menu.addItem("Normal",0); layerComposite2Menu.addItem("Lighten",1); layerComposite2Menu.addItem("Darken",2);
+  layerComposite2Menu.moveTo(controlWindow,"Effects");
   
   controlP5.Controller invertToggle2 = controlP5.addToggle("effectInvert2",false,10+(columnWidth*1),265,20,20);
   invertToggle2.setLabel("invert"); invertToggle2.moveTo(controlWindow,"Effects");
@@ -255,6 +258,12 @@ void QCsetupInterface() {
   colorPicker3 = controlP5.addColorPicker("layer3color",10+(columnWidth*2),200,int(columnWidth*0.9),20);
   colorPicker3.moveTo(controlWindow,"Effects");
   
+  layerComposite3Menu = controlP5.addDropdownList("layerComposite3",10+(columnWidth*2),180,100,60);
+  layerComposite3Menu.captionLabel().set("Composition");
+  layerComposite3Menu.setItemHeight(16);layerComposite3Menu.setBarHeight(16);layerComposite3Menu.captionLabel().style().marginTop = 3;
+  layerComposite3Menu.addItem("Normal",0); layerComposite3Menu.addItem("Lighten",1); layerComposite3Menu.addItem("Darken",2);
+  layerComposite3Menu.moveTo(controlWindow,"Effects");
+  
   controlP5.Controller invertToggle3 = controlP5.addToggle("effectInvert3",false,10+(columnWidth*2),265,20,20);
   invertToggle3.setLabel("invert"); invertToggle3.moveTo(controlWindow,"Effects");
   
@@ -295,6 +304,12 @@ void QCsetupInterface() {
   
   colorPicker4 = controlP5.addColorPicker("layer4color",10+(columnWidth*3),200,int(columnWidth*0.9),20);
   colorPicker4.moveTo(controlWindow,"Effects");
+  
+  layerComposite4Menu = controlP5.addDropdownList("layerComposite4",10+(columnWidth*3),180,100,60);
+  layerComposite4Menu.captionLabel().set("Composition");
+  layerComposite4Menu.setItemHeight(16);layerComposite4Menu.setBarHeight(16);layerComposite4Menu.captionLabel().style().marginTop = 3;
+  layerComposite4Menu.addItem("Normal",0); layerComposite4Menu.addItem("Lighten",1); layerComposite4Menu.addItem("Darken",2);
+  layerComposite4Menu.moveTo(controlWindow,"Effects");
   
   controlP5.Controller invertToggle4 = controlP5.addToggle("effectInvert4",false,10+(columnWidth*3),265,20,20);
   invertToggle4.setLabel("invert"); invertToggle4.moveTo(controlWindow,"Effects");
@@ -509,14 +524,14 @@ void QCsetupInterface() {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   textHelp = controlP5.addTextarea("helpText",
-  "Quase-Cinema Feijoada Remix\n\n"+
+  "Quase-Cinema Feijoada Remix 0.01\n\n"+
   "Alexandre Rangel, 2011\n\n"+
   "www.quasecinema.org\n\n\n\n"+
   "Shortcuts:\n\n\n"+
   "F1 - F8: changes interface panels\n\n"+
   "1 - 4: selects layers 1 to 4\n\n"+
   "enter: toggle selected layer visibility on/off\n\n"+
-  "d: selects root movie directory (with other dirs. inside)\n\n"+
+  "d: selects root movie directory (with other folders inside)\n\n"+
   "r: randomize movie on selected layer:\n\n"+
   "M: randomize audio\n\n"+
   "c: mapping control points visibility on/off\n\n",

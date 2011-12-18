@@ -1,5 +1,5 @@
 //
-// Quase-Cinema Feijoada Remix 0.01 - 2011.12.13
+// Quase-Cinema Feijoada Remix 0.01+
 // Alexandre Rangel
 // www.quasecinema.org
 //
@@ -15,7 +15,7 @@ String defaultFolderPath, defaultFolderPathMp3;
 
 // set to output size (can be changed prefs tab, while running). See also frame.setLocation
 public int outputWidth = 1024; public int outputHeight = 768;
-public int outputXpos = 1440; public int outputYpos = 0;
+public int outputXpos = 30; public int outputYpos = 30;
 
 
 // libraries
@@ -32,10 +32,12 @@ ControlP5 controlP5; ControlWindow controlWindow; ControlWindowCanvas cc;
 
 ColorPicker colorPicker1, colorPicker2, colorPicker3, colorPicker4;
 int layerOpacity1 = 255; int layerOpacity2 = 255; int layerOpacity3 = 255; int layerOpacity4 = 255;
+DropdownList layerComposite1Menu, layerComposite2Menu, layerComposite3Menu, layerComposite4Menu;
+int layerComposite1select=0; int layerComposite2select=0; int layerComposite3select=0; int layerComposite4select=0;
 ListBox outputResolutionList;
 Numberbox outputXposNumberBox, outputYposNumberBox;
 RadioButton layerContentButton1, layerContentButton2, layerContentButton3, layerContentButton4;
-RadioButton layerBlendButton1, layerBlendButton2, layerBlendButton3, layerBlendButton4;
+//RadioButton layerBlendButton1, layerBlendButton2, layerBlendButton3, layerBlendButton4;
 public int fpsValue = 0; // fps slider value
 Textarea textHelp;
 
@@ -468,7 +470,14 @@ public void draw() {
       quadGraphics1.endDraw();
       bw1.render(quadGraphics1);
      } else { // no mapping
+      
+      if (layerComposite1select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+      if (layerComposite1select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+      
       image(myMovie1, 0, 0, outputWidth, outputHeight); 
+      
+      if (layerComposite1select != 0) { pgl.endGL(); }
+      
     } // end if mapping
   } else {
      myMovie1.pause();
@@ -489,11 +498,14 @@ public void draw() {
       quadGraphics2.endDraw();
       bw2.render(quadGraphics2);
      } else { // no mapping
-     
-      // blend test xxx
-      //gl.glDisable(GL.GL_DEPTH_TEST);
-      //gl.glEnable(GL.GL_BLEND);
-      //gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); // ok add
+      
+      if (layerComposite2select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+      if (layerComposite2select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+      if (layerComposite2select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
+      
+      
+      // blend xxx
+      //
       //gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_COLOR); // ok
       //gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_DST_COLOR); // ok
       //gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_DST_COLOR); // ok
@@ -502,10 +514,11 @@ public void draw() {
       //gl.glBlendFunc(GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_COLOR); // ok escuresce com o inverso
       //gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR); // ok escuresce
       
-      
+
       image(myMovie2, 0, 0, outputWidth, outputHeight); 
       
-      //pgl.endGL();
+      if (layerComposite2select != 0) { pgl.endGL(); }
+      
     } // end if mapping
   } else {
      myMovie2.pause();
@@ -527,7 +540,15 @@ public void draw() {
       quadGraphics3.endDraw();
       bw3.render(quadGraphics3);
      } else { // no mapping
+     
+      if (layerComposite3select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+      if (layerComposite3select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+      if (layerComposite3select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
+      
       image(myMovie3, 0, 0, outputWidth, outputHeight); 
+      
+      if (layerComposite3select != 0) { pgl.endGL(); }
+      
     } // end if mapping
   } else {
      myMovie3.pause();
@@ -548,7 +569,15 @@ public void draw() {
       quadGraphics4.endDraw();
       bw4.render(quadGraphics4);
      } else { // no mapping
-      image(myMovie4, 0, 0, outputWidth, outputHeight); 
+     
+      if (layerComposite4select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+      if (layerComposite4select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+      if (layerComposite4select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
+      
+      image(myMovie4, 0, 0, outputWidth, outputHeight);
+      
+      if (layerComposite4select != 0) { pgl.endGL(); }
+      
     } // end if mapping
   } else {
      myMovie4.pause();
