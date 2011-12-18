@@ -11,14 +11,7 @@
 // default movie folders path (path containing movie directories)
 
 
-String defaultFolderPath;
-//String defaultFolderPath = dataPath("quadsconfig.txt");
-//String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos"; // video DIRECTORIES here
-//String defaultFolderPath = System.getProperty("user.home")+"/Desktop"; // desktop example
-//String defaultFolderPath = "/Users/admin/Desktop"; // Unix path example
-//String defaultFolderPath = "C:\\windows"; // windows path example
-
-String defaultFolderPathMp3 = "/Users/rangel/Documents/MP3-Performance"; // MP3 files here
+String defaultFolderPath, defaultFolderPathMp3;
 
 // set to output size (can be changed prefs tab, while running). See also frame.setLocation
 public int outputWidth = 1024; public int outputHeight = 768;
@@ -182,8 +175,15 @@ void setup() {
   // variables setup
   QCsetupInterface();
   
-  String defaultFolderPath = dataPath("_videos");
-  println (dataPath("quadsconfig.txt"));
+  // video DIRECTORIES here (folders)
+  defaultFolderPath = dataPath("_videos");
+  //String defaultFolderPath = dataPath("quadsconfig.txt");
+  //String defaultFolderPath = System.getProperty("user.home")+"/Desktop"; // desktop example
+  //String defaultFolderPath = "/Users/admin/Desktop"; // Unix path example
+  //String defaultFolderPath = "C:\\windows"; // windows path example
+  
+  // MP3 FILES here (no folders)
+  defaultFolderPathMp3 = dataPath("_audio");;
   
   //
   // projectedQuads setup
