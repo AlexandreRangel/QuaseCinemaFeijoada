@@ -10,12 +10,15 @@
 // default MP3 directory and
 // default movie folders path (path containing movie directories)
 
-String defaultFolderPathMp3 = "/Users/rangel/Documents/MP3-Performance"; // MP3 files here
-String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos"; // video DIRECTORIES here
 
+String defaultFolderPath;
+//String defaultFolderPath = dataPath("quadsconfig.txt");
+//String defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos"; // video DIRECTORIES here
 //String defaultFolderPath = System.getProperty("user.home")+"/Desktop"; // desktop example
 //String defaultFolderPath = "/Users/admin/Desktop"; // Unix path example
 //String defaultFolderPath = "C:\\windows"; // windows path example
+
+String defaultFolderPathMp3 = "/Users/rangel/Documents/MP3-Performance"; // MP3 files here
 
 // set to output size (can be changed prefs tab, while running). See also frame.setLocation
 public int outputWidth = 1024; public int outputHeight = 768;
@@ -25,7 +28,7 @@ public int outputXpos = 1440; public int outputYpos = 0;
 // libraries
 import controlP5.*; // controlP5 0.6.12 http://www.sojamo.de/libraries/controlP5
 import codeanticode.gsvideo.*; // GSvideo 1.0.0 http://gsvideo.sourceforge.net/
-import processing.opengl.*; import javax.media.opengl.GL; // openGL
+//import processing.opengl.*; import javax.media.opengl.GL; // openGL
 import sojamo.drop.*; // sDrop 0.1.4 http://www.sojamo.de/libraries/drop
 import mappingtools.*; // mappingtools 0.0.2 http://www.patricksaintdenis.com
 import ddf.minim.*; import ddf.minim.analysis.*; // minim http://code.compartmental.net/tools/minim
@@ -179,6 +182,8 @@ void setup() {
   // variables setup
   QCsetupInterface();
   
+  String defaultFolderPath = dataPath("_videos");
+  println (dataPath("quadsconfig.txt"));
   
   //
   // projectedQuads setup
@@ -291,6 +296,10 @@ void setup() {
 
 
 public void draw() {
+  
+  // openGL draw setup
+  PGraphicsOpenGL pgl = (PGraphicsOpenGL)g;  
+  GL gl = pgl.beginGL();
   
   background(0);
   
@@ -480,7 +489,23 @@ public void draw() {
       quadGraphics2.endDraw();
       bw2.render(quadGraphics2);
      } else { // no mapping
+     
+      // blend test xxx
+      //gl.glDisable(GL.GL_DEPTH_TEST);
+      //gl.glEnable(GL.GL_BLEND);
+      //gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); // ok add
+      //gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_COLOR); // ok
+      //gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_DST_COLOR); // ok
+      //gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_DST_COLOR); // ok
+      //gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_SRC_COLOR); // ok
+      //gl.glBlendFunc(GL.GL_ONE_MINUS_SRC_COLOR, GL.GL_ONE); // medio
+      //gl.glBlendFunc(GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_COLOR); // ok escuresce com o inverso
+      //gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR); // ok escuresce
+      
+      
       image(myMovie2, 0, 0, outputWidth, outputHeight); 
+      
+      //pgl.endGL();
     } // end if mapping
   } else {
      myMovie2.pause();

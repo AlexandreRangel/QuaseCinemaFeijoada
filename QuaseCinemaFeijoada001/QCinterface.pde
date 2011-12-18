@@ -62,6 +62,7 @@ class MyCanvas extends ControlWindowCanvas {
     // dir 1
     if (fileCounter1 > 0) {
       for(int i = 0; i< fileCounter1limit; i++) {
+        if(i==fileCounter1){break;}
         if (i == selectedDir1) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
         theApplet.text(dirs1[i], 10+(columnWidth*0), 320+(18*i));
       } // end for
@@ -79,6 +80,7 @@ class MyCanvas extends ControlWindowCanvas {
     // dir 2
     if (fileCounter2 > 0) {
       for(int i = 0; i< fileCounter2limit; i++) {
+        if(i==fileCounter2){break;}
         if (i == selectedDir2) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
         theApplet.text(dirs2[i], 10+(columnWidth*1), 320+(18*i));
       } // end for
@@ -94,6 +96,7 @@ class MyCanvas extends ControlWindowCanvas {
     // dir 3
     if (fileCounter3 > 0) {
       for(int i = 0; i< fileCounter3limit; i++) {
+        if(i==fileCounter3){break;}
         if (i == selectedDir3) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
         theApplet.text(dirs3[i], 10+(columnWidth*2), 320+(18*i));
       } // end for
@@ -109,6 +112,7 @@ class MyCanvas extends ControlWindowCanvas {
     // dir 4
     if (fileCounter4 > 0) {
       for(int i = 0; i< fileCounter4limit; i++) {
+        if(i==fileCounter4){break;}
         if (i == selectedDir4) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
         theApplet.text(dirs4[i], 10+(columnWidth*3), 320+(18*i));
       } // end for
@@ -120,12 +124,13 @@ class MyCanvas extends ControlWindowCanvas {
       } // end for
       
     } //end if fileCounter4
+    
   } // end if main tab
   
   
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// mouse click checks
+//  mouse click checks
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
