@@ -41,40 +41,8 @@ break; // break 'd'
     break;
   
   case 'r': //r
-    //println("rootFolder: "+rootFolder+"\n");
     //String tempString = rootFolder + "/" + fileNames[int(random(fileNames.length))]; // works if master root is selected
-    switch (selectedLayer) { 
-      case 0: // layer 1
-        tempString = rootFolder + dirs1[selectedDir1] +"/";
-        println ("tempString: "+tempString+"\n");
-        fileNames = listFileNames(tempString, txtFilter);
-        tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
-        //println ("tempString: "+tempString+"\n");
-        myMovie1.delete(); myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play(); myMovie1.loop();
-        break; // break layer 1
-      case 1: // layer 2
-        tempString = rootFolder + dirs2[selectedDir2] +"/";
-        fileNames = listFileNames(tempString, txtFilter);
-        tempString = rootFolder + dirs2[selectedDir2] +"/"+ fileNames[int(random(fileNames.length))];
-        //println ("tempString: "+tempString+"\n");
-        myMovie2.delete(); myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play(); myMovie2.loop();
-        break; // break layer 2
-      case 2: // layer 3
-        tempString = rootFolder + dirs3[selectedDir3] +"/";
-        fileNames = listFileNames(tempString, txtFilter);
-        tempString = rootFolder + dirs3[selectedDir3] +"/"+ fileNames[int(random(fileNames.length))];
-        //println ("tempString: "+tempString+"\n");
-        myMovie3.delete(); myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play(); myMovie3.loop();
-        break; // break layer 3
-      case 3: // layer 4
-        tempString = rootFolder + dirs4[selectedDir4] +"/";
-        fileNames = listFileNames(tempString, txtFilter);
-        tempString = rootFolder + dirs4[selectedDir4] +"/"+ fileNames[int(random(fileNames.length))];
-        //println ("tempString: "+tempString+"\n");
-        myMovie4.delete(); myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play(); myMovie4.loop();
-        break; // break layer 2
-      } // end switch selectedLayer
-      
+    QCrandomMov(selectedLayer);  
     break; // break 'r'
     
   case 'i': //
@@ -90,7 +58,7 @@ break; // break 'd'
       case 2: layer3visibility = !(layer3visibility); ((Toggle)controlP5.controller("layer3visibility")).toggle(); break; // layer 3
       case 3: layer4visibility = !(layer4visibility); ((Toggle)controlP5.controller("layer4visibility")).toggle(); break; // layer 4
     } // end switch
-   } // end DELETE
+   } // end ENTER
   
   if (key == CODED) {
       if (keyCode == KeyEvent.VK_F1) { controlWindow.activateTab("default"); }

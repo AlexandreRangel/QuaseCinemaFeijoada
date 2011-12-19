@@ -285,3 +285,29 @@ void controlEvent(ControlEvent theEvent) {
 
   
 } // end controlEvent
+
+
+// random dir buttons
+public void randomDir1() {
+  
+}
+
+public void randomDir2() {
+  
+}
+
+public void randomDir3() {
+  
+}
+
+public void randomDir4() {
+  
+}
+
+
+// random movie buttons
+public void randomMov1(int theValue) { doRandomize = 0; }
+public void randomMov2(int theValue) { doRandomize = 1; }
+public void randomMov3(int theValue) { doRandomize = 2; }
+public void randomMov4(int theValue) { doRandomize = 3; }
+

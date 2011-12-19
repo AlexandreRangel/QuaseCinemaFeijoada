@@ -92,6 +92,13 @@ void QCsetupInterface() {
   controlP5.Controller mySlider = controlP5.addSlider("layer1speed",0,5.0,1.0,10+(columnWidth*0),220,int(columnWidth*0.7),14);
   mySlider.setLabel("speed"); mySlider.moveTo(controlWindow);
   
+  controlP5.Controller randomDir1 = controlP5.addButton("randomDir1",0,10+(columnWidth*0),250,60,14);
+  randomDir1.setLabel("random dir"); randomDir1.moveTo(controlWindow);
+  
+  controlP5.Controller randomMov1 = controlP5.addButton("randomMov1",0,80+(columnWidth*0),250,60,14);
+  randomMov1.setLabel("random mov"); randomMov1.moveTo(controlWindow);
+  
+  
   // interface main - column 2
   controlP5.Controller visibilityToggle2 = controlP5.addToggle("layer2visibility",false,180+(columnWidth*1),24,20,20);
   visibilityToggle2.setLabel("visible"); visibilityToggle2.moveTo(controlWindow,"global");
@@ -111,6 +118,12 @@ void QCsetupInterface() {
   
   controlP5.Controller speedSlider2 = controlP5.addSlider("layer2speed",0,5.0,1.0,10+(columnWidth*1),220,int(columnWidth*0.7),14);
   speedSlider2.setLabel("speed"); speedSlider2.moveTo(controlWindow);
+  
+  controlP5.Controller randomDir2 = controlP5.addButton("randomDir2",0,10+(columnWidth*1),250,60,14);
+  randomDir2.setLabel("random dir"); randomDir2.moveTo(controlWindow);
+  
+  controlP5.Controller randomMov2 = controlP5.addButton("randomMov2",0,80+(columnWidth*1),250,60,14);
+  randomMov2.setLabel("random mov"); randomMov2.moveTo(controlWindow);
   
   
   // interface main - column 3
@@ -133,6 +146,12 @@ void QCsetupInterface() {
   controlP5.Controller speedSlider3 = controlP5.addSlider("layer3speed",0,5.0,1.0,10+(columnWidth*2),220,int(columnWidth*0.7),14);
   speedSlider3.setLabel("speed"); speedSlider3.moveTo(controlWindow);
   
+  controlP5.Controller randomDir3 = controlP5.addButton("randomDir3",0,10+(columnWidth*2),250,60,14);
+  randomDir3.setLabel("random dir"); randomDir3.moveTo(controlWindow);
+  
+  controlP5.Controller randomMov3 = controlP5.addButton("randomMov3",0,80+(columnWidth*2),250,60,14);
+  randomMov3.setLabel("random mov"); randomMov3.moveTo(controlWindow);
+  
   
   // interface main - column 4
   controlP5.Controller visibilityToggle4 = controlP5.addToggle("layer4visibility",false,180+(columnWidth*3),24,20,20);
@@ -153,6 +172,13 @@ void QCsetupInterface() {
   
   controlP5.Controller speedSlider4 = controlP5.addSlider("layer4speed",0,5.0,1.0,10+(columnWidth*3),220,int(columnWidth*0.7),14);
   speedSlider4.setLabel("speed"); speedSlider4.moveTo(controlWindow);
+  
+  controlP5.Controller randomDir4 = controlP5.addButton("randomDir4",0,10+(columnWidth*3),250,60,14);
+  randomDir4.setLabel("random dir"); randomDir4.moveTo(controlWindow);
+  
+  controlP5.Controller randomMov4 = controlP5.addButton("randomMov4",0,80+(columnWidth*3),250,60,14);
+  randomMov4.setLabel("random mov"); randomMov4.moveTo(controlWindow);
+  
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //

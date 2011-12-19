@@ -6,11 +6,6 @@
 // built with Processing 2.0 alpha 4
 //
 
-// SET THE TWO NEXT STRINGS FOR YOUR PATHS:
-// default MP3 directory and
-// default movie folders path (path containing movie directories)
-
-
 String defaultFolderPath, defaultFolderPathMp3;
 
 // set to output size (can be changed prefs tab, while running). See also frame.setLocation
@@ -37,9 +32,16 @@ int layerComposite1select=0; int layerComposite2select=0; int layerComposite3sel
 ListBox outputResolutionList;
 Numberbox outputXposNumberBox, outputYposNumberBox;
 RadioButton layerContentButton1, layerContentButton2, layerContentButton3, layerContentButton4;
-//RadioButton layerBlendButton1, layerBlendButton2, layerBlendButton3, layerBlendButton4;
-public int fpsValue = 0; // fps slider value
+Button randomDir1, randomMov1; 
+Button randomDirButton1, randomDirButton2, randomDirButton3, randomDirButton4,
+       randomMovButton1, randomMovButton2, randomMovButton3, randomMovButton4;
+int doRandomize = 100; // 100 = don't do it
+
 Textarea textHelp;
+
+
+public int fpsValue = 0; // fps slider value
+
 
 // movies
 public GSMovie myMovie1, myMovie2, myMovie3, myMovie4;
@@ -177,7 +179,10 @@ void setup() {
   // variables setup
   QCsetupInterface();
   
-  // video DIRECTORIES here (folders)
+  // SET THE TWO NEXT STRINGS FOR YOUR PATHS:
+  // default MP3 directory and
+  // default movie folders path (path containing movie directories)
+
   defaultFolderPath = dataPath("_videos");
   //String defaultFolderPath = dataPath("quadsconfig.txt");
   //String defaultFolderPath = System.getProperty("user.home")+"/Desktop"; // desktop example
@@ -315,25 +320,25 @@ public void draw() {
   //
   
   if (changeMovie && selectedLayer == 0) {
-   myMovie1.delete();
+   myMovie1.dispose(); myMovie1.delete();
    myMovie1 = new GSMovie(this, newMovie); myMovie1.play();
    if(layer1loop){ myMovie1.loop(); }
    changeMovie = false; 
   }
   if (changeMovie && selectedLayer == 1) {
-   myMovie2.delete();
+   myMovie2.dispose(); myMovie2.delete();
    myMovie2 = new GSMovie(this, newMovie); myMovie2.play();
    if(layer2loop){ myMovie2.loop(); }
    changeMovie = false; 
   }
   if (changeMovie && selectedLayer == 2) {
-   myMovie3.delete();
+   myMovie3.dispose(); myMovie3.delete();
    myMovie3 = new GSMovie(this, newMovie); myMovie3.play();
    if(layer3loop){ myMovie3.loop(); }
    changeMovie = false; 
   }
   if (changeMovie && selectedLayer == 3) {
-   myMovie4.delete();
+   myMovie4.dispose(); myMovie4.delete();
    myMovie4 = new GSMovie(this, newMovie); myMovie4.play();
    if(layer4loop){ myMovie4.loop(); }
    changeMovie = false; 
@@ -412,7 +417,7 @@ public void draw() {
     String tempString = rootFolder + dirs1[selectedDir1] +"/";
     fileNames = listFileNames(tempString, txtFilter);
     tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
-    myMovie1.delete(); myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play();
+    myMovie1.dispose(); myMovie1.delete(); myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play();
     if(layer1loop){ myMovie1.loop(); }
     myMovie1.jump(random(myMovie1.duration()));
     layer1bpmMovieLastTime=millis();
@@ -422,7 +427,7 @@ public void draw() {
     String tempString = rootFolder + dirs2[selectedDir2] +"/";
     fileNames = listFileNames(tempString, txtFilter);
     tempString = rootFolder + dirs2[selectedDir2] +"/"+ fileNames[int(random(fileNames.length))];
-    myMovie2.delete(); myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play();
+    myMovie2.dispose(); myMovie2.delete(); myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play();
     if(layer2loop){ myMovie2.loop(); }
     myMovie2.jump(random(myMovie2.duration()));
     layer2bpmMovieLastTime=millis();
@@ -432,7 +437,7 @@ public void draw() {
     String tempString = rootFolder + dirs3[selectedDir3] +"/";
     fileNames = listFileNames(tempString, txtFilter);
     tempString = rootFolder + dirs3[selectedDir3] +"/"+ fileNames[int(random(fileNames.length))];
-    myMovie3.delete(); myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play();
+    myMovie3.dispose(); myMovie3.delete(); myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play();
     if(layer3loop){ myMovie3.loop(); }
     myMovie3.jump(random(0,myMovie3.duration()));
     layer3bpmMovieLastTime=millis();
@@ -442,7 +447,7 @@ public void draw() {
     String tempString = rootFolder + dirs4[selectedDir4] +"/";
     fileNames = listFileNames(tempString, txtFilter);
     tempString = rootFolder + dirs4[selectedDir4] +"/"+ fileNames[int(random(fileNames.length))];
-    myMovie4.delete(); myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play();
+    myMovie4.dispose(); myMovie4.delete(); myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play();
     if(layer4loop){ myMovie4.loop(); }
     myMovie4.jump(random(0,myMovie4.duration()));
     layer4bpmMovieLastTime=millis();
@@ -600,9 +605,19 @@ public void draw() {
   // midi
   //myBus.sendControllerChange(channel, number, value); // Send a controllerChange
   
+  
+  // needs to randomize movie?
+  switch (doRandomize) {
+    case 0: QCrandomMov(0); doRandomize=100; break;
+    case 1: QCrandomMov(1); doRandomize=100; break;
+    case 2: QCrandomMov(2); doRandomize=100; break;
+    case 3: QCrandomMov(3); doRandomize=100; break;
+    default: break;
+  } // end switch doRandomize
+  
+  //System.gc();
+  
 } // end draw
-
-
 
 
 // --------------------------------------------------------------------------------------------------------------
