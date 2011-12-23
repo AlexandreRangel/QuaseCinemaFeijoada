@@ -161,6 +161,9 @@ public boolean effectHue3 = false; public boolean effectHue4 = false;
 public int effectHueLimit1 = 0; public int effectHueLimit2 = 0;
 public int effectHueLimit3 = 0; public int effectHueLimit4 = 0;
 
+public int paintAmount1 = 0; public int paintAmount2 = 0;
+public int paintAmount3 = 0; public int paintAmount4 = 0;
+
 public void init(){
   frame.removeNotify();
   frame.setUndecorated(true);
@@ -311,8 +314,7 @@ void setup() {
   // Camera Linux:
   // pipeline = new GSPipeline(this, "v4l2src");  
   
-  pipeline.play();
-  println("Pipeline string: " + pipeline.getPipeline());
+  
   
 } // end setup
 
@@ -340,6 +342,10 @@ public void draw() {
   pgl.endGL();
    
   if (!effectPaint1 && !effectPaint2 && !effectPaint3 && !effectPaint4) { background(0); }
+  else {
+    fill(0,0,0,map(paintAmount1,0.0,256.0,15.0,0.0));
+    rect(0,0,outputWidth,outputHeight);
+  } // end if light paint
   
   // movies update
   if (myMovie1.available()) { myMovie1.read(); QCeffects1(); }
@@ -348,7 +354,11 @@ public void draw() {
   if (myMovie4.available()) { myMovie4.read(); QCeffects4(); }
   
   // camera update
-  if (pipeline.available()) { pipeline.read(); }
+  if (layerContent1==2 || layerContent2==2 || layerContent3==2 || layerContent4==2) { // camera selected
+    if (!pipeline.isPlaying()) { pipeline.play(); }
+    //println("Pipeline string: " + pipeline.getPipeline());
+    if (pipeline.available()) { pipeline.read(); }
+  } // end if camera update
   
   // light paint update (needs lighten composite mode)
   if (effectPaint1) { layerComposite1select=1; }

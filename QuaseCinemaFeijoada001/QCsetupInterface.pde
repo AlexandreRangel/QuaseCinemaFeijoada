@@ -205,9 +205,6 @@ void QCsetupInterface() {
   controlP5.Controller posterizeToggle1 = controlP5.addToggle("effectPosterize1",false,50+(columnWidth*0),265,20,20);
   posterizeToggle1.setLabel("poster"); posterizeToggle1.moveTo(controlWindow,"Effects");
   
-  controlP5.Controller paintToggle1 = controlP5.addToggle("effectPaint1",false,90+(columnWidth*0),265,20,20);
-  paintToggle1.setLabel("light paint"); paintToggle1.moveTo(controlWindow,"Effects");
-  
   controlP5.Controller effectRgToggle1 = controlP5.addToggle("effectRG1",false,10+(columnWidth*0),315,20,20);
   effectRgToggle1.setLabel("R -> G"); effectRgToggle1.moveTo(controlWindow,"Effects");
   
@@ -236,6 +233,11 @@ void QCsetupInterface() {
   effectHueToggle1.setLabel("Hue"); effectHueToggle1.moveTo(controlWindow,"Effects");
   controlP5.Controller effectHueLimit1slider = controlP5.addSlider("effectHueLimit1",0,256,0,40+(columnWidth*0),475,int(columnWidth*0.7),12);
   effectHueLimit1slider.setLabel("amount"); effectHueLimit1slider.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller paintToggle1 = controlP5.addToggle("effectPaint1",false,10+(columnWidth*0),525,20,20);
+  paintToggle1.setLabel("light paint"); paintToggle1.moveTo(controlWindow,"Effects");
+  controlP5.Controller paint1slider = controlP5.addSlider("paintAmount1",0,256,0,40+(columnWidth*0),525,int(columnWidth*0.7),12);
+  paint1slider.setLabel("amount"); paint1slider.moveTo(controlWindow,"Effects");
   
   // interface effects - column 2
   
@@ -384,6 +386,8 @@ void QCsetupInterface() {
   effectHueToggle4.setLabel("Hue"); effectHueToggle4.moveTo(controlWindow,"Effects");
   controlP5.Controller effectHueLimit4slider = controlP5.addSlider("effectHueLimit4",0,256,0,40+(columnWidth*3),475,int(columnWidth*0.7),12);
   effectHueLimit4slider.setLabel("amount"); effectHueLimit4slider.moveTo(controlWindow,"Effects");
+  
+  
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
