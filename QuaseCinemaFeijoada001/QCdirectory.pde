@@ -3,6 +3,7 @@
 //
 //  directory code,
 //  QCrandomMov(selectedLayer)
+//  QCrandomDir(selectedLayer)
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -43,6 +44,28 @@ public void QCrandomMov(int layer){
   
 } // end QCrandomMov
 
+public void QCrandomDir(int layer){
+ 
+  switch (layer) { 
+      case 0: // layer 1
+        selectedDir1 = int(random(fileCounter1));
+        
+        break; // break layer 1
+      case 1: // layer 2
+        selectedDir2 = int(random(fileCounter2));
+        
+        break; // break layer 2
+      case 2: // layer 3
+        selectedDir3 = int(random(fileCounter3));
+        
+        break; // break layer 3
+      case 3: // layer 4
+        selectedDir4 = int(random(fileCounter4));
+        
+        break; // break layer 2
+      } // end switch selectedLayer
+  
+} // end QCrandomMov
 
 
 

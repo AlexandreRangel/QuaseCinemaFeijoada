@@ -8,13 +8,14 @@ void QCsetupInterface() {
   
   controlP5 = new ControlP5(this);
   controlWindow = controlP5.addControlWindow("Quase-Cinema Feijoada Remix 0.01+",0,0,1024,748); 
+  //controlWindow = controlP5.addControlWindow("Quase-Cinema Feijoada Remix 0.01+",0,0,screenWidth,screenHeight); 
   controlWindow.hideCoordinates();
-  controlWindow.setBackground(color(20));
+  controlWindow.setBackground(color(0));
   // for continuous update use ControlWindow.NORMAL  to update a control
   // window only when it is in focus, use ControlWindow.ECONOMIC is the default update value.
   //controlWindow.setUpdateMode(ControlWindow.NORMAL);
   controlWindow.setUpdateMode(ControlWindow.NORMAL);
-  controlWindow.frameRate(30);  
+  controlWindow.frameRate(60);  
   
   controlP5.setColorForeground(#0AA000);
   controlP5.setColorBackground(#343434);
@@ -564,6 +565,5 @@ void QCsetupInterface() {
   10,170,int(columnWidth*1.9),600);
   textHelp.setFont(ControlP5.grixel);
   textHelp.moveTo(controlWindow,"Help");
-
   
 } // end QC setupInterface

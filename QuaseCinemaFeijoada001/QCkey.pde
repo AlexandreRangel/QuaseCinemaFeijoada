@@ -32,18 +32,22 @@ void keyPressed(){
 //    }
 break; // break 'd'
     
-  case 'M':
+  case 'M': // M
     selectedDirMp3 = int(random(fileNamesMp3.length));
     tempString = defaultFolderPathMp3 +"/"+fileNamesMp3[selectedDirMp3];
     audio1.close();
     audio1 = minim.loadFile(tempString,512);
     audio1.loop();
-    break;
+    break; // end M
   
   case 'r': //r
     //String tempString = rootFolder + "/" + fileNames[int(random(fileNames.length))]; // works if master root is selected
     QCrandomMov(selectedLayer);  
     break; // break 'r'
+    
+  case 'R': //R
+    QCrandomDir(selectedLayer);  
+    break; // break 'R'
     
   case 'i': //
    effectInvert1 = !(effectInvert1);

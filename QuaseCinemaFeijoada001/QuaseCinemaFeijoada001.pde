@@ -10,13 +10,13 @@ String defaultFolderPath, defaultFolderPathMp3;
 
 // set to output size (can be changed prefs tab, while running). See also frame.setLocation
 public int outputWidth = 1024; public int outputHeight = 768;
-public int outputXpos = 30; public int outputYpos = 30;
+public int outputXpos = 1440; public int outputYpos = 0;
 
 
 // libraries
 import controlP5.*; // controlP5 0.6.12 http://www.sojamo.de/libraries/controlP5
 import codeanticode.gsvideo.*; // GSvideo 1.0.0 http://gsvideo.sourceforge.net/
-//import processing.opengl.*; import javax.media.opengl.GL; // openGL
+import processing.opengl.*; import javax.media.opengl.GL; // openGL
 import sojamo.drop.*; // sDrop 0.1.4 http://www.sojamo.de/libraries/drop
 import mappingtools.*; // mappingtools 0.0.2 http://www.patricksaintdenis.com
 import ddf.minim.*; import ddf.minim.analysis.*; // minim http://code.compartmental.net/tools/minim
@@ -35,19 +35,19 @@ RadioButton layerContentButton1, layerContentButton2, layerContentButton3, layer
 Button randomDir1, randomMov1; 
 Button randomDirButton1, randomDirButton2, randomDirButton3, randomDirButton4,
        randomMovButton1, randomMovButton2, randomMovButton3, randomMovButton4;
-int doRandomize = 100; // 100 = don't do it
+int doRandomize = 100; int doRandomizeDir = 100; // 100 = don't do it
 
 Textarea textHelp;
 
 
 public int fpsValue = 0; // fps slider value
 
-
-// movies
-public GSMovie myMovie1, myMovie2, myMovie3, myMovie4;
+public GSMovie myMovie1, myMovie2, myMovie3, myMovie4; // movies
 
 String newMovie = "";
 public boolean changeMovie = false;
+
+GSPipeline pipeline; // camera
 
 SDrop drop;
 
@@ -120,6 +120,8 @@ public float layer1playback, layer2playback, layer3playback, layer4playback;
 
 float layer1volume = 0.0; float layer2volume = 0.0; float layer3volume = 0.0; float layer4volume = 0.0;
 
+boolean paint1=false; boolean paint2=false; boolean paint3=false; boolean paint4=false;
+
 // effects pre setup
 public boolean effectInvert1 = false; public boolean effectInvert2 = false;
 public boolean effectInvert3 = false; public boolean effectInvert4 = false; 
@@ -169,12 +171,21 @@ public void init(){
 // --------------------------------------------------------------------------------------------------------------
 
 
+
 void setup() {
   size(outputWidth, outputHeight, OPENGL); //hint(ENABLE_OPENGL_4X_SMOOTH);
+  
+  
+  
   frame.setResizable(true);
   frameRate(60);
   // set to output location (position of second display, usually 1440,0)
   frame.setLocation(outputXpos,outputYpos); // maybe frame.setLocation(screen.width,0);
+  
+    PGraphicsOpenGL pgl = (PGraphicsOpenGL)g;  
+  GL gl = pgl.beginGL();
+  gl.setSwapInterval(1); // Enable VSync
+  pgl.endGL();
   
   // variables setup
   QCsetupInterface();
@@ -183,7 +194,8 @@ void setup() {
   // default MP3 directory and
   // default movie folders path (path containing movie directories)
 
-  defaultFolderPath = dataPath("_videos");
+  //defaultFolderPath = dataPath("_videos");
+  defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos";
   //String defaultFolderPath = dataPath("quadsconfig.txt");
   //String defaultFolderPath = System.getProperty("user.home")+"/Desktop"; // desktop example
   //String defaultFolderPath = "/Users/admin/Desktop"; // Unix path example
@@ -286,6 +298,19 @@ void setup() {
   // midi setup
   MidiBus.list(); myBus = new MidiBus(this, 1, 1);
   
+  // camera setup
+  // Camera Mac
+  pipeline = new GSPipeline(this, "qtkitvideosrc");
+  // Camera Windows - first device:
+  // pipeline = new GSPipeline(this, "dshowvideosrc ! decodebin2");
+  // Windows - choose the device based on its name property.
+  //pipeline = new GSPipeline(this, "dshowvideosrc device-name=\"Sony Visual Communication Camera VGP-VCC7\" ! decodebin2");
+  // Camera Linux:
+  // pipeline = new GSPipeline(this, "v4l2src");  
+  
+  pipeline.play();
+  println("Pipeline string: " + pipeline.getPipeline());
+  
 } // end setup
 
 // --------------------------------------------------------------------------------------------------------------
@@ -305,15 +330,23 @@ void setup() {
 public void draw() {
   
   // openGL draw setup
+  
   PGraphicsOpenGL pgl = (PGraphicsOpenGL)g;  
   GL gl = pgl.beginGL();
+  gl.setSwapInterval(1); // Enable VSync
+  pgl.endGL();
+   
+  if (!paint1 && !paint2 && !paint3 && !paint4) { background(0); }
   
-  background(0);
-  
+  // movies update
   if (myMovie1.available()) { myMovie1.read(); QCeffects1(); }
   if (myMovie2.available()) { myMovie2.read(); QCeffects2(); }
   if (myMovie3.available()) { myMovie3.read(); QCeffects3(); }
   if (myMovie4.available()) { myMovie4.read(); QCeffects4(); }
+  
+  // camera update
+  if (pipeline.available()) { pipeline.read(); }
+  
   
   //
   // drop movie
@@ -407,7 +440,6 @@ public void draw() {
     layer4bpmTimeLastTime=millis();
   }
   
-  
   //
   // bpm change movie
   //
@@ -417,7 +449,7 @@ public void draw() {
     String tempString = rootFolder + dirs1[selectedDir1] +"/";
     fileNames = listFileNames(tempString, txtFilter);
     tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
-    myMovie1.dispose(); myMovie1.delete(); myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play();
+    myMovie1.stop(); myMovie1.delete(); myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play();
     if(layer1loop){ myMovie1.loop(); }
     myMovie1.jump(random(myMovie1.duration()));
     layer1bpmMovieLastTime=millis();
@@ -427,7 +459,7 @@ public void draw() {
     String tempString = rootFolder + dirs2[selectedDir2] +"/";
     fileNames = listFileNames(tempString, txtFilter);
     tempString = rootFolder + dirs2[selectedDir2] +"/"+ fileNames[int(random(fileNames.length))];
-    myMovie2.dispose(); myMovie2.delete(); myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play();
+    myMovie2.stop(); myMovie2.delete(); myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play();
     if(layer2loop){ myMovie2.loop(); }
     myMovie2.jump(random(myMovie2.duration()));
     layer2bpmMovieLastTime=millis();
@@ -437,7 +469,7 @@ public void draw() {
     String tempString = rootFolder + dirs3[selectedDir3] +"/";
     fileNames = listFileNames(tempString, txtFilter);
     tempString = rootFolder + dirs3[selectedDir3] +"/"+ fileNames[int(random(fileNames.length))];
-    myMovie3.dispose(); myMovie3.delete(); myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play();
+    myMovie3.stop(); myMovie3.delete();myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play();
     if(layer3loop){ myMovie3.loop(); }
     myMovie3.jump(random(0,myMovie3.duration()));
     layer3bpmMovieLastTime=millis();
@@ -447,7 +479,7 @@ public void draw() {
     String tempString = rootFolder + dirs4[selectedDir4] +"/";
     fileNames = listFileNames(tempString, txtFilter);
     tempString = rootFolder + dirs4[selectedDir4] +"/"+ fileNames[int(random(fileNames.length))];
-    myMovie4.dispose(); myMovie4.delete(); myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play();
+    myMovie4.stop(); myMovie4.delete(); myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play();
     if(layer4loop){ myMovie4.loop(); }
     myMovie4.jump(random(0,myMovie4.duration()));
     layer4bpmMovieLastTime=millis();
@@ -479,7 +511,11 @@ public void draw() {
       if (layerComposite1select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
       if (layerComposite1select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
       
-      image(myMovie1, 0, 0, outputWidth, outputHeight); 
+      switch (layerContent1) {
+        case 0: image(myMovie1, 0, 0, outputWidth, outputHeight); break; // movie
+        case 1: break; // image
+        case 2: image(pipeline, 0, 0, outputWidth, outputHeight); break; // camera
+      } // end switch
       
       if (layerComposite1select != 0) { pgl.endGL(); }
       
@@ -508,19 +544,11 @@ public void draw() {
       if (layerComposite2select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
       if (layerComposite2select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
       
-      
-      // blend xxx
-      //
-      //gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_COLOR); // ok
-      //gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_DST_COLOR); // ok
-      //gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_DST_COLOR); // ok
-      //gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_SRC_COLOR); // ok
-      //gl.glBlendFunc(GL.GL_ONE_MINUS_SRC_COLOR, GL.GL_ONE); // medio
-      //gl.glBlendFunc(GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_COLOR); // ok escuresce com o inverso
-      //gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR); // ok escuresce
-      
-
-      image(myMovie2, 0, 0, outputWidth, outputHeight); 
+      switch (layerContent2) {
+        case 0: image(myMovie2, 0, 0, outputWidth, outputHeight); break; // movie
+        case 1: break; // image
+        case 2: image(pipeline, 0, 0, outputWidth, outputHeight); break; // camera
+      } // end switch
       
       if (layerComposite2select != 0) { pgl.endGL(); }
       
@@ -550,7 +578,11 @@ public void draw() {
       if (layerComposite3select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
       if (layerComposite3select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
       
-      image(myMovie3, 0, 0, outputWidth, outputHeight); 
+      switch (layerContent3) {
+        case 0: image(myMovie3, 0, 0, outputWidth, outputHeight); break; // movie
+        case 1: break; // image
+        case 2: image(pipeline, 0, 0, outputWidth, outputHeight); break; // camera
+      } // end switch
       
       if (layerComposite3select != 0) { pgl.endGL(); }
       
@@ -579,7 +611,11 @@ public void draw() {
       if (layerComposite4select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
       if (layerComposite4select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
       
-      image(myMovie4, 0, 0, outputWidth, outputHeight);
+      switch (layerContent4) {
+        case 0: image(myMovie4, 0, 0, outputWidth, outputHeight); break; // movie
+        case 1: break; // image
+        case 2: image(pipeline, 0, 0, outputWidth, outputHeight); break; // camera
+      } // end switch
       
       if (layerComposite4select != 0) { pgl.endGL(); }
       
@@ -615,7 +651,20 @@ public void draw() {
     default: break;
   } // end switch doRandomize
   
-  //System.gc();
+  switch (doRandomizeDir) {
+    case 0: QCrandomDir(0); doRandomizeDir=100; break;
+    case 1: QCrandomDir(1); doRandomizeDir=100; break;
+    case 2: QCrandomDir(2); doRandomizeDir=100; break;
+    case 3: QCrandomDir(3); doRandomizeDir=100; break;
+    default: break;
+  } // end switch doRandomize
+  
+  // memory management
+  if (frameCount%900==0) { // clean memory around each 15 seconds
+    println (hour()+":"+minute()+":"+second()+" Free Memory: "+Runtime.getRuntime().freeMemory()/1024+" K; Garbage collected;");
+    System.gc();
+    println (hour()+":"+minute()+":"+second()+" Free Memory: "+Runtime.getRuntime().freeMemory()/1024+" K;\n");
+  } // end if 
   
 } // end draw
 

@@ -20,23 +20,21 @@ class MyCanvas extends ControlWindowCanvas {
     // layer column
     
     if (controlWindow.currentTab().id() < 8) {
-      // not selected layers
+      // not selected layers columns
       for(int i = 0; i< 4; i++) {
-        theApplet.fill(30); theApplet.rect(1+(columnWidth*i),20,int(columnWidth*0.98),700);
+        theApplet.fill(25); theApplet.rect(1+(columnWidth*i),20,int(columnWidth*0.98),700);
       } // end for
-      // selected layer
+      // selected layer columns
       theApplet.fill(40); theApplet.stroke(#E8E8E8);
       theApplet.rect(1+(columnWidth*selectedLayer),20,int(columnWidth*0.98),700); theApplet.noStroke();
     }
     
     if (controlWindow.currentTab().id() == 8) { // audio tab
-      // all layers at top
-      theApplet.fill(40); theApplet.rect(5,20,interfaceWidth-10,200);
+      theApplet.fill(40); theApplet.rect(5,20,interfaceWidth-10,200); // all layers top box
     }
     
     if (controlWindow.currentTab().id() > 8) {
-      // all layers at top
-      theApplet.fill(40); theApplet.rect(5,20,interfaceWidth-10,140);
+      theApplet.fill(40); theApplet.rect(5,20,interfaceWidth-10,140); // all layers top box
     }
     
     // layer icons
@@ -61,12 +59,14 @@ class MyCanvas extends ControlWindowCanvas {
     
     // dir 1
     if (fileCounter1 > 0) {
+      // dir text
       for(int i = 0; i< fileCounter1limit; i++) {
-        if(i==fileCounter1){break;}
-        if (i == selectedDir1) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs1[i], 10+(columnWidth*0), 320+(18*i));
+        if(i+(dirPageSelected1*21) == fileCounter1){break;}
+        if (i+(dirPageSelected1*21) == selectedDir1) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
+        theApplet.text(dirs1[i+(dirPageSelected1*21)], 10+(columnWidth*0), 320+(18*i));
       } // end for
       
+      // dir pages
       dirPages1 = (fileCounter1/fileCounter1limit)+1;
       for(int i = 0; i< (dirPages1); i++) {
         if (i==dirPageSelected1) {theApplet.stroke(255,0,0);theApplet.fill(200,0,0);} else {theApplet.stroke(0,255,0);theApplet.fill(0,200,0);} // page icon color
@@ -79,12 +79,14 @@ class MyCanvas extends ControlWindowCanvas {
     
     // dir 2
     if (fileCounter2 > 0) {
+      // dir text
       for(int i = 0; i< fileCounter2limit; i++) {
-        if(i==fileCounter2){break;}
-        if (i == selectedDir2) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs2[i], 10+(columnWidth*1), 320+(18*i));
+        if(i+(dirPageSelected2*21) == fileCounter2){break;}
+        if (i+(dirPageSelected2*21) == selectedDir2) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
+        theApplet.text(dirs2[i+(dirPageSelected2*21)], 10+(columnWidth*1), 320+(18*i));
       } // end for
       
+      // dir pages
       dirPages2 = (fileCounter2/fileCounter2limit)+1;
       for(int i = 0; i< (dirPages2); i++) {
         if (i==dirPageSelected2) {theApplet.stroke(255,0,0);theApplet.fill(200,0,0);} else {theApplet.stroke(0,255,0);theApplet.fill(0,200,0);} // page icon color
@@ -95,12 +97,14 @@ class MyCanvas extends ControlWindowCanvas {
     
     // dir 3
     if (fileCounter3 > 0) {
+      // dir text
       for(int i = 0; i< fileCounter3limit; i++) {
-        if(i==fileCounter3){break;}
-        if (i == selectedDir3) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs3[i], 10+(columnWidth*2), 320+(18*i));
+        if(i+(dirPageSelected3*21) == fileCounter3){break;}
+        if (i+(dirPageSelected1*21) == selectedDir3) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
+        theApplet.text(dirs3[i+(dirPageSelected3*21)], 10+(columnWidth*2), 320+(18*i));
       } // end for
       
+      // dir pages
       dirPages3 = (fileCounter3/fileCounter3limit)+1;
       for(int i = 0; i< (dirPages3); i++) {
         if (i==dirPageSelected3) {theApplet.stroke(255,0,0);theApplet.fill(200,0,0);} else {theApplet.stroke(0,255,0);theApplet.fill(0,200,0);} // page icon color
@@ -112,11 +116,13 @@ class MyCanvas extends ControlWindowCanvas {
     // dir 4
     if (fileCounter4 > 0) {
       for(int i = 0; i< fileCounter4limit; i++) {
-        if(i==fileCounter4){break;}
-        if (i == selectedDir4) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs4[i], 10+(columnWidth*3), 320+(18*i));
+        // dir text
+        if(i+(dirPageSelected4*21) == fileCounter4){break;}
+        if (i+(dirPageSelected4*21) == selectedDir4) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
+        theApplet.text(dirs4[i+(dirPageSelected4*21)], 10+(columnWidth*3), 320+(18*i));
       } // end for
       
+      // dir pages
       dirPages4 = (fileCounter4/fileCounter4limit)+1;
       for(int i = 0; i< (dirPages4); i++) {
         if (i==dirPageSelected4) {theApplet.stroke(255,0,0);theApplet.fill(200,0,0);} else {theApplet.stroke(0,255,0);theApplet.fill(0,200,0);} // page icon color
@@ -133,26 +139,18 @@ class MyCanvas extends ControlWindowCanvas {
 //  mouse click checks
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  
-  
-  //
-  // dirs click check 
-  //
+   
   if(theApplet.mousePressed) {
     
     //
-    // dir click
+    // dir click check
     //  
     
     // if main tab, column 1
     if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*0) && theApplet.mouseX < (columnWidth*1) ) { 
       //if (fileCounter1 > 0) {
         for(int i = 0; i< fileCounter1limit; i++) {
-          if ((theApplet.mouseY < (320+(18*i))) && (theApplet.mouseY > (302+(18*(i))))) {
-            dirClicked = i;
-            selectedDir1 = dirClicked;
-            // println (theApplet.mouseY + "  dir: " + dirClicked + ", " + dirs1[dirClicked]);
-          } // end if mouse loc
+          if ((theApplet.mouseY < (320+(18*i))) && (theApplet.mouseY > (302+(18*(i))))) { selectedDir1 = i+(dirPageSelected1*21); } // end if mouse loc
         } // end for
       //} //end if fileCounter1
     } // end if main tab, column 1
@@ -161,9 +159,7 @@ class MyCanvas extends ControlWindowCanvas {
     if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*1) && theApplet.mouseX < (columnWidth*2) ) {  
       //if (fileCounter1 > 0) {
         for(int i = 0; i< fileCounter2limit; i++) {
-          if ((theApplet.mouseY < (320+(18*i))) && (theApplet.mouseY > (302+(18*(i))))) {
-            selectedDir2 = i;
-          } // end if mouse loc
+          if ((theApplet.mouseY < (320+(18*i))) && (theApplet.mouseY > (302+(18*(i))))) { selectedDir2 = i+(dirPageSelected2*21); } // end if mouse loc
         } // end for
       //} //end if fileCounter2
     } // end if main tab, column 2
@@ -172,9 +168,7 @@ class MyCanvas extends ControlWindowCanvas {
     if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*2) && theApplet.mouseX < (columnWidth*3) ) { 
       //if (fileCounter1 > 0) {
         for(int i = 0; i< fileCounter3limit; i++) {
-          if ((theApplet.mouseY < (320+(18*i))) && (theApplet.mouseY > (302+(18*(i))))) {
-            selectedDir3 = i;
-          } // end if mouse loc
+          if ((theApplet.mouseY < (320+(18*i))) && (theApplet.mouseY > (302+(18*(i))))) { selectedDir3 = i+(dirPageSelected3*21); } // end if mouse loc
         } // end for
       //} //end if fileCounter3
     } // end if main tab, column 3
@@ -183,12 +177,42 @@ class MyCanvas extends ControlWindowCanvas {
     if (controlWindow.currentTab().id()==1  && theApplet.mouseX > (columnWidth*3) && theApplet.mouseX < (columnWidth*4) ) { 
       //if (fileCounter1 > 0) {
         for(int i = 0; i< fileCounter4limit; i++) {
-          if ((theApplet.mouseY < (320+(18*i))) && (theApplet.mouseY > (302+(18*(i))))) {
-            selectedDir4 = i;
-          } // end if mouse loc
+          if ((theApplet.mouseY < (320+(18*i))) && (theApplet.mouseY > (302+(18*(i))))) { selectedDir4 = i+(dirPageSelected4*21); } // end if mouse loc
         } // end for
       //} //end if fileCounter4  
     } // end if main tab, column 4
+    
+    //
+    // dir pages click check
+    //
+    
+    // dir pages layer 1
+    if (controlWindow.currentTab().id()==1  && theApplet.mouseY > 700) {
+      for(int i = 0; i< (dirPages1); i++) {
+        if (theApplet.mouseX > (10+(columnWidth*0)+(i*17)) && theApplet.mouseX < (23+(columnWidth*0)+(i*17)) ) {dirPageSelected1=i;}
+      } // end for
+    } // end if
+    
+    // dir pages layer 2
+    if (controlWindow.currentTab().id()==1  && theApplet.mouseY > 700) {
+      for(int i = 0; i< (dirPages2); i++) {
+        if (theApplet.mouseX > (10+(columnWidth*1)+(i*17)) && theApplet.mouseX < (23+(columnWidth*1)+(i*17)) ) {dirPageSelected2=i;}
+      } // end for
+    } // end if
+    
+    // dir pages layer 3
+    if (controlWindow.currentTab().id()==1  && theApplet.mouseY > 700) {
+      for(int i = 0; i< (dirPages3); i++) {
+        if (theApplet.mouseX > (10+(columnWidth*2)+(i*17)) && theApplet.mouseX < (23+(columnWidth*2)+(i*17)) ) {dirPageSelected3=i;}
+      } // end for
+    } // end if
+    
+    // dir pages layer 4
+    if (controlWindow.currentTab().id()==1  && theApplet.mouseY > 700) {
+      for(int i = 0; i< (dirPages4); i++) {
+        if (theApplet.mouseX > (10+(columnWidth*3)+(i*17)) && theApplet.mouseX < (23+(columnWidth*3)+(i*17)) ) {dirPageSelected4=i;}
+      } // end for
+    } // end if
     
   } // end if theApplet.mousePressed
 
@@ -231,8 +255,10 @@ class MyCanvas extends ControlWindowCanvas {
   
   // dropArea1.draw();
     
-  }
-}
+    }
+
+
+} // end MyCanvas 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -255,10 +281,10 @@ void controlEvent(ControlEvent theEvent) {
     }
     
     // layer content 1 event
-    if (theEvent.group() == layerContentButton1) {
-      layerContent1 = int(theEvent.group().value());
-      println("layerContent1: "+layerContent1);
-    }
+    if (theEvent.group() == layerContentButton1) { layerContent1 = int(theEvent.group().value()); }
+    if (theEvent.group() == layerContentButton2) { layerContent2 = int(theEvent.group().value()); }
+    if (theEvent.group() == layerContentButton3) { layerContent3 = int(theEvent.group().value()); }
+    if (theEvent.group() == layerContentButton4) { layerContent4 = int(theEvent.group().value()); }
     
     // composite
     if (theEvent.group().name() == "layerComposite1") { layerComposite1select = int(theEvent.group().value()); }
@@ -282,30 +308,20 @@ void controlEvent(ControlEvent theEvent) {
     if(theEvent.controller().name()=="layer4loop"){ if(layer4loop){ myMovie4.loop(); }else { myMovie4.noLoop(); } }
   
   } // end if controllers
-
   
 } // end controlEvent
-
-
-// random dir buttons
-public void randomDir1() {
   
-}
-
-public void randomDir2() {
-  
-}
-
-public void randomDir3() {
-  
-}
-
-public void randomDir4() {
-  
-}
 
 
-// random movie buttons
+
+// random dir buttons - randomize dir and movie
+public void randomDir1(int theValue) { doRandomizeDir = 0; }
+public void randomDir2(int theValue) { doRandomizeDir = 1; }
+public void randomDir3(int theValue) { doRandomizeDir = 2; }
+public void randomDir4(int theValue) { doRandomizeDir = 3; }
+
+
+// random movie buttons - randomize dir and movie
 public void randomMov1(int theValue) { doRandomize = 0; }
 public void randomMov2(int theValue) { doRandomize = 1; }
 public void randomMov3(int theValue) { doRandomize = 2; }
