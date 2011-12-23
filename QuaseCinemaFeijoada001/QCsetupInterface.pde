@@ -205,6 +205,9 @@ void QCsetupInterface() {
   controlP5.Controller posterizeToggle1 = controlP5.addToggle("effectPosterize1",false,50+(columnWidth*0),265,20,20);
   posterizeToggle1.setLabel("poster"); posterizeToggle1.moveTo(controlWindow,"Effects");
   
+  controlP5.Controller paintToggle1 = controlP5.addToggle("effectPaint1",false,90+(columnWidth*0),265,20,20);
+  paintToggle1.setLabel("light paint"); paintToggle1.moveTo(controlWindow,"Effects");
+  
   controlP5.Controller effectRgToggle1 = controlP5.addToggle("effectRG1",false,10+(columnWidth*0),315,20,20);
   effectRgToggle1.setLabel("R -> G"); effectRgToggle1.moveTo(controlWindow,"Effects");
   
@@ -250,6 +253,9 @@ void QCsetupInterface() {
   
   controlP5.Controller posterizeToggle2 = controlP5.addToggle("effectPosterize2",false,50+(columnWidth*1),265,20,20);
   posterizeToggle2.setLabel("poster"); posterizeToggle2.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller paintToggle2 = controlP5.addToggle("effectPaint2",false,90+(columnWidth*1),265,20,20);
+  paintToggle2.setLabel("light paint"); paintToggle2.moveTo(controlWindow,"Effects");
   
   controlP5.Controller effectRgToggle2 = controlP5.addToggle("effectRG2",false,10+(columnWidth*1),315,20,20);
   effectRgToggle2.setLabel("R -> G"); effectRgToggle2.moveTo(controlWindow,"Effects");
@@ -297,6 +303,9 @@ void QCsetupInterface() {
   controlP5.Controller posterizeToggle3 = controlP5.addToggle("effectPosterize3",false,50+(columnWidth*2),265,20,20);
   posterizeToggle3.setLabel("poster"); posterizeToggle3.moveTo(controlWindow,"Effects");
 
+  controlP5.Controller paintToggle3 = controlP5.addToggle("effectPaint3",false,90+(columnWidth*2),265,20,20);
+  paintToggle3.setLabel("light paint"); paintToggle3.moveTo(controlWindow,"Effects");
+  
   controlP5.Controller effectRgToggle3 = controlP5.addToggle("effectRG3",false,10+(columnWidth*2),315,20,20);
   effectRgToggle3.setLabel("R -> G"); effectRgToggle3.moveTo(controlWindow,"Effects");
   
@@ -343,6 +352,9 @@ void QCsetupInterface() {
   
   controlP5.Controller posterizeToggle4 = controlP5.addToggle("effectPosterize4",false,50+(columnWidth*3),265,20,20);
   posterizeToggle4.setLabel("poster"); posterizeToggle4.moveTo(controlWindow,"Effects");
+  
+  controlP5.Controller paintToggle4 = controlP5.addToggle("effectPaint4",false,90+(columnWidth*3),265,20,20);
+  paintToggle4.setLabel("light paint"); paintToggle4.moveTo(controlWindow,"Effects");
   
   controlP5.Controller effectRgToggle4 = controlP5.addToggle("effectRG4",false,10+(columnWidth*3),315,20,20);
   effectRgToggle4.setLabel("R -> G"); effectRgToggle4.moveTo(controlWindow,"Effects");

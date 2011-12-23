@@ -129,6 +129,9 @@ public boolean effectInvert3 = false; public boolean effectInvert4 = false;
 public boolean effectPosterize1 = false; public boolean effectPosterize2 = false;
 public boolean effectPosterize3 = false; public boolean effectPosterize4 = false;
 
+public boolean effectPaint1 = false; public boolean effectPaint2 = false;
+public boolean effectPaint3 = false; public boolean effectPaint4 = false;
+
 public boolean effectRG1 = false; public boolean effectRG2 = false;
 public boolean effectRG3 = false; public boolean effectRG4 = false;
 
@@ -336,7 +339,7 @@ public void draw() {
   gl.setSwapInterval(1); // Enable VSync
   pgl.endGL();
    
-  if (!paint1 && !paint2 && !paint3 && !paint4) { background(0); }
+  if (!effectPaint1 && !effectPaint2 && !effectPaint3 && !effectPaint4) { background(0); }
   
   // movies update
   if (myMovie1.available()) { myMovie1.read(); QCeffects1(); }
@@ -347,6 +350,11 @@ public void draw() {
   // camera update
   if (pipeline.available()) { pipeline.read(); }
   
+  // light paint update (needs lighten composite mode)
+  if (effectPaint1) { layerComposite1select=1; }
+  if (effectPaint2) { layerComposite2select=1; }
+  if (effectPaint3) { layerComposite3select=1; }
+  if (effectPaint4) { layerComposite4select=1; }
   
   //
   // drop movie
@@ -660,7 +668,7 @@ public void draw() {
   } // end switch doRandomize
   
   // memory management
-  if (frameCount%900==0) { // clean memory around each 15 seconds
+  if (frameCount%600==0) { // clean memory around each 10 seconds
     println (hour()+":"+minute()+":"+second()+" Free Memory: "+Runtime.getRuntime().freeMemory()/1024+" K; Garbage collected;");
     System.gc();
     println (hour()+":"+minute()+":"+second()+" Free Memory: "+Runtime.getRuntime().freeMemory()/1024+" K;\n");
