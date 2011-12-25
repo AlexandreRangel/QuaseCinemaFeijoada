@@ -39,7 +39,6 @@ int doRandomize = 100; int doRandomizeDir = 100; // 100 = don't do it
 
 Textarea textHelp;
 
-
 public int fpsValue = 0; // fps slider value
 
 public GSMovie myMovie1, myMovie2, myMovie3, myMovie4; // movies
