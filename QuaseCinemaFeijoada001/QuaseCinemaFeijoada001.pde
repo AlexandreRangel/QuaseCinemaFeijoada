@@ -180,7 +180,6 @@ public void init(){
 // --------------------------------------------------------------------------------------------------------------
 
 
-
 void setup() {
   size(outputWidth, outputHeight, OPENGL); //hint(ENABLE_OPENGL_4X_SMOOTH);
   
