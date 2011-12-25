@@ -51,6 +51,10 @@ GSPipeline pipeline; // camera
 
 SDrop drop;
 
+// OS variables
+public String OSname;
+public String OSseparator;
+
 // dirs pre setup
 public String[] fileNames;
 public String folderPath = " ";
@@ -181,14 +185,12 @@ public void init(){
 void setup() {
   size(outputWidth, outputHeight, OPENGL); //hint(ENABLE_OPENGL_4X_SMOOTH);
   
-  
-  
   frame.setResizable(true);
   frameRate(60);
   // set to output location (position of second display, usually 1440,0)
   frame.setLocation(outputXpos,outputYpos); // maybe frame.setLocation(screen.width,0);
   
-    PGraphicsOpenGL pgl = (PGraphicsOpenGL)g;  
+  PGraphicsOpenGL pgl = (PGraphicsOpenGL)g;  
   GL gl = pgl.beginGL();
   gl.setSwapInterval(1); // Enable VSync
   pgl.endGL();
@@ -200,15 +202,23 @@ void setup() {
   // default MP3 directory and
   // default movie folders path (path containing movie directories)
 
-  //defaultFolderPath = dataPath("_videos");
-  defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos";
-  //String defaultFolderPath = dataPath("quadsconfig.txt");
+  defaultFolderPath = dataPath("_videos"); // relative path
+  //defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos";
   //String defaultFolderPath = System.getProperty("user.home")+"/Desktop"; // desktop example
   //String defaultFolderPath = "/Users/admin/Desktop"; // Unix path example
   //String defaultFolderPath = "C:\\windows"; // windows path example
   
   // MP3 FILES here (no folders)
-  defaultFolderPathMp3 = dataPath("_audio");;
+  defaultFolderPathMp3 = dataPath("_audio"); // relative path
+  
+  // Operational System
+  OSname = System.getProperty("os.name");
+  System.out.println("OS Name: " + OSname);
+  System.out.println("OS Architecture: " + System.getProperty("os.arch"));
+  System.out.println("OS Version: " + System.getProperty("os.version"));
+  
+  if (OSname.equals("Mac OS X")) { OSseparator = System.getProperty("file.separator"); }
+  
   
   //
   // projectedQuads setup
@@ -252,30 +262,31 @@ void setup() {
   //
   // GStreamer setup
   //
+  if (OSname == "Mac OS X") { GSVideo.localGStreamerPath = sketchPath("code/gstreamer/macosx64"); }
+  if (OSname == "Windows") { GSVideo.localGStreamerPath = sketchPath("code\\gstreamer\\windows64"); }
   
-  GSVideo.localGStreamerPath = sketchPath("code/gstreamer/macosx64");
-  
-  tempString = rootFolder + dirs1[selectedDir1] +"/";
+  tempString = rootFolder + dirs1[selectedDir1] + OSseparator;
+  println (tempString);
   fileNames = listFileNames(tempString, txtFilter);
-  tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+  tempString = rootFolder + dirs1[selectedDir1] + OSseparator + fileNames[int(random(fileNames.length))];
   myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play();
   if(layer1loop){ myMovie1.loop(); }
   
-  tempString = rootFolder + dirs2[selectedDir2] +"/";
+  tempString = rootFolder + dirs2[selectedDir2] + OSseparator;
   fileNames = listFileNames(tempString, txtFilter);
-  tempString = rootFolder + dirs2[selectedDir2] +"/"+ fileNames[int(random(fileNames.length))];
+  tempString = rootFolder + dirs2[selectedDir2] + OSseparator + fileNames[int(random(fileNames.length))];
   myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play();
   if(layer2loop){ myMovie2.loop(); }
   
-  tempString = rootFolder + dirs3[selectedDir3] +"/";
+  tempString = rootFolder + dirs3[selectedDir3] + OSseparator;
   fileNames = listFileNames(tempString, txtFilter);
-  tempString = rootFolder + dirs3[selectedDir3] +"/"+ fileNames[int(random(fileNames.length))];
+  tempString = rootFolder + dirs3[selectedDir3] + OSseparator + fileNames[int(random(fileNames.length))];
   myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play();
   if(layer3loop){ myMovie3.loop(); }
   
-  tempString = rootFolder + dirs4[selectedDir4] +"/";
+  tempString = rootFolder + dirs4[selectedDir4] + OSseparator;
   fileNames = listFileNames(tempString, txtFilter);
-  tempString = rootFolder + dirs4[selectedDir4] +"/"+ fileNames[int(random(fileNames.length))];
+  tempString = rootFolder + dirs4[selectedDir4] + OSseparator + fileNames[int(random(fileNames.length))];
   myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play();
   if(layer4loop){ myMovie4.loop(); }
       
@@ -289,12 +300,12 @@ void setup() {
   // audio setup
   for(int i = 0; i< 200; i++) { dirsMp3[i]=""; }
   
-  tempString = defaultFolderPathMp3 +"/";
+  tempString = defaultFolderPathMp3 + OSseparator;
   fileNamesMp3 = listFileNames(tempString, txtFilterMp3); //println(fileNamesMp3);
   
-  minim = new Minim(this);
-  selectedDirMp3 = int(random(fileNamesMp3.length));
-  tempString = defaultFolderPathMp3 +"/"+fileNamesMp3[selectedDirMp3];
+  //minim = new Minim(this);
+  //selectedDirMp3 = int(random(fileNamesMp3.length));
+  //tempString = defaultFolderPathMp3 + OSseparator +fileNamesMp3[selectedDirMp3];
   //audio1 = minim.loadFile("audio1.mp3", 2048);
   //audio1 = minim.loadFile(tempString,512);
   //audio1.loop();
@@ -360,7 +371,7 @@ public void draw() {
     if (pipeline.available()) { pipeline.read(); }
   } // end if camera update
   
-  // light paint update (needs lighten composite mode)
+  // light paint update (turns on lighten composite mode)
   if (effectPaint1) { layerComposite1select=1; }
   if (effectPaint2) { layerComposite2select=1; }
   if (effectPaint3) { layerComposite3select=1; }
@@ -371,25 +382,25 @@ public void draw() {
   //
   
   if (changeMovie && selectedLayer == 0) {
-   myMovie1.dispose(); myMovie1.delete();
+   myMovie1.delete();
    myMovie1 = new GSMovie(this, newMovie); myMovie1.play();
    if(layer1loop){ myMovie1.loop(); }
    changeMovie = false; 
   }
   if (changeMovie && selectedLayer == 1) {
-   myMovie2.dispose(); myMovie2.delete();
+   myMovie2.delete();
    myMovie2 = new GSMovie(this, newMovie); myMovie2.play();
    if(layer2loop){ myMovie2.loop(); }
    changeMovie = false; 
   }
   if (changeMovie && selectedLayer == 2) {
-   myMovie3.dispose(); myMovie3.delete();
+   myMovie3.delete();
    myMovie3 = new GSMovie(this, newMovie); myMovie3.play();
    if(layer3loop){ myMovie3.loop(); }
    changeMovie = false; 
   }
   if (changeMovie && selectedLayer == 3) {
-   myMovie4.dispose(); myMovie4.delete();
+   myMovie4.delete();
    myMovie4 = new GSMovie(this, newMovie); myMovie4.play();
    if(layer4loop){ myMovie4.loop(); }
    changeMovie = false; 
@@ -402,7 +413,7 @@ public void draw() {
   //
   
   // fps
-  if (random(100)>50){ controlP5.controller("fpsValue").setValue(int(frameRate)); }
+  controlP5.controller("fpsValue").setValue(int(frameRate));
 
   // playback heads
   controlP5.controller("layer1playback").setValue(map(myMovie1.time(),0.0,myMovie1.duration(),0.0,1.0));
@@ -464,9 +475,9 @@ public void draw() {
   
   if(layer1bpmMovie>0 && millis()-layer1bpmMovieLastTime >= map(layer1bpmMovie,0,240,1000,10)){ // layer 1
     // change movie
-    String tempString = rootFolder + dirs1[selectedDir1] +"/";
+    String tempString = rootFolder + dirs1[selectedDir1] + OSseparator;
     fileNames = listFileNames(tempString, txtFilter);
-    tempString = rootFolder + dirs1[selectedDir1] +"/"+ fileNames[int(random(fileNames.length))];
+    tempString = rootFolder + dirs1[selectedDir1] + OSseparator + fileNames[int(random(fileNames.length))];
     myMovie1.stop(); myMovie1.delete(); myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play();
     if(layer1loop){ myMovie1.loop(); }
     myMovie1.jump(random(myMovie1.duration()));
@@ -474,9 +485,9 @@ public void draw() {
   }
   if(layer2bpmMovie>0 && millis()-layer2bpmMovieLastTime >= map(layer2bpmMovie,0,240,1000,10)){ // layer 2
     // change movie
-    String tempString = rootFolder + dirs2[selectedDir2] +"/";
+    String tempString = rootFolder + dirs2[selectedDir2] + OSseparator;
     fileNames = listFileNames(tempString, txtFilter);
-    tempString = rootFolder + dirs2[selectedDir2] +"/"+ fileNames[int(random(fileNames.length))];
+    tempString = rootFolder + dirs2[selectedDir2] + OSseparator + fileNames[int(random(fileNames.length))];
     myMovie2.stop(); myMovie2.delete(); myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play();
     if(layer2loop){ myMovie2.loop(); }
     myMovie2.jump(random(myMovie2.duration()));
@@ -484,9 +495,9 @@ public void draw() {
   }
   if(layer3bpmMovie>0 && millis()-layer3bpmMovieLastTime >= map(layer3bpmMovie,0,240,1000,10)){ // layer 3
     // change movie
-    String tempString = rootFolder + dirs3[selectedDir3] +"/";
+    String tempString = rootFolder + dirs3[selectedDir3] + OSseparator;
     fileNames = listFileNames(tempString, txtFilter);
-    tempString = rootFolder + dirs3[selectedDir3] +"/"+ fileNames[int(random(fileNames.length))];
+    tempString = rootFolder + dirs3[selectedDir3] + OSseparator + fileNames[int(random(fileNames.length))];
     myMovie3.stop(); myMovie3.delete();myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play();
     if(layer3loop){ myMovie3.loop(); }
     myMovie3.jump(random(0,myMovie3.duration()));
@@ -494,9 +505,9 @@ public void draw() {
   }
   if(layer4bpmMovie>0 && millis()-layer4bpmMovieLastTime >= map(layer4bpmMovie,0,240,1000,10)){ // layer 4
     // change movie
-    String tempString = rootFolder + dirs4[selectedDir4] +"/";
+    String tempString = rootFolder + dirs4[selectedDir4] + OSseparator;
     fileNames = listFileNames(tempString, txtFilter);
-    tempString = rootFolder + dirs4[selectedDir4] +"/"+ fileNames[int(random(fileNames.length))];
+    tempString = rootFolder + dirs4[selectedDir4] + OSseparator + fileNames[int(random(fileNames.length))];
     myMovie4.stop(); myMovie4.delete(); myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play();
     if(layer4loop){ myMovie4.loop(); }
     myMovie4.jump(random(0,myMovie4.duration()));
@@ -511,66 +522,56 @@ public void draw() {
   
   // pre-render layer 1
   if (layer1visibility) {
-    //tint(fft.getAvg(5)*255, green(colorPicker1.getColorValue()), 0); // colorPicker1.getColorValue()
+    
+    // openGL compositing
+    if (layerComposite1select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+    if (layerComposite1select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+    if (layerComposite1select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
+    
     tint(red(colorPicker1.getColorValue()),green(colorPicker1.getColorValue()),blue(colorPicker1.getColorValue()),layerOpacity1);
-    myMovie1.play();
-    myMovie1.speed(layer1speed);
+    //tint(fft.getAvg(5)*255, green(colorPicker1.getColorValue()), 0); // colorPicker1.getColorValue()
+    myMovie1.play(); myMovie1.speed(layer1speed);
     if (mapping1) { // quad mapping
       quadGraphics1.beginDraw();
-      image(myMovie1, 0, 0, 640, 480); 
+      QCdrawLayer(1,640,480);
       quadGraphics1.endDraw();
      } else if (bmapping1) {  // berzier mapping
       quadGraphics1.beginDraw();
-      image(myMovie1, 0, 0, 640, 480); 
+      QCdrawLayer(1,640,480);
       quadGraphics1.endDraw();
       bw1.render(quadGraphics1);
      } else { // no mapping
-      
-      if (layerComposite1select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
-      if (layerComposite1select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
-      
-      switch (layerContent1) {
-        case 0: image(myMovie1, 0, 0, outputWidth, outputHeight); break; // movie
-        case 1: break; // image
-        case 2: image(pipeline, 0, 0, outputWidth, outputHeight); break; // camera
-      } // end switch
-      
-      if (layerComposite1select != 0) { pgl.endGL(); }
-      
+      QCdrawLayer(1, outputWidth, outputHeight);
     } // end if mapping
+    if (layerComposite1select != 0) { pgl.endGL(); }
   } else {
      myMovie1.pause();
   }// end if layer1visibility
   
   // pre-render layer 2
   if (layer2visibility) {
+    
+    // openGL compositing
+    if (layerComposite2select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+    if (layerComposite2select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+    if (layerComposite2select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
+    
     tint(red(colorPicker2.getColorValue()),green(colorPicker2.getColorValue()),blue(colorPicker2.getColorValue()),layerOpacity2);
     myMovie2.play();
     myMovie2.speed(layer2speed);
     if (mapping2) { // quad mapping
       quadGraphics2.beginDraw();
-      image(myMovie2, 0, 0, 640, 480); 
+      QCdrawLayer(2,640,480);
       quadGraphics2.endDraw();
      } else if (bmapping2) {  // berzier mapping
       quadGraphics2.beginDraw();
-      image(myMovie2, 0, 0, 640, 480); 
+      QCdrawLayer(2,640,480); 
       quadGraphics2.endDraw();
       bw2.render(quadGraphics2);
      } else { // no mapping
-      
-      if (layerComposite2select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
-      if (layerComposite2select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
-      if (layerComposite2select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
-      
-      switch (layerContent2) {
-        case 0: image(myMovie2, 0, 0, outputWidth, outputHeight); break; // movie
-        case 1: break; // image
-        case 2: image(pipeline, 0, 0, outputWidth, outputHeight); break; // camera
-      } // end switch
-      
-      if (layerComposite2select != 0) { pgl.endGL(); }
-      
+      QCdrawLayer(2, outputWidth, outputHeight);
     } // end if mapping
+    if (layerComposite2select != 0) { pgl.endGL(); }
   } else {
      myMovie2.pause();
   }// end if layer2visibility
@@ -578,66 +579,56 @@ public void draw() {
   
   // pre-render layer 3
   if (layer3visibility) {
+    
+    // openGL compositing
+    if (layerComposite3select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+    if (layerComposite3select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+    if (layerComposite3select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
+    
     tint(red(colorPicker3.getColorValue()),green(colorPicker3.getColorValue()),blue(colorPicker3.getColorValue()),layerOpacity3);
     myMovie3.play();
     myMovie3.speed(layer3speed);
     if (mapping3) { // quad mapping
       quadGraphics3.beginDraw();
-      image(myMovie3, 0, 0, 640, 480); 
+      QCdrawLayer(3,640,480);
       quadGraphics3.endDraw();
      } else if (bmapping3) {  // berzier mapping
       quadGraphics3.beginDraw();
-      image(myMovie3, 0, 0, 640, 480); 
+      QCdrawLayer(3,640,480);
       quadGraphics3.endDraw();
       bw3.render(quadGraphics3);
      } else { // no mapping
-     
-      if (layerComposite3select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
-      if (layerComposite3select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
-      if (layerComposite3select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
-      
-      switch (layerContent3) {
-        case 0: image(myMovie3, 0, 0, outputWidth, outputHeight); break; // movie
-        case 1: break; // image
-        case 2: image(pipeline, 0, 0, outputWidth, outputHeight); break; // camera
-      } // end switch
-      
-      if (layerComposite3select != 0) { pgl.endGL(); }
-      
+      QCdrawLayer(3, outputWidth, outputHeight);
     } // end if mapping
+    if (layerComposite3select != 0) { pgl.endGL(); }
   } else {
      myMovie3.pause();
   }// end if layer3visibility
   
   // pre-render layer 4
   if (layer4visibility) {
+    
+    // openGL compositing
+    if (layerComposite4select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+    if (layerComposite4select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+    if (layerComposite4select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
+    
     tint(red(colorPicker4.getColorValue()),green(colorPicker4.getColorValue()),blue(colorPicker4.getColorValue()),layerOpacity4);
     myMovie4.play();
     myMovie4.speed(layer4speed);
     if (mapping4) { // quad mapping
       quadGraphics4.beginDraw();
-      image(myMovie4, 0, 0, 640, 480); 
+      QCdrawLayer(4,640,480);
       quadGraphics4.endDraw();
      } else if (bmapping4) {  // berzier mapping
       quadGraphics4.beginDraw();
-      image(myMovie4, 0, 0, 640, 480); 
+      QCdrawLayer(4,640,480);
       quadGraphics4.endDraw();
       bw4.render(quadGraphics4);
      } else { // no mapping
-     
-      if (layerComposite4select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
-      if (layerComposite4select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
-      if (layerComposite4select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
-      
-      switch (layerContent4) {
-        case 0: image(myMovie4, 0, 0, outputWidth, outputHeight); break; // movie
-        case 1: break; // image
-        case 2: image(pipeline, 0, 0, outputWidth, outputHeight); break; // camera
-      } // end switch
-      
-      if (layerComposite4select != 0) { pgl.endGL(); }
-      
+      QCdrawLayer(4, outputWidth, outputHeight);
     } // end if mapping
+    if (layerComposite4select != 0) { pgl.endGL(); }
   } else {
      myMovie4.pause();
   }// end if layer4visibility
@@ -650,8 +641,7 @@ public void draw() {
   
   // render fade
   if (fade > 0.0) {
-    fill(0,0,0,map(fade,0.0,100.0,0,255));
-    rect(0,0,outputWidth,outputHeight);
+    fill(0,0,0,map(fade,0.0,100.0,0,255)); rect(0,0,outputWidth,outputHeight);
   } 
   
   if (changeResolution != 100) { QCchangeResolution(); }
