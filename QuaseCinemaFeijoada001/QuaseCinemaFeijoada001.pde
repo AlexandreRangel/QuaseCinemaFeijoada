@@ -12,7 +12,6 @@ String defaultFolderPath, defaultFolderPathMp3;
 public int outputWidth = 1024; public int outputHeight = 768;
 public int outputXpos = 1440; public int outputYpos = 0;
 
-
 // libraries
 import controlP5.*; // controlP5 0.6.12 http://www.sojamo.de/libraries/controlP5
 import codeanticode.gsvideo.*; // GSvideo 1.0.0 http://gsvideo.sourceforge.net/
