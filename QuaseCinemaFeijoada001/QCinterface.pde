@@ -18,7 +18,7 @@ class MyCanvas extends ControlWindowCanvas {
   public void draw(PApplet theApplet) {
     
     // layer column
-    
+      
     if (controlWindow.currentTab().id() < 8) {
       // not selected layers columns
       for(int i = 0; i< 4; i++) {
@@ -51,13 +51,9 @@ class MyCanvas extends ControlWindowCanvas {
     }
   
   
-  //
-  // dir draw
-  //
-  
   if (controlWindow.currentTab().id()==1) { // main tab  
     
-    // dir 1
+    // dir 1 draw
     if (fileCounter1 > 0) {
       // dir text
       for(int i = 0; i< fileCounter1limit; i++) {
@@ -66,7 +62,7 @@ class MyCanvas extends ControlWindowCanvas {
         theApplet.text(dirs1[i+(dirPageSelected1*21)], 10+(columnWidth*0), 320+(18*i));
       } // end for
       
-      // dir pages
+      // dir pages draw
       dirPages1 = (fileCounter1/fileCounter1limit)+1;
       for(int i = 0; i< (dirPages1); i++) {
         if (i==dirPageSelected1) {theApplet.stroke(255,0,0);theApplet.fill(200,0,0);} else {theApplet.stroke(0,255,0);theApplet.fill(0,200,0);} // page icon color
@@ -77,7 +73,7 @@ class MyCanvas extends ControlWindowCanvas {
     
     
     
-    // dir 2
+    // dir 2 draw
     if (fileCounter2 > 0) {
       // dir text
       for(int i = 0; i< fileCounter2limit; i++) {
@@ -95,7 +91,7 @@ class MyCanvas extends ControlWindowCanvas {
       
     } //end if fileCounter2
     
-    // dir 3
+    // dir 3 draw
     if (fileCounter3 > 0) {
       // dir text
       for(int i = 0; i< fileCounter3limit; i++) {
@@ -113,7 +109,7 @@ class MyCanvas extends ControlWindowCanvas {
       
     } //end if fileCounter3
     
-    // dir 4
+    // dir 4 draw
     if (fileCounter4 > 0) {
       for(int i = 0; i< fileCounter4limit; i++) {
         // dir text
@@ -130,6 +126,26 @@ class MyCanvas extends ControlWindowCanvas {
       } // end for
       
     } //end if fileCounter4
+    
+    // in - out marks draw
+    theApplet.fill(210,0,0);
+    // layer 1
+    theApplet.rect(10+(columnWidth*0)+map(layer1in,0,layer1length,0,int(columnWidth*0.7)),196,2,4);
+    theApplet.rect(10+(columnWidth*0)+map(layer1out,0,layer1length,0,int(columnWidth*0.7)),196,2,4);
+    // layer 2
+    theApplet.rect(10+(columnWidth*1)+map(layer2in,0,layer2length,0,int(columnWidth*0.7)),196,2,4);
+    theApplet.rect(10+(columnWidth*1)+map(layer2out,0,layer2length,0,int(columnWidth*0.7)),196,2,4);
+    // layer 3
+    theApplet.rect(10+(columnWidth*2)+map(layer3in,0,layer3length,0,int(columnWidth*0.7)),196,2,4);
+    theApplet.rect(10+(columnWidth*2)+map(layer3out,0,layer3length,0,int(columnWidth*0.7)),196,2,4);
+    // layer 4
+    theApplet.rect(10+(columnWidth*3)+map(layer4in,0,layer4length,0,int(columnWidth*0.7)),196,2,4);
+    theApplet.rect(10+(columnWidth*3)+map(layer4out,0,layer4length,0,int(columnWidth*0.7)),196,2,4);
+    
+    
+      //10+(columnWidth*i)+int(columnWidth*0.7)
+      //10+(columnWidth*0),200,int(columnWidth*0.7)
+
     
   } // end if main tab
   

@@ -12,7 +12,7 @@ void keyPressed(){
     case '4':
        selectedLayer = 3; break;
        
-    case 'd':
+    case 'd': // select root dir
       for(int i = 0; i< 200; i++) { dirs1[i]=""; } // clear dirs
       setInputFolder(selectFolder("select library master folder"));
   
@@ -32,7 +32,7 @@ void keyPressed(){
 //    }
 break; // break 'd'
     
-  case 'M': // M
+  case 'M': // random audio file
     selectedDirMp3 = int(random(fileNamesMp3.length));
     tempString = defaultFolderPathMp3 +"/"+fileNamesMp3[selectedDirMp3];
     audio1.close();
@@ -40,19 +40,63 @@ break; // break 'd'
     audio1.loop();
     break; // end M
   
-  case 'r': //r
+  case 'r': // random movie
     //String tempString = rootFolder + "/" + fileNames[int(random(fileNames.length))]; // works if master root is selected
     QCrandomMov(selectedLayer);  
     break; // break 'r'
     
-  case 'R': //R
+  case 'R': // random dir
     QCrandomDir(selectedLayer);  
     break; // break 'R'
     
-  case 'i': //
-   effectInvert1 = !(effectInvert1);
-  break; // break 'i'
-    
+  case 'i': // marks in
+   switch (selectedLayer) {
+     case 0: layer1in = myMovie1.frame(); break;
+     case 1: layer2in = myMovie2.frame(); break;
+     case 2: layer3in = myMovie3.frame(); break;
+     case 3: layer4in = myMovie4.frame(); break;
+   } // end switch
+   break; // break 'i'
+   
+  case 'o': // marks out
+   switch (selectedLayer) {
+     case 0: layer1out = myMovie1.frame(); break;
+     case 1: layer2out = myMovie2.frame(); break;
+     case 2: layer3out = myMovie3.frame(); break;
+     case 3: layer4out = myMovie4.frame(); break;
+   } // end switch
+   break; // break 'o'
+   
+  case 'I': // clears in
+   switch (selectedLayer) {
+     case 0: layer1in = 0; break;
+     case 1: layer2in = 0; break;
+     case 2: layer3in = 0; break;
+     case 3: layer4in = 0; break;
+   } // end switch
+   break; // break 'I'
+   
+  case 'O': // clears out
+   switch (selectedLayer) {
+     case 0: layer1out = int(myMovie1.length()); break;
+     case 1: layer2out = int(myMovie2.length()); break;
+     case 2: layer3out = int(myMovie3.length()); break;
+     case 3: layer4out = int(myMovie4.length()); break;
+   } // end switch
+   break; // break 'O'
+  
+  case 'P': // start-stop recording movie
+      recordingMovie = !recordingMovie;
+      if (recordingMovie) {
+        //frameRate(30);
+        //mm = new GSMovieMaker(this, outputWidth, outputHeight, "output.ogg", GSMovieMaker.THEORA, GSMovieMaker.BEST, 30);
+        //mm = new GSMovieMaker(this, outputWidth, outputHeight, "output.mj2", GSMovieMaker.MJPEG2K, GSMovieMaker.BEST, 30);
+        //mm.start();
+      } else {
+        //mm.finish(); frameRate(60);
+      }
+      break; // break 'P'
+      
   } // end switch key
   
   if (keyCode == ENTER) {

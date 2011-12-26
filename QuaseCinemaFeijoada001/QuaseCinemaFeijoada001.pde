@@ -42,6 +42,7 @@ Textarea textHelp;
 public int fpsValue = 0; // fps slider value
 
 public GSMovie myMovie1, myMovie2, myMovie3, myMovie4; // movies
+GSMovieMaker mm;
 
 String newMovie = "";
 public boolean changeMovie = false;
@@ -109,6 +110,10 @@ public int changeResolution = 100; // changeResolution = 100 means don't change 
 boolean layer1visibility=true; boolean layer2visibility=false; boolean layer3visibility=false; boolean layer4visibility=false;
 boolean layer1loop=true; boolean layer2loop=true; boolean layer3loop=true; boolean layer4loop=true;
 
+int layer1in = 0; int layer2in = 0; int layer3in = 0; int layer4in = 0;
+int layer1out, layer2out, layer3out, layer4out;
+int layer1length, layer2length, layer3length, layer4length;
+
 int layerContent1, layerContent2, layerContent3, layerContent4;
 
 boolean mapping1 = false; boolean mapping2 = false; boolean mapping3 = false; boolean mapping4 = false;
@@ -166,6 +171,8 @@ public int effectHueLimit3 = 0; public int effectHueLimit4 = 0;
 
 public int paintAmount1 = 0; public int paintAmount2 = 0;
 public int paintAmount3 = 0; public int paintAmount4 = 0;
+
+public boolean recordingMovie = false;
 
 public void init(){
   frame.removeNotify();
@@ -267,27 +274,30 @@ void setup() {
   println (tempString);
   fileNames = listFileNames(tempString, txtFilter);
   tempString = rootFolder + dirs1[selectedDir1] + OSseparator + fileNames[int(random(fileNames.length))];
-  myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play();
+  myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play(); layer1in = 0; layer1out = 0;
   if(layer1loop){ myMovie1.loop(); }
   
   tempString = rootFolder + dirs2[selectedDir2] + OSseparator;
   fileNames = listFileNames(tempString, txtFilter);
   tempString = rootFolder + dirs2[selectedDir2] + OSseparator + fileNames[int(random(fileNames.length))];
-  myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play();
+  myMovie2 = new GSMovie(this, tempString); myMovie2.read(); myMovie2.play(); layer2in = 0; layer2out = 0;
   if(layer2loop){ myMovie2.loop(); }
   
   tempString = rootFolder + dirs3[selectedDir3] + OSseparator;
   fileNames = listFileNames(tempString, txtFilter);
   tempString = rootFolder + dirs3[selectedDir3] + OSseparator + fileNames[int(random(fileNames.length))];
-  myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play();
+  myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play(); layer3in = 0; layer3out = 0;
   if(layer3loop){ myMovie3.loop(); }
   
   tempString = rootFolder + dirs4[selectedDir4] + OSseparator;
   fileNames = listFileNames(tempString, txtFilter);
   tempString = rootFolder + dirs4[selectedDir4] + OSseparator + fileNames[int(random(fileNames.length))];
-  myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play();
+  myMovie4 = new GSMovie(this, tempString); myMovie4.read(); myMovie4.play(); layer4in = 0; layer4out = 0;
   if(layer4loop){ myMovie4.loop(); }
       
+  // moviemaker setup
+  
+  
   
   // timer setup
   layer1bpmVisLastTime=millis(); layer2bpmVisLastTime=millis(); layer3bpmVisLastTime=millis(); layer4bpmVisLastTime=millis();
@@ -356,11 +366,36 @@ public void draw() {
     rect(0,0,outputWidth,outputHeight);
   } // end if light paint
   
+  //
   // movies update
-  if (myMovie1.available()) { myMovie1.read(); QCeffects1(); }
-  if (myMovie2.available()) { myMovie2.read(); QCeffects2(); }
-  if (myMovie3.available()) { myMovie3.read(); QCeffects3(); }
-  if (myMovie4.available()) { myMovie4.read(); QCeffects4(); }
+  //
+  if (myMovie1.available()) {
+    // movie 1
+    if (layer1out==0) { layer1length = int(myMovie1.length()); layer1out = layer1length; } // updates layer out
+    if (myMovie1.frame() > layer1out) { myMovie1.jump(layer1in); } // checks loop
+    myMovie1.read(); QCeffects1();
+  } // end if movie 1 update
+  
+  if (myMovie2.available()) {
+    // movie 2
+    if (layer2out==0) { layer2length = int(myMovie2.length()); layer2out = layer2length; } // updates layer out
+    if (myMovie2.frame() > layer2out) { myMovie2.jump(layer2in); } // checks loop
+    myMovie2.read(); QCeffects2();
+  } // end if movie 2 update
+    
+  // movie 3
+  if (myMovie3.available()) {
+    if (layer3out==0) { layer3length = int(myMovie3.length()); layer3out = layer3length; } // updates layer out
+    if (myMovie3.frame() > layer3out) { myMovie3.jump(layer3in); } // checks loop
+    myMovie3.read(); QCeffects3();
+  } // end if movie 3 update
+  
+  // movie 4
+  if (myMovie4.available()) {
+    if (layer4out==0) { layer4length = int(myMovie4.length()); layer4out = layer4length; } // updates layer out
+    if (myMovie4.frame() > layer4out) { myMovie4.jump(layer4in); } // checks loop
+    myMovie4.read(); QCeffects4();
+  } // end if movie 4 update
   
   // camera update
   if (layerContent1==2 || layerContent2==2 || layerContent3==2 || layerContent4==2) { // camera selected
@@ -502,7 +537,7 @@ public void draw() {
     String tempString = rootFolder + dirs3[selectedDir3] + OSseparator;
     fileNames = listFileNames(tempString, txtFilter);
     tempString = rootFolder + dirs3[selectedDir3] + OSseparator + fileNames[int(random(fileNames.length))];
-    myMovie3.stop(); myMovie3.delete();myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play();
+    myMovie3.stop(); myMovie3.delete(); myMovie3 = new GSMovie(this, tempString); myMovie3.read(); myMovie3.play();
     if(layer3loop){ myMovie3.loop(); }
     myMovie3.jump(random(0,myMovie3.duration()));
     layer3bpmMovieLastTime=millis();
@@ -644,10 +679,9 @@ public void draw() {
   
   
   // render fade
-  if (fade > 0.0) {
-    fill(0,0,0,map(fade,0.0,100.0,0,255)); rect(0,0,outputWidth,outputHeight);
-  } 
+  if (fade > 0.0) { fill(0,0,0,map(fade,0.0,100.0,0,255)); rect(0,0,outputWidth,outputHeight); } 
   
+  // needs to change resolution?
   if (changeResolution != 100) { QCchangeResolution(); }
   
   // midi
@@ -672,11 +706,17 @@ public void draw() {
   } // end switch doRandomize
   
   // memory management
-  if (frameCount%600==0) { // clean memory around each 10 seconds
+  if (frameCount%900==0) { // clean memory around each 15 seconds
     println (hour()+":"+minute()+":"+second()+" Free Memory: "+Runtime.getRuntime().freeMemory()/1024+" K; Garbage collected;");
     System.gc();
     println (hour()+":"+minute()+":"+second()+" Free Memory: "+Runtime.getRuntime().freeMemory()/1024+" K;\n");
   } // end if 
+  
+  if (recordingMovie) {
+    //loadPixels();
+    //mm.addFrame(pixels);
+    saveFrame("data/output-######.tif"); 
+  } // end if recordingMovie
   
 } // end draw
 
