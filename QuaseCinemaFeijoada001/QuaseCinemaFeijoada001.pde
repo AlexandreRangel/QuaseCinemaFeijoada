@@ -413,11 +413,17 @@ public void draw() {
   // fps
   controlP5.controller("fpsValue").setValue(int(frameRate));
 
-  // playback heads
+  // update playback heads
   controlP5.controller("layer1playback").setValue(map(myMovie1.time(),0.0,myMovie1.duration(),0.0,1.0));
   controlP5.controller("layer2playback").setValue(map(myMovie2.time(),0.0,myMovie2.duration(),0.0,1.0));
   controlP5.controller("layer3playback").setValue(map(myMovie3.time(),0.0,myMovie3.duration(),0.0,1.0));
   controlP5.controller("layer4playback").setValue(map(myMovie4.time(),0.0,myMovie4.duration(),0.0,1.0));
+  
+  // update visibility buttons
+  controlP5.controller("layer1visibility").setValue(int(layer1visibility));
+  controlP5.controller("layer2visibility").setValue(int(layer2visibility));
+  controlP5.controller("layer3visibility").setValue(int(layer3visibility));
+  controlP5.controller("layer4visibility").setValue(int(layer4visibility));
 
   //controlP5.draw();
 
