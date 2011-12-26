@@ -128,7 +128,7 @@ class MyCanvas extends ControlWindowCanvas {
     } //end if fileCounter4
     
     // in - out marks draw
-    theApplet.fill(160,0,0);
+    theApplet.stroke(255,0,0); theApplet.fill(160,0,0);
     // layer 1
     theApplet.triangle(11+(columnWidth*0)+map(layer1in,0,layer1length,0,int(columnWidth*0.7)), 199,
                        11+(columnWidth*0)+map(layer1in,0,layer1length,0,int(columnWidth*0.7)), 193,

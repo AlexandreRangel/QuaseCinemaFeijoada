@@ -417,26 +417,26 @@ public void draw() {
   //
   
   if (changeMovie && selectedLayer == 0) {
-   myMovie1.delete();
-   myMovie1 = new GSMovie(this, newMovie); myMovie1.play();
+   myMovie1.delete(); myMovie1 = new GSMovie(this, newMovie); myMovie1.play();
+   layer1in = 0; layer1out = 0;
    if(layer1loop){ myMovie1.loop(); }
    changeMovie = false; 
   }
   if (changeMovie && selectedLayer == 1) {
-   myMovie2.delete();
-   myMovie2 = new GSMovie(this, newMovie); myMovie2.play();
+   myMovie2.delete(); myMovie2 = new GSMovie(this, newMovie); myMovie2.play();
+   layer2in = 0; layer2out = 0;
    if(layer2loop){ myMovie2.loop(); }
    changeMovie = false; 
   }
   if (changeMovie && selectedLayer == 2) {
-   myMovie3.delete();
-   myMovie3 = new GSMovie(this, newMovie); myMovie3.play();
+   myMovie3.delete(); myMovie3 = new GSMovie(this, newMovie); myMovie3.play();
+   layer3in = 0; layer3out = 0;
    if(layer3loop){ myMovie3.loop(); }
    changeMovie = false; 
   }
   if (changeMovie && selectedLayer == 3) {
-   myMovie4.delete();
-   myMovie4 = new GSMovie(this, newMovie); myMovie4.play();
+   myMovie4.delete(); myMovie4 = new GSMovie(this, newMovie); myMovie4.play();
+   layer4in = 0; layer4out = 0;
    if(layer4loop){ myMovie4.loop(); }
    changeMovie = false; 
   }
