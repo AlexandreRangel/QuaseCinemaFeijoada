@@ -82,7 +82,7 @@ int fileCounterLimitMp3 = 20;
 //  quad mapping pre setup
 String configFile = "data/quadsconfig.txt";
 ProjectedQuads projectedQuads;
-PGraphics quadGraphics1, quadGraphics2, quadGraphics3, quadGraphics4;
+PGraphics quadGraphics1, quadGraphics2, quadGraphics3, quadGraphics4, testeGL;
 
 // berzier mapping pre setup
 BezierWarp bw1, bw2, bw3, bw4;
@@ -239,6 +239,8 @@ void setup() {
   quadGraphics2 = createGraphics(640, 480, OPENGL);
   quadGraphics3 = createGraphics(640, 480, OPENGL);
   quadGraphics4 = createGraphics(640, 480, OPENGL);
+  
+  testeGL = createGraphics(640, 480, OPENGL);
   
   projectedQuads.getQuad(0).setTexture(quadGraphics1); 
   projectedQuads.getQuad(1).setTexture(quadGraphics2);
@@ -580,7 +582,7 @@ public void draw() {
       quadGraphics1.endDraw();
       bw1.render(quadGraphics1);
      } else { // no mapping
-      QCdrawLayer(1, outputWidth, outputHeight);
+       QCdrawLayer(1, outputWidth, outputHeight);
     } // end if mapping
     if (layerComposite1select != 0) { pgl.endGL(); }
   } else {

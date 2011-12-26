@@ -128,19 +128,35 @@ class MyCanvas extends ControlWindowCanvas {
     } //end if fileCounter4
     
     // in - out marks draw
-    theApplet.fill(210,0,0);
+    theApplet.fill(160,0,0);
     // layer 1
-    theApplet.rect(10+(columnWidth*0)+map(layer1in,0,layer1length,0,int(columnWidth*0.7)),196,2,4);
-    theApplet.rect(10+(columnWidth*0)+map(layer1out,0,layer1length,0,int(columnWidth*0.7)),196,2,4);
+    theApplet.triangle(11+(columnWidth*0)+map(layer1in,0,layer1length,0,int(columnWidth*0.7)), 199,
+                       11+(columnWidth*0)+map(layer1in,0,layer1length,0,int(columnWidth*0.7)), 193,
+                       14+(columnWidth*0)+map(layer1in,0,layer1length,0,int(columnWidth*0.7)), 196);
+    theApplet.triangle(9+(columnWidth*0)+map(layer1out,0,layer1length,0,int(columnWidth*0.7)), 199,
+                       9+(columnWidth*0)+map(layer1out,0,layer1length,0,int(columnWidth*0.7)), 193,
+                       6+(columnWidth*0)+map(layer1out,0,layer1length,0,int(columnWidth*0.7)), 196);
     // layer 2
-    theApplet.rect(10+(columnWidth*1)+map(layer2in,0,layer2length,0,int(columnWidth*0.7)),196,2,4);
-    theApplet.rect(10+(columnWidth*1)+map(layer2out,0,layer2length,0,int(columnWidth*0.7)),196,2,4);
+    theApplet.triangle(11+(columnWidth*1)+map(layer2in,0,layer2length,0,int(columnWidth*0.7)), 199,
+                       11+(columnWidth*1)+map(layer2in,0,layer2length,0,int(columnWidth*0.7)), 193,
+                       14+(columnWidth*1)+map(layer2in,0,layer2length,0,int(columnWidth*0.7)), 196);
+    theApplet.triangle(9+(columnWidth*1)+map(layer2out,0,layer2length,0,int(columnWidth*0.7)), 199,
+                       9+(columnWidth*1)+map(layer2out,0,layer2length,0,int(columnWidth*0.7)), 193,
+                       6+(columnWidth*1)+map(layer2out,0,layer2length,0,int(columnWidth*0.7)), 196);
     // layer 3
-    theApplet.rect(10+(columnWidth*2)+map(layer3in,0,layer3length,0,int(columnWidth*0.7)),196,2,4);
-    theApplet.rect(10+(columnWidth*2)+map(layer3out,0,layer3length,0,int(columnWidth*0.7)),196,2,4);
+    theApplet.triangle(11+(columnWidth*2)+map(layer3in,0,layer3length,0,int(columnWidth*0.7)), 199,
+                       11+(columnWidth*2)+map(layer3in,0,layer3length,0,int(columnWidth*0.7)), 193,
+                       14+(columnWidth*2)+map(layer3in,0,layer3length,0,int(columnWidth*0.7)), 196);
+    theApplet.triangle(9+(columnWidth*2)+map(layer3out,0,layer3length,0,int(columnWidth*0.7)), 199,
+                       9+(columnWidth*2)+map(layer3out,0,layer3length,0,int(columnWidth*0.7)), 193,
+                       6+(columnWidth*2)+map(layer3out,0,layer3length,0,int(columnWidth*0.7)), 196);
     // layer 4
-    theApplet.rect(10+(columnWidth*3)+map(layer4in,0,layer4length,0,int(columnWidth*0.7)),196,2,4);
-    theApplet.rect(10+(columnWidth*3)+map(layer4out,0,layer4length,0,int(columnWidth*0.7)),196,2,4);
+    theApplet.triangle(11+(columnWidth*3)+map(layer4in,0,layer4length,0,int(columnWidth*0.7)), 199,
+                       11+(columnWidth*3)+map(layer4in,0,layer4length,0,int(columnWidth*0.7)), 193,
+                       14+(columnWidth*3)+map(layer4in,0,layer4length,0,int(columnWidth*0.7)), 196);
+    theApplet.triangle(9+(columnWidth*3)+map(layer4out,0,layer4length,0,int(columnWidth*0.7)), 199,
+                       9+(columnWidth*3)+map(layer4out,0,layer4length,0,int(columnWidth*0.7)), 193,
+                       6+(columnWidth*3)+map(layer4out,0,layer4length,0,int(columnWidth*0.7)), 196);
     
     
       //10+(columnWidth*i)+int(columnWidth*0.7)
