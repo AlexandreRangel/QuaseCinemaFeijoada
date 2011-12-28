@@ -570,18 +570,18 @@ void QCsetupInterface() {
   "Quase-Cinema Feijoada Remix 0.01\n\n"+
   "Alexandre Rangel, 2011\n\n"+
   "www.quasecinema.org\n\n\n\n"+
-  "Shortcuts:\n\n\n"+
-  "F1 - F8: changes interface panels\n\n"+
-  "1 - 4: selects layers 1 to 4\n\n"+
-  "enter: toggle selected layer visibility on/off\n\n"+
-  "i: marks in point for movie on the selected layer\n\n"+
-  "o: marks out point for movie on the selected layer\n\n"+
-  "I: clears in point for movie on the selected layer\n\n"+
-  "O: clears out point for movie on the selected layer\n\n"+
-  "d: selects root movie directory (with other folders inside)\n\n"+
-  "r: randomize movie on selected layer:\n\n"+
-  "M: randomize audio\n\n"+
-  "c: mapping control points visibility on/off\n\n",
+  "Shortcuts :\n\n\n"+
+  "F1 - F8 : changes interface panels\n\n"+
+  "1 - 4 : selects layers 1 to 4\n\n"+
+  "enter : toggle selected layer visibility on/off\n\n"+
+  "i : marks in point for movie on the selected layer\n\n"+
+  "o : marks out point for movie on the selected layer\n\n"+
+  "I : clears in point for movie on the selected layer\n\n"+
+  "O : clears out point for movie on the selected layer\n\n"+
+  "d : selects root movie directory (with other folders inside)\n\n"+
+  "r : randomize movie on selected layer:\n\n"+
+  "M : randomize audio\n\n"+
+  "c : mapping control points visibility on/off\n\n",
   10,170,int(columnWidth*1.9),600);
   textHelp.setFont(ControlP5.grixel);
   textHelp.moveTo(controlWindow,"Help");

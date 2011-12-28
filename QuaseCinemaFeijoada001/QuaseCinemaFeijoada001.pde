@@ -130,6 +130,9 @@ float layer1volume = 0.0; float layer2volume = 0.0; float layer3volume = 0.0; fl
 
 boolean paint1=false; boolean paint2=false; boolean paint3=false; boolean paint4=false;
 
+boolean scratch1;
+int scratchPos1;
+
 // effects pre setup
 public boolean effectInvert1 = false; public boolean effectInvert2 = false;
 public boolean effectInvert3 = false; public boolean effectInvert4 = false; 
@@ -207,8 +210,8 @@ void setup() {
   // default MP3 directory and
   // default movie folders path (path containing movie directories)
 
-  defaultFolderPath = dataPath("_videos"); // relative path
-  //defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos";
+  //defaultFolderPath = dataPath("_videos"); // relative path
+  defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos";
   //String defaultFolderPath = System.getProperty("user.home")+"/Desktop"; // desktop example
   //String defaultFolderPath = "/Users/admin/Desktop"; // Unix path example
   //String defaultFolderPath = "C:\\windows"; // windows path example
@@ -223,7 +226,8 @@ void setup() {
   System.out.println("OS Version: " + System.getProperty("os.version"));
   
   if (OSname.equals("Mac OS X")) { OSseparator = System.getProperty("file.separator"); }
-  
+  if (OSname.equals("Windows 7")) { OSseparator = System.getProperty("file.separator"); }
+    
   
   //
   // projectedQuads setup
@@ -270,7 +274,7 @@ void setup() {
   // GStreamer setup
   //
   if (OSname == "Mac OS X") { GSVideo.localGStreamerPath = sketchPath("code/gstreamer/macosx64"); }
-  if (OSname == "Windows") { GSVideo.localGStreamerPath = sketchPath("code\\gstreamer\\windows64"); }
+  if (OSname == "Windows 7") { GSVideo.localGStreamerPath = sketchPath("code\\gstreamer\\windows64"); }
   
   tempString = rootFolder + dirs1[selectedDir1] + OSseparator;
   println (tempString);
@@ -373,6 +377,7 @@ public void draw() {
   //
   if (myMovie1.available()) {
     // movie 1
+    if (scratch1) { myMovie1.jump(scratchPos1); } // scratch
     if (layer1out==0) { layer1length = int(myMovie1.length()); layer1out = layer1length; } // updates layer out
     if (myMovie1.frame() > layer1out) { myMovie1.jump(layer1in); } // checks loop
     myMovie1.read(); QCeffects1();
@@ -400,7 +405,7 @@ public void draw() {
   } // end if movie 4 update
   
   // camera update
-  if (layerContent1==2 || layerContent2==2 || layerContent3==2 || layerContent4==2) { // camera selected
+  if (layerContent1==2 || layerContent2==2 || layerContent3==2 || layerContent4==2) { // camera selected in any layer
     if (!pipeline.isPlaying()) { pipeline.play(); }
     //println("Pipeline string: " + pipeline.getPipeline());
     if (pipeline.available()) { pipeline.read(); }
@@ -419,25 +424,25 @@ public void draw() {
   if (changeMovie && selectedLayer == 0) {
    myMovie1.delete(); myMovie1 = new GSMovie(this, newMovie); myMovie1.play();
    layer1in = 0; layer1out = 0;
-   if(layer1loop){ myMovie1.loop(); }
+   if(layer1loop) { myMovie1.loop(); }
    changeMovie = false; 
   }
   if (changeMovie && selectedLayer == 1) {
    myMovie2.delete(); myMovie2 = new GSMovie(this, newMovie); myMovie2.play();
    layer2in = 0; layer2out = 0;
-   if(layer2loop){ myMovie2.loop(); }
+   if(layer2loop) { myMovie2.loop(); }
    changeMovie = false; 
   }
   if (changeMovie && selectedLayer == 2) {
    myMovie3.delete(); myMovie3 = new GSMovie(this, newMovie); myMovie3.play();
    layer3in = 0; layer3out = 0;
-   if(layer3loop){ myMovie3.loop(); }
+   if(layer3loop) { myMovie3.loop(); }
    changeMovie = false; 
   }
   if (changeMovie && selectedLayer == 3) {
    myMovie4.delete(); myMovie4 = new GSMovie(this, newMovie); myMovie4.play();
    layer4in = 0; layer4out = 0;
-   if(layer4loop){ myMovie4.loop(); }
+   if(layer4loop) { myMovie4.loop(); }
    changeMovie = false; 
   }
   
@@ -571,7 +576,7 @@ public void draw() {
     
     tint(red(colorPicker1.getColorValue()),green(colorPicker1.getColorValue()),blue(colorPicker1.getColorValue()),layerOpacity1);
     //tint(fft.getAvg(5)*255, green(colorPicker1.getColorValue()), 0); // colorPicker1.getColorValue()
-    myMovie1.play(); myMovie1.speed(layer1speed);
+    //myMovie1.play(); myMovie1.speed(layer1speed);
     if (mapping1) { // quad mapping
       quadGraphics1.beginDraw();
       QCdrawLayer(1,640,480);
@@ -718,6 +723,7 @@ public void draw() {
     //loadPixels();
     //mm.addFrame(pixels);
     saveFrame("data/output-######.tif"); 
+    //saveFrame("/Volumes/ramdisk/output-######.tif"); 
   } // end if recordingMovie
   
 } // end draw
