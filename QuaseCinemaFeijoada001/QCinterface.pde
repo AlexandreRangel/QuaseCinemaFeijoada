@@ -338,7 +338,7 @@ void controlEvent(ControlEvent theEvent) {
     if(theEvent.controller().name()=="layer2loop"){ if(layer2loop){ myMovie2.loop(); }else { myMovie2.noLoop(); } }
     if(theEvent.controller().name()=="layer3loop"){ if(layer3loop){ myMovie3.loop(); }else { myMovie3.noLoop(); } }
     if(theEvent.controller().name()=="layer4loop"){ if(layer4loop){ myMovie4.loop(); }else { myMovie4.noLoop(); } }
-  
+    
   } // end if controllers
   
 } // end controlEvent

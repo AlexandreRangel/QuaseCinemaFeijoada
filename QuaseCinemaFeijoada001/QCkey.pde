@@ -13,7 +13,7 @@ void keyPressed(){
        selectedLayer = 3; break;
        
     case 'd': // select root dir
-      for(int i = 0; i< 200; i++) { dirs1[i]=""; } // clear dirs
+      //for(int i = 0; i< 200; i++) { dirs1[i]=""; } // clear dirs
       setInputFolder(selectFolder("select library master folder"));
   
       //String folderPath = selectFolder();
@@ -97,16 +97,16 @@ break; // break 'd'
       }
       break; // break 'P'
       
-  } // end switch key
-  
-  case 't': // toggles video scratch
-   switch (selectedLayer) {
-     case 0: scratch1 = !scratch1; break;
-     case 1: scratch2 = !scratch2; break;
-     case 2: scratch3 = !scratch3; break;
-     case 3: scratch4 = !scratch4; break;
-   } // end switch
+   case 't': // toggles video scratch
+     switch (selectedLayer) {
+       case 0: scratch1 = !scratch1; break;
+       case 1: scratch2 = !scratch2; break;
+       case 2: scratch3 = !scratch3; break;
+       case 3: scratch4 = !scratch4; break;
+     } // end switch
    break; // break 't'
+   
+  } // end switch key
    
   if (keyCode == ENTER) {
     switch (selectedLayer) { 

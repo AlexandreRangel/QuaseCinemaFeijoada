@@ -581,6 +581,8 @@ void QCsetupInterface() {
   "d : selects root movie directory (with other folders inside)\n\n"+
   "r : randomize movie on selected layer:\n\n"+
   "M : randomize audio\n\n"+
+  "t : toggles video scratch for selected layer\n\n"+
+  "[ - ] : select quad-mapping plane\n\n"+
   "c : mapping control points visibility on/off\n\n",
   10,170,int(columnWidth*1.9),600);
   textHelp.setFont(ControlP5.grixel);
