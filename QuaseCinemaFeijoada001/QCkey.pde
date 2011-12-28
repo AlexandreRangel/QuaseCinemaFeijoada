@@ -99,6 +99,15 @@ break; // break 'd'
       
   } // end switch key
   
+  case 't': // toggles video scratch
+   switch (selectedLayer) {
+     case 0: scratch1 = !scratch1; break;
+     case 1: scratch2 = !scratch2; break;
+     case 2: scratch3 = !scratch3; break;
+     case 3: scratch4 = !scratch4; break;
+   } // end switch
+   break; // break 't'
+   
   if (keyCode == ENTER) {
     switch (selectedLayer) { 
       case 0: layer1visibility = !(layer1visibility); ((Toggle)controlP5.controller("layer1visibility")).toggle(); break; // layer 1

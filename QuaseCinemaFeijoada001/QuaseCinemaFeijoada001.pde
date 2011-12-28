@@ -130,8 +130,8 @@ float layer1volume = 0.0; float layer2volume = 0.0; float layer3volume = 0.0; fl
 
 boolean paint1=false; boolean paint2=false; boolean paint3=false; boolean paint4=false;
 
-boolean scratch1;
-int scratchPos1;
+boolean scratch1=false; boolean scratch2=false; boolean scratch3=false; boolean scratch4=false;
+int scratchPos1, scratchPos2, scratchPos3, scratchPos4;
 
 // effects pre setup
 public boolean effectInvert1 = false; public boolean effectInvert2 = false;
@@ -210,8 +210,8 @@ void setup() {
   // default MP3 directory and
   // default movie folders path (path containing movie directories)
 
-  //defaultFolderPath = dataPath("_videos"); // relative path
-  defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos";
+  defaultFolderPath = dataPath("_videos"); // relative path
+  //defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos";
   //String defaultFolderPath = System.getProperty("user.home")+"/Desktop"; // desktop example
   //String defaultFolderPath = "/Users/admin/Desktop"; // Unix path example
   //String defaultFolderPath = "C:\\windows"; // windows path example
@@ -385,6 +385,7 @@ public void draw() {
   
   if (myMovie2.available()) {
     // movie 2
+    if (scratch2) { myMovie2.jump(scratchPos2); } // scratch
     if (layer2out==0) { layer2length = int(myMovie2.length()); layer2out = layer2length; } // updates layer out
     if (myMovie2.frame() > layer2out) { myMovie2.jump(layer2in); } // checks loop
     myMovie2.read(); QCeffects2();
@@ -392,6 +393,7 @@ public void draw() {
     
   // movie 3
   if (myMovie3.available()) {
+    if (scratch3) { myMovie3.jump(scratchPos3); } // scratch
     if (layer3out==0) { layer3length = int(myMovie3.length()); layer3out = layer3length; } // updates layer out
     if (myMovie3.frame() > layer3out) { myMovie3.jump(layer3in); } // checks loop
     myMovie3.read(); QCeffects3();
@@ -399,6 +401,7 @@ public void draw() {
   
   // movie 4
   if (myMovie4.available()) {
+    if (scratch4) { myMovie4.jump(scratchPos4); } // scratch
     if (layer4out==0) { layer4length = int(myMovie4.length()); layer4out = layer4length; } // updates layer out
     if (myMovie4.frame() > layer4out) { myMovie4.jump(layer4in); } // checks loop
     myMovie4.read(); QCeffects4();
