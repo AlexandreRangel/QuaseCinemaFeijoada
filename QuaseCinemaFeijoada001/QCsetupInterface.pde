@@ -90,7 +90,7 @@ void QCsetupInterface() {
   controlP5.Controller playbackSlider1 = controlP5.addSlider("layer1playback",0,1.0,0.0,10+(columnWidth*0),200,int(columnWidth*0.7),14);
   playbackSlider1.setLabel("playback"); playbackSlider1.moveTo(controlWindow);
   
-  controlP5.Controller mySlider = controlP5.addSlider("layer1speed",0,5.0,1.0,10+(columnWidth*0),220,int(columnWidth*0.7),14);
+  controlP5.Controller mySlider = controlP5.addSlider("layer1speed",-4.0,4.0,1.0,10+(columnWidth*0),220,int(columnWidth*0.7),14);
   mySlider.setLabel("speed"); mySlider.moveTo(controlWindow);
   
   controlP5.Controller randomDir1 = controlP5.addButton("randomDir1",0,10+(columnWidth*0),250,60,14);
@@ -117,7 +117,7 @@ void QCsetupInterface() {
   controlP5.Controller playbackSlider2 = controlP5.addSlider("layer2playback",0,1.0,0.0,10+(columnWidth*1),200,int(columnWidth*0.7),14);
   playbackSlider2.setLabel("playback"); playbackSlider2.moveTo(controlWindow);
   
-  controlP5.Controller speedSlider2 = controlP5.addSlider("layer2speed",0,5.0,1.0,10+(columnWidth*1),220,int(columnWidth*0.7),14);
+  controlP5.Controller speedSlider2 = controlP5.addSlider("layer2speed",-4.0,4.0,1.0,10+(columnWidth*1),220,int(columnWidth*0.7),14);
   speedSlider2.setLabel("speed"); speedSlider2.moveTo(controlWindow);
   
   controlP5.Controller randomDir2 = controlP5.addButton("randomDir2",0,10+(columnWidth*1),250,60,14);
@@ -144,7 +144,7 @@ void QCsetupInterface() {
   controlP5.Controller playbackSlider3 = controlP5.addSlider("layer3playback",0,1.0,0.0,10+(columnWidth*2),200,int(columnWidth*0.7),14);
   playbackSlider3.setLabel("playback"); playbackSlider3.moveTo(controlWindow);
   
-  controlP5.Controller speedSlider3 = controlP5.addSlider("layer3speed",0,5.0,1.0,10+(columnWidth*2),220,int(columnWidth*0.7),14);
+  controlP5.Controller speedSlider3 = controlP5.addSlider("layer3speed",-4.0,4.0,1.0,10+(columnWidth*2),220,int(columnWidth*0.7),14);
   speedSlider3.setLabel("speed"); speedSlider3.moveTo(controlWindow);
   
   controlP5.Controller randomDir3 = controlP5.addButton("randomDir3",0,10+(columnWidth*2),250,60,14);
@@ -171,7 +171,7 @@ void QCsetupInterface() {
   controlP5.Controller playbackSlider4 = controlP5.addSlider("layer4playback",0,1.0,0.0,10+(columnWidth*3),200,int(columnWidth*0.7),14);
   playbackSlider4.setLabel("playback"); playbackSlider4.moveTo(controlWindow);
   
-  controlP5.Controller speedSlider4 = controlP5.addSlider("layer4speed",0,5.0,1.0,10+(columnWidth*3),220,int(columnWidth*0.7),14);
+  controlP5.Controller speedSlider4 = controlP5.addSlider("layer4speed",-4.0,4.0,1.0,10+(columnWidth*3),220,int(columnWidth*0.7),14);
   speedSlider4.setLabel("speed"); speedSlider4.moveTo(controlWindow);
   
   controlP5.Controller randomDir4 = controlP5.addButton("randomDir4",0,10+(columnWidth*3),250,60,14);

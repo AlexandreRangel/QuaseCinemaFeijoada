@@ -74,6 +74,13 @@ void controllerChange(int channel, int number, int value) {
   else if (channel==0 && number==88) { controlP5.controller("effectHueLimit3").setValue(map(value,0,127,0,200)); }
   else if (channel==3 && number==7) { controlP5.controller("effectHueLimit4").setValue(map(value,0,127,0,200)); }
   
+  // layers speed
+  // knob 8
+       if (channel==0 && number==21) { controlP5.controller("layer1speed").setValue(map(value,0,127,-4.0,4.0)); }
+  else if (channel==0 && number==65) { controlP5.controller("layer2speed").setValue(map(value,0,127,-4.0,4.0)); }
+  else if (channel==0 && number==105) { controlP5.controller("layer3speed").setValue(map(value,0,127,-4.0,4.0)); }
+  else if (channel==7 && number==10) { controlP5.controller("layer4speed").setValue(map(value,0,127,-4.0,4.0)); }
+  
   // layers scratch
   // slider 8
        if (channel==0 && number==12) { scratch1 = true; scratchPos1 = int(map(value,0,127,layer1in,layer1out)); }

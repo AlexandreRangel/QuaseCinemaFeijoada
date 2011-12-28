@@ -110,7 +110,7 @@ public int changeResolution = 100; // changeResolution = 100 means don't change 
 boolean layer1visibility=true; boolean layer2visibility=false; boolean layer3visibility=false; boolean layer4visibility=false;
 boolean layer1loop=true; boolean layer2loop=true; boolean layer3loop=true; boolean layer4loop=true;
 
-int layer1in = 0; int layer2in = 0; int layer3in = 0; int layer4in = 0;
+int layer1in = 1; int layer2in = 0; int layer3in = 0; int layer4in = 0;
 int layer1out, layer2out, layer3out, layer4out;
 int layer1length, layer2length, layer3length, layer4length;
 
@@ -123,7 +123,7 @@ int layer1bpmVis, layer2bpmVis, layer3bpmVis, layer4bpmVis;
 int layer1bpmTime, layer2bpmTime, layer3bpmTime, layer4bpmTime;
 int layer1bpmMovie, layer2bpmMovie, layer3bpmMovie, layer4bpmMovie;
 
-float layer1speed = 1.0; float layer2speed = 1.0; float layer3speed = 1.0; float layer4speed = 1.0;
+float layer1speed = 0.1; float layer2speed = 1.0; float layer3speed = 1.0; float layer4speed = 1.0;
 public float layer1playback, layer2playback, layer3playback, layer4playback;
 
 float layer1volume = 0.0; float layer2volume = 0.0; float layer3volume = 0.0; float layer4volume = 0.0;
@@ -281,7 +281,7 @@ void setup() {
   fileNames = listFileNames(tempString, txtFilter);
   tempString = rootFolder + dirs1[selectedDir1] + OSseparator + fileNames[int(random(fileNames.length))];
   myMovie1 = new GSMovie(this, tempString); myMovie1.read(); myMovie1.play(); layer1in = 0; layer1out = 0;
-  if(layer1loop){ myMovie1.loop(); }
+  //if(layer1loop){ myMovie1.loop(); }
   
   tempString = rootFolder + dirs2[selectedDir2] + OSseparator;
   fileNames = listFileNames(tempString, txtFilter);
@@ -375,35 +375,40 @@ public void draw() {
   //
   // movies update
   //
+  
+  // movie 1
+  myMovie1.speed(layer1speed);
   if (myMovie1.available()) {
-    // movie 1
     if (scratch1) { myMovie1.jump(scratchPos1); } // scratch
     if (layer1out==0) { layer1length = int(myMovie1.length()); layer1out = layer1length; } // updates layer out
-    if (myMovie1.frame() > layer1out) { myMovie1.jump(layer1in); } // checks loop
-    myMovie1.read(); QCeffects1();
+    if (myMovie1.frame() > layer1out || myMovie1.frame()==myMovie1.length()-1) { myMovie1.jump(layer1in); myMovie1.speed(layer1speed); } // checks loop
+    myMovie1.read(); QCeffects1(); //myMovie1.speed(layer1speed);
   } // end if movie 1 update
   
+  // movie 2
+  myMovie2.speed(layer2speed);
   if (myMovie2.available()) {
-    // movie 2
     if (scratch2) { myMovie2.jump(scratchPos2); } // scratch
     if (layer2out==0) { layer2length = int(myMovie2.length()); layer2out = layer2length; } // updates layer out
-    if (myMovie2.frame() > layer2out) { myMovie2.jump(layer2in); } // checks loop
+    if (myMovie2.frame() > layer2out || myMovie2.frame()==myMovie2.length()-1) { myMovie2.jump(layer2in); } // checks loop
     myMovie2.read(); QCeffects2();
   } // end if movie 2 update
     
   // movie 3
+  myMovie3.speed(layer3speed);
   if (myMovie3.available()) {
     if (scratch3) { myMovie3.jump(scratchPos3); } // scratch
     if (layer3out==0) { layer3length = int(myMovie3.length()); layer3out = layer3length; } // updates layer out
-    if (myMovie3.frame() > layer3out) { myMovie3.jump(layer3in); } // checks loop
+    if (myMovie3.frame() > layer3out || myMovie3.frame()==myMovie3.length()-1) { myMovie3.jump(layer3in); } // checks loop
     myMovie3.read(); QCeffects3();
   } // end if movie 3 update
   
   // movie 4
+  myMovie4.speed(layer4speed);
   if (myMovie4.available()) {
     if (scratch4) { myMovie4.jump(scratchPos4); } // scratch
     if (layer4out==0) { layer4length = int(myMovie4.length()); layer4out = layer4length; } // updates layer out
-    if (myMovie4.frame() > layer4out) { myMovie4.jump(layer4in); } // checks loop
+    if (myMovie4.frame() > layer4out || myMovie4.frame()==myMovie4.length()-1) { myMovie4.jump(layer4in); } // checks loop
     myMovie4.read(); QCeffects4();
   } // end if movie 4 update
   
@@ -470,6 +475,7 @@ public void draw() {
   controlP5.controller("layer3visibility").setValue(int(layer3visibility));
   controlP5.controller("layer4visibility").setValue(int(layer4visibility));
 
+  
   //controlP5.draw();
 
   //
@@ -579,7 +585,8 @@ public void draw() {
     
     tint(red(colorPicker1.getColorValue()),green(colorPicker1.getColorValue()),blue(colorPicker1.getColorValue()),layerOpacity1);
     //tint(fft.getAvg(5)*255, green(colorPicker1.getColorValue()), 0); // colorPicker1.getColorValue()
-    //myMovie1.play(); myMovie1.speed(layer1speed);
+    myMovie1.play();
+    
     if (mapping1) { // quad mapping
       quadGraphics1.beginDraw();
       QCdrawLayer(1,640,480);
@@ -606,8 +613,7 @@ public void draw() {
     if (layerComposite2select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
     
     tint(red(colorPicker2.getColorValue()),green(colorPicker2.getColorValue()),blue(colorPicker2.getColorValue()),layerOpacity2);
-    myMovie2.play();
-    myMovie2.speed(layer2speed);
+    myMovie2.play(); //myMovie2.speed(layer2speed);
     if (mapping2) { // quad mapping
       quadGraphics2.beginDraw();
       QCdrawLayer(2,640,480);
@@ -636,7 +642,7 @@ public void draw() {
     
     tint(red(colorPicker3.getColorValue()),green(colorPicker3.getColorValue()),blue(colorPicker3.getColorValue()),layerOpacity3);
     myMovie3.play();
-    myMovie3.speed(layer3speed);
+    //myMovie3.speed(layer3speed);
     if (mapping3) { // quad mapping
       quadGraphics3.beginDraw();
       QCdrawLayer(3,640,480);
@@ -664,7 +670,7 @@ public void draw() {
     
     tint(red(colorPicker4.getColorValue()),green(colorPicker4.getColorValue()),blue(colorPicker4.getColorValue()),layerOpacity4);
     myMovie4.play();
-    myMovie4.speed(layer4speed);
+    //myMovie4.speed(layer4speed);
     if (mapping4) { // quad mapping
       quadGraphics4.beginDraw();
       QCdrawLayer(4,640,480);
