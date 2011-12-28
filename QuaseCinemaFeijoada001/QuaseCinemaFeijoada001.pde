@@ -226,7 +226,7 @@ void setup() {
   System.out.println("OS Version: " + System.getProperty("os.version"));
   
   if (OSname.equals("Mac OS X")) { OSseparator = System.getProperty("file.separator"); }
-  if (OSname.equals("Windows 7")) { OSseparator = System.getProperty("file.separator"); }
+  if (OSname.equals("Windows 7") || OSname.equals("Windows XP")) { OSseparator = System.getProperty("file.separator"); }
     
   
   //
