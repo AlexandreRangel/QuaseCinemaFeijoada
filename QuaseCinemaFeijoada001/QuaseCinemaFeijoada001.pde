@@ -123,7 +123,7 @@ int layer1bpmVis, layer2bpmVis, layer3bpmVis, layer4bpmVis;
 int layer1bpmTime, layer2bpmTime, layer3bpmTime, layer4bpmTime;
 int layer1bpmMovie, layer2bpmMovie, layer3bpmMovie, layer4bpmMovie;
 
-float layer1speed = 0.1; float layer2speed = 1.0; float layer3speed = 1.0; float layer4speed = 1.0;
+float layer1speed = 1.0; float layer2speed = 1.0; float layer3speed = 1.0; float layer4speed = 1.0;
 public float layer1playback, layer2playback, layer3playback, layer4playback;
 
 float layer1volume = 0.0; float layer2volume = 0.0; float layer3volume = 0.0; float layer4volume = 0.0;
@@ -211,7 +211,7 @@ void setup() {
   // default movie folders path (path containing movie directories)
 
   defaultFolderPath = dataPath("_videos"); // relative path
-  //defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos";
+  if (System.getProperty("user.name").equals("rangel")) { defaultFolderPath = "/Users/rangel/Documents/QC_Performance/bin/data/_videos"; } // my folder ;)
   //String defaultFolderPath = System.getProperty("user.home")+"/Desktop"; // desktop example
   //String defaultFolderPath = "/Users/admin/Desktop"; // Unix path example
   //String defaultFolderPath = "C:\\windows"; // windows path example
