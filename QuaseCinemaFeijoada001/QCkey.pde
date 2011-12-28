@@ -88,10 +88,10 @@ break; // break 'd'
   case 'P': // start-stop recording movie
       recordingMovie = !recordingMovie;
       if (recordingMovie) {
-        //frameRate(30);
+        frameRate(30);
         //mm = new GSMovieMaker(this, outputWidth, outputHeight, "output.ogg", GSMovieMaker.THEORA, GSMovieMaker.BEST, 30);
-        //mm = new GSMovieMaker(this, outputWidth, outputHeight, "output.mj2", GSMovieMaker.MJPEG2K, GSMovieMaker.BEST, 30);
-        //mm.start();
+        mm = new GSMovieMaker(this, outputWidth, outputHeight, "output.ogg", GSMovieMaker.THEORA, GSMovieMaker.HIGH, 30);
+        mm.start();
       } else {
         //mm.finish(); frameRate(60);
       }

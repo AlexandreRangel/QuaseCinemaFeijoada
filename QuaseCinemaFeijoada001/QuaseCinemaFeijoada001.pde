@@ -729,9 +729,9 @@ public void draw() {
   } // end if 
   
   if (recordingMovie) {
-    //loadPixels();
-    //mm.addFrame(pixels);
-    saveFrame("data/output-######.tif"); 
+    loadPixels();
+    mm.addFrame(pixels);
+    //saveFrame("data/output-######.tif"); 
     //saveFrame("/Volumes/ramdisk/output-######.tif"); 
   } // end if recordingMovie
   
