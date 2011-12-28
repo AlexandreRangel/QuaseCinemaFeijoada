@@ -76,10 +76,10 @@ void controllerChange(int channel, int number, int value) {
   
   // layers speed
   // knob 8
-       if (channel==0 && number==21) { controlP5.controller("layer1speed").setValue(map(value,0,127,-4.0,4.0)); }
-  else if (channel==0 && number==65) { controlP5.controller("layer2speed").setValue(map(value,0,127,-4.0,4.0)); }
-  else if (channel==0 && number==105) { controlP5.controller("layer3speed").setValue(map(value,0,127,-4.0,4.0)); }
-  else if (channel==7 && number==10) { controlP5.controller("layer4speed").setValue(map(value,0,127,-4.0,4.0)); }
+       if (channel==0 && number==21) { controlP5.controller("layer1speed").setValue(map(value,0,127,-4.0,4.0)); scratch1=false; }
+  else if (channel==0 && number==65) { controlP5.controller("layer2speed").setValue(map(value,0,127,-4.0,4.0)); scratch2=false; }
+  else if (channel==0 && number==105) { controlP5.controller("layer3speed").setValue(map(value,0,127,-4.0,4.0)); scratch3=false; }
+  else if (channel==7 && number==10) { controlP5.controller("layer4speed").setValue(map(value,0,127,-4.0,4.0)); scratch4=false; }
   
   // layers scratch
   // slider 8
