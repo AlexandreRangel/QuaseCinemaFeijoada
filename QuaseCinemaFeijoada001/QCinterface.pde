@@ -346,7 +346,6 @@ void controlEvent(ControlEvent theEvent) {
     if(theEvent.controller().name()=="effectPaint4"){ if(effectPaint4){ layerComposite4select=1; } else { layerComposite4select=0; } }
     
     
-    
   } // end if controllers
   
 } // end controlEvent
