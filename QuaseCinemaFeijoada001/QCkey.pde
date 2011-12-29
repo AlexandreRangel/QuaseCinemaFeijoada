@@ -90,10 +90,10 @@ break; // break 'd'
       if (recordingMovie) {
         frameRate(30);
         //mm = new GSMovieMaker(this, outputWidth, outputHeight, "output.ogg", GSMovieMaker.THEORA, GSMovieMaker.BEST, 30);
-        mm = new GSMovieMaker(this, outputWidth, outputHeight, "output.ogg", GSMovieMaker.THEORA, GSMovieMaker.HIGH, 30);
+        mm = new GSMovieMaker(this, outputWidth, outputHeight , "output.ogg", GSMovieMaker.THEORA, GSMovieMaker.HIGH, 30);
         mm.start();
       } else {
-        //mm.finish(); frameRate(60);
+        mm.finish(); mm.delete(); frameRate(60);
       }
       break; // break 'P'
       

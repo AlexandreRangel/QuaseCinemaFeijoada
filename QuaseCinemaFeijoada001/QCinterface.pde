@@ -339,6 +339,14 @@ void controlEvent(ControlEvent theEvent) {
     if(theEvent.controller().name()=="layer3loop"){ if(layer3loop){ myMovie3.loop(); } else { myMovie3.noLoop(); } }
     if(theEvent.controller().name()=="layer4loop"){ if(layer4loop){ myMovie4.loop(); } else { myMovie4.noLoop(); } }
     
+    // controller light paint toggle
+    if(theEvent.controller().name()=="effectPaint1"){ if(effectPaint1){ layerComposite1select=1; } else { layerComposite1select=0; } }
+    if(theEvent.controller().name()=="effectPaint2"){ if(effectPaint2){ layerComposite2select=1; } else { layerComposite2select=0; } }
+    if(theEvent.controller().name()=="effectPaint3"){ if(effectPaint3){ layerComposite3select=1; } else { layerComposite3select=0; } }
+    if(theEvent.controller().name()=="effectPaint4"){ if(effectPaint4){ layerComposite4select=1; } else { layerComposite4select=0; } }
+    
+    
+    
   } // end if controllers
   
 } // end controlEvent

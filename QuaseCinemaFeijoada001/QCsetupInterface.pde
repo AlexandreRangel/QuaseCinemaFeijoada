@@ -558,6 +558,9 @@ void QCsetupInterface() {
   //outputYposNumberBox.setDirection(Controller.HORIZONTAL); // change the control direction to left/right
   outputYposNumberBox.moveTo(controlWindow,"Prefs");
   
+  controlP5.Controller syphonToggle1 = controlP5.addToggle("syphonOutput",false,columnWidth,280,15,15);
+  syphonToggle1.setLabel("Syphon (Mac only)"); syphonToggle1.moveTo(controlWindow,"Prefs");
+  
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //

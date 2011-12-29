@@ -21,6 +21,7 @@ import sojamo.drop.*; // sDrop 0.1.4 http://www.sojamo.de/libraries/drop
 import mappingtools.*; // mappingtools 0.0.2 http://www.patricksaintdenis.com
 import ddf.minim.*; import ddf.minim.analysis.*; // minim http://code.compartmental.net/tools/minim
 import themidibus.*; MidiBus myBus; // The MidiBus http://smallbutdigital.com/themidibus.php
+import codeanticode.syphon.*; SyphonServer syphon; // Syphon
 
 // controlP5
 ControlP5 controlP5; ControlWindow controlWindow; ControlWindowCanvas cc;
@@ -78,11 +79,10 @@ int selectedDirMp3;
 int fileCounterMp3 = 0; 
 int fileCounterLimitMp3 = 20; 
 
-
 //  quad mapping pre setup
 String configFile = "data/quadsconfig.txt";
 ProjectedQuads projectedQuads;
-PGraphics quadGraphics1, quadGraphics2, quadGraphics3, quadGraphics4, testeGL;
+PGraphics quadGraphics1, quadGraphics2, quadGraphics3, quadGraphics4, outputGL;
 
 // berzier mapping pre setup
 BezierWarp bw1, bw2, bw3, bw4;
@@ -104,8 +104,8 @@ int interfaceWidth = 1024;
 int columnWidth = int (interfaceWidth/4);
 
 float fade = 0.0;
-
 public int changeResolution = 100; // changeResolution = 100 means don't change resolution on the draw loop
+boolean syphonOutput = false;
 
 boolean layer1visibility=true; boolean layer2visibility=false; boolean layer3visibility=false; boolean layer4visibility=false;
 boolean layer1loop=true; boolean layer2loop=true; boolean layer3loop=true; boolean layer4loop=true;
@@ -244,7 +244,7 @@ void setup() {
   quadGraphics3 = createGraphics(640, 480, OPENGL);
   quadGraphics4 = createGraphics(640, 480, OPENGL);
   
-  testeGL = createGraphics(640, 480, OPENGL);
+  outputGL = createGraphics(640, 480, OPENGL);
   
   projectedQuads.getQuad(0).setTexture(quadGraphics1); 
   projectedQuads.getQuad(1).setTexture(quadGraphics2);
@@ -339,6 +339,8 @@ void setup() {
   // Camera Linux:
   // pipeline = new GSPipeline(this, "v4l2src");  
   
+  // Syphon setup
+  syphon = new SyphonServer(this);
   
   
 } // end setup
@@ -420,10 +422,10 @@ public void draw() {
   } // end if camera update
   
   // light paint update (turns on lighten composite mode)
-  if (effectPaint1) { layerComposite1select=1; }
-  if (effectPaint2) { layerComposite2select=1; }
-  if (effectPaint3) { layerComposite3select=1; }
-  if (effectPaint4) { layerComposite4select=1; }
+//  if (effectPaint1) { layerComposite1select=1; }
+//  if (effectPaint2) { layerComposite2select=1; }
+//  if (effectPaint3) { layerComposite3select=1; }
+//  if (effectPaint4) { layerComposite4select=1; }
   
   //
   // drop movie
@@ -578,11 +580,6 @@ public void draw() {
   // pre-render layer 1
   if (layer1visibility) {
     
-    // openGL compositing
-    if (layerComposite1select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
-    if (layerComposite1select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
-    if (layerComposite1select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
-    
     tint(red(colorPicker1.getColorValue()),green(colorPicker1.getColorValue()),blue(colorPicker1.getColorValue()),layerOpacity1);
     //tint(fft.getAvg(5)*255, green(colorPicker1.getColorValue()), 0); // colorPicker1.getColorValue()
     myMovie1.play();
@@ -597,7 +594,13 @@ public void draw() {
       quadGraphics1.endDraw();
       bw1.render(quadGraphics1);
      } else { // no mapping
-       QCdrawLayer(1, outputWidth, outputHeight);
+      outputGL.beginDraw();
+      // openGL compositing
+      if (layerComposite1select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+      if (layerComposite1select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+      if (layerComposite1select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
+      QCdrawLayer(1, 640, 480);
+      outputGL.endDraw();
     } // end if mapping
     if (layerComposite1select != 0) { pgl.endGL(); }
   } else {
@@ -606,11 +609,6 @@ public void draw() {
   
   // pre-render layer 2
   if (layer2visibility) {
-    
-    // openGL compositing
-    if (layerComposite2select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
-    if (layerComposite2select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
-    if (layerComposite2select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
     
     tint(red(colorPicker2.getColorValue()),green(colorPicker2.getColorValue()),blue(colorPicker2.getColorValue()),layerOpacity2);
     myMovie2.play(); //myMovie2.speed(layer2speed);
@@ -624,7 +622,13 @@ public void draw() {
       quadGraphics2.endDraw();
       bw2.render(quadGraphics2);
      } else { // no mapping
-      QCdrawLayer(2, outputWidth, outputHeight);
+      outputGL.beginDraw();
+      // openGL compositing
+      if (layerComposite2select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+      if (layerComposite2select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+      if (layerComposite2select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
+      QCdrawLayer(2, 640, 480);
+      outputGL.endDraw(); 
     } // end if mapping
     if (layerComposite2select != 0) { pgl.endGL(); }
   } else {
@@ -634,11 +638,6 @@ public void draw() {
   
   // pre-render layer 3
   if (layer3visibility) {
-    
-    // openGL compositing
-    if (layerComposite3select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
-    if (layerComposite3select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
-    if (layerComposite3select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
     
     tint(red(colorPicker3.getColorValue()),green(colorPicker3.getColorValue()),blue(colorPicker3.getColorValue()),layerOpacity3);
     myMovie3.play();
@@ -653,7 +652,13 @@ public void draw() {
       quadGraphics3.endDraw();
       bw3.render(quadGraphics3);
      } else { // no mapping
-      QCdrawLayer(3, outputWidth, outputHeight);
+      outputGL.beginDraw();
+      // openGL compositing
+      if (layerComposite3select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+      if (layerComposite3select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+      if (layerComposite3select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
+      QCdrawLayer(3, 640, 480);
+      outputGL.endDraw(); 
     } // end if mapping
     if (layerComposite3select != 0) { pgl.endGL(); }
   } else {
@@ -662,11 +667,6 @@ public void draw() {
   
   // pre-render layer 4
   if (layer4visibility) {
-    
-    // openGL compositing
-    if (layerComposite4select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
-    if (layerComposite4select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
-    if (layerComposite4select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
     
     tint(red(colorPicker4.getColorValue()),green(colorPicker4.getColorValue()),blue(colorPicker4.getColorValue()),layerOpacity4);
     myMovie4.play();
@@ -681,7 +681,13 @@ public void draw() {
       quadGraphics4.endDraw();
       bw4.render(quadGraphics4);
      } else { // no mapping
-      QCdrawLayer(4, outputWidth, outputHeight);
+       outputGL.beginDraw();
+       // openGL compositing
+       if (layerComposite4select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+       if (layerComposite4select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+       if (layerComposite4select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
+       QCdrawLayer(4, outputWidth, outputHeight);
+       outputGL.endDraw(); 
     } // end if mapping
     if (layerComposite4select != 0) { pgl.endGL(); }
   } else {
@@ -690,12 +696,27 @@ public void draw() {
   
   // mapping draw
   if (mapping1 || mapping2 || mapping3 || mapping4) {
-    projectedQuads.draw();
+    outputGL.beginDraw(); projectedQuads.draw(); outputGL.endDraw(); 
   }
   
   
   // render fade
-  if (fade > 0.0) { fill(0,0,0,map(fade,0.0,100.0,0,255)); rect(0,0,outputWidth,outputHeight); } 
+  if (fade > 0.0) { outputGL.beginDraw(); fill(0,0,0,map(fade,0.0,100.0,0,255)); rect(0,0,outputWidth,outputHeight); outputGL.endDraw();  } 
+  
+  
+  // outputGL draw
+  image(outputGL, 0, 0, outputWidth, outputHeight);
+  
+  // movie recording
+  if (recordingMovie) {
+    loadPixels();
+    mm.addFrame(pixels);
+    //saveFrame("data/output-######.tif"); 
+    //saveFrame("/Volumes/ramdisk/output-######.tif"); 
+  } // end if recordingMovie
+  
+  // Syphon output
+  if (syphonOutput) { syphon.sendImage(outputGL); }
   
   // needs to change resolution?
   if (changeResolution != 100) { QCchangeResolution(); }
@@ -728,12 +749,7 @@ public void draw() {
     println (hour()+":"+minute()+":"+second()+" Free Memory: "+Runtime.getRuntime().freeMemory()/1024+" K;\n");
   } // end if 
   
-  if (recordingMovie) {
-    loadPixels();
-    mm.addFrame(pixels);
-    //saveFrame("data/output-######.tif"); 
-    //saveFrame("/Volumes/ramdisk/output-######.tif"); 
-  } // end if recordingMovie
+  
   
 } // end draw
 
