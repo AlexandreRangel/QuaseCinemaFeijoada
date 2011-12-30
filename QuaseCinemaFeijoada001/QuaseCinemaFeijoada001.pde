@@ -225,8 +225,8 @@ void setup() {
   System.out.println("OS Architecture: " + System.getProperty("os.arch"));
   System.out.println("OS Version: " + System.getProperty("os.version"));
   
-  if (OSname.equals("Mac OS X")) { OSseparator = System.getProperty("file.separator"); }
-  if (OSname.equals("Windows 7") || OSname.equals("Windows XP")) { OSseparator = System.getProperty("file.separator"); }
+  if (OSname.indexOf("Mac") != -1) { OSseparator = System.getProperty("file.separator"); }
+  if (OSname.indexOf("Windows") != -1) { OSseparator = System.getProperty("file.separator"); }
     
   
   //
@@ -244,7 +244,7 @@ void setup() {
   quadGraphics3 = createGraphics(640, 480, OPENGL);
   quadGraphics4 = createGraphics(640, 480, OPENGL);
   
-  outputGL = createGraphics(640, 480, OPENGL);
+  outputGL = createGraphics(outputWidth, outputHeight, OPENGL);
   
   projectedQuads.getQuad(0).setTexture(quadGraphics1); 
   projectedQuads.getQuad(1).setTexture(quadGraphics2);
@@ -340,7 +340,7 @@ void setup() {
   // pipeline = new GSPipeline(this, "v4l2src");  
   
   // Syphon setup
-  syphon = new SyphonServer(this);
+  if (OSname.equals("Mac OS X")) { syphon = new SyphonServer(this); }
   
   
 } // end setup
@@ -589,17 +589,15 @@ public void draw() {
       QCdrawLayer(1,640,480);
       quadGraphics1.endDraw();
      } else if (bmapping1) {  // berzier mapping
-      quadGraphics1.beginDraw();
-      QCdrawLayer(1,640,480);
-      quadGraphics1.endDraw();
-      bw1.render(quadGraphics1);
+      quadGraphics1.beginDraw(); QCdrawLayer(1,640,480); quadGraphics1.endDraw();
+      outputGL.beginDraw(); bw1.render(quadGraphics1); outputGL.endDraw();
      } else { // no mapping
       outputGL.beginDraw();
       // openGL compositing
       if (layerComposite1select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
       if (layerComposite1select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
       if (layerComposite1select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);; } // darken
-      QCdrawLayer(1, 640, 480);
+      QCdrawLayer(1, outputWidth, outputHeight);
       outputGL.endDraw();
     } // end if mapping
     if (layerComposite1select != 0) { pgl.endGL(); }
@@ -693,6 +691,7 @@ public void draw() {
   } else {
      myMovie4.pause();
   }// end if layer4visibility
+  
   
   // mapping draw
   if (mapping1 || mapping2 || mapping3 || mapping4) {
