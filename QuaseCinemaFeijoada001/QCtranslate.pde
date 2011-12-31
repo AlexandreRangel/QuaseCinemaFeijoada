@@ -736,16 +736,16 @@ switch (language) {
       controlP5.controller("layer4bpmVis").setLabel("bpm visible");
       break;
     case 3: // German
-      controlP5.controller("layer1bpmVis").setLabel("bpm visible");
-      controlP5.controller("layer2bpmVis").setLabel("bpm visible");
-      controlP5.controller("layer3bpmVis").setLabel("bpm visible");
-      controlP5.controller("layer4bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer1bpmVis").setLabel("bpm sichtbar");
+      controlP5.controller("layer2bpmVis").setLabel("bpm sichtbar");
+      controlP5.controller("layer3bpmVis").setLabel("bpm sichtbar");
+      controlP5.controller("layer4bpmVis").setLabel("bpm sichtbar");
       break;
     case 4: // Chinese
-      controlP5.controller("layer1bpmVis").setLabel("bpm visible");
-      controlP5.controller("layer2bpmVis").setLabel("bpm visible");
-      controlP5.controller("layer3bpmVis").setLabel("bpm visible");
-      controlP5.controller("layer4bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer1bpmVis").setLabel("bpm 看得见的");
+      controlP5.controller("layer2bpmVis").setLabel("bpm 看得见的");
+      controlP5.controller("layer3bpmVis").setLabel("bpm 看得见的");
+      controlP5.controller("layer4bpmVis").setLabel("bpm 看得见的");
       break;
    } // end switch language
    
@@ -763,22 +763,22 @@ switch (language) {
       controlP5.controller("layer4bpmTime").setLabel("bpm tempo");
       break;
     case 2: // French
-      controlP5.controller("layer1bpmTime").setLabel("bpm time");
-      controlP5.controller("layer2bpmTime").setLabel("bpm time");
-      controlP5.controller("layer3bpmTime").setLabel("bpm time");
-      controlP5.controller("layer4bpmTime").setLabel("bpm time");
+      controlP5.controller("layer1bpmTime").setLabel("bpm temps");
+      controlP5.controller("layer2bpmTime").setLabel("bpm temps");
+      controlP5.controller("layer3bpmTime").setLabel("bpm temps");
+      controlP5.controller("layer4bpmTime").setLabel("bpm temps");
       break;
     case 3: // German
-      controlP5.controller("layer1bpmTime").setLabel("bpm time");
-      controlP5.controller("layer2bpmTime").setLabel("bpm time");
-      controlP5.controller("layer3bpmTime").setLabel("bpm time");
-      controlP5.controller("layer4bpmTime").setLabel("bpm time");
+      controlP5.controller("layer1bpmTime").setLabel("bpm Zeit");
+      controlP5.controller("layer2bpmTime").setLabel("bpm Zeit");
+      controlP5.controller("layer3bpmTime").setLabel("bpm Zeit");
+      controlP5.controller("layer4bpmTime").setLabel("bpm Zeit");
       break;
     case 4: // Chinese
-      controlP5.controller("layer1bpmTime").setLabel("bpm time");
-      controlP5.controller("layer2bpmTime").setLabel("bpm time");
-      controlP5.controller("layer3bpmTime").setLabel("bpm time");
-      controlP5.controller("layer4bpmTime").setLabel("bpm time");
+      controlP5.controller("layer1bpmTime").setLabel("bpm 时间");
+      controlP5.controller("layer2bpmTime").setLabel("bpm 时间");
+      controlP5.controller("layer3bpmTime").setLabel("bpm 时间");
+      controlP5.controller("layer4bpmTime").setLabel("bpm 时间");
       break;
    } // end switch language
    
@@ -796,22 +796,22 @@ switch (language) {
       controlP5.controller("layer4bpmMovie").setLabel("bpm vídeo");
       break;
     case 2: // French
-      controlP5.controller("layer1bpmMovie").setLabel("bpm movie");
-      controlP5.controller("layer2bpmMovie").setLabel("bpm movie");
-      controlP5.controller("layer3bpmMovie").setLabel("bpm movie");
-      controlP5.controller("layer4bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer1bpmMovie").setLabel("bpm film");
+      controlP5.controller("layer2bpmMovie").setLabel("bpm film");
+      controlP5.controller("layer3bpmMovie").setLabel("bpm film");
+      controlP5.controller("layer4bpmMovie").setLabel("bpm film");
       break;
     case 3: // German
-      controlP5.controller("layer1bpmMovie").setLabel("bpm movie");
-      controlP5.controller("layer2bpmMovie").setLabel("bpm movie");
-      controlP5.controller("layer3bpmMovie").setLabel("bpm movie");
-      controlP5.controller("layer4bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer1bpmMovie").setLabel("bpm film");
+      controlP5.controller("layer2bpmMovie").setLabel("bpm film");
+      controlP5.controller("layer3bpmMovie").setLabel("bpm film");
+      controlP5.controller("layer4bpmMovie").setLabel("bpm film");
       break;
     case 4: // Chinese
-      controlP5.controller("layer1bpmMovie").setLabel("bpm movie");
-      controlP5.controller("layer2bpmMovie").setLabel("bpm movie");
-      controlP5.controller("layer3bpmMovie").setLabel("bpm movie");
-      controlP5.controller("layer4bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer1bpmMovie").setLabel("bpm 电影");
+      controlP5.controller("layer2bpmMovie").setLabel("bpm 电影");
+      controlP5.controller("layer3bpmMovie").setLabel("bpm 电影");
+      controlP5.controller("layer4bpmMovie").setLabel("bpm 电影");
       break;
    } // end switch language
    
@@ -834,22 +834,22 @@ switch (language) {
       controlP5.controller("mapping4").setLabel("mapeamento retangular");
       break;
     case 2: // French
-      controlP5.controller("mapping1").setLabel("quad mapping");
-      controlP5.controller("mapping2").setLabel("quad mapping");
-      controlP5.controller("mapping3").setLabel("quad mapping");
-      controlP5.controller("mapping4").setLabel("quad mapping");
+      controlP5.controller("mapping1").setLabel("mapping rectangulaire");
+      controlP5.controller("mapping2").setLabel("mapping rectangulaire");
+      controlP5.controller("mapping3").setLabel("mapping rectangulaire");
+      controlP5.controller("mapping4").setLabel("mapping rectangulaire");
       break;
     case 3: // German
-      controlP5.controller("mapping1").setLabel("quad mapping");
-      controlP5.controller("mapping2").setLabel("quad mapping");
-      controlP5.controller("mapping3").setLabel("quad mapping");
-      controlP5.controller("mapping4").setLabel("quad mapping");
+      controlP5.controller("mapping1").setLabel("rechteckig mapping");
+      controlP5.controller("mapping2").setLabel("rechteckig mapping");
+      controlP5.controller("mapping3").setLabel("rechteckig mapping");
+      controlP5.controller("mapping4").setLabel("rechteckig mapping");
       break;
     case 4: // Chinese
-      controlP5.controller("mapping1").setLabel("quad mapping");
-      controlP5.controller("mapping2").setLabel("quad mapping");
-      controlP5.controller("mapping3").setLabel("quad mapping");
-      controlP5.controller("mapping4").setLabel("quad mapping");
+      controlP5.controller("mapping1").setLabel("mapping 矩形的");
+      controlP5.controller("mapping2").setLabel("mapping 矩形的");
+      controlP5.controller("mapping3").setLabel("mapping 矩形的");
+      controlP5.controller("mapping4").setLabel("mapping 矩形的");
       break;
    } // end switch language
    
@@ -873,16 +873,16 @@ switch (language) {
       controlP5.controller("bmapping4").setLabel("curved mapping");
       break;
     case 3: // German
-      controlP5.controller("bmapping1").setLabel("curved mapping");
-      controlP5.controller("bmapping2").setLabel("curved mapping");
-      controlP5.controller("bmapping3").setLabel("curved mapping");
-      controlP5.controller("bmapping4").setLabel("curved mapping");
+      controlP5.controller("bmapping1").setLabel("krumm mapping");
+      controlP5.controller("bmapping2").setLabel("krumm mapping");
+      controlP5.controller("bmapping3").setLabel("krumm mapping");
+      controlP5.controller("bmapping4").setLabel("krumm mapping");
       break;
     case 4: // Chinese
-      controlP5.controller("bmapping1").setLabel("curved mapping");
-      controlP5.controller("bmapping2").setLabel("curved mapping");
-      controlP5.controller("bmapping3").setLabel("curved mapping");
-      controlP5.controller("bmapping4").setLabel("curved mapping");
+      controlP5.controller("bmapping1").setLabel("mapping 弯曲的");
+      controlP5.controller("bmapping2").setLabel("mapping 弯曲的");
+      controlP5.controller("bmapping3").setLabel("mapping 弯曲的");
+      controlP5.controller("bmapping4").setLabel("mapping 弯曲的");
       break;
    } // end switch language
    
@@ -911,16 +911,16 @@ switch (language) {
       controlP5.controller("layer4volume").setLabel("volume");
       break;
     case 3: // German
-      controlP5.controller("layer1volume").setLabel("volume");
-      controlP5.controller("layer2volume").setLabel("volume");
-      controlP5.controller("layer3volume").setLabel("volume");
-      controlP5.controller("layer4volume").setLabel("volume");
+      controlP5.controller("layer1volume").setLabel("Volumen");
+      controlP5.controller("layer2volume").setLabel("Volumen");
+      controlP5.controller("layer3volume").setLabel("Volumen");
+      controlP5.controller("layer4volume").setLabel("Volumen");
       break;
     case 4: // Chinese
-      controlP5.controller("layer1volume").setLabel("volume");
-      controlP5.controller("layer2volume").setLabel("volume");
-      controlP5.controller("layer3volume").setLabel("volume");
-      controlP5.controller("layer4volume").setLabel("volume");
+      controlP5.controller("layer1volume").setLabel("体积");
+      controlP5.controller("layer2volume").setLabel("体积");
+      controlP5.controller("layer3volume").setLabel("体积");
+      controlP5.controller("layer4volume").setLabel("体积");
       break;
    } // end switch language
    

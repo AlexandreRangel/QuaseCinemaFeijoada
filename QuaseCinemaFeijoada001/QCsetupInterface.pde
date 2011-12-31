@@ -66,9 +66,11 @@ void QCsetupInterface() {
   // interface global
   controlP5.Controller faderSlider = controlP5.addSlider("fade",0,100,0,(columnWidth*3),733,int(columnWidth*0.88),10);
   faderSlider.setLabel("fade"); faderSlider.moveTo(controlWindow,"global");
+  faderSlider.captionLabel().toUpperCase(false);
   
   controlP5.Controller myFPS = controlP5.addSlider("fpsValue",0,60,0,(columnWidth*2),733,int(columnWidth*0.88),10);
   myFPS.moveTo(controlWindow,"global"); myFPS.captionLabel().set("fps");
+  myFPS.captionLabel().toUpperCase(false);
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
@@ -472,44 +474,56 @@ void QCsetupInterface() {
   // interface bpm - column 1
   controlP5.Controller bpmVisSlider1 = controlP5.addSlider("layer1bpmVis",0,240,0,10+(columnWidth*0),210,int(columnWidth*0.7),14);
   bpmVisSlider1.setLabel("bpm vis"); bpmVisSlider1.moveTo(controlWindow,"Rhythm");
+  bpmVisSlider1.captionLabel().toUpperCase(false);
   
   controlP5.Controller bpmTimeSlider1 = controlP5.addSlider("layer1bpmTime",0,240,0,10+(columnWidth*0),235,int(columnWidth*0.7),14);
   bpmTimeSlider1.setLabel("bpm time"); bpmTimeSlider1.moveTo(controlWindow,"Rhythm");
+  bpmTimeSlider1.captionLabel().toUpperCase(false);
   
   controlP5.Controller bpmMovieSlider1 = controlP5.addSlider("layer1bpmMovie",0,240,0,10+(columnWidth*0),260,int(columnWidth*0.7),14);
   bpmMovieSlider1.setLabel("bpm movie"); bpmMovieSlider1.moveTo(controlWindow,"Rhythm");
+  bpmMovieSlider1.captionLabel().toUpperCase(false);
   
   // interface bpm - column 2  
   controlP5.Controller bpmVisSlider2 = controlP5.addSlider("layer2bpmVis",0,240,0,10+(columnWidth*1),210,int(columnWidth*0.7),14);
   bpmVisSlider2.setLabel("bpm vis"); bpmVisSlider2.moveTo(controlWindow,"Rhythm");
+  bpmVisSlider2.captionLabel().toUpperCase(false);
   
   controlP5.Controller bpmTimeSlider2 = controlP5.addSlider("layer2bpmTime",0,240,0,10+(columnWidth*1),235,int(columnWidth*0.7),14);
   bpmTimeSlider2.setLabel("bpm time"); bpmTimeSlider2.moveTo(controlWindow,"Rhythm");
+  bpmTimeSlider2.captionLabel().toUpperCase(false);
   
   controlP5.Controller bpmMovieSlider2 = controlP5.addSlider("layer2bpmMovie",0,240,0,10+(columnWidth*1),260,int(columnWidth*0.7),14);
   bpmMovieSlider2.setLabel("bpm movie"); bpmMovieSlider2.moveTo(controlWindow,"Rhythm");
+  bpmMovieSlider2.captionLabel().toUpperCase(false);
   
   
   // interface bpm - column 3
   controlP5.Controller bpmVisSlider3 = controlP5.addSlider("layer3bpmVis",0,240,0,10+(columnWidth*2),210,int(columnWidth*0.7),14);
   bpmVisSlider3.setLabel("bpm vis"); bpmVisSlider3.moveTo(controlWindow,"Rhythm");
+  bpmVisSlider3.captionLabel().toUpperCase(false);
   
   controlP5.Controller bpmTimeSlider3 = controlP5.addSlider("layer3bpmTime",0,240,0,10+(columnWidth*2),235,int(columnWidth*0.7),14);
   bpmTimeSlider3.setLabel("bpm time"); bpmTimeSlider3.moveTo(controlWindow,"Rhythm");
+  bpmTimeSlider3.captionLabel().toUpperCase(false);
   
   controlP5.Controller bpmMovieSlider3 = controlP5.addSlider("layer3bpmMovie",0,240,0,10+(columnWidth*2),260,int(columnWidth*0.7),14);
   bpmMovieSlider3.setLabel("bpm movie"); bpmMovieSlider3.moveTo(controlWindow,"Rhythm");
-  
+  bpmMovieSlider3.captionLabel().toUpperCase(false);
+ 
   
   // interface bpm - column 4
   controlP5.Controller bpmVisSlider4 = controlP5.addSlider("layer4bpmVis",0,240,0,10+(columnWidth*3),210,int(columnWidth*0.7),14);
   bpmVisSlider4.setLabel("bpm vis"); bpmVisSlider4.moveTo(controlWindow,"Rhythm");
+  bpmVisSlider4.captionLabel().toUpperCase(false);
   
   controlP5.Controller bpmTimeSlider4 = controlP5.addSlider("layer4bpmTime",0,240,0,10+(columnWidth*3),235,int(columnWidth*0.7),14);
   bpmTimeSlider4.setLabel("bpm time"); bpmTimeSlider4.moveTo(controlWindow,"Rhythm");
+  bpmTimeSlider4.captionLabel().toUpperCase(false);
   
   controlP5.Controller bpmMovieSlider4 = controlP5.addSlider("layer4bpmMovie",0,240,0,10+(columnWidth*3),260,int(columnWidth*0.7),14);
   bpmMovieSlider4.setLabel("bpm movie"); bpmMovieSlider4.moveTo(controlWindow,"Rhythm");
+  bpmMovieSlider4.captionLabel().toUpperCase(false);
   
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -546,33 +560,41 @@ void QCsetupInterface() {
   // interface mapping - column 1
   controlP5.Controller mappingToggle1 = controlP5.addToggle("mapping1",false,50+(columnWidth*0),265,20,20);
   mappingToggle1.setLabel("quad mapping"); mappingToggle1.moveTo(controlWindow,"Mapping");
+  mappingToggle1.captionLabel().toUpperCase(false);
   
-  controlP5.Controller bmappingToggle1 = controlP5.addToggle("bmapping1",false,50+(columnWidth*0),300,20,20);
-  bmappingToggle1.setLabel("berzier mapping"); bmappingToggle1.moveTo(controlWindow,"Mapping");
+  controlP5.Controller bmappingToggle1 = controlP5.addToggle("bmapping1",false,50+(columnWidth*0),310,20,20);
+  bmappingToggle1.setLabel("curved mapping"); bmappingToggle1.moveTo(controlWindow,"Mapping");
+  bmappingToggle1.captionLabel().toUpperCase(false);
   
   
   // interface mapping - column 2
   controlP5.Controller mappingToggle2 = controlP5.addToggle("mapping2",false,50+(columnWidth*1),265,20,20);
   mappingToggle2.setLabel("mapping"); mappingToggle2.moveTo(controlWindow,"Mapping");
+  mappingToggle2.captionLabel().toUpperCase(false);
   
-  controlP5.Controller bmappingToggle2 = controlP5.addToggle("bmapping2",false,50+(columnWidth*1),300,20,20);
-  bmappingToggle2.setLabel("berzier mapping"); bmappingToggle2.moveTo(controlWindow,"Mapping");
+  controlP5.Controller bmappingToggle2 = controlP5.addToggle("bmapping2",false,50+(columnWidth*1),310,20,20);
+  bmappingToggle2.setLabel("curved mapping"); bmappingToggle2.moveTo(controlWindow,"Mapping");
+  bmappingToggle2.captionLabel().toUpperCase(false);
   
   
   // interface mapping - column 3
   controlP5.Controller mappingToggle3 = controlP5.addToggle("mapping3",false,50+(columnWidth*2),265,20,20);
   mappingToggle3.setLabel("mapping"); mappingToggle3.moveTo(controlWindow,"Mapping");
+  mappingToggle3.captionLabel().toUpperCase(false);
   
-  controlP5.Controller bmappingToggle3 = controlP5.addToggle("bmapping3",false,50+(columnWidth*2),300,20,20);
-  bmappingToggle3.setLabel("berzier mapping"); bmappingToggle3.moveTo(controlWindow,"Mapping");
+  controlP5.Controller bmappingToggle3 = controlP5.addToggle("bmapping3",false,50+(columnWidth*2),310,20,20);
+  bmappingToggle3.setLabel("curved mapping"); bmappingToggle3.moveTo(controlWindow,"Mapping");
+  bmappingToggle3.captionLabel().toUpperCase(false);
 
   
   // interface mapping - column 4
   controlP5.Controller mappingToggle4 = controlP5.addToggle("mapping4",false,50+(columnWidth*3),265,20,20);
   mappingToggle4.setLabel("mapping"); mappingToggle4.moveTo(controlWindow,"Mapping");
+  mappingToggle4.captionLabel().toUpperCase(false);
   
-  controlP5.Controller bmappingToggle4 = controlP5.addToggle("bmapping4",false,50+(columnWidth*3),300,20,20);
+  controlP5.Controller bmappingToggle4 = controlP5.addToggle("bmapping4",false,50+(columnWidth*3),310,20,20);
   bmappingToggle4.setLabel("berzier mapping"); bmappingToggle4.moveTo(controlWindow,"Mapping");
+  bmappingToggle4.captionLabel().toUpperCase(false);
   
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -584,15 +606,19 @@ void QCsetupInterface() {
   
   controlP5.Controller layer1volumeSlider = controlP5.addSlider("layer1volume",0,1.0,0.0,10+(columnWidth*0),180,int(columnWidth*0.7),14);
   layer1volumeSlider.setLabel("volume"); layer1volumeSlider.moveTo(controlWindow,"Audio");
+  layer1volumeSlider.captionLabel().toUpperCase(false);
   
   controlP5.Controller layer2volumeSlider = controlP5.addSlider("layer2volume",0,1.0,0.0,10+(columnWidth*1),180,int(columnWidth*0.7),14);
   layer2volumeSlider.setLabel("volume"); layer2volumeSlider.moveTo(controlWindow,"Audio");
+  layer2volumeSlider.captionLabel().toUpperCase(false);
   
   controlP5.Controller layer3volumeSlider = controlP5.addSlider("layer3volume",0,1.0,0.0,10+(columnWidth*2),180,int(columnWidth*0.7),14);
   layer3volumeSlider.setLabel("volume"); layer3volumeSlider.moveTo(controlWindow,"Audio");
+  layer3volumeSlider.captionLabel().toUpperCase(false);
   
   controlP5.Controller layer4volumeSlider = controlP5.addSlider("layer4volume",0,1.0,0.0,10+(columnWidth*3),180,int(columnWidth*0.7),14);
   layer4volumeSlider.setLabel("volume"); layer4volumeSlider.moveTo(controlWindow,"Audio");
+  layer4volumeSlider.captionLabel().toUpperCase(false);
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
@@ -602,15 +628,15 @@ void QCsetupInterface() {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   languageList = controlP5.addListBox("language",10,200,int(columnWidth*0.9),240);
+  languageList.moveTo(controlWindow,"Prefs"); languageList.setItemHeight(18); languageList.captionLabel().toUpperCase(false);
   languageList.setLabel("language");
-  languageList.moveTo(controlWindow,"Prefs");
   languageList.addItem("English",0);
   languageList.addItem("Portuguese",1);
   languageList.addItem("French",2);
   languageList.addItem("German",3);
   languageList.addItem("Chinese",4);
   
-  outputResolutionList = controlP5.addListBox("outputResolution",columnWidth,320,int(columnWidth*0.9),240);
+  outputResolutionList = controlP5.addListBox("outputResolution",columnWidth,320,int(columnWidth*0.9),250);
   outputResolutionList.setLabel("output resolution");
   outputResolutionList.moveTo(controlWindow,"Prefs");
   outputResolutionList.addItem("240 x 180",0);
