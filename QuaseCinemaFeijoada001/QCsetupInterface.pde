@@ -222,6 +222,7 @@ void QCsetupInterface() {
   
   layerComposite1Menu = controlP5.addDropdownList("layerComposite1",10+(columnWidth*0),180,100,60);
   layerComposite1Menu.captionLabel().set("Composition");
+  layerComposite1Menu.captionLabel().toUpperCase(false);
   layerComposite1Menu.setItemHeight(16);layerComposite1Menu.setBarHeight(16);layerComposite1Menu.captionLabel().style().marginTop = 3;
   layerComposite1Menu.addItem("Normal",0); layerComposite1Menu.addItem("Lighten",1); layerComposite1Menu.addItem("Darken",2);
   layerComposite1Menu.moveTo(controlWindow,"Effects");
@@ -582,16 +583,16 @@ void QCsetupInterface() {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   controlP5.Controller layer1volumeSlider = controlP5.addSlider("layer1volume",0,1.0,0.0,10+(columnWidth*0),180,int(columnWidth*0.7),14);
-  layer1volumeSlider.setLabel("volume1"); layer1volumeSlider.moveTo(controlWindow,"Audio");
+  layer1volumeSlider.setLabel("volume"); layer1volumeSlider.moveTo(controlWindow,"Audio");
   
   controlP5.Controller layer2volumeSlider = controlP5.addSlider("layer2volume",0,1.0,0.0,10+(columnWidth*1),180,int(columnWidth*0.7),14);
-  layer2volumeSlider.setLabel("volume2"); layer2volumeSlider.moveTo(controlWindow,"Audio");
+  layer2volumeSlider.setLabel("volume"); layer2volumeSlider.moveTo(controlWindow,"Audio");
   
   controlP5.Controller layer3volumeSlider = controlP5.addSlider("layer3volume",0,1.0,0.0,10+(columnWidth*2),180,int(columnWidth*0.7),14);
-  layer3volumeSlider.setLabel("volume3"); layer3volumeSlider.moveTo(controlWindow,"Audio");
+  layer3volumeSlider.setLabel("volume"); layer3volumeSlider.moveTo(controlWindow,"Audio");
   
   controlP5.Controller layer4volumeSlider = controlP5.addSlider("layer4volume",0,1.0,0.0,10+(columnWidth*3),180,int(columnWidth*0.7),14);
-  layer4volumeSlider.setLabel("volume4"); layer4volumeSlider.moveTo(controlWindow,"Audio");
+  layer4volumeSlider.setLabel("volume"); layer4volumeSlider.moveTo(controlWindow,"Audio");
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
@@ -629,17 +630,19 @@ void QCsetupInterface() {
   outputResolutionList.addItem("3072 x 768, triple 1024 x 768)",14);
   
   controlP5.Controller outputXposNumberBox = controlP5.addNumberbox("outputXpos",screenWidth,columnWidth,200,int(columnWidth*0.9),14);
+  outputXposNumberBox.setLabel("output X position");
   //controlP5.outputXposNumberBox.setMultiplier(1); // set the sensitifity of the numberbox
   //outputXposNumberBox.setDirection(controlP5.Controller.HORIZONTAL); // change the control direction to left/right
   outputXposNumberBox.moveTo(controlWindow,"Prefs");
   
   controlP5.Controller outputYposNumberBox = controlP5.addNumberbox("outputYpos",0,columnWidth,240,int(columnWidth*0.9),14);
+  outputYposNumberBox.setLabel("output Y position");
   //controlP5.outputYposNumberBox.setMultiplier(1); // set the sensitifity of the numberbox
   //outputYposNumberBox.setDirection(Controller.HORIZONTAL); // change the control direction to left/right
   outputYposNumberBox.moveTo(controlWindow,"Prefs");
   
   controlP5.Controller syphonToggle1 = controlP5.addToggle("syphonOutput",false,columnWidth,280,15,15);
-  syphonToggle1.setLabel("Syphon (Mac only)"); syphonToggle1.moveTo(controlWindow,"Prefs");
+  syphonToggle1.setLabel("Syphon output (Mac only)"); syphonToggle1.moveTo(controlWindow,"Prefs");
   
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -152,10 +152,10 @@ public void QCtranslate() {
       controlP5.controller("layer4loop").setLabel("boucle");
       break;
     case 3: // German
-      controlP5.controller("layer1loop").setLabel("schleife");
-      controlP5.controller("layer2loop").setLabel("schleife");
-      controlP5.controller("layer3loop").setLabel("schleife");
-      controlP5.controller("layer4loop").setLabel("schleife");
+      controlP5.controller("layer1loop").setLabel("Schleife");
+      controlP5.controller("layer2loop").setLabel("Schleife");
+      controlP5.controller("layer3loop").setLabel("Schleife");
+      controlP5.controller("layer4loop").setLabel("Schleife");
       break;
     case 4: // Chinese
       controlP5.controller("layer1loop").setLabel("圈");
@@ -296,5 +296,691 @@ switch (language) {
       controlP5.controller("randomMov4").setLabel("任意的 电影");
       break;
    } // end switch language
+   
+   
+   //
+   // Effects tab
+   //
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("layerComposite1").setLabel("composition");
+      controlP5.controller("layerComposite2").setLabel("composition");
+      controlP5.controller("layerComposite3").setLabel("composition");
+      controlP5.controller("layerComposite4").setLabel("composition");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("layerComposite1").setLabel("composição");
+      controlP5.controller("layerComposite2").setLabel("composição");
+      controlP5.controller("layerComposite3").setLabel("composição");
+      controlP5.controller("layerComposite4").setLabel("composição");
+      break;
+    case 2: // French
+      controlP5.controller("layerComposite1").setLabel("composition");
+      controlP5.controller("layerComposite2").setLabel("composition");
+      controlP5.controller("layerComposite3").setLabel("composition");
+      controlP5.controller("layerComposite4").setLabel("composition");
+      break;
+    case 3: // German
+      controlP5.controller("layerComposite1").setLabel("Komposition");
+      controlP5.controller("layerComposite2").setLabel("Komposition");
+      controlP5.controller("layerComposite3").setLabel("Komposition");
+      controlP5.controller("layerComposite4").setLabel("Komposition");
+      break;
+    case 4: // Chinese
+      controlP5.controller("layerComposite1").setLabel("写作");
+      controlP5.controller("layerComposite2").setLabel("写作");
+      controlP5.controller("layerComposite3").setLabel("写作");
+      controlP5.controller("layerComposite4").setLabel("写作");
+      break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("effectInvert1").setLabel("invert");
+      controlP5.controller("effectInvert2").setLabel("invert");
+      controlP5.controller("effectInvert3").setLabel("invert");
+      controlP5.controller("effectInvert4").setLabel("invert");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("effectInvert1").setLabel("inverter");
+      controlP5.controller("effectInvert2").setLabel("inverter");
+      controlP5.controller("effectInvert3").setLabel("inverter");
+      controlP5.controller("effectInvert4").setLabel("inverter");
+      break;
+    case 2: // French
+      controlP5.controller("effectInvert1").setLabel("invertir");
+      controlP5.controller("effectInvert2").setLabel("invertir");
+      controlP5.controller("effectInvert3").setLabel("invertir");
+      controlP5.controller("effectInvert4").setLabel("invertir");
+      break;
+    case 3: // German
+      controlP5.controller("effectInvert1").setLabel("Umkehren");
+      controlP5.controller("effectInvert2").setLabel("Umkehren");
+      controlP5.controller("effectInvert3").setLabel("Umkehren");
+      controlP5.controller("effectInvert4").setLabel("Umkehren");
+      break;
+    case 4: // Chinese
+      controlP5.controller("effectInvert1").setLabel("使反转");
+      controlP5.controller("effectInvert2").setLabel("使反转");
+      controlP5.controller("effectInvert3").setLabel("使反转");
+      controlP5.controller("effectInvert4").setLabel("使反转");
+      break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("effectPosterize1").setLabel("posterize");
+      controlP5.controller("effectPosterize2").setLabel("posterize");
+      controlP5.controller("effectPosterize3").setLabel("posterize");
+      controlP5.controller("effectPosterize4").setLabel("posterize");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("effectPosterize1").setLabel("poster");
+      controlP5.controller("effectPosterize2").setLabel("poster");
+      controlP5.controller("effectPosterize3").setLabel("poster");
+      controlP5.controller("effectPosterize4").setLabel("poster");
+      break;
+    case 2: // French
+      controlP5.controller("effectPosterize1").setLabel("postériser");
+      controlP5.controller("effectPosterize2").setLabel("postériser");
+      controlP5.controller("effectPosterize3").setLabel("postériser");
+      controlP5.controller("effectPosterize4").setLabel("postériser");
+      break;
+    case 3: // German
+      controlP5.controller("effectPosterize1").setLabel("posterisieren");
+      controlP5.controller("effectPosterize2").setLabel("posterisieren");
+      controlP5.controller("effectPosterize3").setLabel("posterisieren");
+      controlP5.controller("effectPosterize4").setLabel("posterisieren");
+      break;
+    case 4: // Chinese
+      controlP5.controller("effectPosterize1").setLabel("海报效果");
+      controlP5.controller("effectPosterize2").setLabel("海报效果");
+      controlP5.controller("effectPosterize3").setLabel("海报效果");
+      controlP5.controller("effectPosterize4").setLabel("海报效果");
+      break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("effectBW1").setLabel("black & white");
+      controlP5.controller("effectBW2").setLabel("black & white");
+      controlP5.controller("effectBW3").setLabel("black & white");
+      controlP5.controller("effectBW4").setLabel("black & whitev");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("effectBW1").setLabel("preto e branco");
+      controlP5.controller("effectBW2").setLabel("preto e branco");
+      controlP5.controller("effectBW3").setLabel("preto e branco");
+      controlP5.controller("effectBW4").setLabel("preto e branco");
+      break;
+    case 2: // French
+      controlP5.controller("effectBW1").setLabel("noir et blanc");
+      controlP5.controller("effectBW2").setLabel("noir et blanc");
+      controlP5.controller("effectBW3").setLabel("noir et blanc");
+      controlP5.controller("effectBW4").setLabel("noir et blanc");
+      break;
+    case 3: // German
+      controlP5.controller("effectBW1").setLabel("schwarz auf weiß");
+      controlP5.controller("effectBW2").setLabel("schwarz auf weiß");
+      controlP5.controller("effectBW3").setLabel("schwarz auf weiß");
+      controlP5.controller("effectBW4").setLabel("schwarz auf weiß");
+      break;
+    case 4: // Chinese
+      controlP5.controller("effectBW1").setLabel("白纸黑字");
+      controlP5.controller("effectBW2").setLabel("白纸黑字");
+      controlP5.controller("effectBW3").setLabel("白纸黑字");
+      controlP5.controller("effectBW4").setLabel("白纸黑字");
+      break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("effectBWlimit1").setLabel("limit");
+      controlP5.controller("effectBWlimit2").setLabel("limit");
+      controlP5.controller("effectBWlimit3").setLabel("limit");
+      controlP5.controller("effectBWlimit4").setLabel("limit");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("effectBWlimit1").setLabel("limite");
+      controlP5.controller("effectBWlimit2").setLabel("limite");
+      controlP5.controller("effectBWlimit3").setLabel("limite");
+      controlP5.controller("effectBWlimit4").setLabel("limite");
+      break;
+    case 2: // French
+      controlP5.controller("effectBWlimit1").setLabel("limite");
+      controlP5.controller("effectBWlimit2").setLabel("limite");
+      controlP5.controller("effectBWlimit3").setLabel("limite");
+      controlP5.controller("effectBWlimit4").setLabel("limite");
+      break;
+    case 3: // German
+      controlP5.controller("effectBWlimit1").setLabel("Grenze");
+      controlP5.controller("effectBWlimit2").setLabel("Grenze");
+      controlP5.controller("effectBWlimit3").setLabel("Grenze");
+      controlP5.controller("effectBWlimit4").setLabel("Grenze");
+      break;
+    case 4: // Chinese
+      controlP5.controller("effectBWlimit1").setLabel("限制");
+      controlP5.controller("effectBWlimit2").setLabel("限制");
+      controlP5.controller("effectBWlimit3").setLabel("限制");
+      controlP5.controller("effectBWlimit4").setLabel("限制");
+      break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("effectContrast1").setLabel("contrast");
+      controlP5.controller("effectContrast2").setLabel("contrast");
+      controlP5.controller("effectContrast3").setLabel("contrast");
+      controlP5.controller("effectContrast4").setLabel("contrast");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("effectContrast1").setLabel("contraste");
+      controlP5.controller("effectContrast2").setLabel("contraste");
+      controlP5.controller("effectContrast3").setLabel("contraste");
+      controlP5.controller("effectContrast4").setLabel("contraste");
+      break;
+    case 2: // French
+      controlP5.controller("effectContrast1").setLabel("contraste");
+      controlP5.controller("effectContrast2").setLabel("contraste");
+      controlP5.controller("effectContrast3").setLabel("contraste");
+      controlP5.controller("effectContrast4").setLabel("contraste");
+      break;
+    case 3: // German
+      controlP5.controller("effectContrast1").setLabel("Kontrast");
+      controlP5.controller("effectContrast2").setLabel("Kontrast");
+      controlP5.controller("effectContrast3").setLabel("Kontrast");
+      controlP5.controller("effectContrast4").setLabel("Kontrast");
+      break;
+    case 4: // Chinese
+      controlP5.controller("effectContrast1").setLabel("对比");
+      controlP5.controller("effectContrast2").setLabel("对比");
+      controlP5.controller("effectContrast3").setLabel("对比");
+      controlP5.controller("effectContrast4").setLabel("对比");
+      break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("effectContrastLimit1").setLabel("amount");
+      controlP5.controller("effectContrastLimit2").setLabel("amount");
+      controlP5.controller("effectContrastLimit3").setLabel("amount");
+      controlP5.controller("effectContrastLimit4").setLabel("amount");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("effectContrastLimit1").setLabel("força");
+      controlP5.controller("effectContrastLimit2").setLabel("força");
+      controlP5.controller("effectContrastLimit3").setLabel("força");
+      controlP5.controller("effectContrastLimit4").setLabel("força");
+      break;
+    case 2: // French
+      controlP5.controller("effectContrastLimit1").setLabel("amount");
+      controlP5.controller("effectContrastLimit2").setLabel("amount");
+      controlP5.controller("effectContrastLimit3").setLabel("amount");
+      controlP5.controller("effectContrastLimit4").setLabel("amount");
+      break;
+    case 3: // German
+      controlP5.controller("effectContrastLimit1").setLabel("amount");
+      controlP5.controller("effectContrastLimit2").setLabel("amount");
+      controlP5.controller("effectContrastLimit3").setLabel("amount");
+      controlP5.controller("effectContrastLimit4").setLabel("amount");
+      break;
+    case 4: // Chinese
+      controlP5.controller("effectContrastLimit1").setLabel("amount");
+      controlP5.controller("effectContrastLimit2").setLabel("amount");
+      controlP5.controller("effectContrastLimit3").setLabel("amount");
+      controlP5.controller("effectContrastLimit4").setLabel("amount");
+      break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("effectSaturation1").setLabel("saturation");
+      controlP5.controller("effectSaturation2").setLabel("saturation");
+      controlP5.controller("effectSaturation3").setLabel("saturation");
+      controlP5.controller("effectSaturation4").setLabel("saturation");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("effectSaturation1").setLabel("saturação");
+      controlP5.controller("effectSaturation2").setLabel("saturação");
+      controlP5.controller("effectSaturation3").setLabel("saturação");
+      controlP5.controller("effectSaturation4").setLabel("saturação");
+      break;
+    case 2: // French
+      controlP5.controller("effectSaturation1").setLabel("saturation");
+      controlP5.controller("effectSaturation2").setLabel("saturation");
+      controlP5.controller("effectSaturation3").setLabel("saturation");
+      controlP5.controller("effectSaturation4").setLabel("saturation");
+      break;
+    case 3: // German
+      controlP5.controller("effectSaturation1").setLabel("saturation");
+      controlP5.controller("effectSaturation2").setLabel("saturation");
+      controlP5.controller("effectSaturation3").setLabel("saturation");
+      controlP5.controller("effectSaturation4").setLabel("saturation");
+      break;
+    case 4: // Chinese
+      controlP5.controller("effectSaturation1").setLabel("saturation");
+      controlP5.controller("effectSaturation2").setLabel("saturation");
+      controlP5.controller("effectSaturation3").setLabel("saturation");
+      controlP5.controller("effectSaturation4").setLabel("saturation");
+      break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("effectSaturationLimit1").setLabel("amount");
+      controlP5.controller("effectSaturationLimit2").setLabel("amount");
+      controlP5.controller("effectSaturationLimit3").setLabel("amount");
+      controlP5.controller("effectSaturationLimit4").setLabel("amount");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("effectSaturationLimit1").setLabel("força");
+      controlP5.controller("effectSaturationLimit2").setLabel("força");
+      controlP5.controller("effectSaturationLimit3").setLabel("força");
+      controlP5.controller("effectSaturationLimit4").setLabel("força");
+      break;
+    case 2: // French
+      controlP5.controller("effectSaturationLimit1").setLabel("amount");
+      controlP5.controller("effectSaturationLimit2").setLabel("amount");
+      controlP5.controller("effectSaturationLimit3").setLabel("amount");
+      controlP5.controller("effectSaturationLimit4").setLabel("amount");
+      break;
+    case 3: // German
+      controlP5.controller("effectSaturationLimit1").setLabel("amount");
+      controlP5.controller("effectSaturationLimit2").setLabel("amount");
+      controlP5.controller("effectSaturationLimit3").setLabel("amount");
+      controlP5.controller("effectSaturationLimit4").setLabel("amount");
+      break;
+    case 4: // Chinese
+      controlP5.controller("effectSaturationLimit1").setLabel("amount");
+      controlP5.controller("effectSaturationLimit2").setLabel("amount");
+      controlP5.controller("effectSaturationLimit3").setLabel("amount");
+      controlP5.controller("effectSaturationLimit4").setLabel("amount");
+      break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("effectHue1").setLabel("hue");
+      controlP5.controller("effectHue2").setLabel("hue");
+      controlP5.controller("effectHue3").setLabel("hue");
+      controlP5.controller("effectHue4").setLabel("hue");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("effectHue1").setLabel("tonalidade");
+      controlP5.controller("effectHue2").setLabel("tonalidade");
+      controlP5.controller("effectHue3").setLabel("tonalidade");
+      controlP5.controller("effectHue4").setLabel("tonalidade");
+      break;
+    case 2: // French
+      controlP5.controller("effectHue1").setLabel("hue");
+      controlP5.controller("effectHue2").setLabel("hue");
+      controlP5.controller("effectHue3").setLabel("hue");
+      controlP5.controller("effectHue4").setLabel("hue");
+      break;
+    case 3: // German
+      controlP5.controller("effectHue1").setLabel("hue");
+      controlP5.controller("effectHue2").setLabel("hue");
+      controlP5.controller("effectHue3").setLabel("hue");
+      controlP5.controller("effectHue4").setLabel("hue");
+      break;
+    case 4: // Chinese
+      controlP5.controller("effectHue1").setLabel("hue");
+      controlP5.controller("effectHue2").setLabel("hue");
+      controlP5.controller("effectHue3").setLabel("hue");
+      controlP5.controller("effectHue4").setLabel("hue");
+      break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("effectHueLimit1").setLabel("amount");
+      controlP5.controller("effectHueLimit2").setLabel("amount");
+      controlP5.controller("effectHueLimit3").setLabel("amount");
+      controlP5.controller("effectHueLimit4").setLabel("amount");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("effectHueLimit1").setLabel("força");
+      controlP5.controller("effectHueLimit2").setLabel("força");
+      controlP5.controller("effectHueLimit3").setLabel("força");
+      controlP5.controller("effectHueLimit4").setLabel("força");
+      break;
+    case 2: // French
+      controlP5.controller("effectHueLimit1").setLabel("amount");
+      controlP5.controller("effectHueLimit2").setLabel("amount");
+      controlP5.controller("effectHueLimit3").setLabel("amount");
+      controlP5.controller("effectHueLimit4").setLabel("amount");
+      break;
+    case 3: // German
+      controlP5.controller("effectHueLimit1").setLabel("amount");
+      controlP5.controller("effectHueLimit2").setLabel("amount");
+      controlP5.controller("effectHueLimit3").setLabel("amount");
+      controlP5.controller("effectHueLimit4").setLabel("amount");
+      break;
+    case 4: // Chinese
+      controlP5.controller("effectHueLimit1").setLabel("amount");
+      controlP5.controller("effectHueLimit2").setLabel("amount");
+      controlP5.controller("effectHueLimit3").setLabel("amount");
+      controlP5.controller("effectHueLimit4").setLabel("amount");
+      break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("effectPaint1").setLabel("light paint");
+      controlP5.controller("effectPaint2").setLabel("light paint");
+      controlP5.controller("effectPaint3").setLabel("light paint");
+      controlP5.controller("effectPaint4").setLabel("light paint");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("effectPaint1").setLabel("pintura luz");
+      controlP5.controller("effectPaint2").setLabel("pintura luz");
+      controlP5.controller("effectPaint3").setLabel("pintura luz");
+      controlP5.controller("effectPaint4").setLabel("pintura luz");
+      break;
+    case 2: // French
+      controlP5.controller("effectPaint1").setLabel("light paint");
+      controlP5.controller("effectPaint2").setLabel("light paint");
+      controlP5.controller("effectPaint3").setLabel("light paint");
+      controlP5.controller("effectPaint4").setLabel("light paint");
+      break;
+    case 3: // German
+      controlP5.controller("effectPaint1").setLabel("light paint");
+      controlP5.controller("effectPaint2").setLabel("light paint");
+      controlP5.controller("effectPaint3").setLabel("light paint");
+      controlP5.controller("effectPaint4").setLabel("light paint");
+      break;
+    case 4: // Chinese
+      controlP5.controller("effectPaint1").setLabel("light paint");
+      controlP5.controller("effectPaint2").setLabel("light paint");
+      controlP5.controller("effectPaint3").setLabel("light paint");
+      controlP5.controller("effectPaint4").setLabel("light paint");
+      break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("effectPaint1").setLabel("limit"); break;
+    case 1: // Portuguese
+      controlP5.controller("effectPaint1").setLabel("limite"); break;
+    case 2: // French
+      controlP5.controller("effectPaint1").setLabel("limit"); break;
+    case 3: // German
+      controlP5.controller("effectPaint1").setLabel("limit"); break;
+    case 4: // Chinese
+      controlP5.controller("effectPaint1").setLabel("limit"); break;
+   } // end switch language
+   
+   
+   //
+   // BPM tab
+   //
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("layer1bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer2bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer3bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer4bpmVis").setLabel("bpm visible");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("layer1bpmVis").setLabel("bpm visível");
+      controlP5.controller("layer2bpmVis").setLabel("bpm visível");
+      controlP5.controller("layer3bpmVis").setLabel("bpm visível");
+      controlP5.controller("layer4bpmVis").setLabel("bpm visível");
+      break;
+    case 2: // French
+      controlP5.controller("layer1bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer2bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer3bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer4bpmVis").setLabel("bpm visible");
+      break;
+    case 3: // German
+      controlP5.controller("layer1bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer2bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer3bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer4bpmVis").setLabel("bpm visible");
+      break;
+    case 4: // Chinese
+      controlP5.controller("layer1bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer2bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer3bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer4bpmVis").setLabel("bpm visible");
+      break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("layer1bpmTime").setLabel("bpm time");
+      controlP5.controller("layer2bpmTime").setLabel("bpm time");
+      controlP5.controller("layer3bpmTime").setLabel("bpm time");
+      controlP5.controller("layer4bpmTime").setLabel("bpm time");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("layer1bpmTime").setLabel("bpm tempo");
+      controlP5.controller("layer2bpmTime").setLabel("bpm tempo");
+      controlP5.controller("layer3bpmTime").setLabel("bpm tempo");
+      controlP5.controller("layer4bpmTime").setLabel("bpm tempo");
+      break;
+    case 2: // French
+      controlP5.controller("layer1bpmTime").setLabel("bpm time");
+      controlP5.controller("layer2bpmTime").setLabel("bpm time");
+      controlP5.controller("layer3bpmTime").setLabel("bpm time");
+      controlP5.controller("layer4bpmTime").setLabel("bpm time");
+      break;
+    case 3: // German
+      controlP5.controller("layer1bpmTime").setLabel("bpm time");
+      controlP5.controller("layer2bpmTime").setLabel("bpm time");
+      controlP5.controller("layer3bpmTime").setLabel("bpm time");
+      controlP5.controller("layer4bpmTime").setLabel("bpm time");
+      break;
+    case 4: // Chinese
+      controlP5.controller("layer1bpmTime").setLabel("bpm time");
+      controlP5.controller("layer2bpmTime").setLabel("bpm time");
+      controlP5.controller("layer3bpmTime").setLabel("bpm time");
+      controlP5.controller("layer4bpmTime").setLabel("bpm time");
+      break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("layer1bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer2bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer3bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer4bpmMovie").setLabel("bpm movie");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("layer1bpmMovie").setLabel("bpm vídeo");
+      controlP5.controller("layer2bpmMovie").setLabel("bpm vídeo");
+      controlP5.controller("layer3bpmMovie").setLabel("bpm vídeo");
+      controlP5.controller("layer4bpmMovie").setLabel("bpm vídeo");
+      break;
+    case 2: // French
+      controlP5.controller("layer1bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer2bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer3bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer4bpmMovie").setLabel("bpm movie");
+      break;
+    case 3: // German
+      controlP5.controller("layer1bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer2bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer3bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer4bpmMovie").setLabel("bpm movie");
+      break;
+    case 4: // Chinese
+      controlP5.controller("layer1bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer2bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer3bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer4bpmMovie").setLabel("bpm movie");
+      break;
+   } // end switch language
+   
+   
+   //
+   // mapping tab
+   //
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("mapping1").setLabel("quad mapping");
+      controlP5.controller("mapping2").setLabel("quad mapping");
+      controlP5.controller("mapping3").setLabel("quad mapping");
+      controlP5.controller("mapping4").setLabel("quad mapping");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("mapping1").setLabel("mapeamento retangular");
+      controlP5.controller("mapping2").setLabel("mapeamento retangular");
+      controlP5.controller("mapping3").setLabel("mapeamento retangular");
+      controlP5.controller("mapping4").setLabel("mapeamento retangular");
+      break;
+    case 2: // French
+      controlP5.controller("mapping1").setLabel("quad mapping");
+      controlP5.controller("mapping2").setLabel("quad mapping");
+      controlP5.controller("mapping3").setLabel("quad mapping");
+      controlP5.controller("mapping4").setLabel("quad mapping");
+      break;
+    case 3: // German
+      controlP5.controller("mapping1").setLabel("quad mapping");
+      controlP5.controller("mapping2").setLabel("quad mapping");
+      controlP5.controller("mapping3").setLabel("quad mapping");
+      controlP5.controller("mapping4").setLabel("quad mapping");
+      break;
+    case 4: // Chinese
+      controlP5.controller("mapping1").setLabel("quad mapping");
+      controlP5.controller("mapping2").setLabel("quad mapping");
+      controlP5.controller("mapping3").setLabel("quad mapping");
+      controlP5.controller("mapping4").setLabel("quad mapping");
+      break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("bmapping1").setLabel("curved mapping");
+      controlP5.controller("bmapping2").setLabel("curved mapping");
+      controlP5.controller("bmapping3").setLabel("curved mapping");
+      controlP5.controller("bmapping4").setLabel("curved mapping");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("bmapping1").setLabel("mapeamento curvo");
+      controlP5.controller("bmapping2").setLabel("mapeamento curvo");
+      controlP5.controller("bmapping3").setLabel("mapeamento curvo");
+      controlP5.controller("bmapping4").setLabel("mapeamento curvo");
+      break;
+    case 2: // French
+      controlP5.controller("bmapping1").setLabel("curved mapping");
+      controlP5.controller("bmapping2").setLabel("curved mapping");
+      controlP5.controller("bmapping3").setLabel("curved mapping");
+      controlP5.controller("bmapping4").setLabel("curved mapping");
+      break;
+    case 3: // German
+      controlP5.controller("bmapping1").setLabel("curved mapping");
+      controlP5.controller("bmapping2").setLabel("curved mapping");
+      controlP5.controller("bmapping3").setLabel("curved mapping");
+      controlP5.controller("bmapping4").setLabel("curved mapping");
+      break;
+    case 4: // Chinese
+      controlP5.controller("bmapping1").setLabel("curved mapping");
+      controlP5.controller("bmapping2").setLabel("curved mapping");
+      controlP5.controller("bmapping3").setLabel("curved mapping");
+      controlP5.controller("bmapping4").setLabel("curved mapping");
+      break;
+   } // end switch language
+   
+   
+   //
+   // audio tab
+   //
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("layer1volume").setLabel("volume");
+      controlP5.controller("layer2volume").setLabel("volume");
+      controlP5.controller("layer3volume").setLabel("volume");
+      controlP5.controller("layer4volume").setLabel("volume");
+      break;
+    case 1: // Portuguese
+      controlP5.controller("layer1volume").setLabel("volume");
+      controlP5.controller("layer2volume").setLabel("volume");
+      controlP5.controller("layer3volume").setLabel("volume");
+      controlP5.controller("layer4volume").setLabel("volume");
+      break;
+    case 2: // French
+      controlP5.controller("layer1volume").setLabel("volume");
+      controlP5.controller("layer2volume").setLabel("volume");
+      controlP5.controller("layer3volume").setLabel("volume");
+      controlP5.controller("layer4volume").setLabel("volume");
+      break;
+    case 3: // German
+      controlP5.controller("layer1volume").setLabel("volume");
+      controlP5.controller("layer2volume").setLabel("volume");
+      controlP5.controller("layer3volume").setLabel("volume");
+      controlP5.controller("layer4volume").setLabel("volume");
+      break;
+    case 4: // Chinese
+      controlP5.controller("layer1volume").setLabel("volume");
+      controlP5.controller("layer2volume").setLabel("volume");
+      controlP5.controller("layer3volume").setLabel("volume");
+      controlP5.controller("layer4volume").setLabel("volume");
+      break;
+   } // end switch language
+   
+   
+   //
+   // prefs tab
+   //
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("outputResolution").setLabel("output resolution"); break;
+    case 1: // Portuguese
+      controlP5.controller("outputResolution").setLabel("resolução de saída"); break;
+    case 2: // French
+      controlP5.controller("outputResolution").setLabel("output resolution"); break;
+    case 3: // German
+      controlP5.controller("outputResolution").setLabel("output resolution"); break;
+    case 4: // Chinese
+      controlP5.controller("outputResolution").setLabel("output resolution"); break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("outputXpos").setLabel("output X position"); break;
+    case 1: // Portuguese
+      controlP5.controller("outputXpos").setLabel("posição X da saída"); break;
+    case 2: // French
+      controlP5.controller("outputXpos").setLabel("output X position"); break;
+    case 3: // German
+      controlP5.controller("outputXpos").setLabel("output X position"); break;
+    case 4: // Chinese
+      controlP5.controller("outputXpos").setLabel("output X position"); break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("outputYpos").setLabel("output Y position"); break;
+    case 1: // Portuguese
+      controlP5.controller("outputYpos").setLabel("posição Y da saída"); break;
+    case 2: // French
+      controlP5.controller("outputYpos").setLabel("output Y position"); break;
+    case 3: // German
+      controlP5.controller("outputYpos").setLabel("output Y position"); break;
+    case 4: // Chinese
+      controlP5.controller("outputYpos").setLabel("output Y position"); break;
+   } // end switch language
+   
+   switch (language) {
+    case 0: // English
+      controlP5.controller("syphonOutput").setLabel("Syphon output (Mac only)"); break;
+    case 1: // Portuguese
+      controlP5.controller("syphonOutput").setLabel("saída Syphon (Mac)"); break;
+    case 2: // French
+      controlP5.controller("syphonOutput").setLabel("Syphon output (Mac only)"); break;
+    case 3: // German
+      controlP5.controller("syphonOutput").setLabel("Syphon output (Mac only)"); break;
+    case 4: // Chinese
+      controlP5.controller("syphonOutput").setLabel("Syphon output (Mac only)"); break;
+   } // end switch language
+   
+   
    
 } // end QCtranslate()
