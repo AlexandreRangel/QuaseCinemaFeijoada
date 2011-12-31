@@ -304,34 +304,34 @@ switch (language) {
    
    switch (language) {
     case 0: // English
-      controlP5.controller("layerComposite1").setLabel("composition");
-      controlP5.controller("layerComposite2").setLabel("composition");
-      controlP5.controller("layerComposite3").setLabel("composition");
-      controlP5.controller("layerComposite4").setLabel("composition");
+      controlP5.group("layerComposite1").setLabel("composition");
+      controlP5.group("layerComposite2").setLabel("composition");
+      controlP5.group("layerComposite3").setLabel("composition");
+      controlP5.group("layerComposite4").setLabel("composition");
       break;
     case 1: // Portuguese
-      controlP5.controller("layerComposite1").setLabel("composição");
-      controlP5.controller("layerComposite2").setLabel("composição");
-      controlP5.controller("layerComposite3").setLabel("composição");
-      controlP5.controller("layerComposite4").setLabel("composição");
+      controlP5.group("layerComposite1").setLabel("composição");
+      controlP5.group("layerComposite2").setLabel("composição");
+      controlP5.group("layerComposite3").setLabel("composição");
+      controlP5.group("layerComposite4").setLabel("composição");
       break;
     case 2: // French
-      controlP5.controller("layerComposite1").setLabel("composition");
-      controlP5.controller("layerComposite2").setLabel("composition");
-      controlP5.controller("layerComposite3").setLabel("composition");
-      controlP5.controller("layerComposite4").setLabel("composition");
+      controlP5.group("layerComposite1").setLabel("composition");
+      controlP5.group("layerComposite2").setLabel("composition");
+      controlP5.group("layerComposite3").setLabel("composition");
+      controlP5.group("layerComposite4").setLabel("composition");
       break;
     case 3: // German
-      controlP5.controller("layerComposite1").setLabel("Komposition");
-      controlP5.controller("layerComposite2").setLabel("Komposition");
-      controlP5.controller("layerComposite3").setLabel("Komposition");
-      controlP5.controller("layerComposite4").setLabel("Komposition");
+      controlP5.group("layerComposite1").setLabel("Komposition");
+      controlP5.group("layerComposite2").setLabel("Komposition");
+      controlP5.group("layerComposite3").setLabel("Komposition");
+      controlP5.group("layerComposite4").setLabel("Komposition");
       break;
     case 4: // Chinese
-      controlP5.controller("layerComposite1").setLabel("写作");
-      controlP5.controller("layerComposite2").setLabel("写作");
-      controlP5.controller("layerComposite3").setLabel("写作");
-      controlP5.controller("layerComposite4").setLabel("写作");
+      controlP5.group("layerComposite1").setLabel("写作");
+      controlP5.group("layerComposite2").setLabel("写作");
+      controlP5.group("layerComposite3").setLabel("写作");
+      controlP5.group("layerComposite4").setLabel("写作");
       break;
    } // end switch language
    
@@ -518,7 +518,7 @@ switch (language) {
       controlP5.controller("effectContrastLimit2").setLabel("quantité");
       controlP5.controller("effectContrastLimit3").setLabel("quantité");
       controlP5.controller("effectContrastLimit4").setLabel("quantité");
-      break
+      break;
     case 3: // German
       controlP5.controller("effectContrastLimit1").setLabel("Betrag");
       controlP5.controller("effectContrastLimit2").setLabel("Betrag");
@@ -931,7 +931,7 @@ switch (language) {
    
    switch (language) {
     case 0: // English
-      controlP5.controller("outputResolution").setLabel("output resolution"); break;
+      controlP5.group("outputResolution").setLabel("output resolution"); break;
     case 1: // Portuguese
       controlP5.controller("outputResolution").setLabel("resolução de saída"); break;
     case 2: // French
