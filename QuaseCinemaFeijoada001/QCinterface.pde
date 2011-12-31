@@ -161,7 +161,6 @@ class MyCanvas extends ControlWindowCanvas {
     
       //10+(columnWidth*i)+int(columnWidth*0.7)
       //10+(columnWidth*0),200,int(columnWidth*0.7)
-
     
   } // end if main tab
   
@@ -310,6 +309,14 @@ void controlEvent(ControlEvent theEvent) {
     // change resolution event
     if (theEvent.group() == outputResolutionList) {
       changeResolution = (int (theEvent.group().value()) );
+    }
+    
+    // change language event
+    if (theEvent.group() == languageList) {
+      language = (int (theEvent.group().value()) );
+      if (language == 4) { controlP5.setControlFont(new ControlFont(createFont("Hei",12, true), 12)); }
+      else { controlP5.setControlFont(new ControlFont(createFont("Helvetica",11, true), 11)); }
+      QCtranslate();
     }
     
     // layer content 1 event

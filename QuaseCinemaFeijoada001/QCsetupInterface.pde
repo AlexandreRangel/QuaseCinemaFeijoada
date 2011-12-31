@@ -1,3 +1,6 @@
+
+// QCsetupInterface()
+
 void QCsetupInterface() {
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -10,7 +13,7 @@ void QCsetupInterface() {
   controlWindow = controlP5.addControlWindow("Quase-Cinema Feijoada Remix 0.01+",0,0,1024,748); 
   //controlWindow = controlP5.addControlWindow("Quase-Cinema Feijoada Remix 0.01+",0,0,screenWidth,screenHeight); 
   controlWindow.hideCoordinates();
-  controlWindow.setBackground(color(0));
+  controlWindow.setBackground(#000000);
   // for continuous update use ControlWindow.NORMAL  to update a control
   // window only when it is in focus, use ControlWindow.ECONOMIC is the default update value.
   //controlWindow.setUpdateMode(ControlWindow.NORMAL);
@@ -22,32 +25,33 @@ void QCsetupInterface() {
   controlP5.setColorLabel(#B7B7B7);
   controlP5.setColorValue(#E5E5E5);
   controlP5.setColorActive(#00FF00);
+  controlP5.setControlFont(new ControlFont(createFont("Helvetica",11, true), 11));
    
   cc = new MyCanvas(); // create a control window canvas
   cc.pre(); // use cc.post(); to draw on top of the controllers.
   controlWindow.addCanvas(cc);
   
   // tabs
-  controlWindow.tab("default").setLabel("  Main  ");
-  controlWindow.tab("default").setId(1);
+  controlWindow.tab("default").setLabel("Main");
+  controlWindow.tab("default").setId(1); controlWindow.tab("default").captionLabel().setWidth(70); 
   controlWindow.addTab("Effects"); controlWindow.tab("Effects").setLabel("  Effects  ");
-  controlWindow.tab("Effects").setId(2);
+  controlWindow.tab("Effects").setId(2); controlWindow.tab("Effects").captionLabel().setWidth(70);
   controlWindow.addTab("Rhythm"); controlWindow.tab("Rhythm").setLabel("  Rhythm  ");
-  controlWindow.tab("Rhythm").setId(3);
+  controlWindow.tab("Rhythm").setId(3); controlWindow.tab("Rhythm").captionLabel().setWidth(70);
   controlWindow.addTab("Sequencer"); controlWindow.tab("Sequencer").setLabel("  Sequencer  ");
-  controlWindow.tab("Sequencer").setId(4);
+  controlWindow.tab("Sequencer").setId(4); controlWindow.tab("Sequencer").captionLabel().setWidth(90);
   controlWindow.addTab("Mapping"); controlWindow.tab("Mapping").setLabel("  Mapping  ");
-  controlWindow.tab("Mapping").setId(5);
+  controlWindow.tab("Mapping").setId(5); controlWindow.tab("Mapping").captionLabel().setWidth(70);
   controlWindow.addTab("3D"); controlWindow.tab("3D").setLabel("  3D  ");
-  controlWindow.tab("3D").setId(6);
+  controlWindow.tab("3D").setId(6); controlWindow.tab("3D").captionLabel().setWidth(30);
   controlWindow.addTab("Playlist"); controlWindow.tab("Playlist").setLabel("  Playlist  ");
-  controlWindow.tab("Playlist").setId(7);
-  controlWindow.addTab("Audio"); controlWindow.tab("Audio").setLabel(" Audio  ");
-  controlWindow.tab("Audio").setId(8);
+  controlWindow.tab("Playlist").setId(7); controlWindow.tab("Playlist").captionLabel().setWidth(70);
+  controlWindow.addTab("Audio"); controlWindow.tab("Audio").setLabel("  Audio  ");
+  controlWindow.tab("Audio").setId(8); controlWindow.tab("Audio").captionLabel().setWidth(70);
   controlWindow.addTab("Prefs"); controlWindow.tab("Prefs").setLabel("  Prefs  ");
-  controlWindow.tab("Prefs").setId(9);
+  controlWindow.tab("Prefs").setId(9); controlWindow.tab("Prefs").captionLabel().setWidth(70);
   controlWindow.addTab("Help"); controlWindow.tab("Help").setLabel("  Help  ");
-  controlWindow.tab("Help").setId(10);
+  controlWindow.tab("Help").setId(10); controlWindow.tab("Help").captionLabel().setWidth(70);
   
 //  controlP5.trigger();
 //  
@@ -504,8 +508,8 @@ void QCsetupInterface() {
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
-  // audio
-  // prefs tab
+  // interface
+  // audio tab
   //
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
@@ -528,10 +532,18 @@ void QCsetupInterface() {
   //
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
-  outputResolutionList = controlP5.addListBox("outputResolution",10,200,int(columnWidth*0.9),240);
+  languageList = controlP5.addListBox("language",10,200,int(columnWidth*0.9),240);
+  languageList.setLabel("language");
+  languageList.moveTo(controlWindow,"Prefs");
+  languageList.addItem("English",0);
+  languageList.addItem("Portuguese",1);
+  languageList.addItem("French",2);
+  languageList.addItem("German",3);
+  languageList.addItem("Chinese",4);
+  
+  outputResolutionList = controlP5.addListBox("outputResolution",columnWidth,320,int(columnWidth*0.9),240);
   outputResolutionList.setLabel("output resolution");
   outputResolutionList.moveTo(controlWindow,"Prefs");
-  
   outputResolutionList.addItem("240 x 180",0);
   outputResolutionList.addItem("320 x 240",1);
   outputResolutionList.addItem("640 x 480",2);
@@ -590,5 +602,7 @@ void QCsetupInterface() {
   10,170,int(columnWidth*1.9),600);
   textHelp.setFont(ControlP5.grixel);
   textHelp.moveTo(controlWindow,"Help");
+  
+  QCtranslate();
   
 } // end QC setupInterface
