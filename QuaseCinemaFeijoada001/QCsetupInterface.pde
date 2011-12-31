@@ -33,25 +33,25 @@ void QCsetupInterface() {
   
   // tabs
   controlWindow.tab("default").setLabel("Main");
-  controlWindow.tab("default").setId(1); controlWindow.tab("default").captionLabel().toUpperCase(false).setWidth(80); 
+  controlWindow.tab("default").setId(1); controlWindow.tab("default").captionLabel().toUpperCase(false).setHeight(23).setWidth(80); 
   controlWindow.addTab("Effects"); controlWindow.tab("Effects").setLabel("  Effects  ");
-  controlWindow.tab("Effects").setId(2); controlWindow.tab("Effects").captionLabel().toUpperCase(false).setWidth(80);
+  controlWindow.tab("Effects").setId(2); controlWindow.tab("Effects").captionLabel().toUpperCase(false).setHeight(23).setWidth(80);
   controlWindow.addTab("Rhythm"); controlWindow.tab("Rhythm").setLabel("  Rhythm  ");
-  controlWindow.tab("Rhythm").setId(3); controlWindow.tab("Rhythm").captionLabel().toUpperCase(false).setWidth(80);
+  controlWindow.tab("Rhythm").setId(3); controlWindow.tab("Rhythm").captionLabel().toUpperCase(false).setHeight(23).setWidth(80);
   controlWindow.addTab("Sequencer"); controlWindow.tab("Sequencer").setLabel("  Sequencer  ");
-  controlWindow.tab("Sequencer").setId(4); controlWindow.tab("Sequencer").captionLabel().toUpperCase(false).setWidth(90);
+  controlWindow.tab("Sequencer").setId(4); controlWindow.tab("Sequencer").captionLabel().toUpperCase(false).setHeight(23).setWidth(90);
   controlWindow.addTab("Mapping"); controlWindow.tab("Mapping").setLabel("  Mapping  ");
-  controlWindow.tab("Mapping").setId(5); controlWindow.tab("Mapping").captionLabel().toUpperCase(false).setWidth(80);
+  controlWindow.tab("Mapping").setId(5); controlWindow.tab("Mapping").captionLabel().toUpperCase(false).setHeight(23).setWidth(80);
   controlWindow.addTab("3D"); controlWindow.tab("3D").setLabel("  3D  ");
-  controlWindow.tab("3D").setId(6); controlWindow.tab("3D").captionLabel().toUpperCase(false).setWidth(80);
+  controlWindow.tab("3D").setId(6); controlWindow.tab("3D").captionLabel().toUpperCase(false).setHeight(23).setWidth(80);
   controlWindow.addTab("Playlist"); controlWindow.tab("Playlist").setLabel("  Playlist  ");
-  controlWindow.tab("Playlist").setId(7); controlWindow.tab("Playlist").captionLabel().toUpperCase(false).setWidth(80);
+  controlWindow.tab("Playlist").setId(7); controlWindow.tab("Playlist").captionLabel().toUpperCase(false).setHeight(23).setWidth(80);
   controlWindow.addTab("Audio"); controlWindow.tab("Audio").setLabel("  Audio  ");
-  controlWindow.tab("Audio").setId(8); controlWindow.tab("Audio").captionLabel().toUpperCase(false).setWidth(80);
+  controlWindow.tab("Audio").setId(8); controlWindow.tab("Audio").captionLabel().toUpperCase(false).setHeight(23).setWidth(80);
   controlWindow.addTab("Prefs"); controlWindow.tab("Prefs").setLabel("  Preferences  ");
-  controlWindow.tab("Prefs").setId(9); controlWindow.tab("Prefs").captionLabel().toUpperCase(false).setWidth(90);
+  controlWindow.tab("Prefs").setId(9); controlWindow.tab("Prefs").captionLabel().toUpperCase(false).setHeight(23).setWidth(90);
   controlWindow.addTab("Help"); controlWindow.tab("Help").setLabel("  Help  ");
-  controlWindow.tab("Help").setId(10); controlWindow.tab("Help").captionLabel().toUpperCase(false).setWidth(80);
+  controlWindow.tab("Help").setId(10); controlWindow.tab("Help").captionLabel().toUpperCase(false).setHeight(23).setWidth(80);
   
 //  controlP5.trigger();
 //  
@@ -80,6 +80,7 @@ void QCsetupInterface() {
   // interface main - column 1
   controlP5.Controller visibilityToggle1 = controlP5.addToggle("layer1visibility",true,180+(columnWidth*0),24,20,20);
   visibilityToggle1.setLabel("visible"); visibilityToggle1.moveTo(controlWindow,"global");
+  visibilityToggle1.captionLabel().toUpperCase(false);
   
   layerContentButton1 = controlP5.addRadioButton("layerContent1",180+(columnWidth*0),109);
   layerContentButton1.setNoneSelectedAllowed(false); layerContentButton1.setItemsPerRow(1);
@@ -89,28 +90,29 @@ void QCsetupInterface() {
   layerContentButton1.moveTo(controlWindow,"global");
   
   controlP5.Controller loopToggle1 = controlP5.addToggle("layer1loop",true,10+(columnWidth*0),160,15,15);
-  loopToggle1.setLabel("Loop"); loopToggle1.moveTo(controlWindow);
+  loopToggle1.setLabel("loop"); loopToggle1.moveTo(controlWindow);
   loopToggle1.captionLabel().toUpperCase(false);
   
   controlP5.Controller playbackSlider1 = controlP5.addSlider("layer1playback",0,1.0,0.0,10+(columnWidth*0),200,int(columnWidth*0.7),14);
-  playbackSlider1.setLabel("Playback"); playbackSlider1.moveTo(controlWindow);
+  playbackSlider1.setLabel("playback"); playbackSlider1.moveTo(controlWindow);
   playbackSlider1.captionLabel().toUpperCase(false);
   
   controlP5.Controller mySlider = controlP5.addSlider("layer1speed",-4.0,4.0,1.0,10+(columnWidth*0),220,int(columnWidth*0.7),14);
-  mySlider.setLabel("Speed"); mySlider.moveTo(controlWindow);
+  mySlider.setLabel("speed"); mySlider.moveTo(controlWindow);
   mySlider.captionLabel().toUpperCase(false);
   
-  controlP5.Controller randomDir1 = controlP5.addButton("randomDir1",0,10+(columnWidth*0),250,80,14);
-  randomDir1.setLabel("Random Dir"); randomDir1.moveTo(controlWindow);
+  controlP5.Controller randomDir1 = controlP5.addButton("randomDir1",0,10+(columnWidth*0),250,85,14);
+  randomDir1.setLabel("random dir"); randomDir1.moveTo(controlWindow);
   randomDir1.captionLabel().toUpperCase(false);
   
-  controlP5.Controller randomMov1 = controlP5.addButton("randomMov1",0,110+(columnWidth*0),250,80,14);
-  randomMov1.setLabel("Random Mov"); randomMov1.moveTo(controlWindow);
+  controlP5.Controller randomMov1 = controlP5.addButton("randomMov1",0,110+(columnWidth*0),250,85,14);
+  randomMov1.setLabel("random mov"); randomMov1.moveTo(controlWindow);
   randomMov1.captionLabel().toUpperCase(false);
   
   // interface main - column 2
   controlP5.Controller visibilityToggle2 = controlP5.addToggle("layer2visibility",false,180+(columnWidth*1),24,20,20);
   visibilityToggle2.setLabel("visible"); visibilityToggle2.moveTo(controlWindow,"global");
+  visibilityToggle2.captionLabel().toUpperCase(false);
   
   layerContentButton2 = controlP5.addRadioButton("layerContent2",180+(columnWidth*1),109);
   layerContentButton2.setNoneSelectedAllowed(false); layerContentButton2.setItemsPerRow(1);
@@ -121,23 +123,29 @@ void QCsetupInterface() {
   
   controlP5.Controller loopToggle2 = controlP5.addToggle("layer2loop",true,10+(columnWidth*1),160,15,15);
   loopToggle2.setLabel("loop"); loopToggle2.moveTo(controlWindow);
+  loopToggle2.captionLabel().toUpperCase(false);
   
   controlP5.Controller playbackSlider2 = controlP5.addSlider("layer2playback",0,1.0,0.0,10+(columnWidth*1),200,int(columnWidth*0.7),14);
   playbackSlider2.setLabel("playback"); playbackSlider2.moveTo(controlWindow);
+  playbackSlider2.captionLabel().toUpperCase(false);
   
   controlP5.Controller speedSlider2 = controlP5.addSlider("layer2speed",-4.0,4.0,1.0,10+(columnWidth*1),220,int(columnWidth*0.7),14);
   speedSlider2.setLabel("speed"); speedSlider2.moveTo(controlWindow);
+  speedSlider2.captionLabel().toUpperCase(false);
   
-  controlP5.Controller randomDir2 = controlP5.addButton("randomDir2",0,10+(columnWidth*1),250,60,14);
+  controlP5.Controller randomDir2 = controlP5.addButton("randomDir2",0,10+(columnWidth*1),250,85,14);
   randomDir2.setLabel("random dir"); randomDir2.moveTo(controlWindow);
+  randomDir2.captionLabel().toUpperCase(false);
   
-  controlP5.Controller randomMov2 = controlP5.addButton("randomMov2",0,80+(columnWidth*1),250,60,14);
+  controlP5.Controller randomMov2 = controlP5.addButton("randomMov2",0,115+(columnWidth*1),250,85,14);
   randomMov2.setLabel("random mov"); randomMov2.moveTo(controlWindow);
+  randomMov2.captionLabel().toUpperCase(false);
   
   
   // interface main - column 3
   controlP5.Controller visibilityToggle3 = controlP5.addToggle("layer3visibility",false,180+(columnWidth*2),24,20,20);
   visibilityToggle3.setLabel("visible"); visibilityToggle3.moveTo(controlWindow,"global");
+  visibilityToggle3.captionLabel().toUpperCase(false);
   
   layerContentButton3 = controlP5.addRadioButton("layerContent3",180+(columnWidth*2),109);
   layerContentButton3.setNoneSelectedAllowed(false); layerContentButton3.setItemsPerRow(1);
@@ -148,23 +156,29 @@ void QCsetupInterface() {
   
   controlP5.Controller loopToggle3 = controlP5.addToggle("layer3loop",true,10+(columnWidth*2),160,15,15);
   loopToggle3.setLabel("loop"); loopToggle3.moveTo(controlWindow);
+  loopToggle3.captionLabel().toUpperCase(false);
   
   controlP5.Controller playbackSlider3 = controlP5.addSlider("layer3playback",0,1.0,0.0,10+(columnWidth*2),200,int(columnWidth*0.7),14);
   playbackSlider3.setLabel("playback"); playbackSlider3.moveTo(controlWindow);
+  playbackSlider3.captionLabel().toUpperCase(false);
   
   controlP5.Controller speedSlider3 = controlP5.addSlider("layer3speed",-4.0,4.0,1.0,10+(columnWidth*2),220,int(columnWidth*0.7),14);
   speedSlider3.setLabel("speed"); speedSlider3.moveTo(controlWindow);
+  speedSlider3.captionLabel().toUpperCase(false);
   
-  controlP5.Controller randomDir3 = controlP5.addButton("randomDir3",0,10+(columnWidth*2),250,60,14);
+  controlP5.Controller randomDir3 = controlP5.addButton("randomDir3",0,10+(columnWidth*2),250,85,14);
   randomDir3.setLabel("random dir"); randomDir3.moveTo(controlWindow);
+  randomDir3.captionLabel().toUpperCase(false);
   
-  controlP5.Controller randomMov3 = controlP5.addButton("randomMov3",0,80+(columnWidth*2),250,60,14);
+  controlP5.Controller randomMov3 = controlP5.addButton("randomMov3",0,115+(columnWidth*2),250,85,14);
   randomMov3.setLabel("random mov"); randomMov3.moveTo(controlWindow);
+  randomMov3.captionLabel().toUpperCase(false);
   
   
   // interface main - column 4
   controlP5.Controller visibilityToggle4 = controlP5.addToggle("layer4visibility",false,180+(columnWidth*3),24,20,20);
   visibilityToggle4.setLabel("visible"); visibilityToggle4.moveTo(controlWindow,"global");
+  visibilityToggle3.captionLabel().toUpperCase(false);
   
   layerContentButton4 = controlP5.addRadioButton("layerContent4",180+(columnWidth*3),109);
   layerContentButton4.setNoneSelectedAllowed(false); layerContentButton4.setItemsPerRow(1);
@@ -175,18 +189,23 @@ void QCsetupInterface() {
   
   controlP5.Controller loopToggle4 = controlP5.addToggle("layer4loop",true,10+(columnWidth*3),160,15,15);
   loopToggle4.setLabel("loop"); loopToggle4.moveTo(controlWindow);
+  loopToggle4.captionLabel().toUpperCase(false);
   
   controlP5.Controller playbackSlider4 = controlP5.addSlider("layer4playback",0,1.0,0.0,10+(columnWidth*3),200,int(columnWidth*0.7),14);
   playbackSlider4.setLabel("playback"); playbackSlider4.moveTo(controlWindow);
+  playbackSlider4.captionLabel().toUpperCase(false);
   
   controlP5.Controller speedSlider4 = controlP5.addSlider("layer4speed",-4.0,4.0,1.0,10+(columnWidth*3),220,int(columnWidth*0.7),14);
   speedSlider4.setLabel("speed"); speedSlider4.moveTo(controlWindow);
+  speedSlider4.captionLabel().toUpperCase(false);
   
-  controlP5.Controller randomDir4 = controlP5.addButton("randomDir4",0,10+(columnWidth*3),250,60,14);
+  controlP5.Controller randomDir4 = controlP5.addButton("randomDir4",0,10+(columnWidth*3),250,85,14);
   randomDir4.setLabel("random dir"); randomDir4.moveTo(controlWindow);
+  randomDir4.captionLabel().toUpperCase(false);
   
-  controlP5.Controller randomMov4 = controlP5.addButton("randomMov4",0,80+(columnWidth*3),250,60,14);
+  controlP5.Controller randomMov4 = controlP5.addButton("randomMov4",0,115+(columnWidth*3),250,85,14);
   randomMov4.setLabel("random mov"); randomMov4.moveTo(controlWindow);
+  randomMov4.captionLabel().toUpperCase(false);
   
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -209,43 +228,55 @@ void QCsetupInterface() {
   
   controlP5.Controller invertToggle1 = controlP5.addToggle("effectInvert1",false,10+(columnWidth*0),265,20,20);
   invertToggle1.setLabel("invert"); invertToggle1.moveTo(controlWindow,"Effects");
+  invertToggle1.captionLabel().toUpperCase(false);
   
   controlP5.Controller posterizeToggle1 = controlP5.addToggle("effectPosterize1",false,50+(columnWidth*0),265,20,20);
   posterizeToggle1.setLabel("poster"); posterizeToggle1.moveTo(controlWindow,"Effects");
+  posterizeToggle1.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectRgToggle1 = controlP5.addToggle("effectRG1",false,10+(columnWidth*0),315,20,20);
-  effectRgToggle1.setLabel("R -> G"); effectRgToggle1.moveTo(controlWindow,"Effects");
+  effectRgToggle1.setLabel("R > G"); effectRgToggle1.moveTo(controlWindow,"Effects");
   
   controlP5.Controller effectRbToggle1 = controlP5.addToggle("effectRB1",false,50+(columnWidth*0),315,20,20);
-  effectRbToggle1.setLabel("R -> B"); effectRbToggle1.moveTo(controlWindow,"Effects");
+  effectRbToggle1.setLabel("R > B"); effectRbToggle1.moveTo(controlWindow,"Effects");
   
   controlP5.Controller effectGbToggle1 = controlP5.addToggle("effectBG1",false,90+(columnWidth*0),315,20,20);
-  effectGbToggle1.setLabel("G -> B"); effectGbToggle1.moveTo(controlWindow,"Effects");
+  effectGbToggle1.setLabel("G > B"); effectGbToggle1.moveTo(controlWindow,"Effects");
   
   controlP5.Controller effectBWToggle1 = controlP5.addToggle("effectBW1",false,10+(columnWidth*0),355,20,20);
   effectBWToggle1.setLabel("BW"); effectBWToggle1.moveTo(controlWindow,"Effects");
+  effectBWToggle1.captionLabel().toUpperCase(false);
   controlP5.Controller effectBWlimit1slider = controlP5.addSlider("effectBWlimit1",0,255,127,40+(columnWidth*0),355,int(columnWidth*0.7),12);
   effectBWlimit1slider.setLabel("limit"); effectBWlimit1slider.moveTo(controlWindow,"Effects");
+  effectBWlimit1slider.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectContrastToggle1 = controlP5.addToggle("effectContrast1",false,10+(columnWidth*0),395,20,20);
   effectContrastToggle1.setLabel("Contrast"); effectContrastToggle1.moveTo(controlWindow,"Effects");
+  effectContrastToggle1.captionLabel().toUpperCase(false);
   controlP5.Controller effectContrastLimit1slider = controlP5.addSlider("effectContrastLimit1",0,200,0,40+(columnWidth*0),395,int(columnWidth*0.7),12);
   effectContrastLimit1slider.setLabel("amount"); effectContrastLimit1slider.moveTo(controlWindow,"Effects");
+  effectContrastLimit1slider.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectSaturationToggle1 = controlP5.addToggle("effectSaturation1",false,10+(columnWidth*0),435,20,20);
   effectSaturationToggle1.setLabel("Saturation"); effectSaturationToggle1.moveTo(controlWindow,"Effects");
+  effectSaturationToggle1.captionLabel().toUpperCase(false);
   controlP5.Controller effectSaturationLimit1slider = controlP5.addSlider("effectSaturationLimit1",0,256,0,40+(columnWidth*0),435,int(columnWidth*0.7),12);
   effectSaturationLimit1slider.setLabel("amount"); effectSaturationLimit1slider.moveTo(controlWindow,"Effects");
+  effectSaturationLimit1slider.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectHueToggle1 = controlP5.addToggle("effectHue1",false,10+(columnWidth*0),475,20,20);
   effectHueToggle1.setLabel("Hue"); effectHueToggle1.moveTo(controlWindow,"Effects");
+  effectHueToggle1.captionLabel().toUpperCase(false);
   controlP5.Controller effectHueLimit1slider = controlP5.addSlider("effectHueLimit1",0,256,0,40+(columnWidth*0),475,int(columnWidth*0.7),12);
   effectHueLimit1slider.setLabel("amount"); effectHueLimit1slider.moveTo(controlWindow,"Effects");
+  effectHueLimit1slider.captionLabel().toUpperCase(false);
   
   controlP5.Controller paintToggle1 = controlP5.addToggle("effectPaint1",false,10+(columnWidth*0),525,20,20);
   paintToggle1.setLabel("light paint"); paintToggle1.moveTo(controlWindow,"Effects");
+  paintToggle1.captionLabel().toUpperCase(false);
   controlP5.Controller paint1slider = controlP5.addSlider("paintAmount1",0,256,0,40+(columnWidth*0),525,int(columnWidth*0.7),12);
   paint1slider.setLabel("amount"); paint1slider.moveTo(controlWindow,"Effects");
+  paint1slider.captionLabel().toUpperCase(false);
   
   // interface effects - column 2
   
@@ -260,41 +291,52 @@ void QCsetupInterface() {
   
   controlP5.Controller invertToggle2 = controlP5.addToggle("effectInvert2",false,10+(columnWidth*1),265,20,20);
   invertToggle2.setLabel("invert"); invertToggle2.moveTo(controlWindow,"Effects");
+  invertToggle2.captionLabel().toUpperCase(false);
   
   controlP5.Controller posterizeToggle2 = controlP5.addToggle("effectPosterize2",false,50+(columnWidth*1),265,20,20);
   posterizeToggle2.setLabel("poster"); posterizeToggle2.moveTo(controlWindow,"Effects");
+  posterizeToggle2.captionLabel().toUpperCase(false);
   
   controlP5.Controller paintToggle2 = controlP5.addToggle("effectPaint2",false,90+(columnWidth*1),265,20,20);
   paintToggle2.setLabel("light paint"); paintToggle2.moveTo(controlWindow,"Effects");
+  paintToggle2.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectRgToggle2 = controlP5.addToggle("effectRG2",false,10+(columnWidth*1),315,20,20);
-  effectRgToggle2.setLabel("R -> G"); effectRgToggle2.moveTo(controlWindow,"Effects");
+  effectRgToggle2.setLabel("R > G"); effectRgToggle2.moveTo(controlWindow,"Effects");
   
   controlP5.Controller effectRbToggle2 = controlP5.addToggle("effectRB2",false,50+(columnWidth*1),315,20,20);
-  effectRbToggle2.setLabel("R -> B"); effectRbToggle2.moveTo(controlWindow,"Effects");
+  effectRbToggle2.setLabel("R > B"); effectRbToggle2.moveTo(controlWindow,"Effects");
   
   controlP5.Controller effectGbToggle2 = controlP5.addToggle("effectBG2",false,90+(columnWidth*1),315,20,20);
-  effectGbToggle2.setLabel("G -> B"); effectGbToggle2.moveTo(controlWindow,"Effects");
+  effectGbToggle2.setLabel("G > B"); effectGbToggle2.moveTo(controlWindow,"Effects");
   
   controlP5.Controller effectBWToggle2 = controlP5.addToggle("effectBW2",false,10+(columnWidth*1),355,20,20);
   effectBWToggle2.setLabel("BW"); effectBWToggle2.moveTo(controlWindow,"Effects");
+  effectBWToggle2.captionLabel().toUpperCase(false);
   controlP5.Controller effectBWlimit2slider = controlP5.addSlider("effectBWlimit2",0,255,127,50+(columnWidth*1),355,int(columnWidth*0.6),12);
   effectBWlimit2slider.setLabel("limit"); effectBWlimit2slider.moveTo(controlWindow,"Effects");
+  effectBWlimit2slider.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectContrastToggle2 = controlP5.addToggle("effectContrast2",false,10+(columnWidth*1),395,20,20);
   effectContrastToggle2.setLabel("Contrast"); effectContrastToggle2.moveTo(controlWindow,"Effects");
+  effectContrastToggle2.captionLabel().toUpperCase(false);
   controlP5.Controller effectContrastLimit2slider = controlP5.addSlider("effectContrastLimit2",0,200,0,40+(columnWidth*1),395,int(columnWidth*0.7),12);
   effectContrastLimit2slider.setLabel("amount"); effectContrastLimit2slider.moveTo(controlWindow,"Effects");
+  effectContrastLimit2slider.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectSaturationToggle2 = controlP5.addToggle("effectSaturation2",false,10+(columnWidth*1),435,20,20);
   effectSaturationToggle2.setLabel("Saturation"); effectSaturationToggle2.moveTo(controlWindow,"Effects");
+  effectSaturationToggle2.captionLabel().toUpperCase(false);
   controlP5.Controller effectSaturationLimit2slider = controlP5.addSlider("effectSaturationLimit2",0,256,0,40+(columnWidth*1),435,int(columnWidth*0.7),12);
   effectSaturationLimit2slider.setLabel("amount"); effectSaturationLimit2slider.moveTo(controlWindow,"Effects");
+  effectSaturationLimit2slider.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectHueToggle2 = controlP5.addToggle("effectHue2",false,10+(columnWidth*1),475,20,20);
   effectHueToggle2.setLabel("Hue"); effectHueToggle2.moveTo(controlWindow,"Effects");
+  effectHueToggle2.captionLabel().toUpperCase(false);
   controlP5.Controller effectHueLimit2slider = controlP5.addSlider("effectHueLimit2",0,256,0,40+(columnWidth*1),475,int(columnWidth*0.7),12);
   effectHueLimit2slider.setLabel("amount"); effectHueLimit2slider.moveTo(controlWindow,"Effects");
+  effectHueLimit2slider.captionLabel().toUpperCase(false);
   
   // interface effects - column 3
   
@@ -309,41 +351,52 @@ void QCsetupInterface() {
   
   controlP5.Controller invertToggle3 = controlP5.addToggle("effectInvert3",false,10+(columnWidth*2),265,20,20);
   invertToggle3.setLabel("invert"); invertToggle3.moveTo(controlWindow,"Effects");
+  effectHueLimit2slider.captionLabel().toUpperCase(false);
   
   controlP5.Controller posterizeToggle3 = controlP5.addToggle("effectPosterize3",false,50+(columnWidth*2),265,20,20);
   posterizeToggle3.setLabel("poster"); posterizeToggle3.moveTo(controlWindow,"Effects");
+  effectHueLimit2slider.captionLabel().toUpperCase(false);
 
   controlP5.Controller paintToggle3 = controlP5.addToggle("effectPaint3",false,90+(columnWidth*2),265,20,20);
   paintToggle3.setLabel("light paint"); paintToggle3.moveTo(controlWindow,"Effects");
+  effectHueLimit2slider.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectRgToggle3 = controlP5.addToggle("effectRG3",false,10+(columnWidth*2),315,20,20);
-  effectRgToggle3.setLabel("R -> G"); effectRgToggle3.moveTo(controlWindow,"Effects");
+  effectRgToggle3.setLabel("R > G"); effectRgToggle3.moveTo(controlWindow,"Effects");
   
   controlP5.Controller effectRbToggle3 = controlP5.addToggle("effectRB3",false,50+(columnWidth*2),315,20,20);
-  effectRbToggle3.setLabel("R -> B"); effectRbToggle3.moveTo(controlWindow,"Effects");
+  effectRbToggle3.setLabel("R > B"); effectRbToggle3.moveTo(controlWindow,"Effects");
   
   controlP5.Controller effectGbToggle3 = controlP5.addToggle("effectBG3",false,90+(columnWidth*2),315,20,20);
-  effectGbToggle3.setLabel("G -> B"); effectGbToggle3.moveTo(controlWindow,"Effects");
+  effectGbToggle3.setLabel("G > B"); effectGbToggle3.moveTo(controlWindow,"Effects");
   
   controlP5.Controller effectBWToggle3 = controlP5.addToggle("effectBW3",false,10+(columnWidth*2),355,20,20);
   effectBWToggle3.setLabel("BW"); effectBWToggle3.moveTo(controlWindow,"Effects");
+  effectBWToggle3.captionLabel().toUpperCase(false);
   controlP5.Controller effectBWlimit3slider = controlP5.addSlider("effectBWlimit3",0,255,127,50+(columnWidth*2),355,int(columnWidth*0.6),12);
   effectBWlimit3slider.setLabel("limit"); effectBWlimit3slider.moveTo(controlWindow,"Effects");
+  effectBWlimit3slider.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectContrastToggle3 = controlP5.addToggle("effectContrast3",false,10+(columnWidth*2),395,20,20);
   effectContrastToggle3.setLabel("Contrast"); effectContrastToggle3.moveTo(controlWindow,"Effects");
+  effectContrastToggle3.captionLabel().toUpperCase(false);
   controlP5.Controller effectContrastLimit3slider = controlP5.addSlider("effectContrastLimit3",0,200,0,40+(columnWidth*2),395,int(columnWidth*0.7),12);
   effectContrastLimit3slider.setLabel("amount"); effectContrastLimit3slider.moveTo(controlWindow,"Effects");
+  effectContrastLimit3slider.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectSaturationToggle3 = controlP5.addToggle("effectSaturation3",false,10+(columnWidth*2),435,20,20);
   effectSaturationToggle3.setLabel("Saturation"); effectSaturationToggle3.moveTo(controlWindow,"Effects");
+  effectSaturationToggle3.captionLabel().toUpperCase(false);
   controlP5.Controller effectSaturationLimit3slider = controlP5.addSlider("effectSaturationLimit3",0,256,0,40+(columnWidth*2),435,int(columnWidth*0.7),12);
   effectSaturationLimit3slider.setLabel("amount"); effectSaturationLimit3slider.moveTo(controlWindow,"Effects");
+  effectSaturationLimit3slider.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectHueToggle3 = controlP5.addToggle("effectHue3",false,10+(columnWidth*2),475,20,20);
   effectHueToggle3.setLabel("Hue"); effectHueToggle3.moveTo(controlWindow,"Effects");
+  effectHueToggle3.captionLabel().toUpperCase(false);
   controlP5.Controller effectHueLimit3slider = controlP5.addSlider("effectHueLimit3",0,256,0,40+(columnWidth*2),475,int(columnWidth*0.7),12);
   effectHueLimit3slider.setLabel("amount"); effectHueLimit3slider.moveTo(controlWindow,"Effects");
+  effectHueLimit3slider.captionLabel().toUpperCase(false);
   
   
   // interface effects - column 4
@@ -359,41 +412,52 @@ void QCsetupInterface() {
   
   controlP5.Controller invertToggle4 = controlP5.addToggle("effectInvert4",false,10+(columnWidth*3),265,20,20);
   invertToggle4.setLabel("invert"); invertToggle4.moveTo(controlWindow,"Effects");
+  invertToggle4.captionLabel().toUpperCase(false);
   
   controlP5.Controller posterizeToggle4 = controlP5.addToggle("effectPosterize4",false,50+(columnWidth*3),265,20,20);
   posterizeToggle4.setLabel("poster"); posterizeToggle4.moveTo(controlWindow,"Effects");
+  posterizeToggle4.captionLabel().toUpperCase(false);
   
   controlP5.Controller paintToggle4 = controlP5.addToggle("effectPaint4",false,90+(columnWidth*3),265,20,20);
   paintToggle4.setLabel("light paint"); paintToggle4.moveTo(controlWindow,"Effects");
+  paintToggle4.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectRgToggle4 = controlP5.addToggle("effectRG4",false,10+(columnWidth*3),315,20,20);
-  effectRgToggle4.setLabel("R -> G"); effectRgToggle4.moveTo(controlWindow,"Effects");
+  effectRgToggle4.setLabel("R > G"); effectRgToggle4.moveTo(controlWindow,"Effects");
   
   controlP5.Controller effectRbToggle4 = controlP5.addToggle("effectRB4",false,50+(columnWidth*3),315,20,20);
-  effectRbToggle4.setLabel("R -> B"); effectRbToggle4.moveTo(controlWindow,"Effects");
+  effectRbToggle4.setLabel("R > B"); effectRbToggle4.moveTo(controlWindow,"Effects");
   
   controlP5.Controller effectGbToggle4 = controlP5.addToggle("effectBG4",false,90+(columnWidth*3),315,20,20);
-  effectGbToggle4.setLabel("G -> B"); effectGbToggle4.moveTo(controlWindow,"Effects");
+  effectGbToggle4.setLabel("G > B"); effectGbToggle4.moveTo(controlWindow,"Effects");
   
   controlP5.Controller effectBWToggle4 = controlP5.addToggle("effectBW4",false,10+(columnWidth*3),355,20,20);
   effectBWToggle4.setLabel("BW"); effectBWToggle4.moveTo(controlWindow,"Effects");
+  effectBWToggle4.captionLabel().toUpperCase(false);
   controlP5.Controller effectBWlimit4slider = controlP5.addSlider("effectBWlimit4",0,255,127,50+(columnWidth*3),355,int(columnWidth*0.6),12);
   effectBWlimit4slider.setLabel("limit"); effectBWlimit4slider.moveTo(controlWindow,"Effects");
+  effectBWlimit4slider.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectContrastToggle4 = controlP5.addToggle("effectContrast4",false,10+(columnWidth*3),395,20,20);
   effectContrastToggle4.setLabel("Contrast"); effectContrastToggle4.moveTo(controlWindow,"Effects");
+  effectContrastToggle4.captionLabel().toUpperCase(false);
   controlP5.Controller effectContrastLimit4slider = controlP5.addSlider("effectContrastLimit4",0,200,0,40+(columnWidth*3),395,int(columnWidth*0.7),12);
   effectContrastLimit4slider.setLabel("amount"); effectContrastLimit4slider.moveTo(controlWindow,"Effects");
+  effectContrastLimit4slider.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectSaturationToggle4 = controlP5.addToggle("effectSaturation4",false,10+(columnWidth*3),435,20,20);
   effectSaturationToggle4.setLabel("Saturation"); effectSaturationToggle4.moveTo(controlWindow,"Effects");
+  effectSaturationToggle4.captionLabel().toUpperCase(false);
   controlP5.Controller effectSaturationLimit4slider = controlP5.addSlider("effectSaturationLimit4",0,256,0,40+(columnWidth*3),435,int(columnWidth*0.7),12);
   effectSaturationLimit4slider.setLabel("amount"); effectSaturationLimit4slider.moveTo(controlWindow,"Effects");
+  effectSaturationLimit4slider.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectHueToggle4 = controlP5.addToggle("effectHue4",false,10+(columnWidth*3),475,20,20);
   effectHueToggle4.setLabel("Hue"); effectHueToggle4.moveTo(controlWindow,"Effects");
+  effectHueToggle4.captionLabel().toUpperCase(false);
   controlP5.Controller effectHueLimit4slider = controlP5.addSlider("effectHueLimit4",0,256,0,40+(columnWidth*3),475,int(columnWidth*0.7),12);
   effectHueLimit4slider.setLabel("amount"); effectHueLimit4slider.moveTo(controlWindow,"Effects");
+  effectHueLimit4slider.captionLabel().toUpperCase(false);
   
   
   
@@ -586,23 +650,23 @@ void QCsetupInterface() {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   textHelp = controlP5.addTextarea("helpText",
-  "Quase-Cinema Feijoada Remix 0.01\n\n"+
-  "Alexandre Rangel, 2011\n\n"+
-  "www.quasecinema.org\n\n\n\n"+
-  "Shortcuts :\n\n\n"+
-  "F1 - F8 : changes interface panels\n\n"+
-  "1 - 4 : selects layers 1 to 4\n\n"+
-  "enter : toggle selected layer visibility on/off\n\n"+
-  "i : marks in point for movie on the selected layer\n\n"+
-  "o : marks out point for movie on the selected layer\n\n"+
-  "I : clears in point for movie on the selected layer\n\n"+
-  "O : clears out point for movie on the selected layer\n\n"+
-  "d : selects root movie directory (with other folders inside)\n\n"+
-  "r : randomize movie on selected layer:\n\n"+
-  "M : randomize audio\n\n"+
-  "t : toggles video scratch for selected layer\n\n"+
-  "[ - ] : select quad-mapping plane\n\n"+
-  "c : mapping control points visibility on/off\n\n",
+  "Quase-Cinema Feijoada Remix 0.01\n"+
+  "Alexandre Rangel, 2011\n"+
+  "www.quasecinema.org\n\n\n"+
+  "Shortcuts\n\n"+
+  "F1 - F8: changes interface panels\n"+
+  "1 - 4: selects layers 1 to 4\n"+
+  "enter: toggle selected layer visibility on/off\n"+
+  "i: marks in point for movie on the selected layer\n"+
+  "o: marks out point for movie on the selected layer\n"+
+  "I: clears in point for movie on the selected layer\n"+
+  "O: clears out point for movie on the selected layer\n"+
+  "d: selects root movie directory (with other folders inside)\n"+
+  "r: randomize movie on selected layer:\n"+
+  "M: randomize audio\n"+
+  "t: toggles video scratch for selected layer\n"+
+  "[ - ]: select quad-mapping plane\n"+
+  "c: mapping control points visibility on/off\n",
   10,170,int(columnWidth*1.9),600);
   textHelp.setFont(ControlP5.grixel);
   textHelp.moveTo(controlWindow,"Help");

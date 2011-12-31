@@ -523,12 +523,12 @@ public void draw() {
   gl.setSwapInterval(1); // Enable VSync
   //pgl.endGL();
 
-  if (!effectPaint1 && !effectPaint2 && !effectPaint3 && !effectPaint4) { 
-    background(0);
+  if (!effectPaint1 && !effectPaint2 && !effectPaint3 && !effectPaint4) {
+    outputGL.beginDraw(); background(0); outputGL.endDraw();
   }
   else {
     fill(0, 0, 0, map(paintAmount1, 0.0, 256.0, 15.0, 0.0));
-    rect(0, 0, outputWidth, outputHeight);
+    outputGL.beginDraw(); rect(0, 0, outputWidth, outputHeight); outputGL.endDraw();
   } // end if light paint
 
     //
@@ -616,10 +616,10 @@ public void draw() {
   } // end if camera update
 
   // light paint update (turns on lighten composite mode)
-  //  if (effectPaint1) { layerComposite1select=1; }
-  //  if (effectPaint2) { layerComposite2select=1; }
-  //  if (effectPaint3) { layerComposite3select=1; }
-  //  if (effectPaint4) { layerComposite4select=1; }
+  if (effectPaint1) { layerComposite1select=1; }
+  if (effectPaint2) { layerComposite2select=1; }
+  if (effectPaint3) { layerComposite3select=1; }
+  if (effectPaint4) { layerComposite4select=1; }
 
   //
   // drop movie
@@ -822,21 +822,13 @@ public void draw() {
   if (layer1visibility) {
 
     // openGL compositing
-    if (layerComposite1select != 0) { 
-      gl.glDisable(GL.GL_DEPTH_TEST); 
-      gl.glEnable(GL.GL_BLEND);
-    } // prepare blend
-    if (layerComposite1select == 1) { 
-      gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE);
-    } // lighten
-    if (layerComposite1select == 2) { 
-      gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);
-      ;
-    } // darken
+    if (layerComposite1select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+    if (layerComposite1select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+    if (layerComposite1select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR); } // darken
 
     tint(red(colorPicker1.getColorValue()), green(colorPicker1.getColorValue()), blue(colorPicker1.getColorValue()), layerOpacity1);
     //tint(fft.getAvg(5)*255, green(colorPicker1.getColorValue()), 0); // colorPicker1.getColorValue()
-    myMovie1.play();
+    if (!myMovie1.isPlaying()) { myMovie1.play(); }
 
     if (mapping1) { // quad mapping
       quadGraphics1.beginDraw(); 
@@ -869,20 +861,12 @@ public void draw() {
   if (layer2visibility) {
 
     // openGL compositing
-    if (layerComposite2select != 0) { 
-      gl.glDisable(GL.GL_DEPTH_TEST); 
-      gl.glEnable(GL.GL_BLEND);
-    } // prepare blend
-    if (layerComposite2select == 1) { 
-      gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE);
-    } // lighten
-    if (layerComposite2select == 2) { 
-      gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);
-      ;
-    } // darken
+    if (layerComposite2select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+    if (layerComposite2select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+    if (layerComposite2select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR); } // darken
 
     tint(red(colorPicker2.getColorValue()), green(colorPicker2.getColorValue()), blue(colorPicker2.getColorValue()), layerOpacity2);
-    myMovie2.play(); //myMovie2.speed(layer2speed);
+    if (!myMovie2.isPlaying()) { myMovie2.play(); }
 
     if (mapping2) { // quad mapping
       quadGraphics2.beginDraw(); 
@@ -915,20 +899,12 @@ public void draw() {
   if (layer3visibility) {
 
     // openGL compositing
-    if (layerComposite3select != 0) { 
-      gl.glDisable(GL.GL_DEPTH_TEST); 
-      gl.glEnable(GL.GL_BLEND);
-    } // prepare blend
-    if (layerComposite3select == 1) { 
-      gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE);
-    } // lighten
-    if (layerComposite3select == 2) { 
-      gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);
-      ;
-    } // darken
+    if (layerComposite3select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+    if (layerComposite3select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+    if (layerComposite3select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR); } // darken
 
     tint(red(colorPicker3.getColorValue()), green(colorPicker3.getColorValue()), blue(colorPicker3.getColorValue()), layerOpacity3);
-    myMovie3.play();
+    if (!myMovie3.isPlaying()) { myMovie3.play(); }
     //myMovie3.speed(layer3speed);
 
     if (mapping3) { // quad mapping
@@ -961,20 +937,12 @@ public void draw() {
   if (layer4visibility) {
 
     // openGL compositing
-    if (layerComposite4select != 0) { 
-      gl.glDisable(GL.GL_DEPTH_TEST); 
-      gl.glEnable(GL.GL_BLEND);
-    } // prepare blend
-    if (layerComposite4select == 1) { 
-      gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE);
-    } // lighten
-    if (layerComposite4select == 2) { 
-      gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR);
-      ;
-    } // darken
+    if (layerComposite4select != 0) { gl.glDisable(GL.GL_DEPTH_TEST); gl.glEnable(GL.GL_BLEND); } // prepare blend
+    if (layerComposite4select == 1) { gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE); } // lighten
+    if (layerComposite4select == 2) { gl.glBlendFunc(GL.GL_DST_COLOR, GL.GL_SRC_COLOR); } // darken
 
     tint(red(colorPicker4.getColorValue()), green(colorPicker4.getColorValue()), blue(colorPicker4.getColorValue()), layerOpacity4);
-    myMovie4.play();
+    if (!myMovie4.isPlaying()) { myMovie4.play(); }
     //myMovie4.speed(layer4speed);
 
     if (mapping4) { // quad mapping
