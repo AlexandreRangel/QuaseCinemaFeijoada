@@ -315,7 +315,7 @@ void controlEvent(ControlEvent theEvent) {
     if (theEvent.group() == languageList) {
       language = (int (theEvent.group().value()) );
       if (language == 4) { controlP5.setControlFont(new ControlFont(createFont("Hei",12, true), 12)); }
-      else { controlP5.setControlFont(new ControlFont(createFont("Helvetica",11, true), 11)); }
+      else { controlP5.setControlFont(new ControlFont(createFont("Helvetica",12, true), 12)); }
       QCtranslate();
     }
     

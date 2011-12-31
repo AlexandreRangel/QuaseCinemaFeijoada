@@ -25,7 +25,7 @@ void QCsetupInterface() {
   controlP5.setColorLabel(#B7B7B7);
   controlP5.setColorValue(#E5E5E5);
   controlP5.setColorActive(#00FF00);
-  controlP5.setControlFont(new ControlFont(createFont("Helvetica",11, true), 11));
+  controlP5.setControlFont(new ControlFont(createFont("Helvetica",12, true), 12));
    
   cc = new MyCanvas(); // create a control window canvas
   cc.pre(); // use cc.post(); to draw on top of the controllers.
@@ -33,25 +33,25 @@ void QCsetupInterface() {
   
   // tabs
   controlWindow.tab("default").setLabel("Main");
-  controlWindow.tab("default").setId(1); controlWindow.tab("default").captionLabel().setWidth(80); 
+  controlWindow.tab("default").setId(1); controlWindow.tab("default").captionLabel().toUpperCase(false).setWidth(80); 
   controlWindow.addTab("Effects"); controlWindow.tab("Effects").setLabel("  Effects  ");
-  controlWindow.tab("Effects").setId(2); controlWindow.tab("Effects").captionLabel().setWidth(80);
+  controlWindow.tab("Effects").setId(2); controlWindow.tab("Effects").captionLabel().toUpperCase(false).setWidth(80);
   controlWindow.addTab("Rhythm"); controlWindow.tab("Rhythm").setLabel("  Rhythm  ");
-  controlWindow.tab("Rhythm").setId(3); controlWindow.tab("Rhythm").captionLabel().setWidth(80);
+  controlWindow.tab("Rhythm").setId(3); controlWindow.tab("Rhythm").captionLabel().toUpperCase(false).setWidth(80);
   controlWindow.addTab("Sequencer"); controlWindow.tab("Sequencer").setLabel("  Sequencer  ");
-  controlWindow.tab("Sequencer").setId(4); controlWindow.tab("Sequencer").captionLabel().setWidth(90);
+  controlWindow.tab("Sequencer").setId(4); controlWindow.tab("Sequencer").captionLabel().toUpperCase(false).setWidth(90);
   controlWindow.addTab("Mapping"); controlWindow.tab("Mapping").setLabel("  Mapping  ");
-  controlWindow.tab("Mapping").setId(5); controlWindow.tab("Mapping").captionLabel().setWidth(80);
+  controlWindow.tab("Mapping").setId(5); controlWindow.tab("Mapping").captionLabel().toUpperCase(false).setWidth(80);
   controlWindow.addTab("3D"); controlWindow.tab("3D").setLabel("  3D  ");
-  controlWindow.tab("3D").setId(6); controlWindow.tab("3D").captionLabel().setWidth(80);
+  controlWindow.tab("3D").setId(6); controlWindow.tab("3D").captionLabel().toUpperCase(false).setWidth(80);
   controlWindow.addTab("Playlist"); controlWindow.tab("Playlist").setLabel("  Playlist  ");
-  controlWindow.tab("Playlist").setId(7); controlWindow.tab("Playlist").captionLabel().setWidth(80);
+  controlWindow.tab("Playlist").setId(7); controlWindow.tab("Playlist").captionLabel().toUpperCase(false).setWidth(80);
   controlWindow.addTab("Audio"); controlWindow.tab("Audio").setLabel("  Audio  ");
-  controlWindow.tab("Audio").setId(8); controlWindow.tab("Audio").captionLabel().setWidth(80);
+  controlWindow.tab("Audio").setId(8); controlWindow.tab("Audio").captionLabel().toUpperCase(false).setWidth(80);
   controlWindow.addTab("Prefs"); controlWindow.tab("Prefs").setLabel("  Preferences  ");
-  controlWindow.tab("Prefs").setId(9); controlWindow.tab("Prefs").captionLabel().setWidth(90);
+  controlWindow.tab("Prefs").setId(9); controlWindow.tab("Prefs").captionLabel().toUpperCase(false).setWidth(90);
   controlWindow.addTab("Help"); controlWindow.tab("Help").setLabel("  Help  ");
-  controlWindow.tab("Help").setId(10); controlWindow.tab("Help").captionLabel().setWidth(80);
+  controlWindow.tab("Help").setId(10); controlWindow.tab("Help").captionLabel().toUpperCase(false).setWidth(80);
   
 //  controlP5.trigger();
 //  
@@ -89,20 +89,24 @@ void QCsetupInterface() {
   layerContentButton1.moveTo(controlWindow,"global");
   
   controlP5.Controller loopToggle1 = controlP5.addToggle("layer1loop",true,10+(columnWidth*0),160,15,15);
-  loopToggle1.setLabel("loop"); loopToggle1.moveTo(controlWindow);
+  loopToggle1.setLabel("Loop"); loopToggle1.moveTo(controlWindow);
+  loopToggle1.captionLabel().toUpperCase(false);
   
   controlP5.Controller playbackSlider1 = controlP5.addSlider("layer1playback",0,1.0,0.0,10+(columnWidth*0),200,int(columnWidth*0.7),14);
-  playbackSlider1.setLabel("playback"); playbackSlider1.moveTo(controlWindow);
+  playbackSlider1.setLabel("Playback"); playbackSlider1.moveTo(controlWindow);
+  playbackSlider1.captionLabel().toUpperCase(false);
   
   controlP5.Controller mySlider = controlP5.addSlider("layer1speed",-4.0,4.0,1.0,10+(columnWidth*0),220,int(columnWidth*0.7),14);
-  mySlider.setLabel("speed"); mySlider.moveTo(controlWindow);
+  mySlider.setLabel("Speed"); mySlider.moveTo(controlWindow);
+  mySlider.captionLabel().toUpperCase(false);
   
-  controlP5.Controller randomDir1 = controlP5.addButton("randomDir1",0,10+(columnWidth*0),250,60,14);
-  randomDir1.setLabel("random dir"); randomDir1.moveTo(controlWindow);
+  controlP5.Controller randomDir1 = controlP5.addButton("randomDir1",0,10+(columnWidth*0),250,80,14);
+  randomDir1.setLabel("Random Dir"); randomDir1.moveTo(controlWindow);
+  randomDir1.captionLabel().toUpperCase(false);
   
-  controlP5.Controller randomMov1 = controlP5.addButton("randomMov1",0,80+(columnWidth*0),250,60,14);
-  randomMov1.setLabel("random mov"); randomMov1.moveTo(controlWindow);
-  
+  controlP5.Controller randomMov1 = controlP5.addButton("randomMov1",0,110+(columnWidth*0),250,80,14);
+  randomMov1.setLabel("Random Mov"); randomMov1.moveTo(controlWindow);
+  randomMov1.captionLabel().toUpperCase(false);
   
   // interface main - column 2
   controlP5.Controller visibilityToggle2 = controlP5.addToggle("layer2visibility",false,180+(columnWidth*1),24,20,20);
