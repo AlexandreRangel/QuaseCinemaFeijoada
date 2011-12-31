@@ -33,25 +33,25 @@ void QCsetupInterface() {
   
   // tabs
   controlWindow.tab("default").setLabel("Main");
-  controlWindow.tab("default").setId(1); controlWindow.tab("default").captionLabel().setWidth(70); 
+  controlWindow.tab("default").setId(1); controlWindow.tab("default").captionLabel().setWidth(80); 
   controlWindow.addTab("Effects"); controlWindow.tab("Effects").setLabel("  Effects  ");
-  controlWindow.tab("Effects").setId(2); controlWindow.tab("Effects").captionLabel().setWidth(70);
+  controlWindow.tab("Effects").setId(2); controlWindow.tab("Effects").captionLabel().setWidth(80);
   controlWindow.addTab("Rhythm"); controlWindow.tab("Rhythm").setLabel("  Rhythm  ");
-  controlWindow.tab("Rhythm").setId(3); controlWindow.tab("Rhythm").captionLabel().setWidth(70);
+  controlWindow.tab("Rhythm").setId(3); controlWindow.tab("Rhythm").captionLabel().setWidth(80);
   controlWindow.addTab("Sequencer"); controlWindow.tab("Sequencer").setLabel("  Sequencer  ");
   controlWindow.tab("Sequencer").setId(4); controlWindow.tab("Sequencer").captionLabel().setWidth(90);
   controlWindow.addTab("Mapping"); controlWindow.tab("Mapping").setLabel("  Mapping  ");
-  controlWindow.tab("Mapping").setId(5); controlWindow.tab("Mapping").captionLabel().setWidth(70);
+  controlWindow.tab("Mapping").setId(5); controlWindow.tab("Mapping").captionLabel().setWidth(80);
   controlWindow.addTab("3D"); controlWindow.tab("3D").setLabel("  3D  ");
-  controlWindow.tab("3D").setId(6); controlWindow.tab("3D").captionLabel().setWidth(30);
+  controlWindow.tab("3D").setId(6); controlWindow.tab("3D").captionLabel().setWidth(80);
   controlWindow.addTab("Playlist"); controlWindow.tab("Playlist").setLabel("  Playlist  ");
-  controlWindow.tab("Playlist").setId(7); controlWindow.tab("Playlist").captionLabel().setWidth(70);
+  controlWindow.tab("Playlist").setId(7); controlWindow.tab("Playlist").captionLabel().setWidth(80);
   controlWindow.addTab("Audio"); controlWindow.tab("Audio").setLabel("  Audio  ");
-  controlWindow.tab("Audio").setId(8); controlWindow.tab("Audio").captionLabel().setWidth(70);
-  controlWindow.addTab("Prefs"); controlWindow.tab("Prefs").setLabel("  Prefs  ");
-  controlWindow.tab("Prefs").setId(9); controlWindow.tab("Prefs").captionLabel().setWidth(70);
+  controlWindow.tab("Audio").setId(8); controlWindow.tab("Audio").captionLabel().setWidth(80);
+  controlWindow.addTab("Prefs"); controlWindow.tab("Prefs").setLabel("  Preferences  ");
+  controlWindow.tab("Prefs").setId(9); controlWindow.tab("Prefs").captionLabel().setWidth(90);
   controlWindow.addTab("Help"); controlWindow.tab("Help").setLabel("  Help  ");
-  controlWindow.tab("Help").setId(10); controlWindow.tab("Help").captionLabel().setWidth(70);
+  controlWindow.tab("Help").setId(10); controlWindow.tab("Help").captionLabel().setWidth(80);
   
 //  controlP5.trigger();
 //  

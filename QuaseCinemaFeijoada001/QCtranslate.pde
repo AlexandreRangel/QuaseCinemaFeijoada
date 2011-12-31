@@ -6,6 +6,7 @@ public void QCtranslate() {
         case 1: languageList.setLabel("lingua"); break;
         case 2: languageList.setLabel("idiome"); break;
         case 3: languageList.setLabel("sprachlich"); break;
+        case 4: languageList.setLabel("语言"); break;
    } // end switch language
    
    
@@ -40,8 +41,9 @@ public void QCtranslate() {
    switch (language) {
         case 0: controlWindow.tab("Sequencer").setLabel(" Sequencer"); break; // English
         case 1: controlWindow.tab("Sequencer").setLabel(" Sequenciador"); break; // Portuguese
-        case 2: controlWindow.tab("Sequencer").setLabel(" Sequentiel"); break; // French
+        case 2: controlWindow.tab("Sequencer").setLabel(" Séquentiel"); break; // French
         case 3: controlWindow.tab("Sequencer").setLabel(" Sequencer"); break; // German
+        case 4: controlWindow.tab("Sequencer").setLabel(" 程序装置"); break; // Chinese
    } // end switch language
    
    switch (language) {
@@ -49,6 +51,7 @@ public void QCtranslate() {
         case 1: controlWindow.tab("Mapping").setLabel(" Mapeamento"); break; // Portuguese
         case 2: controlWindow.tab("Mapping").setLabel(" Mapping"); break; // French
         case 3: controlWindow.tab("Mapping").setLabel(" Mapping"); break; // German
+        case 4: controlWindow.tab("Mapping").setLabel(" Mapping"); break; // Chinese
    } // end switch language
    
    switch (language) {
@@ -56,6 +59,7 @@ public void QCtranslate() {
         case 1: controlWindow.tab("3D").setLabel(" 3D"); break; // Portuguese
         case 2: controlWindow.tab("3D").setLabel(" 3D"); break; // French
         case 3: controlWindow.tab("3D").setLabel(" 3D"); break; // German
+        case 4: controlWindow.tab("3D").setLabel(" 3D"); break; // Chinese
    } // end switch language
    
    switch (language) {
@@ -63,6 +67,7 @@ public void QCtranslate() {
         case 1: controlWindow.tab("Playlist").setLabel(" Playlist"); break; // Portuguese
         case 2: controlWindow.tab("Playlist").setLabel(" Playlist"); break; // French
         case 3: controlWindow.tab("Playlist").setLabel(" Playlist"); break; // German
+        case 4: controlWindow.tab("Playlist").setLabel(" 播放列表"); break; // Chinese
    } // end switch language
    
    switch (language) {
@@ -70,20 +75,23 @@ public void QCtranslate() {
         case 1: controlWindow.tab("Audio").setLabel(" Audio"); break; // Portuguese
         case 2: controlWindow.tab("Audio").setLabel(" Audio"); break; // French
         case 3: controlWindow.tab("Audio").setLabel(" Audio"); break; // German
+        case 4: controlWindow.tab("Audio").setLabel(" 声音的"); break; // Chinese
    } // end switch language
    
    switch (language) {
-        case 0: controlWindow.tab("Prefs").setLabel(" Prefs"); break; // English
-        case 1: controlWindow.tab("Prefs").setLabel(" Prefs"); break; // Portuguese
-        case 2: controlWindow.tab("Prefs").setLabel(" Prefs"); break; // French
-        case 3: controlWindow.tab("Prefs").setLabel(" Prefs"); break; // German
+        case 0: controlWindow.tab("Prefs").setLabel(" Preferences"); break; // English
+        case 1: controlWindow.tab("Prefs").setLabel(" Preferências"); break; // Portuguese
+        case 2: controlWindow.tab("Prefs").setLabel(" Préférences"); break; // French
+        case 3: controlWindow.tab("Prefs").setLabel(" Vorrang"); break; // German
+        case 4: controlWindow.tab("Prefs").setLabel(" 偏爱"); break; // Chinese
    } // end switch language
    
    switch (language) {
         case 0: controlWindow.tab("Help").setLabel(" Help"); break; // English
-        case 1: controlWindow.tab("Help").setLabel(" Help"); break; // Portuguese
-        case 2: controlWindow.tab("Help").setLabel(" Help"); break; // French
-        case 3: controlWindow.tab("Help").setLabel(" Help"); break; // German
+        case 1: controlWindow.tab("Help").setLabel(" Ajuda"); break; // Portuguese
+        case 2: controlWindow.tab("Help").setLabel(" Aide"); break; // French
+        case 3: controlWindow.tab("Help").setLabel(" Hilfe"); break; // German
+        case 4: controlWindow.tab("Help").setLabel(" 帮助"); break; // Chinese
    } // end switch language
   
   

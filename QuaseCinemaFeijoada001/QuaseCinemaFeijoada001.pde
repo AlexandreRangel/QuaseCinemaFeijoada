@@ -758,9 +758,9 @@ public void draw() {
     myMovie1 = new GSMovie(this, tempString); 
     myMovie1.read(); 
     myMovie1.play();
-    if (layer1loop) { 
-      myMovie1.loop();
-    }
+//    if (layer1loop) { 
+//      myMovie1.loop();
+//    }
     myMovie1.jump(random(myMovie1.duration()));
     layer1bpmMovieLastTime=millis();
   }
@@ -774,9 +774,9 @@ public void draw() {
     myMovie2 = new GSMovie(this, tempString); 
     myMovie2.read(); 
     myMovie2.play();
-    if (layer2loop) { 
-      myMovie2.loop();
-    }
+//    if (layer2loop) { 
+//      myMovie2.loop();
+//    }
     myMovie2.jump(random(myMovie2.duration()));
     layer2bpmMovieLastTime=millis();
   }
@@ -790,9 +790,9 @@ public void draw() {
     myMovie3 = new GSMovie(this, tempString); 
     myMovie3.read(); 
     myMovie3.play();
-    if (layer3loop) { 
-      myMovie3.loop();
-    }
+//    if (layer3loop) { 
+//      myMovie3.loop();
+//    }
     myMovie3.jump(random(0, myMovie3.duration()));
     layer3bpmMovieLastTime=millis();
   }
@@ -806,9 +806,9 @@ public void draw() {
     myMovie4 = new GSMovie(this, tempString); 
     myMovie4.read(); 
     myMovie4.play();
-    if (layer4loop) { 
-      myMovie4.loop();
-    }
+//    if (layer4loop) { 
+//      myMovie4.loop();
+//    }
     myMovie4.jump(random(0, myMovie4.duration()));
     layer4bpmMovieLastTime=millis();
   }
