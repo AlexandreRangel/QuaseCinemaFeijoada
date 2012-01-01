@@ -1,4 +1,4 @@
-//
+ ///
 // Quase-Cinema Feijoada Remix 0.01+
 // Alexandre Rangel
 // www.quasecinema.org
@@ -18,16 +18,13 @@ public int outputYpos = 0;
 // libraries
 import controlP5.*; // controlP5 0.6.12 http://www.sojamo.de/libraries/controlP5
 import codeanticode.gsvideo.*; // GSvideo 1.0.0 http://gsvideo.sourceforge.net/
-import processing.opengl.*; 
-import javax.media.opengl.GL; // openGL
+import processing.opengl.*; import javax.media.opengl.GL; // openGL
 import sojamo.drop.*; // sDrop 0.1.4 http://www.sojamo.de/libraries/drop
 import mappingtools.*; // mappingtools 0.0.2 http://www.patricksaintdenis.com
 import ddf.minim.*; 
 import ddf.minim.analysis.*; // minim http://code.compartmental.net/tools/minim
-import themidibus.*; 
-MidiBus myBus; // The MidiBus http://smallbutdigital.com/themidibus.php
-import codeanticode.syphon.*; 
-SyphonServer syphon; // Syphon
+import themidibus.*; MidiBus myBus; // The MidiBus http://smallbutdigital.com/themidibus.php
+import codeanticode.syphon.*; SyphonServer syphon; // Syphon http://interfaze.info/
 
 // controlP5
 ControlP5 controlP5; 
@@ -36,15 +33,9 @@ ControlWindowCanvas cc;
 ControlFont font;
 
 ColorPicker colorPicker1, colorPicker2, colorPicker3, colorPicker4;
-int layerOpacity1 = 255; 
-int layerOpacity2 = 255; 
-int layerOpacity3 = 255; 
-int layerOpacity4 = 255;
+int layerOpacity1 = 255; int layerOpacity2 = 255; int layerOpacity3 = 255; int layerOpacity4 = 255;
 DropdownList layerComposite1Menu, layerComposite2Menu, layerComposite3Menu, layerComposite4Menu;
-int layerComposite1select=0; 
-int layerComposite2select=0; 
-int layerComposite3select=0; 
-int layerComposite4select=0;
+int layerComposite1select=0; int layerComposite2select=0; int layerComposite3select=0; int layerComposite4select=0;
 ListBox outputResolutionList, languageList;
 Numberbox outputXposNumberBox, outputYposNumberBox;
 RadioButton layerContentButton1, layerContentButton2, layerContentButton3, layerContentButton4;
@@ -78,30 +69,15 @@ public String folderPath = " ";
 int dirClicked = 1;
 public String rootFolder;
 
-String dirs1[] = new String[200]; 
-String dirs2[] = new String[200];
-String dirs3[] = new String[200]; 
-String dirs4[] = new String[200];
-int fileCounter1 = 0; 
-int fileCounter2 = 0; 
-int fileCounter3 = 0; 
-int fileCounter4 = 0;
-int fileCounter1limit = 21; 
-int fileCounter2limit = 21; 
-int fileCounter3limit = 21; 
-int fileCounter4limit = 21;
+String dirs1[] = new String[200]; String dirs2[] = new String[200]; String dirs3[] = new String[200]; String dirs4[] = new String[200];
+int fileCounter1 = 0; int fileCounter2 = 0; int fileCounter3 = 0; int fileCounter4 = 0;
+int fileCounter1limit = 21; int fileCounter2limit = 21; int fileCounter3limit = 21; int fileCounter4limit = 21;
 int selectedDir1 = 1; 
 int selectedDir2 = 2; 
 int selectedDir3 = 3; 
 int selectedDir4 = 4;
-int dirPages1 = 0; 
-int dirPages2 = 0; 
-int dirPages3 = 0; 
-int dirPages4 = 0;
-int dirPageSelected1 = 0; 
-int dirPageSelected2 = 0; 
-int dirPageSelected3 = 0; 
-int dirPageSelected4 = 0;
+int dirPages1 = 0; int dirPages2 = 0; int dirPages3 = 0; int dirPages4 = 0;
+int dirPageSelected1 = 0; int dirPageSelected2 = 0; int dirPageSelected3 = 0; int dirPageSelected4 = 0;
 PFont debugFont;
 public String tempString;
 
@@ -121,18 +97,9 @@ PGraphics quadGraphics1, quadGraphics2, quadGraphics3, quadGraphics4, outputGL;
 BezierWarp bw1, bw2, bw3, bw4;
 
 // timer pre setup
-int layer1bpmVisLastTime = 0; 
-int layer2bpmVisLastTime = 0; 
-int layer3bpmVisLastTime = 0; 
-int layer4bpmVisLastTime = 0;
-int layer1bpmTimeLastTime = 0; 
-int layer2bpmTimeLastTime = 0; 
-int layer3bpmTimeLastTime = 0; 
-int layer4bpmTimeLastTime = 0;
-int layer1bpmMovieLastTime = 0; 
-int layer2bpmMovieLastTime = 0; 
-int layer3bpmMovieLastTime = 0; 
-int layer4bpmMovieLastTime = 0;
+int layer1bpmVisLastTime = 0; int layer2bpmVisLastTime = 0; int layer3bpmVisLastTime = 0; int layer4bpmVisLastTime = 0;
+int layer1bpmTimeLastTime = 0; int layer2bpmTimeLastTime = 0; int layer3bpmTimeLastTime = 0; int layer4bpmTimeLastTime = 0;
+int layer1bpmMovieLastTime = 0; int layer2bpmMovieLastTime = 0; int layer3bpmMovieLastTime = 0; int layer4bpmMovieLastTime = 0;
 
 // audio pre setup
 Minim minim;
@@ -156,53 +123,29 @@ boolean layer1visibility=true;
 boolean layer2visibility=false; 
 boolean layer3visibility=false; 
 boolean layer4visibility=false;
-boolean layer1loop=true; 
-boolean layer2loop=true; 
-boolean layer3loop=true; 
-boolean layer4loop=true;
+boolean layer1loop=true; boolean layer2loop=true; boolean layer3loop=true; boolean layer4loop=true;
 
-int layer1in = 1; 
-int layer2in = 0; 
-int layer3in = 0; 
-int layer4in = 0;
+int layer1in = 0; int layer2in = 0; int layer3in = 0; int layer4in = 0;
 int layer1out, layer2out, layer3out, layer4out;
 int layer1length, layer2length, layer3length, layer4length;
 
 int layerContent1, layerContent2, layerContent3, layerContent4;
 
-boolean mapping1 = false; 
-boolean mapping2 = false; 
-boolean mapping3 = false; 
-boolean mapping4 = false;
-boolean bmapping1 = false; 
-boolean bmapping2 = false; 
-boolean bmapping3 = false; 
-boolean bmapping4 = false;
+boolean mapping1 = false; boolean mapping2 = false; boolean mapping3 = false; boolean mapping4 = false;
+boolean bmapping1 = false; boolean bmapping2 = false; boolean bmapping3 = false; boolean bmapping4 = false;
 
 int layer1bpmVis, layer2bpmVis, layer3bpmVis, layer4bpmVis;
 int layer1bpmTime, layer2bpmTime, layer3bpmTime, layer4bpmTime;
 int layer1bpmMovie, layer2bpmMovie, layer3bpmMovie, layer4bpmMovie;
 
-float layer1speed = 1.0; 
-float layer2speed = 1.0; 
-float layer3speed = 1.0; 
-float layer4speed = 1.0;
+float layer1speed = 1.0; float layer2speed = 1.0; float layer3speed = 1.0; float layer4speed = 1.0;
 public float layer1playback, layer2playback, layer3playback, layer4playback;
 
-float layer1volume = 0.0; 
-float layer2volume = 0.0; 
-float layer3volume = 0.0; 
-float layer4volume = 0.0;
+float layer1volume = 0.0; float layer2volume = 0.0; float layer3volume = 0.0; float layer4volume = 0.0;
 
-boolean paint1=false; 
-boolean paint2=false; 
-boolean paint3=false; 
-boolean paint4=false;
+boolean paint1=false; boolean paint2=false; boolean paint3=false; boolean paint4=false;
 
-boolean scratch1=false; 
-boolean scratch2=false; 
-boolean scratch3=false; 
-boolean scratch4=false;
+boolean scratch1=false; boolean scratch2=false; boolean scratch3=false; boolean scratch4=false;
 int scratchPos1, scratchPos2, scratchPos3, scratchPos4;
 
 // effects pre setup

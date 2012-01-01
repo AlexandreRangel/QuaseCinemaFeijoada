@@ -628,7 +628,7 @@ void QCsetupInterface() {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   languageList = controlP5.addListBox("language",10,200,int(columnWidth*0.9),240);
-  languageList.moveTo(controlWindow,"Prefs"); languageList.setItemHeight(18); languageList.captionLabel().toUpperCase(false);
+  languageList.moveTo(controlWindow,"Prefs"); languageList.setItemHeight(16); languageList.captionLabel().toUpperCase(false);
   languageList.setLabel("language");
   languageList.addItem("English",0);
   languageList.addItem("Portuguese",1);
@@ -636,10 +636,10 @@ void QCsetupInterface() {
   languageList.addItem("German",3);
   languageList.addItem("Chinese",4);
   
-  outputResolutionList = controlP5.addListBox("outputResolution",columnWidth,320,int(columnWidth*0.9),250);
+  outputResolutionList = controlP5.addListBox("outputResolution",columnWidth,320,int(columnWidth*0.9),320);
+  outputResolutionList.moveTo(controlWindow,"Prefs"); outputResolutionList.setItemHeight(16); languageList.captionLabel().toUpperCase(false);
   outputResolutionList.setLabel("output resolution");
-  outputResolutionList.moveTo(controlWindow,"Prefs");
-  outputResolutionList.addItem("240 x 180",0);
+  outputResolutionList.addItem("240x180",0);
   outputResolutionList.addItem("320 x 240",1);
   outputResolutionList.addItem("640 x 480",2);
   outputResolutionList.addItem("800 x 600",3);
@@ -657,12 +657,14 @@ void QCsetupInterface() {
   
   controlP5.Controller outputXposNumberBox = controlP5.addNumberbox("outputXpos",screenWidth,columnWidth,200,int(columnWidth*0.9),14);
   outputXposNumberBox.setLabel("output X position");
+  outputXposNumberBox.captionLabel().toUpperCase(false);
   //controlP5.outputXposNumberBox.setMultiplier(1); // set the sensitifity of the numberbox
   //outputXposNumberBox.setDirection(controlP5.Controller.HORIZONTAL); // change the control direction to left/right
   outputXposNumberBox.moveTo(controlWindow,"Prefs");
   
   controlP5.Controller outputYposNumberBox = controlP5.addNumberbox("outputYpos",0,columnWidth,240,int(columnWidth*0.9),14);
   outputYposNumberBox.setLabel("output Y position");
+  outputYposNumberBox.captionLabel().toUpperCase(false);
   //controlP5.outputYposNumberBox.setMultiplier(1); // set the sensitifity of the numberbox
   //outputYposNumberBox.setDirection(Controller.HORIZONTAL); // change the control direction to left/right
   outputYposNumberBox.moveTo(controlWindow,"Prefs");
