@@ -51,7 +51,7 @@ public void QCtranslate() {
         case 1: controlWindow.tab("Mapping").setLabel(" Mapeamento"); break; // Portuguese
         case 2: controlWindow.tab("Mapping").setLabel(" Mapping"); break; // French
         case 3: controlWindow.tab("Mapping").setLabel(" Mapping"); break; // German
-        case 4: controlWindow.tab("Mapping").setLabel(" Mapping"); break; // Chinese
+        case 4: controlWindow.tab("Mapping").setLabel(" 绘图"); break; // Chinese
    } // end switch language
    
    switch (language) {
@@ -59,7 +59,7 @@ public void QCtranslate() {
         case 1: controlWindow.tab("3D").setLabel(" 3D"); break; // Portuguese
         case 2: controlWindow.tab("3D").setLabel(" 3D"); break; // French
         case 3: controlWindow.tab("3D").setLabel(" 3D"); break; // German
-        case 4: controlWindow.tab("3D").setLabel(" 3D"); break; // Chinese
+        case 4: controlWindow.tab("3D").setLabel(" 三维简化"); break; // Chinese
    } // end switch language
    
    switch (language) {
