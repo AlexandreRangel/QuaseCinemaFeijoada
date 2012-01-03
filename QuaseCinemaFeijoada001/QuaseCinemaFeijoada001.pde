@@ -11,7 +11,7 @@ String defaultFolderPath, defaultFolderPathMp3;
 // set to output size (can be changed prefs tab, while running). See also frame.setLocation
 public int outputWidth = 1024; 
 public int outputHeight = 768;
-public int outputXpos = 1440; 
+public int outputXpos = 0; // public int outputXpos = 1440; 
 public int outputYpos = 0;
 
 
