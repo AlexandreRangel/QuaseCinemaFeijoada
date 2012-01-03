@@ -436,39 +436,6 @@ switch (language) {
    
    switch (language) {
     case 0: // English
-      controlP5.controller("effectBWlimit1").setLabel("limit");
-      controlP5.controller("effectBWlimit2").setLabel("limit");
-      controlP5.controller("effectBWlimit3").setLabel("limit");
-      controlP5.controller("effectBWlimit4").setLabel("limit");
-      break;
-    case 1: // Portuguese
-      controlP5.controller("effectBWlimit1").setLabel("limite");
-      controlP5.controller("effectBWlimit2").setLabel("limite");
-      controlP5.controller("effectBWlimit3").setLabel("limite");
-      controlP5.controller("effectBWlimit4").setLabel("limite");
-      break;
-    case 2: // French
-      controlP5.controller("effectBWlimit1").setLabel("limite");
-      controlP5.controller("effectBWlimit2").setLabel("limite");
-      controlP5.controller("effectBWlimit3").setLabel("limite");
-      controlP5.controller("effectBWlimit4").setLabel("limite");
-      break;
-    case 3: // German
-      controlP5.controller("effectBWlimit1").setLabel("Grenze");
-      controlP5.controller("effectBWlimit2").setLabel("Grenze");
-      controlP5.controller("effectBWlimit3").setLabel("Grenze");
-      controlP5.controller("effectBWlimit4").setLabel("Grenze");
-      break;
-    case 4: // Chinese
-      controlP5.controller("effectBWlimit1").setLabel("限制");
-      controlP5.controller("effectBWlimit2").setLabel("限制");
-      controlP5.controller("effectBWlimit3").setLabel("限制");
-      controlP5.controller("effectBWlimit4").setLabel("限制");
-      break;
-   } // end switch language
-   
-   switch (language) {
-    case 0: // English
       controlP5.controller("effectContrast1").setLabel("contrast");
       controlP5.controller("effectContrast2").setLabel("contrast");
       controlP5.controller("effectContrast3").setLabel("contrast");
@@ -497,39 +464,6 @@ switch (language) {
       controlP5.controller("effectContrast2").setLabel("对比");
       controlP5.controller("effectContrast3").setLabel("对比");
       controlP5.controller("effectContrast4").setLabel("对比");
-      break;
-   } // end switch language
-   
-   switch (language) {
-    case 0: // English
-      controlP5.controller("effectContrastLimit1").setLabel("amount");
-      controlP5.controller("effectContrastLimit2").setLabel("amount");
-      controlP5.controller("effectContrastLimit3").setLabel("amount");
-      controlP5.controller("effectContrastLimit4").setLabel("amount");
-      break;
-    case 1: // Portuguese
-      controlP5.controller("effectContrastLimit1").setLabel("força");
-      controlP5.controller("effectContrastLimit2").setLabel("força");
-      controlP5.controller("effectContrastLimit3").setLabel("força");
-      controlP5.controller("effectContrastLimit4").setLabel("força");
-      break;
-    case 2: // French
-      controlP5.controller("effectContrastLimit1").setLabel("quantité");
-      controlP5.controller("effectContrastLimit2").setLabel("quantité");
-      controlP5.controller("effectContrastLimit3").setLabel("quantité");
-      controlP5.controller("effectContrastLimit4").setLabel("quantité");
-      break;
-    case 3: // German
-      controlP5.controller("effectContrastLimit1").setLabel("Betrag");
-      controlP5.controller("effectContrastLimit2").setLabel("Betrag");
-      controlP5.controller("effectContrastLimit3").setLabel("Betrag");
-      controlP5.controller("effectContrastLimit4").setLabel("Betrag");
-      break;
-    case 4: // Chinese
-      controlP5.controller("effectContrastLimit1").setLabel("总额");
-      controlP5.controller("effectContrastLimit2").setLabel("总额");
-      controlP5.controller("effectContrastLimit3").setLabel("总额");
-      controlP5.controller("effectContrastLimit4").setLabel("总额");
       break;
    } // end switch language
    
@@ -568,39 +502,6 @@ switch (language) {
    
    switch (language) {
     case 0: // English
-      controlP5.controller("effectSaturationLimit1").setLabel("amount");
-      controlP5.controller("effectSaturationLimit2").setLabel("amount");
-      controlP5.controller("effectSaturationLimit3").setLabel("amount");
-      controlP5.controller("effectSaturationLimit4").setLabel("amount");
-      break;
-    case 1: // Portuguese
-      controlP5.controller("effectSaturationLimit1").setLabel("força");
-      controlP5.controller("effectSaturationLimit2").setLabel("força");
-      controlP5.controller("effectSaturationLimit3").setLabel("força");
-      controlP5.controller("effectSaturationLimit4").setLabel("força");
-      break;
-    case 2: // French
-      controlP5.controller("effectSaturationLimit1").setLabel("quantité");
-      controlP5.controller("effectSaturationLimit2").setLabel("quantité");
-      controlP5.controller("effectSaturationLimit3").setLabel("quantité");
-      controlP5.controller("effectSaturationLimit4").setLabel("quantité");
-      break;
-    case 3: // German
-      controlP5.controller("effectSaturationLimit1").setLabel("Betrag");
-      controlP5.controller("effectSaturationLimit2").setLabel("Betrag");
-      controlP5.controller("effectSaturationLimit3").setLabel("Betrag");
-      controlP5.controller("effectSaturationLimit4").setLabel("Betrag");
-      break;
-    case 4: // Chinese
-      controlP5.controller("effectSaturationLimit1").setLabel("总额");
-      controlP5.controller("effectSaturationLimit2").setLabel("总额");
-      controlP5.controller("effectSaturationLimit3").setLabel("总额");
-      controlP5.controller("effectSaturationLimit4").setLabel("总额");
-      break;
-   } // end switch language
-   
-   switch (language) {
-    case 0: // English
       controlP5.controller("effectHue1").setLabel("hue");
       controlP5.controller("effectHue2").setLabel("hue");
       controlP5.controller("effectHue3").setLabel("hue");
@@ -629,39 +530,6 @@ switch (language) {
       controlP5.controller("effectHue2").setLabel("色调");
       controlP5.controller("effectHue3").setLabel("色调");
       controlP5.controller("effectHue4").setLabel("色调");
-      break;
-   } // end switch language
-   
-   switch (language) {
-    case 0: // English
-      controlP5.controller("effectHueLimit1").setLabel("amount");
-      controlP5.controller("effectHueLimit2").setLabel("amount");
-      controlP5.controller("effectHueLimit3").setLabel("amount");
-      controlP5.controller("effectHueLimit4").setLabel("amount");
-      break;
-    case 1: // Portuguese
-      controlP5.controller("effectHueLimit1").setLabel("força");
-      controlP5.controller("effectHueLimit2").setLabel("força");
-      controlP5.controller("effectHueLimit3").setLabel("força");
-      controlP5.controller("effectHueLimit4").setLabel("força");
-      break;
-    case 2: // French
-      controlP5.controller("effectHueLimit1").setLabel("quantité");
-      controlP5.controller("effectHueLimit2").setLabel("quantité");
-      controlP5.controller("effectHueLimit3").setLabel("quantité");
-      controlP5.controller("effectHueLimit4").setLabel("quantité");
-      break;
-    case 3: // German
-      controlP5.controller("effectHueLimit1").setLabel("Betrag");
-      controlP5.controller("effectHueLimit2").setLabel("Betrag");
-      controlP5.controller("effectHueLimit3").setLabel("Betrag");
-      controlP5.controller("effectHueLimit4").setLabel("Betrag");
-      break;
-    case 4: // Chinese
-      controlP5.controller("effectHueLimit1").setLabel("总额");
-      controlP5.controller("effectHueLimit2").setLabel("总额");
-      controlP5.controller("effectHueLimit3").setLabel("总额");
-      controlP5.controller("effectHueLimit4").setLabel("总额");
       break;
    } // end switch language
    
@@ -696,19 +564,6 @@ switch (language) {
       controlP5.controller("effectPaint3").setLabel("光 油漆");
       controlP5.controller("effectPaint4").setLabel("光 油漆");
       break;
-   } // end switch language
-   
-   switch (language) {
-    case 0: // English
-      controlP5.controller("effectPaint1").setLabel("limit"); break;
-    case 1: // Portuguese
-      controlP5.controller("effectPaint1").setLabel("limite"); break;
-    case 2: // French
-      controlP5.controller("effectPaint1").setLabel("quantité"); break;
-    case 3: // German
-      controlP5.controller("effectPaint1").setLabel("Betrag"); break;
-    case 4: // Chinese
-      controlP5.controller("effectPaint1").setLabel("总额"); break;
    } // end switch language
    
    
