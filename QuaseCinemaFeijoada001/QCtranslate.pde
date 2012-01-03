@@ -370,10 +370,10 @@ switch (language) {
    
    switch (language) {
     case 0: // English
-      controlP5.controller("effectPosterize1").setLabel("posterize");
-      controlP5.controller("effectPosterize2").setLabel("posterize");
-      controlP5.controller("effectPosterize3").setLabel("posterize");
-      controlP5.controller("effectPosterize4").setLabel("posterize");
+      controlP5.controller("effectPosterize1").setLabel("poster");
+      controlP5.controller("effectPosterize2").setLabel("poster");
+      controlP5.controller("effectPosterize3").setLabel("poster");
+      controlP5.controller("effectPosterize4").setLabel("poster");
       break;
     case 1: // Portuguese
       controlP5.controller("effectPosterize1").setLabel("poster");
@@ -406,7 +406,7 @@ switch (language) {
       controlP5.controller("effectBW1").setLabel("black & white");
       controlP5.controller("effectBW2").setLabel("black & white");
       controlP5.controller("effectBW3").setLabel("black & white");
-      controlP5.controller("effectBW4").setLabel("black & whitev");
+      controlP5.controller("effectBW4").setLabel("black & white");
       break;
     case 1: // Portuguese
       controlP5.controller("effectBW1").setLabel("preto e branco");

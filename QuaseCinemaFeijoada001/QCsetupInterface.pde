@@ -317,7 +317,7 @@ void QCsetupInterface() {
   controlP5.Controller effectBWToggle2 = controlP5.addToggle("effectBW2",false,10+(columnWidth*1),355,20,20);
   effectBWToggle2.setLabel("BW"); effectBWToggle2.moveTo(controlWindow,"Effects");
   effectBWToggle2.captionLabel().toUpperCase(false);
-  controlP5.Controller effectBWlimit2slider = controlP5.addSlider("effectBWlimit2",0,255,127,50+(columnWidth*1),355,int(columnWidth*0.8),12);
+  controlP5.Controller effectBWlimit2slider = controlP5.addSlider("effectBWlimit2",0,255,127,40+(columnWidth*1),355,int(columnWidth*0.8),12);
   effectBWlimit2slider.moveTo(controlWindow,"Effects");
   effectBWlimit2slider.setLabel("");
   
@@ -355,15 +355,15 @@ void QCsetupInterface() {
   
   controlP5.Controller invertToggle3 = controlP5.addToggle("effectInvert3",false,10+(columnWidth*2),265,20,20);
   invertToggle3.setLabel("invert"); invertToggle3.moveTo(controlWindow,"Effects");
-  effectHueLimit2slider.captionLabel().toUpperCase(false);
+  invertToggle3.captionLabel().toUpperCase(false);
   
   controlP5.Controller posterizeToggle3 = controlP5.addToggle("effectPosterize3",false,50+(columnWidth*2),265,20,20);
   posterizeToggle3.setLabel("poster"); posterizeToggle3.moveTo(controlWindow,"Effects");
-  effectHueLimit2slider.captionLabel().toUpperCase(false);
+  posterizeToggle3.captionLabel().toUpperCase(false);
 
   controlP5.Controller paintToggle3 = controlP5.addToggle("effectPaint3",false,90+(columnWidth*2),265,20,20);
   paintToggle3.setLabel("light paint"); paintToggle3.moveTo(controlWindow,"Effects");
-  effectHueLimit2slider.captionLabel().toUpperCase(false);
+  paintToggle3.captionLabel().toUpperCase(false);
   
   controlP5.Controller effectRgToggle3 = controlP5.addToggle("effectRG3",false,10+(columnWidth*2),315,20,20);
   effectRgToggle3.setLabel("R > G"); effectRgToggle3.moveTo(controlWindow,"Effects");
@@ -377,7 +377,7 @@ void QCsetupInterface() {
   controlP5.Controller effectBWToggle3 = controlP5.addToggle("effectBW3",false,10+(columnWidth*2),355,20,20);
   effectBWToggle3.setLabel("BW"); effectBWToggle3.moveTo(controlWindow,"Effects");
   effectBWToggle3.captionLabel().toUpperCase(false);
-  controlP5.Controller effectBWlimit3slider = controlP5.addSlider("effectBWlimit3",0,255,127,50+(columnWidth*2),355,int(columnWidth*0.8),12);
+  controlP5.Controller effectBWlimit3slider = controlP5.addSlider("effectBWlimit3",0,255,127,40+(columnWidth*2),355,int(columnWidth*0.8),12);
   effectBWlimit3slider.moveTo(controlWindow,"Effects");
   effectBWlimit3slider.setLabel("");
   
@@ -438,7 +438,7 @@ void QCsetupInterface() {
   controlP5.Controller effectBWToggle4 = controlP5.addToggle("effectBW4",false,10+(columnWidth*3),355,20,20);
   effectBWToggle4.setLabel("BW"); effectBWToggle4.moveTo(controlWindow,"Effects");
   effectBWToggle4.captionLabel().toUpperCase(false);
-  controlP5.Controller effectBWlimit4slider = controlP5.addSlider("effectBWlimit4",0,255,127,50+(columnWidth*3),355,int(columnWidth*0.8),12);
+  controlP5.Controller effectBWlimit4slider = controlP5.addSlider("effectBWlimit4",0,255,127,40+(columnWidth*3),355,int(columnWidth*0.8),12);
   effectBWlimit4slider.setLabel("limit"); effectBWlimit4slider.moveTo(controlWindow,"Effects");
   effectBWlimit4slider.captionLabel().toUpperCase(false);
   effectBWlimit4slider.setLabel("");
