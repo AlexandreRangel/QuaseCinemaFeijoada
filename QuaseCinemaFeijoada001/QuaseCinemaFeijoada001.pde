@@ -479,7 +479,7 @@ public void draw() {
 
   // movie 1
   myMovie1.speed(layer1speed);
-  //if (myMovie1.available()) {
+  if (layer1visibility) {
     if (scratch1) { 
       myMovie1.jump(scratchPos1);
     } // scratch
@@ -493,11 +493,11 @@ public void draw() {
     } // checks loop
     if (myMovie1.available()) { myMovie1.read(); }
     QCeffects1(); //myMovie1.speed(layer1speed);
-  //} // end if movie 1 update
+  } // end if movie 1 update
 
   // movie 2
-  myMovie2.speed(layer2speed);
-  //if (myMovie2.available()) {
+  if (layer2visibility) {
+    myMovie2.speed(layer2speed);
     if (scratch2) { 
       myMovie2.jump(scratchPos2);
     } // scratch
@@ -510,11 +510,11 @@ public void draw() {
     } // checks loop
     if (myMovie2.available()) { myMovie2.read(); }
     QCeffects2();
-  //} // end if movie 2 update
+  } // end if movie 2 update
 
   // movie 3
-  myMovie3.speed(layer3speed);
-  //if (myMovie3.available()) {
+  if (layer3visibility) {
+    myMovie3.speed(layer3speed);
     if (scratch3) { 
       myMovie3.jump(scratchPos3);
     } // scratch
@@ -527,11 +527,12 @@ public void draw() {
     } // checks loop
     if (myMovie3.available()) { myMovie3.read(); }
     QCeffects3();
-  //} // end if movie 3 update
+  } // end if movie 3 update
 
   // movie 4
-  myMovie4.speed(layer4speed);
-  //if (myMovie4.available()) {
+  
+  if (layer4visibility) {
+    myMovie4.speed(layer4speed);
     if (scratch4) { 
       myMovie4.jump(scratchPos4);
     } // scratch
@@ -544,7 +545,7 @@ public void draw() {
     } // checks loop
     if (myMovie4.available()) { myMovie4.read(); }
     QCeffects4();
-  //} // end if movie 4 update
+  } // end if movie 4 update
 
   // camera update
   if (layerContent1==2 || layerContent2==2 || layerContent3==2 || layerContent4==2) { // camera selected in any layer
