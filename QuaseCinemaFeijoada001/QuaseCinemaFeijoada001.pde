@@ -342,8 +342,7 @@ void setup() {
   myMovie1 = new GSMovie(this, tempString); 
   myMovie1.read(); 
   myMovie1.play(); 
-  layer1in = 0; 
-  layer1out = 0;
+  layer1in = 0; layer1out = 0;
   //if(layer1loop){ myMovie1.loop(); }
 
   tempString = rootFolder + dirs2[selectedDir2] + OSseparator;
@@ -474,13 +473,13 @@ public void draw() {
     outputGL.beginDraw(); rect(0, 0, outputWidth, outputHeight); outputGL.endDraw();
   } // end if light paint
 
-    //
+  //
   // movies update
   //
 
   // movie 1
   myMovie1.speed(layer1speed);
-  if (myMovie1.available()) {
+  //if (myMovie1.available()) {
     if (scratch1) { 
       myMovie1.jump(scratchPos1);
     } // scratch
@@ -492,13 +491,13 @@ public void draw() {
       myMovie1.jump(layer1in); 
       myMovie1.speed(layer1speed);
     } // checks loop
-    myMovie1.read(); 
+    if (myMovie1.available()) { myMovie1.read(); }
     QCeffects1(); //myMovie1.speed(layer1speed);
-  } // end if movie 1 update
+  //} // end if movie 1 update
 
   // movie 2
   myMovie2.speed(layer2speed);
-  if (myMovie2.available()) {
+  //if (myMovie2.available()) {
     if (scratch2) { 
       myMovie2.jump(scratchPos2);
     } // scratch
@@ -509,13 +508,13 @@ public void draw() {
     if (myMovie2.frame() > layer2out || myMovie2.frame()==myMovie2.length()-1) { 
       myMovie2.jump(layer2in);
     } // checks loop
-    myMovie2.read(); 
+    if (myMovie2.available()) { myMovie2.read(); }
     QCeffects2();
-  } // end if movie 2 update
+  //} // end if movie 2 update
 
   // movie 3
   myMovie3.speed(layer3speed);
-  if (myMovie3.available()) {
+  //if (myMovie3.available()) {
     if (scratch3) { 
       myMovie3.jump(scratchPos3);
     } // scratch
@@ -526,13 +525,13 @@ public void draw() {
     if (myMovie3.frame() > layer3out || myMovie3.frame()==myMovie3.length()-1) { 
       myMovie3.jump(layer3in);
     } // checks loop
-    myMovie3.read(); 
+    if (myMovie3.available()) { myMovie3.read(); }
     QCeffects3();
-  } // end if movie 3 update
+  //} // end if movie 3 update
 
   // movie 4
   myMovie4.speed(layer4speed);
-  if (myMovie4.available()) {
+  //if (myMovie4.available()) {
     if (scratch4) { 
       myMovie4.jump(scratchPos4);
     } // scratch
@@ -543,9 +542,9 @@ public void draw() {
     if (myMovie4.frame() > layer4out || myMovie4.frame()==myMovie4.length()-1) { 
       myMovie4.jump(layer4in);
     } // checks loop
-    myMovie4.read(); 
+    if (myMovie4.available()) { myMovie4.read(); }
     QCeffects4();
-  } // end if movie 4 update
+  //} // end if movie 4 update
 
   // camera update
   if (layerContent1==2 || layerContent2==2 || layerContent3==2 || layerContent4==2) { // camera selected in any layer
