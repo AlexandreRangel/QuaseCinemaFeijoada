@@ -25,8 +25,8 @@ class MyCanvas extends ControlWindowCanvas {
         theApplet.fill(25); theApplet.rect(1+(columnWidth*i),20,int(columnWidth*0.98),700,6,6);
       } // end for
       // selected layer columns
-      theApplet.fill(35); theApplet.stroke(#E7E7E7);
-      theApplet.rect(1+(columnWidth*selectedLayer),20,int(columnWidth*0.98),700,6,6); theApplet.noStroke();
+      theApplet.fill(35); theApplet.stroke(#E7E7E7); theApplet.smooth();
+      theApplet.rect(1+(columnWidth*selectedLayer),20,int(columnWidth*0.98),700,6,6); theApplet.noStroke(); theApplet.noSmooth();
     }
     
     if (controlWindow.currentTab().id() == 8) { // audio tab
