@@ -2,8 +2,10 @@
 // Quase-Cinema Feijoada Remix 0.01+
 // Alexandre Rangel
 // www.quasecinema.org
+// https://github.com/AlexandreRangel/QuaseCinemaFeijoada
 //
 // built with Processing 2.0 alpha 4
+// http://code.google.com/p/processing/downloads/list
 //
 
 String defaultFolderPath, defaultFolderPathMp3;
@@ -479,7 +481,7 @@ public void draw() {
 
   // movie 1
   if (layer1visibility) {
-    myMovie1.speed(layer1speed);
+    //myMovie1.speed(layer1speed);
     if (scratch1) { 
       myMovie1.jump(scratchPos1);
     } // scratch
