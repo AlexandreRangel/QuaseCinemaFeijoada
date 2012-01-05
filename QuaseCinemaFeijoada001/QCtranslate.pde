@@ -573,100 +573,100 @@ switch (language) {
    
    switch (language) {
     case 0: // English
-      controlP5.controller("layer1bpmVis").setLabel("bpm visible");
-      controlP5.controller("layer2bpmVis").setLabel("bpm visible");
-      controlP5.controller("layer3bpmVis").setLabel("bpm visible");
-      controlP5.controller("layer4bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer1bpmVis").setLabel("visible");
+      controlP5.controller("layer2bpmVis").setLabel("visible");
+      controlP5.controller("layer3bpmVis").setLabel("visible");
+      controlP5.controller("layer4bpmVis").setLabel("visible");
       break;
     case 1: // Portuguese
-      controlP5.controller("layer1bpmVis").setLabel("bpm visível");
-      controlP5.controller("layer2bpmVis").setLabel("bpm visível");
-      controlP5.controller("layer3bpmVis").setLabel("bpm visível");
-      controlP5.controller("layer4bpmVis").setLabel("bpm visível");
+      controlP5.controller("layer1bpmVis").setLabel("visível");
+      controlP5.controller("layer2bpmVis").setLabel("visível");
+      controlP5.controller("layer3bpmVis").setLabel("visível");
+      controlP5.controller("layer4bpmVis").setLabel("visível");
       break;
     case 2: // French
-      controlP5.controller("layer1bpmVis").setLabel("bpm visible");
-      controlP5.controller("layer2bpmVis").setLabel("bpm visible");
-      controlP5.controller("layer3bpmVis").setLabel("bpm visible");
-      controlP5.controller("layer4bpmVis").setLabel("bpm visible");
+      controlP5.controller("layer1bpmVis").setLabel("visible");
+      controlP5.controller("layer2bpmVis").setLabel("visible");
+      controlP5.controller("layer3bpmVis").setLabel("visible");
+      controlP5.controller("layer4bpmVis").setLabel("visible");
       break;
     case 3: // German
-      controlP5.controller("layer1bpmVis").setLabel("bpm sichtbar");
-      controlP5.controller("layer2bpmVis").setLabel("bpm sichtbar");
-      controlP5.controller("layer3bpmVis").setLabel("bpm sichtbar");
-      controlP5.controller("layer4bpmVis").setLabel("bpm sichtbar");
+      controlP5.controller("layer1bpmVis").setLabel("sichtbar");
+      controlP5.controller("layer2bpmVis").setLabel("sichtbar");
+      controlP5.controller("layer3bpmVis").setLabel("sichtbar");
+      controlP5.controller("layer4bpmVis").setLabel("sichtbar");
       break;
     case 4: // Chinese
-      controlP5.controller("layer1bpmVis").setLabel("bpm 看得见的");
-      controlP5.controller("layer2bpmVis").setLabel("bpm 看得见的");
-      controlP5.controller("layer3bpmVis").setLabel("bpm 看得见的");
-      controlP5.controller("layer4bpmVis").setLabel("bpm 看得见的");
+      controlP5.controller("layer1bpmVis").setLabel("看得见的");
+      controlP5.controller("layer2bpmVis").setLabel("看得见的");
+      controlP5.controller("layer3bpmVis").setLabel("看得见的");
+      controlP5.controller("layer4bpmVis").setLabel("看得见的");
       break;
    } // end switch language
    
    switch (language) {
     case 0: // English
-      controlP5.controller("layer1bpmTime").setLabel("bpm time");
-      controlP5.controller("layer2bpmTime").setLabel("bpm time");
-      controlP5.controller("layer3bpmTime").setLabel("bpm time");
-      controlP5.controller("layer4bpmTime").setLabel("bpm time");
+      controlP5.controller("layer1bpmTime").setLabel("time");
+      controlP5.controller("layer2bpmTime").setLabel("time");
+      controlP5.controller("layer3bpmTime").setLabel("time");
+      controlP5.controller("layer4bpmTime").setLabel("time");
       break;
     case 1: // Portuguese
-      controlP5.controller("layer1bpmTime").setLabel("bpm tempo");
-      controlP5.controller("layer2bpmTime").setLabel("bpm tempo");
-      controlP5.controller("layer3bpmTime").setLabel("bpm tempo");
-      controlP5.controller("layer4bpmTime").setLabel("bpm tempo");
+      controlP5.controller("layer1bpmTime").setLabel("tempo");
+      controlP5.controller("layer2bpmTime").setLabel("tempo");
+      controlP5.controller("layer3bpmTime").setLabel("tempo");
+      controlP5.controller("layer4bpmTime").setLabel("tempo");
       break;
     case 2: // French
-      controlP5.controller("layer1bpmTime").setLabel("bpm temps");
-      controlP5.controller("layer2bpmTime").setLabel("bpm temps");
-      controlP5.controller("layer3bpmTime").setLabel("bpm temps");
-      controlP5.controller("layer4bpmTime").setLabel("bpm temps");
+      controlP5.controller("layer1bpmTime").setLabel("temps");
+      controlP5.controller("layer2bpmTime").setLabel("temps");
+      controlP5.controller("layer3bpmTime").setLabel("temps");
+      controlP5.controller("layer4bpmTime").setLabel("temps");
       break;
     case 3: // German
-      controlP5.controller("layer1bpmTime").setLabel("bpm Zeit");
-      controlP5.controller("layer2bpmTime").setLabel("bpm Zeit");
-      controlP5.controller("layer3bpmTime").setLabel("bpm Zeit");
-      controlP5.controller("layer4bpmTime").setLabel("bpm Zeit");
+      controlP5.controller("layer1bpmTime").setLabel("Zeit");
+      controlP5.controller("layer2bpmTime").setLabel("Zeit");
+      controlP5.controller("layer3bpmTime").setLabel("Zeit");
+      controlP5.controller("layer4bpmTime").setLabel("Zeit");
       break;
     case 4: // Chinese
-      controlP5.controller("layer1bpmTime").setLabel("bpm 时间");
-      controlP5.controller("layer2bpmTime").setLabel("bpm 时间");
-      controlP5.controller("layer3bpmTime").setLabel("bpm 时间");
-      controlP5.controller("layer4bpmTime").setLabel("bpm 时间");
+      controlP5.controller("layer1bpmTime").setLabel("时间");
+      controlP5.controller("layer2bpmTime").setLabel("时间");
+      controlP5.controller("layer3bpmTime").setLabel("时间");
+      controlP5.controller("layer4bpmTime").setLabel("时间");
       break;
    } // end switch language
    
    switch (language) {
     case 0: // English
-      controlP5.controller("layer1bpmMovie").setLabel("bpm movie");
-      controlP5.controller("layer2bpmMovie").setLabel("bpm movie");
-      controlP5.controller("layer3bpmMovie").setLabel("bpm movie");
-      controlP5.controller("layer4bpmMovie").setLabel("bpm movie");
+      controlP5.controller("layer1bpmMovie").setLabel("movie");
+      controlP5.controller("layer2bpmMovie").setLabel("movie");
+      controlP5.controller("layer3bpmMovie").setLabel("movie");
+      controlP5.controller("layer4bpmMovie").setLabel("movie");
       break;
     case 1: // Portuguese
-      controlP5.controller("layer1bpmMovie").setLabel("bpm vídeo");
-      controlP5.controller("layer2bpmMovie").setLabel("bpm vídeo");
-      controlP5.controller("layer3bpmMovie").setLabel("bpm vídeo");
-      controlP5.controller("layer4bpmMovie").setLabel("bpm vídeo");
+      controlP5.controller("layer1bpmMovie").setLabel("vídeo");
+      controlP5.controller("layer2bpmMovie").setLabel("vídeo");
+      controlP5.controller("layer3bpmMovie").setLabel("vídeo");
+      controlP5.controller("layer4bpmMovie").setLabel("vídeo");
       break;
     case 2: // French
-      controlP5.controller("layer1bpmMovie").setLabel("bpm film");
-      controlP5.controller("layer2bpmMovie").setLabel("bpm film");
-      controlP5.controller("layer3bpmMovie").setLabel("bpm film");
-      controlP5.controller("layer4bpmMovie").setLabel("bpm film");
+      controlP5.controller("layer1bpmMovie").setLabel("film");
+      controlP5.controller("layer2bpmMovie").setLabel("film");
+      controlP5.controller("layer3bpmMovie").setLabel("film");
+      controlP5.controller("layer4bpmMovie").setLabel("film");
       break;
     case 3: // German
-      controlP5.controller("layer1bpmMovie").setLabel("bpm film");
-      controlP5.controller("layer2bpmMovie").setLabel("bpm film");
-      controlP5.controller("layer3bpmMovie").setLabel("bpm film");
-      controlP5.controller("layer4bpmMovie").setLabel("bpm film");
+      controlP5.controller("layer1bpmMovie").setLabel("film");
+      controlP5.controller("layer2bpmMovie").setLabel("film");
+      controlP5.controller("layer3bpmMovie").setLabel("film");
+      controlP5.controller("layer4bpmMovie").setLabel("film");
       break;
     case 4: // Chinese
-      controlP5.controller("layer1bpmMovie").setLabel("bpm 电影");
-      controlP5.controller("layer2bpmMovie").setLabel("bpm 电影");
-      controlP5.controller("layer3bpmMovie").setLabel("bpm 电影");
-      controlP5.controller("layer4bpmMovie").setLabel("bpm 电影");
+      controlP5.controller("layer1bpmMovie").setLabel("电影");
+      controlP5.controller("layer2bpmMovie").setLabel("电影");
+      controlP5.controller("layer3bpmMovie").setLabel("电影");
+      controlP5.controller("layer4bpmMovie").setLabel("电影");
       break;
    } // end switch language
    

@@ -21,12 +21,11 @@ class MyCanvas extends ControlWindowCanvas {
       
     if (controlWindow.currentTab().id() < 8) {
       // not selected layers columns
-      for(int i = 0; i< 4; i++) {
-        theApplet.fill(25); theApplet.rect(1+(columnWidth*i),20,int(columnWidth*0.98),700,6,6);
-      } // end for
+      for(int i = 0; i< 4; i++) { theApplet.fill(25); theApplet.rect(1+(columnWidth*i),20,int(columnWidth*0.98),700,6,6); } // end for
       // selected layer columns
-      theApplet.fill(35); theApplet.stroke(#E7E7E7); theApplet.smooth();
-      theApplet.rect(1+(columnWidth*selectedLayer),20,int(columnWidth*0.98),700,6,6); theApplet.noStroke(); theApplet.noSmooth();
+      theApplet.fill(38); theApplet.stroke(#FF0000); theApplet.strokeWeight(2); theApplet.smooth();
+      theApplet.rect(1+(columnWidth*selectedLayer),20,int(columnWidth*0.98),700,6,6);
+      theApplet.strokeWeight(1); theApplet.noStroke(); theApplet.noSmooth();
     }
     
     if (controlWindow.currentTab().id() == 8) { // audio tab
@@ -53,13 +52,17 @@ class MyCanvas extends ControlWindowCanvas {
   
   if (controlWindow.currentTab().id()==1) { // main tab  
     
+    //
+    // dir draw
+    //
+    
     // dir 1 draw
     if (fileCounter1 > 0) {
       // dir text
       for(int i = 0; i< fileCounter1limit; i++) {
         if(i+(dirPageSelected1*21) == fileCounter1){break;}
         if (i+(dirPageSelected1*21) == selectedDir1) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs1[i+(dirPageSelected1*21)], 10+(columnWidth*0), 320+(18*i));
+        theApplet.text(dirs1[i+(dirPageSelected1*21)], 10+(columnWidth*0), 302+(18*i));
       } // end for
       
       // dir pages draw
@@ -79,7 +82,7 @@ class MyCanvas extends ControlWindowCanvas {
       for(int i = 0; i< fileCounter2limit; i++) {
         if(i+(dirPageSelected2*21) == fileCounter2){break;}
         if (i+(dirPageSelected2*21) == selectedDir2) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs2[i+(dirPageSelected2*21)], 10+(columnWidth*1), 320+(18*i));
+        theApplet.text(dirs2[i+(dirPageSelected2*21)], 10+(columnWidth*1), 302+(18*i));
       } // end for
       
       // dir pages
@@ -97,7 +100,7 @@ class MyCanvas extends ControlWindowCanvas {
       for(int i = 0; i< fileCounter3limit; i++) {
         if(i+(dirPageSelected3*21) == fileCounter3){break;}
         if (i+(dirPageSelected1*21) == selectedDir3) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs3[i+(dirPageSelected3*21)], 10+(columnWidth*2), 320+(18*i));
+        theApplet.text(dirs3[i+(dirPageSelected3*21)], 10+(columnWidth*2), 302+(18*i));
       } // end for
       
       // dir pages
@@ -115,7 +118,7 @@ class MyCanvas extends ControlWindowCanvas {
         // dir text
         if(i+(dirPageSelected4*21) == fileCounter4){break;}
         if (i+(dirPageSelected4*21) == selectedDir4) {theApplet.fill(255, 0, 0);} else {theApplet.fill(0, 255, 0);} // text color
-        theApplet.text(dirs4[i+(dirPageSelected4*21)], 10+(columnWidth*3), 320+(18*i));
+        theApplet.text(dirs4[i+(dirPageSelected4*21)], 10+(columnWidth*3), 302+(18*i));
       } // end for
       
       // dir pages
@@ -293,7 +296,7 @@ class MyCanvas extends ControlWindowCanvas {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// events
+// controlP5 interface events
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -352,12 +355,30 @@ void controlEvent(ControlEvent theEvent) {
     if(theEvent.controller().name()=="effectPaint3"){ if(effectPaint3){ layerComposite3select=1; } else { layerComposite3select=0; } }
     if(theEvent.controller().name()=="effectPaint4"){ if(effectPaint4){ layerComposite4select=1; } else { layerComposite4select=0; } }
     
+    // black and white amount turns effect on/off
+    if(theEvent.controller().name()=="effectBWlimit1"){ if(theEvent.controller().value() != 0){ effectBW1 = true; controlP5.controller("effectBW1").setValue(1); } }
+    if(theEvent.controller().name()=="effectBWlimit2"){ if(theEvent.controller().value() != 0){ effectBW2 = true; controlP5.controller("effectBW2").setValue(1); } }
+    if(theEvent.controller().name()=="effectBWlimit3"){ if(theEvent.controller().value() != 0){ effectBW3 = true; controlP5.controller("effectBW3").setValue(1); } }
+    if(theEvent.controller().name()=="effectBWlimit4"){ if(theEvent.controller().value() != 0){ effectBW4 = true; controlP5.controller("effectBW4").setValue(1); } }
+    
+    // contrast amount turns effect on/off
+    if(theEvent.controller().name()=="effectContrastLimit1"){ if(theEvent.controller().value()!=0){ effectContrast1=true; controlP5.controller("effectContrast1").setValue(1);}
+      else { effectContrast1=false; controlP5.controller("effectContrast1").setValue(0); } }
+    if(theEvent.controller().name()=="effectContrastLimit2"){ if(theEvent.controller().value()!=0){ effectContrast2=true; controlP5.controller("effectContrast2").setValue(1);}
+      else { effectContrast2=false; controlP5.controller("effectContrast2").setValue(0); } }
+    if(theEvent.controller().name()=="effectContrastLimit3"){ if(theEvent.controller().value()!=0){ effectContrast3=true; controlP5.controller("effectContrast3").setValue(1);}
+      else { effectContrast3=false; controlP5.controller("effectContrast3").setValue(0); } }
+    if(theEvent.controller().name()=="effectContrastLimit4"){ if(theEvent.controller().value()!=0){ effectContrast4=true; controlP5.controller("effectContrast4").setValue(1);}
+      else { effectContrast4=false; controlP5.controller("effectContrast4").setValue(0); } }
     
   } // end if controllers
   
 } // end controlEvent
   
 
+
+// roor dir button
+public void rootDirBut(int theValue) { setInputFolder(selectFolder("select library master folder")); }
 
 
 // random dir buttons - randomize dir and movie

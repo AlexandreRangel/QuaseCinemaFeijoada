@@ -447,7 +447,7 @@ void setup() {
 // --------------------------------------------------------------------------------------------------------------
 
 //public void movieEvent(GSMovie gsMovie) {
-//  //if (gsMovie.available()) { gsMovie.read(); QCeffects(); }
+//  if (gsMovie.available()) { gsMovie.read(); QCeffects(); }
 //}
 
 
@@ -478,8 +478,8 @@ public void draw() {
   //
 
   // movie 1
-  myMovie1.speed(layer1speed);
   if (layer1visibility) {
+    myMovie1.speed(layer1speed);
     if (scratch1) { 
       myMovie1.jump(scratchPos1);
     } // scratch
@@ -491,8 +491,8 @@ public void draw() {
       myMovie1.jump(layer1in); 
       myMovie1.speed(layer1speed);
     } // checks loop
-    if (myMovie1.available()) { myMovie1.read(); }
-    QCeffects1(); //myMovie1.speed(layer1speed);
+    if (myMovie1.available()) { myMovie1.read(); QCeffects1();}
+    //myMovie1.speed(layer1speed);
   } // end if movie 1 update
 
   // movie 2
@@ -508,8 +508,7 @@ public void draw() {
     if (myMovie2.frame() > layer2out || myMovie2.frame()==myMovie2.length()-1) { 
       myMovie2.jump(layer2in);
     } // checks loop
-    if (myMovie2.available()) { myMovie2.read(); }
-    QCeffects2();
+    if (myMovie2.available()) { myMovie2.read(); QCeffects2(); }
   } // end if movie 2 update
 
   // movie 3
@@ -525,8 +524,7 @@ public void draw() {
     if (myMovie3.frame() > layer3out || myMovie3.frame()==myMovie3.length()-1) { 
       myMovie3.jump(layer3in);
     } // checks loop
-    if (myMovie3.available()) { myMovie3.read(); }
-    QCeffects3();
+    if (myMovie3.available()) { myMovie3.read(); QCeffects3(); }
   } // end if movie 3 update
 
   // movie 4
@@ -543,8 +541,7 @@ public void draw() {
     if (myMovie4.frame() > layer4out || myMovie4.frame()==myMovie4.length()-1) { 
       myMovie4.jump(layer4in);
     } // checks loop
-    if (myMovie4.available()) { myMovie4.read(); }
-    QCeffects4();
+    if (myMovie4.available()) { myMovie4.read(); QCeffects4(); }
   } // end if movie 4 update
 
   // camera update
@@ -633,6 +630,7 @@ public void draw() {
   controlP5.controller("layer2visibility").setValue(int(layer2visibility));
   controlP5.controller("layer3visibility").setValue(int(layer3visibility));
   controlP5.controller("layer4visibility").setValue(int(layer4visibility));
+  
 
 
   //controlP5.draw();
@@ -1001,11 +999,13 @@ public void draw() {
   } // end switch doRandomize
 
   // memory management
-  if (frameCount%900==0) { // clean memory around each 15 seconds
+  if (frameCount%1800==0) { // clean memory around each 30 seconds
     println (hour()+":"+minute()+":"+second()+" Free Memory: "+Runtime.getRuntime().freeMemory()/1024+" K; Garbage collected;");
     System.gc();
     println (hour()+":"+minute()+":"+second()+" Free Memory: "+Runtime.getRuntime().freeMemory()/1024+" K;\n");
   } // end if
+  
+  
 } // end draw
 
 
