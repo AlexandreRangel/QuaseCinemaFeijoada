@@ -478,72 +478,80 @@ public void draw() {
   //
   // movies update
   //
-
+  
+  //
   // movie 1
+  //
   if (layer1visibility) {
-    //myMovie1.speed(layer1speed);
-    if (scratch1) { 
-      myMovie1.jump(scratchPos1);
-    } // scratch
+    myMovie1.speed(layer1speed);
     if (layer1out==0) { 
       layer1length = int(myMovie1.length()); 
       layer1out = layer1length;
     } // updates layer out
-    if (myMovie1.frame() > layer1out || myMovie1.frame()==myMovie1.length()-1) { 
+    if (myMovie1.frame() > layer1out || myMovie1.frame()==myMovie1.length()-1) { // checks loop
       myMovie1.jump(layer1in); 
       myMovie1.speed(layer1speed);
-    } // checks loop
-    if (myMovie1.available()) { myMovie1.read(); QCeffects1();}
-    //myMovie1.speed(layer1speed);
+    } // end if loop
+    if (myMovie1.available()) {
+      if (scratch1) { myMovie1.jump(scratchPos1); } // end if scratch
+      myMovie1.read();
+      QCeffects1();
+    } // end if movie available
   } // end if movie 1 update
-
+  
+  //
   // movie 2
+  //
   if (layer2visibility) {
     myMovie2.speed(layer2speed);
-    if (scratch2) { 
-      myMovie2.jump(scratchPos2);
-    } // scratch
     if (layer2out==0) { 
       layer2length = int(myMovie2.length()); 
       layer2out = layer2length;
     } // updates layer out
-    if (myMovie2.frame() > layer2out || myMovie2.frame()==myMovie2.length()-1) { 
+    if (myMovie2.frame() > layer2out || myMovie2.frame()==myMovie2.length()-1) { // checks loop
       myMovie2.jump(layer2in);
-    } // checks loop
-    if (myMovie2.available()) { myMovie2.read(); QCeffects2(); }
+    } // end if loop
+    if (myMovie2.available()) {
+      if (scratch2) { myMovie2.jump(scratchPos2); } // end if scratch
+      myMovie2.read();
+      QCeffects2();
+    } // end if movie available
   } // end if movie 2 update
 
   // movie 3
   if (layer3visibility) {
     myMovie3.speed(layer3speed);
-    if (scratch3) { 
-      myMovie3.jump(scratchPos3);
-    } // scratch
     if (layer3out==0) { 
       layer3length = int(myMovie3.length()); 
       layer3out = layer3length;
     } // updates layer out
-    if (myMovie3.frame() > layer3out || myMovie3.frame()==myMovie3.length()-1) { 
+    if (myMovie3.frame() > layer3out || myMovie3.frame()==myMovie3.length()-1) { // checks loop
       myMovie3.jump(layer3in);
-    } // checks loop
-    if (myMovie3.available()) { myMovie3.read(); QCeffects3(); }
+    } // end if loop
+    if (myMovie3.available()) {
+      if (scratch3) { myMovie3.jump(scratchPos3); } // end if scratch
+      myMovie3.read();
+      QCeffects3();
+    } // end if movie available
   } // end if movie 3 update
 
+  //
   // movie 4
-  
+  //
   if (layer4visibility) {
     myMovie4.speed(layer4speed);
-    if (scratch4) { 
-      myMovie4.jump(scratchPos4);
-    } // scratch
     if (layer4out==0) { 
       layer4length = int(myMovie4.length()); 
       layer4out = layer4length;
     } // updates layer out
-    if (myMovie4.frame() > layer4out || myMovie4.frame()==myMovie4.length()-1) { 
+    if (myMovie4.frame() > layer4out || myMovie4.frame()==myMovie4.length()-1) { // checks loop
       myMovie4.jump(layer4in);
-    } // checks loop
-    if (myMovie4.available()) { myMovie4.read(); QCeffects4(); }
+    } // end if loop
+    if (myMovie4.available()) {
+      if (scratch4) { myMovie4.jump(scratchPos4); } // end if scratch
+      myMovie4.read();
+      QCeffects4();
+    } // end if movie available
   } // end if movie 4 update
 
   // camera update

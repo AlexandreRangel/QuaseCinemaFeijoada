@@ -194,7 +194,7 @@ void QCsetupInterface() {
   // interface main - column 4
   controlP5.Controller visibilityToggle4 = controlP5.addToggle("layer4visibility",false,180+(columnWidth*3),24,20,20);
   visibilityToggle4.setLabel("visible"); visibilityToggle4.moveTo(controlWindow,"global");
-  visibilityToggle3.captionLabel().toUpperCase(false);
+  visibilityToggle4.captionLabel().toUpperCase(false);
   
   layerContentButton4 = controlP5.addRadioButton("layerContent4",180+(columnWidth*3),109);
   layerContentButton4.setNoneSelectedAllowed(false); layerContentButton4.setItemsPerRow(1);
@@ -694,12 +694,12 @@ void QCsetupInterface() {
   languageList.moveTo(controlWindow,"Prefs"); languageList.setItemHeight(16);
   languageList.captionLabel().toUpperCase(false); // languageList.captionLabel().setHeight(18);
   languageList.setLabel("language");
+  languageList.addItem("Chinese",4);
   languageList.addItem("English",0);
   languageList.addItem("Portuguese",1);
   languageList.addItem("French",2);
   languageList.addItem("German",3);
-  languageList.addItem("Chinese",4);
-  //languageList.addItem("Spanish",5);
+  languageList.addItem("Spanish",5);
   
   
   controlP5.Controller outputXposNumberBox = controlP5.addNumberbox("outputXpos",screenWidth,columnWidth,200,int(columnWidth*0.9),14);
@@ -718,6 +718,7 @@ void QCsetupInterface() {
   
   controlP5.Controller syphonToggle1 = controlP5.addToggle("syphonOutput",false,columnWidth,280,15,15);
   syphonToggle1.setLabel("Syphon output (Mac only)"); syphonToggle1.moveTo(controlWindow,"Prefs");
+  syphonToggle1.captionLabel().toUpperCase(false);
   
   outputResolutionList = controlP5.addListBox("outputResolution",columnWidth,330,int(columnWidth*0.9),320);
   outputResolutionList.moveTo(controlWindow,"Prefs"); outputResolutionList.setItemHeight(16);

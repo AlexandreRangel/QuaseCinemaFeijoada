@@ -2,16 +2,17 @@
 public void QCtranslate() {
   
    switch (language) {
-        case 0: languageList.setLabel("language"); break;
-        case 1: languageList.setLabel("lingua"); break;
-        case 2: languageList.setLabel("idiome"); break;
-        case 3: languageList.setLabel("sprachlich"); break;
-        case 4: languageList.setLabel("语言"); break;
+        case 0: languageList.setLabel("language"); break; // English
+        case 1: languageList.setLabel("lingua"); break; // Portuguese
+        case 2: languageList.setLabel("idiome"); break; // French
+        case 3: languageList.setLabel("sprachlich"); break; // German
+        case 4: languageList.setLabel("语言"); break; // Chinese
+        case 5: languageList.setLabel("idioma"); break; // Spanish
    } // end switch language
    
    
    //
-   // Tabs
+   // tabs
    //
    
    switch (language) {
@@ -20,6 +21,7 @@ public void QCtranslate() {
         case 2: controlWindow.tab("default").setLabel(" Main"); break; // French
         case 3: controlWindow.tab("default").setLabel(" Principal"); break; // German
         case 4: controlWindow.tab("default").setLabel(" 总管道"); break; // Chinese
+        case 5: controlWindow.tab("default").setLabel(" Principal"); break; // Spanish
    } // end switch language
    
    switch (language) {
@@ -28,6 +30,7 @@ public void QCtranslate() {
         case 2: controlWindow.tab("Effects").setLabel(" Effets"); break; // French
         case 3: controlWindow.tab("Effects").setLabel(" Effekten"); break; // German
         case 4: controlWindow.tab("Effects").setLabel(" 动产"); break; // Chinese
+        case 5: controlWindow.tab("Effects").setLabel(" Efectos"); break; // Spanish
    } // end switch language
    
    switch (language) {
@@ -36,6 +39,7 @@ public void QCtranslate() {
         case 2: controlWindow.tab("Rhythm").setLabel(" Rythme"); break; // French
         case 3: controlWindow.tab("Rhythm").setLabel(" Rhythmik"); break; // German
         case 4: controlWindow.tab("Rhythm").setLabel(" 旋律"); break; // Chinese
+        case 5: controlWindow.tab("Rhythm").setLabel(" Ritmo"); break; // Spanish
    } // end switch language
    
    switch (language) {
@@ -44,6 +48,7 @@ public void QCtranslate() {
         case 2: controlWindow.tab("Sequencer").setLabel(" Séquentiel"); break; // French
         case 3: controlWindow.tab("Sequencer").setLabel(" Sequencer"); break; // German
         case 4: controlWindow.tab("Sequencer").setLabel(" 程序装置"); break; // Chinese
+        case 5: controlWindow.tab("Sequencer").setLabel(" Secuenciador"); break; // Spanish
    } // end switch language
    
    switch (language) {
@@ -52,6 +57,7 @@ public void QCtranslate() {
         case 2: controlWindow.tab("Mapping").setLabel(" Mapping"); break; // French
         case 3: controlWindow.tab("Mapping").setLabel(" Mapping"); break; // German
         case 4: controlWindow.tab("Mapping").setLabel(" 绘图"); break; // Chinese
+        case 5: controlWindow.tab("Mapping").setLabel(" Mapping"); break; // Spanish
    } // end switch language
    
    switch (language) {
@@ -60,6 +66,7 @@ public void QCtranslate() {
         case 2: controlWindow.tab("3D").setLabel(" 3D"); break; // French
         case 3: controlWindow.tab("3D").setLabel(" 3D"); break; // German
         case 4: controlWindow.tab("3D").setLabel(" 三维简化"); break; // Chinese
+        case 5: controlWindow.tab("3D").setLabel(" 3D"); break; // Spanish
    } // end switch language
    
    switch (language) {
@@ -68,6 +75,7 @@ public void QCtranslate() {
         case 2: controlWindow.tab("Playlist").setLabel(" Playlist"); break; // French
         case 3: controlWindow.tab("Playlist").setLabel(" Playlist"); break; // German
         case 4: controlWindow.tab("Playlist").setLabel(" 播放列表"); break; // Chinese
+        case 5: controlWindow.tab("Playlist").setLabel(" Playlist"); break; // Spanish
    } // end switch language
    
    switch (language) {
@@ -76,6 +84,7 @@ public void QCtranslate() {
         case 2: controlWindow.tab("Audio").setLabel(" Audio"); break; // French
         case 3: controlWindow.tab("Audio").setLabel(" Audio"); break; // German
         case 4: controlWindow.tab("Audio").setLabel(" 声音的"); break; // Chinese
+        case 5: controlWindow.tab("Audio").setLabel(" Audio"); break; // Spanish
    } // end switch language
    
    switch (language) {
@@ -84,6 +93,7 @@ public void QCtranslate() {
         case 2: controlWindow.tab("Prefs").setLabel(" Préférences"); break; // French
         case 3: controlWindow.tab("Prefs").setLabel(" Vorrang"); break; // German
         case 4: controlWindow.tab("Prefs").setLabel(" 偏爱"); break; // Chinese
+        case 5: controlWindow.tab("Prefs").setLabel(" Preferencias"); break; // Spanish
    } // end switch language
    
    switch (language) {
@@ -92,11 +102,12 @@ public void QCtranslate() {
         case 2: controlWindow.tab("Help").setLabel(" Aide"); break; // French
         case 3: controlWindow.tab("Help").setLabel(" Hilfe"); break; // German
         case 4: controlWindow.tab("Help").setLabel(" 帮助"); break; // Chinese
+        case 5: controlWindow.tab("Help").setLabel(" Ayuda"); break; // Spanish
    } // end switch language
   
   
   //
-  // main tab
+  // Main tab
   //
   
   switch (language) {
@@ -129,6 +140,12 @@ public void QCtranslate() {
       controlP5.controller("layer2visibility").setLabel("看得见的");
       controlP5.controller("layer3visibility").setLabel("看得见的");
       controlP5.controller("layer4visibility").setLabel("看得见的");
+      break;
+    case 5: // Spanish
+      controlP5.controller("layer1visibility").setLabel("visible");
+      controlP5.controller("layer2visibility").setLabel("visible");
+      controlP5.controller("layer3visibility").setLabel("visible");
+      controlP5.controller("layer4visibility").setLabel("visible");
       break;
    } // end switch language
   
@@ -163,6 +180,12 @@ public void QCtranslate() {
       controlP5.controller("layer3loop").setLabel("圈");
       controlP5.controller("layer4loop").setLabel("圈");
       break;
+    case 5: // Spanish
+      controlP5.controller("layer1loop").setLabel("repetir");
+      controlP5.controller("layer2loop").setLabel("repetir");
+      controlP5.controller("layer3loop").setLabel("repetir");
+      controlP5.controller("layer4loop").setLabel("repetir");
+      break;
    } // end switch language
 
 switch (language) {
@@ -195,6 +218,12 @@ switch (language) {
       controlP5.controller("layer2playback").setLabel("录音再生");
       controlP5.controller("layer3playback").setLabel("录音再生");
       controlP5.controller("layer4playback").setLabel("录音再生");
+      break;
+    case 5: // Spanish
+      controlP5.controller("layer1playback").setLabel("tiempo");
+      controlP5.controller("layer2playback").setLabel("tiempo");
+      controlP5.controller("layer3playback").setLabel("tiempo");
+      controlP5.controller("layer4playback").setLabel("tiempo");
       break;
    } // end switch language
   
@@ -229,6 +258,12 @@ switch (language) {
       controlP5.controller("layer3speed").setLabel("录音再生");
       controlP5.controller("layer4speed").setLabel("录音再生");
       break;
+    case 5: // Spanish
+      controlP5.controller("layer1speed").setLabel("velocidad");
+      controlP5.controller("layer2speed").setLabel("velocidad");
+      controlP5.controller("layer3speed").setLabel("velocidad");
+      controlP5.controller("layer4speed").setLabel("velocidad");
+      break;
    } // end switch language
   
   switch (language) {
@@ -262,6 +297,12 @@ switch (language) {
       controlP5.controller("randomDir3").setLabel("任意的 夹子");
       controlP5.controller("randomDir4").setLabel("任意的 夹子");
       break;
+    case 5: // Spanish
+      controlP5.controller("randomDir1").setLabel("carpeta aleatoria");
+      controlP5.controller("randomDir2").setLabel("carpeta aleatoria");
+      controlP5.controller("randomDir3").setLabel("carpeta aleatoria");
+      controlP5.controller("randomDir4").setLabel("carpeta aleatoria");
+      break;
    } // end switch language
    
    switch (language) {
@@ -294,6 +335,12 @@ switch (language) {
       controlP5.controller("randomMov2").setLabel("任意的 电影");
       controlP5.controller("randomMov3").setLabel("任意的 电影");
       controlP5.controller("randomMov4").setLabel("任意的 电影");
+      break;
+    case 5: // Spanish
+      controlP5.controller("randomMov1").setLabel("film aleatorio");
+      controlP5.controller("randomMov2").setLabel("film aleatorio");
+      controlP5.controller("randomMov3").setLabel("film aleatorio");
+      controlP5.controller("randomMov4").setLabel("film aleatorio");
       break;
    } // end switch language
    
@@ -333,6 +380,12 @@ switch (language) {
       controlP5.group("layerComposite3").setLabel("写作");
       controlP5.group("layerComposite4").setLabel("写作");
       break;
+    case 5: // Spanish
+      controlP5.group("layerComposite1").setLabel("mezcla");
+      controlP5.group("layerComposite2").setLabel("mezcla");
+      controlP5.group("layerComposite3").setLabel("mezcla");
+      controlP5.group("layerComposite4").setLabel("mezcla");
+      break;
    } // end switch language
    
    switch (language) {
@@ -365,6 +418,12 @@ switch (language) {
       controlP5.controller("effectInvert2").setLabel("使反转");
       controlP5.controller("effectInvert3").setLabel("使反转");
       controlP5.controller("effectInvert4").setLabel("使反转");
+      break;
+    case 5: // Spanish
+      controlP5.controller("effectInvert1").setLabel("invertir");
+      controlP5.controller("effectInvert2").setLabel("invertir");
+      controlP5.controller("effectInvert3").setLabel("invertir");
+      controlP5.controller("effectInvert4").setLabel("invertir");
       break;
    } // end switch language
    
@@ -399,6 +458,12 @@ switch (language) {
       controlP5.controller("effectPosterize3").setLabel("海报效果");
       controlP5.controller("effectPosterize4").setLabel("海报效果");
       break;
+    case 5: // Spanish
+      controlP5.controller("effectPosterize1").setLabel("poster");
+      controlP5.controller("effectPosterize2").setLabel("poster");
+      controlP5.controller("effectPosterize3").setLabel("poster");
+      controlP5.controller("effectPosterize4").setLabel("poster");
+      break;
    } // end switch language
    
    switch (language) {
@@ -431,6 +496,12 @@ switch (language) {
       controlP5.controller("effectBW2").setLabel("白纸黑字");
       controlP5.controller("effectBW3").setLabel("白纸黑字");
       controlP5.controller("effectBW4").setLabel("白纸黑字");
+      break;
+    case 5: // Spanish
+      controlP5.controller("effectBW1").setLabel("negro y blanco");
+      controlP5.controller("effectBW2").setLabel("negro y blanco");
+      controlP5.controller("effectBW3").setLabel("negro y blanco");
+      controlP5.controller("effectBW4").setLabel("negro y blanco");
       break;
    } // end switch language
    
@@ -465,6 +536,12 @@ switch (language) {
       controlP5.controller("effectContrast3").setLabel("对比");
       controlP5.controller("effectContrast4").setLabel("对比");
       break;
+    case 5: // Spanish
+      controlP5.controller("effectContrast1").setLabel("contraste");
+      controlP5.controller("effectContrast2").setLabel("contraste");
+      controlP5.controller("effectContrast3").setLabel("contraste");
+      controlP5.controller("effectContrast4").setLabel("contraste");
+      break;
    } // end switch language
    
    switch (language) {
@@ -497,6 +574,12 @@ switch (language) {
       controlP5.controller("effectSaturation2").setLabel("饱和");
       controlP5.controller("effectSaturation3").setLabel("饱和");
       controlP5.controller("effectSaturation4").setLabel("饱和");
+      break;
+    case 5: // Spanish
+      controlP5.controller("effectSaturation1").setLabel("saturación");
+      controlP5.controller("effectSaturation2").setLabel("saturación");
+      controlP5.controller("effectSaturation3").setLabel("saturación");
+      controlP5.controller("effectSaturation4").setLabel("saturación");
       break;
    } // end switch language
    
@@ -531,6 +614,12 @@ switch (language) {
       controlP5.controller("effectHue3").setLabel("色调");
       controlP5.controller("effectHue4").setLabel("色调");
       break;
+    case 5: // Spanish
+      controlP5.controller("effectHue1").setLabel("matiz");
+      controlP5.controller("effectHue2").setLabel("matiz");
+      controlP5.controller("effectHue3").setLabel("matiz");
+      controlP5.controller("effectHue4").setLabel("matiz");
+      break;
    } // end switch language
    
    switch (language) {
@@ -563,6 +652,12 @@ switch (language) {
       controlP5.controller("effectPaint2").setLabel("光 油漆");
       controlP5.controller("effectPaint3").setLabel("光 油漆");
       controlP5.controller("effectPaint4").setLabel("光 油漆");
+      break;
+    case 5: // Spanish
+      controlP5.controller("effectPaint1").setLabel("pintura con luz");
+      controlP5.controller("effectPaint2").setLabel("pintura con luz");
+      controlP5.controller("effectPaint3").setLabel("pintura con luz");
+      controlP5.controller("effectPaint4").setLabel("pintura con luz");
       break;
    } // end switch language
    
@@ -602,6 +697,12 @@ switch (language) {
       controlP5.controller("layer3bpmVis").setLabel("看得见的");
       controlP5.controller("layer4bpmVis").setLabel("看得见的");
       break;
+    case 5: // Spanish
+      controlP5.controller("layer1bpmVis").setLabel("visible");
+      controlP5.controller("layer2bpmVis").setLabel("visible");
+      controlP5.controller("layer3bpmVis").setLabel("visible");
+      controlP5.controller("layer4bpmVis").setLabel("visible");
+      break;
    } // end switch language
    
    switch (language) {
@@ -635,6 +736,12 @@ switch (language) {
       controlP5.controller("layer3bpmTime").setLabel("时间");
       controlP5.controller("layer4bpmTime").setLabel("时间");
       break;
+    case 5: // Spanish
+      controlP5.controller("layer1bpmTime").setLabel("tempo");
+      controlP5.controller("layer2bpmTime").setLabel("tempo");
+      controlP5.controller("layer3bpmTime").setLabel("tempo");
+      controlP5.controller("layer4bpmTime").setLabel("tempo");
+      break;
    } // end switch language
    
    switch (language) {
@@ -667,6 +774,12 @@ switch (language) {
       controlP5.controller("layer2bpmMovie").setLabel("电影");
       controlP5.controller("layer3bpmMovie").setLabel("电影");
       controlP5.controller("layer4bpmMovie").setLabel("电影");
+      break;
+    case 5: // Spanish
+      controlP5.controller("layer1bpmMovie").setLabel("film");
+      controlP5.controller("layer2bpmMovie").setLabel("film");
+      controlP5.controller("layer3bpmMovie").setLabel("film");
+      controlP5.controller("layer4bpmMovie").setLabel("film");
       break;
    } // end switch language
    
@@ -706,6 +819,12 @@ switch (language) {
       controlP5.controller("mapping3").setLabel("mapping 矩形的");
       controlP5.controller("mapping4").setLabel("mapping 矩形的");
       break;
+    case 5: // Spanish
+      controlP5.controller("mapping1").setLabel("mapping rectangular");
+      controlP5.controller("mapping2").setLabel("mapping rectangular");
+      controlP5.controller("mapping3").setLabel("mapping rectangular");
+      controlP5.controller("mapping4").setLabel("mapping rectangular");
+      break;
    } // end switch language
    
    switch (language) {
@@ -738,6 +857,12 @@ switch (language) {
       controlP5.controller("bmapping2").setLabel("mapping 弯曲的");
       controlP5.controller("bmapping3").setLabel("mapping 弯曲的");
       controlP5.controller("bmapping4").setLabel("mapping 弯曲的");
+      break;
+    case 5: // Spanish
+      controlP5.controller("bmapping1").setLabel("mapping curvado");
+      controlP5.controller("bmapping2").setLabel("mapping curvado");
+      controlP5.controller("bmapping3").setLabel("mapping curvado");
+      controlP5.controller("bmapping4").setLabel("mapping curvado");
       break;
    } // end switch language
    
@@ -777,6 +902,12 @@ switch (language) {
       controlP5.controller("layer3volume").setLabel("体积");
       controlP5.controller("layer4volume").setLabel("体积");
       break;
+    case 5: // Spanish
+      controlP5.controller("layer1volume").setLabel("volumen");
+      controlP5.controller("layer2volume").setLabel("volumen");
+      controlP5.controller("layer3volume").setLabel("volumen");
+      controlP5.controller("layer4volume").setLabel("volumen");
+      break;
    } // end switch language
    
    
@@ -788,13 +919,15 @@ switch (language) {
     case 0: // English
       controlP5.group("outputResolution").setLabel("output resolution"); break;
     case 1: // Portuguese
-      controlP5.controller("outputResolution").setLabel("resolução de saída"); break;
+      controlP5.group("outputResolution").setLabel("resolução de saída"); break;
     case 2: // French
-      controlP5.controller("outputResolution").setLabel("output resolution"); break;
+      controlP5.group("outputResolution").setLabel("output resolution"); break;
     case 3: // German
-      controlP5.controller("outputResolution").setLabel("output resolution"); break;
+      controlP5.group("outputResolution").setLabel("output resolution"); break;
     case 4: // Chinese
-      controlP5.controller("outputResolution").setLabel("output resolution"); break;
+      controlP5.group("outputResolution").setLabel("output resolution"); break;
+    case 5: // Spanish
+      controlP5.group("outputResolution").setLabel("resolución de salida"); break;
    } // end switch language
    
    switch (language) {
@@ -803,11 +936,13 @@ switch (language) {
     case 1: // Portuguese
       controlP5.controller("outputXpos").setLabel("posição X da saída"); break;
     case 2: // French
-      controlP5.controller("outputXpos").setLabel("output X position"); break;
+      controlP5.controller("outputXpos").setLabel("sortie X position"); break;
     case 3: // German
       controlP5.controller("outputXpos").setLabel("output X position"); break;
     case 4: // Chinese
       controlP5.controller("outputXpos").setLabel("output X position"); break;
+    case 5: // Spanish
+      controlP5.controller("outputXpos").setLabel("posición X de la saida"); break;
    } // end switch language
    
    switch (language) {
@@ -816,24 +951,28 @@ switch (language) {
     case 1: // Portuguese
       controlP5.controller("outputYpos").setLabel("posição Y da saída"); break;
     case 2: // French
-      controlP5.controller("outputYpos").setLabel("output Y position"); break;
+      controlP5.controller("outputYpos").setLabel("sortie Y position"); break;
     case 3: // German
       controlP5.controller("outputYpos").setLabel("output Y position"); break;
     case 4: // Chinese
       controlP5.controller("outputYpos").setLabel("output Y position"); break;
+    case 5: // Spanish
+      controlP5.controller("outputYpos").setLabel("posición Y de la saida"); break;
    } // end switch language
    
    switch (language) {
     case 0: // English
-      controlP5.controller("syphonOutput").setLabel("Syphon output (Mac only)"); break;
+      controlP5.controller("syphonOutput").setLabel("Syphon output - Mac only"); break;
     case 1: // Portuguese
-      controlP5.controller("syphonOutput").setLabel("saída Syphon (Mac)"); break;
+      controlP5.controller("syphonOutput").setLabel("saída Syphon - somente Mac"); break;
     case 2: // French
-      controlP5.controller("syphonOutput").setLabel("Syphon output (Mac only)"); break;
+      controlP5.controller("syphonOutput").setLabel("Syphon sortie - Mac uniquement"); break;
     case 3: // German
-      controlP5.controller("syphonOutput").setLabel("Syphon output (Mac only)"); break;
+      controlP5.controller("syphonOutput").setLabel("Syphon output - Mac only"); break;
     case 4: // Chinese
-      controlP5.controller("syphonOutput").setLabel("Syphon output (Mac only)"); break;
+      controlP5.controller("syphonOutput").setLabel("Syphon output - Mac only"); break;
+    case 5: // Spanish
+      controlP5.controller("syphonOutput").setLabel("salida Syphon - sólo Mac"); break;
    } // end switch language
    
    
