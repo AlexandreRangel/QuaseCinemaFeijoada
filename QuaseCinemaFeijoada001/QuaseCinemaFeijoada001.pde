@@ -35,10 +35,6 @@ ControlWindowCanvas cc;
 ControlFont font;
 
 ColorPicker colorPicker1, colorPicker2, colorPicker3, colorPicker4;
-int layer1colorRed = 255; int layer1colorGreen = 255; int layer1colorBlue = 255;
-int layer2colorRed = 255; int layer2colorGreen = 255; int layer2colorBlue = 255;
-int layer3colorRed = 255; int layer3colorGreen = 255; int layer3colorBlue = 255;
-int layer4colorRed = 255; int layer4colorGreen = 255; int layer4colorBlue = 255;
 int layerOpacity1 = 255; int layerOpacity2 = 255; int layerOpacity3 = 255; int layerOpacity4 = 255;
 DropdownList layerComposite1Menu, layerComposite2Menu, layerComposite3Menu, layerComposite4Menu;
 int layerComposite1select=0; int layerComposite2select=0; int layerComposite3select=0; int layerComposite4select=0;
@@ -779,8 +775,8 @@ public void draw() {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   if (layer1visibility) {
-
-    tint(layer1colorRed, layer1colorGreen, layer1colorBlue, layerOpacity1);
+    tint(red(colorPicker1.getColorValue()), green(colorPicker1.getColorValue()), blue(colorPicker1.getColorValue()), layerOpacity1);
+    //tint(layer1colorRed, layer1colorGreen, layer1colorBlue, layerOpacity1);
     //tint(fft.getAvg(5)*255, green(colorPicker1.getColorValue()), 0); // colorPicker1.getColorValue()
     if (!myMovie1.isPlaying()) { myMovie1.play(); }
 
@@ -817,7 +813,6 @@ public void draw() {
 
   // pre-render layer 2
   if (layer2visibility) {
-    
     tint(red(colorPicker2.getColorValue()), green(colorPicker2.getColorValue()), blue(colorPicker2.getColorValue()), layerOpacity2);
     if (!myMovie2.isPlaying()) { myMovie2.play(); }
 
@@ -854,7 +849,6 @@ public void draw() {
 
   // pre-render layer 3
   if (layer3visibility) {
-
     tint(red(colorPicker3.getColorValue()), green(colorPicker3.getColorValue()), blue(colorPicker3.getColorValue()), layerOpacity3);
     if (!myMovie3.isPlaying()) { myMovie3.play(); }
     //myMovie3.speed(layer3speed);
@@ -891,7 +885,6 @@ public void draw() {
 
   // pre-render layer 4
   if (layer4visibility) {
-
     tint(red(colorPicker4.getColorValue()), green(colorPicker4.getColorValue()), blue(colorPicker4.getColorValue()), layerOpacity4);
     if (!myMovie4.isPlaying()) { myMovie4.play(); }
     //myMovie4.speed(layer4speed);
