@@ -67,12 +67,33 @@ void controllerChange(int channel, int number, int value) {
   else if (channel==0 && number==87) { controlP5.controller("effectSaturationLimit3").setValue(map(value,0,127,0,200)); controlWindow.activateTab("Effects"); }
   else if (channel==2 && number==7) { controlP5.controller("effectSaturationLimit4").setValue(map(value,0,127,0,200)); controlWindow.activateTab("Effects"); }
   
-  // layers saturation effect amount
+  // layers hue effect amount
   // slider 4
-       if (channel==0 && number==5) { controlP5.controller("effectHueLimit1").setValue(map(value,0,127,0,200)); controlWindow.activateTab("Effects"); }
+       if (channel==0 && number==5) { controlP5.controller("effectHueLimit1").setValue(map(value,0,127,0,255)); controlWindow.activateTab("Effects"); }
   else if (channel==0 && number==51) { controlP5.controller("effectHueLimit2").setValue(map(value,0,127,0,200)); controlWindow.activateTab("Effects"); }
   else if (channel==0 && number==88) { controlP5.controller("effectHueLimit3").setValue(map(value,0,127,0,200)); controlWindow.activateTab("Effects"); }
   else if (channel==3 && number==7) { controlP5.controller("effectHueLimit4").setValue(map(value,0,127,0,200)); controlWindow.activateTab("Effects"); }
+  
+  // layers red amount
+  // slider 5
+         if (channel==0 && number==6) { layer1colorRed = value * 2; if(layer1colorRed==254){layer1colorRed=255;} controlWindow.activateTab("Effects"); }
+  else if (channel==0 && number==52) { layer2colorRed = value * 2; if(layer2colorRed==254){layer2colorRed=255;} controlWindow.activateTab("Effects"); }
+  else if (channel==0 && number==89) { layer3colorRed = value * 2; if(layer3colorRed==254){layer3colorRed=255;} controlWindow.activateTab("Effects"); }
+  else if (channel==4 && number==7) { layer4colorRed = value * 2; if(layer4colorRed==254){layer4colorRed=255;} controlWindow.activateTab("Effects"); }
+  
+  // layers green amount
+  // slider 5
+         if (channel==0 && number==8) { layer1colorGreen = value * 2; if(layer1colorGreen==254){layer1colorGreen=255;} controlWindow.activateTab("Effects"); }
+  else if (channel==0 && number==53) { layer2colorGreen = value * 2; if(layer2colorGreen==254){layer2colorGreen=255;} controlWindow.activateTab("Effects"); }
+  else if (channel==0 && number==90) { layer3colorGreen = value * 2; if(layer3colorGreen==254){layer3colorGreen=255;} controlWindow.activateTab("Effects"); }
+  else if (channel==5 && number==7) { layer4colorGreen = value * 2; if(layer4colorGreen==254){layer4colorGreen=255;} controlWindow.activateTab("Effects"); }
+  
+  // layers blue amount
+  // slider 5
+         if (channel==0 && number==9) { layer1colorBlue = value * 2; if(layer1colorBlue==254){layer1colorBlue=255;} controlWindow.activateTab("Effects"); }
+  else if (channel==0 && number==54) { layer2colorBlue = value * 2; if(layer2colorBlue==254){layer2colorBlue=255;} controlWindow.activateTab("Effects"); }
+  else if (channel==0 && number==91) { layer3colorBlue = value * 2; if(layer3colorBlue==254){layer3colorBlue=255;} controlWindow.activateTab("Effects"); }
+  else if (channel==6 && number==7) { layer4colorBlue = value * 2; if(layer4colorBlue==254){layer4colorBlue=255;} controlWindow.activateTab("Effects"); }
   
   // layers speed
   // knob 8

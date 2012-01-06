@@ -859,10 +859,10 @@ switch (language) {
       controlP5.controller("bmapping4").setLabel("mapping 弯曲的");
       break;
     case 5: // Spanish
-      controlP5.controller("bmapping1").setLabel("mapping curvado");
-      controlP5.controller("bmapping2").setLabel("mapping curvado");
-      controlP5.controller("bmapping3").setLabel("mapping curvado");
-      controlP5.controller("bmapping4").setLabel("mapping curvado");
+      controlP5.controller("bmapping1").setLabel("mapeamento curvado");
+      controlP5.controller("bmapping2").setLabel("mapeamento curvado");
+      controlP5.controller("bmapping3").setLabel("mapeamento curvado");
+      controlP5.controller("bmapping4").setLabel("mapeamento curvado");
       break;
    } // end switch language
    

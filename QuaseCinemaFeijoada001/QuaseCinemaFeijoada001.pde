@@ -35,6 +35,10 @@ ControlWindowCanvas cc;
 ControlFont font;
 
 ColorPicker colorPicker1, colorPicker2, colorPicker3, colorPicker4;
+int layer1colorRed = 255; int layer1colorGreen = 255; int layer1colorBlue = 255;
+int layer2colorRed = 255; int layer2colorGreen = 255; int layer2colorBlue = 255;
+int layer3colorRed = 255; int layer3colorGreen = 255; int layer3colorBlue = 255;
+int layer4colorRed = 255; int layer4colorGreen = 255; int layer4colorBlue = 255;
 int layerOpacity1 = 255; int layerOpacity2 = 255; int layerOpacity3 = 255; int layerOpacity4 = 255;
 DropdownList layerComposite1Menu, layerComposite2Menu, layerComposite3Menu, layerComposite4Menu;
 int layerComposite1select=0; int layerComposite2select=0; int layerComposite3select=0; int layerComposite4select=0;
@@ -701,66 +705,70 @@ public void draw() {
 
   if (layer1bpmMovie>0 && millis()-layer1bpmMovieLastTime >= map(layer1bpmMovie, 0, 240, 1000, 10)) { // layer 1
     // change movie
-    String tempString = rootFolder + dirs1[selectedDir1] + OSseparator;
-    fileNames = listFileNames(tempString, txtFilter);
-    tempString = rootFolder + dirs1[selectedDir1] + OSseparator + fileNames[int(random(fileNames.length))];
-    myMovie1.stop(); 
-    myMovie1.delete(); 
-    myMovie1 = new GSMovie(this, tempString); 
-    myMovie1.read(); 
-    myMovie1.play();
+    QCrandomMov(0);
+//    String tempString = rootFolder + dirs1[selectedDir1] + OSseparator;
+//    fileNames = listFileNames(tempString, txtFilter);
+//    tempString = rootFolder + dirs1[selectedDir1] + OSseparator + fileNames[int(random(fileNames.length))];
+//    myMovie1.stop(); 
+//    myMovie1.delete(); 
+//    myMovie1 = new GSMovie(this, tempString); 
+    //myMovie1.read(); 
+    //myMovie1.play();
 //    if (layer1loop) { 
 //      myMovie1.loop();
 //    }
-    myMovie1.jump(random(myMovie1.duration()));
+    //myMovie1.jump(random(myMovie1.duration()));
     layer1bpmMovieLastTime=millis();
   }
   if (layer2bpmMovie>0 && millis()-layer2bpmMovieLastTime >= map(layer2bpmMovie, 0, 240, 1000, 10)) { // layer 2
     // change movie
-    String tempString = rootFolder + dirs2[selectedDir2] + OSseparator;
-    fileNames = listFileNames(tempString, txtFilter);
-    tempString = rootFolder + dirs2[selectedDir2] + OSseparator + fileNames[int(random(fileNames.length))];
-    myMovie2.stop(); 
-    myMovie2.delete(); 
-    myMovie2 = new GSMovie(this, tempString); 
-    myMovie2.read(); 
-    myMovie2.play();
+    QCrandomMov(1);
+//    String tempString = rootFolder + dirs2[selectedDir2] + OSseparator;
+//    fileNames = listFileNames(tempString, txtFilter);
+//    tempString = rootFolder + dirs2[selectedDir2] + OSseparator + fileNames[int(random(fileNames.length))];
+//    myMovie2.stop(); 
+//    myMovie2.delete(); 
+//    myMovie2 = new GSMovie(this, tempString); 
+    //myMovie2.read(); 
+    //myMovie2.play();
 //    if (layer2loop) { 
 //      myMovie2.loop();
 //    }
-    myMovie2.jump(random(myMovie2.duration()));
+    //myMovie2.jump(random(myMovie2.duration()));
     layer2bpmMovieLastTime=millis();
   }
   if (layer3bpmMovie>0 && millis()-layer3bpmMovieLastTime >= map(layer3bpmMovie, 0, 240, 1000, 10)) { // layer 3
     // change movie
-    String tempString = rootFolder + dirs3[selectedDir3] + OSseparator;
-    fileNames = listFileNames(tempString, txtFilter);
-    tempString = rootFolder + dirs3[selectedDir3] + OSseparator + fileNames[int(random(fileNames.length))];
-    myMovie3.stop(); 
-    myMovie3.delete(); 
-    myMovie3 = new GSMovie(this, tempString); 
-    myMovie3.read(); 
-    myMovie3.play();
+    QCrandomMov(2);
+//    String tempString = rootFolder + dirs3[selectedDir3] + OSseparator;
+//    fileNames = listFileNames(tempString, txtFilter);
+//    tempString = rootFolder + dirs3[selectedDir3] + OSseparator + fileNames[int(random(fileNames.length))];
+//    myMovie3.stop(); 
+//    myMovie3.delete(); 
+//    myMovie3 = new GSMovie(this, tempString); 
+    //myMovie3.read(); 
+    //myMovie3.play();
 //    if (layer3loop) { 
 //      myMovie3.loop();
 //    }
-    myMovie3.jump(random(0, myMovie3.duration()));
+    //myMovie3.jump(random(0, myMovie3.duration()));
     layer3bpmMovieLastTime=millis();
   }
   if (layer4bpmMovie>0 && millis()-layer4bpmMovieLastTime >= map(layer4bpmMovie, 0, 240, 1000, 10)) { // layer 4
     // change movie
-    String tempString = rootFolder + dirs4[selectedDir4] + OSseparator;
-    fileNames = listFileNames(tempString, txtFilter);
-    tempString = rootFolder + dirs4[selectedDir4] + OSseparator + fileNames[int(random(fileNames.length))];
-    myMovie4.stop(); 
-    myMovie4.delete(); 
-    myMovie4 = new GSMovie(this, tempString); 
-    myMovie4.read(); 
-    myMovie4.play();
+    QCrandomMov(3);
+//    String tempString = rootFolder + dirs4[selectedDir4] + OSseparator;
+//    fileNames = listFileNames(tempString, txtFilter);
+//    tempString = rootFolder + dirs4[selectedDir4] + OSseparator + fileNames[int(random(fileNames.length))];
+//    myMovie4.stop(); 
+//    myMovie4.delete(); 
+//    myMovie4 = new GSMovie(this, tempString); 
+    //myMovie4.read(); 
+    //myMovie4.play();
 //    if (layer4loop) { 
 //      myMovie4.loop();
 //    }
-    myMovie4.jump(random(0, myMovie4.duration()));
+    //myMovie4.jump(random(0, myMovie4.duration()));
     layer4bpmMovieLastTime=millis();
   }
 
@@ -772,7 +780,7 @@ public void draw() {
 
   if (layer1visibility) {
 
-    tint(red(colorPicker1.getColorValue()), green(colorPicker1.getColorValue()), blue(colorPicker1.getColorValue()), layerOpacity1);
+    tint(layer1colorRed, layer1colorGreen, layer1colorBlue, layerOpacity1);
     //tint(fft.getAvg(5)*255, green(colorPicker1.getColorValue()), 0); // colorPicker1.getColorValue()
     if (!myMovie1.isPlaying()) { myMovie1.play(); }
 
