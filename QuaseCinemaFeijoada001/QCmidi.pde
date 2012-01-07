@@ -93,32 +93,32 @@ void controllerChange(int channel, int number, int value) {
   // layers green amount
   // slider 5
   if (channel==0 && number==8) {
-    colorPicker1.setColorValue(red(colorPicker1.getColorValue(),color(map(value,0,127,0,255)),blue(colorPicker1.getColorValue()),alpha(colorPicker1.getColorValue())));
+    colorPicker1.setColorValue(color(red(colorPicker1.getColorValue()),map(value,0,127,0,255),blue(colorPicker1.getColorValue()),alpha(colorPicker1.getColorValue())));
     controlWindow.activateTab("Effects");
   } else if (channel==0 && number==53) {
-    colorPicker2.setColorValue(red(colorPicker2.getColorValue(),color(map(value,0,127,0,255)),blue(colorPicker2.getColorValue()),alpha(colorPicker2.getColorValue())));
+    colorPicker2.setColorValue(color(red(colorPicker2.getColorValue()),map(value,0,127,0,255),blue(colorPicker2.getColorValue()),alpha(colorPicker2.getColorValue())));
     controlWindow.activateTab("Effects");
   } else if (channel==0 && number==90) {
-    colorPicker3.setColorValue(red(colorPicker3.getColorValue(),color(map(value,0,127,0,255)),blue(colorPicker3.getColorValue()),alpha(colorPicker3.getColorValue())));
+    colorPicker3.setColorValue(color(red(colorPicker3.getColorValue()),map(value,0,127,0,255),blue(colorPicker3.getColorValue()),alpha(colorPicker3.getColorValue())));
     controlWindow.activateTab("Effects");
   } else if (channel==5 && number==7) {
-    colorPicker4.setColorValue(red(colorPicker4.getColorValue(),color(map(value,0,127,0,255)),blue(colorPicker4.getColorValue()),alpha(colorPicker4.getColorValue())));
+    colorPicker4.setColorValue(color(red(colorPicker4.getColorValue()),map(value,0,127,0,255),blue(colorPicker4.getColorValue()),alpha(colorPicker4.getColorValue())));
     controlWindow.activateTab("Effects");
   }
   
   // layers blue amount
   // slider 5
   if (channel==0 && number==9) {
-    colorPicker1.setColorValue(red(colorPicker1.getColorValue(),green(colorPicker1.getColorValue()),color(map(value,0,127,0,255)),alpha(colorPicker1.getColorValue())));
+    colorPicker1.setColorValue(color(red(colorPicker1.getColorValue()),green(colorPicker1.getColorValue()),map(value,0,127,0,255),alpha(colorPicker1.getColorValue())));
     controlWindow.activateTab("Effects");
   } else if (channel==0 && number==54) {
-    colorPicker2.setColorValue(red(colorPicker2.getColorValue(),green(colorPicker2.getColorValue()),color(map(value,0,127,0,255)),alpha(colorPicker2.getColorValue())));
+    colorPicker2.setColorValue(color(red(colorPicker2.getColorValue()),green(colorPicker2.getColorValue()),map(value,0,127,0,255),alpha(colorPicker2.getColorValue())));
     controlWindow.activateTab("Effects");
   } else if (channel==0 && number==91) {
-    colorPicker3.setColorValue(red(colorPicker3.getColorValue(),green(colorPicker3.getColorValue()),color(map(value,0,127,0,255)),alpha(colorPicker3.getColorValue())));
+    colorPicker3.setColorValue(color(red(colorPicker3.getColorValue()),green(colorPicker3.getColorValue()),map(value,0,127,0,255),alpha(colorPicker3.getColorValue())));
     controlWindow.activateTab("Effects");
   } else if (channel==6 && number==7) {
-    colorPicker4.setColorValue(red(colorPicker4.getColorValue(),green(colorPicker4.getColorValue()),color(map(value,0,127,0,255)),alpha(colorPicker4.getColorValue())));
+    colorPicker4.setColorValue(color(red(colorPicker4.getColorValue()),green(colorPicker4.getColorValue()),map(value,0,127,0,255),alpha(colorPicker4.getColorValue())));
     controlWindow.activateTab("Effects");
   }
   

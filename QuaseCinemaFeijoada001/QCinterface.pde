@@ -334,13 +334,6 @@ void controlEvent(ControlEvent theEvent) {
     if (theEvent.group().name() == "layerComposite3") { layerComposite3select = int(theEvent.group().value()); }
     if (theEvent.group().name() == "layerComposite4") { layerComposite4select = int(theEvent.group().value()); }
     
-    // color
-    if (theEvent.group().name() == "layer1color") { layer1colorRed = 0; }
-    //if (theEvent.group().name() == "layer1color") { layer1colorRed = int (theEvent.group().value()); }
-//    if (theEvent.group().name() == "layer2color") { layerComposite2select = int(theEvent.group().value()); }
-//    if (theEvent.group().name() == "layer3color") { layerComposite3select = int(theEvent.group().value()); }
-//    if (theEvent.group().name() == "layer4color") { layerComposite4select = int(theEvent.group().value()); }
-    
        
   } // end if event is group
   
