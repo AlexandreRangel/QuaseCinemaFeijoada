@@ -1014,7 +1014,7 @@ public void draw() {
   } // end switch doRandomize
 
   // memory management
-  if (frameCount%1800==0) { // clean memory around each 30 seconds
+  if (frameCount%3600==0) { // clean memory around each minute
     println (hour()+":"+minute()+":"+second()+" Free Memory: "+Runtime.getRuntime().freeMemory()/1024+" K; Garbage collected;");
     System.gc();
     println (hour()+":"+minute()+":"+second()+" Free Memory: "+Runtime.getRuntime().freeMemory()/1024+" K;\n");

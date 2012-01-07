@@ -728,17 +728,18 @@ void QCsetupInterface() {
   outputResolutionList.addItem("320 x 240",1);
   outputResolutionList.addItem("640 x 480",2);
   outputResolutionList.addItem("800 x 600",3);
-  outputResolutionList.addItem("1024 x 768",4);
-  outputResolutionList.addItem("1280 x 720",5);
-  outputResolutionList.addItem("1280 x 1024",6);
-  outputResolutionList.addItem("1920 x 1080",7);
-  outputResolutionList.addItem("1600 x 1200",8);
-  outputResolutionList.addItem("1280 x 480 (2X 640 x 480)",9);
-  outputResolutionList.addItem("1600 x 600 (2X 800 x 600)",10);
-  outputResolutionList.addItem("2048 x 768 (2X 1024 x 768)",11);
-  outputResolutionList.addItem("1920 x 480 (3X 640 x 480)",12);
-  outputResolutionList.addItem("2400 x 600 (3X 800 x 600)",13);
-  outputResolutionList.addItem("3072 x 768 (3X 1024 x 768)",14);
+  outputResolutionList.addItem("960 x 540",4);
+  outputResolutionList.addItem("1024 x 768",5);
+  outputResolutionList.addItem("1280 x 720",6);
+  outputResolutionList.addItem("1280 x 1024",7);
+  outputResolutionList.addItem("1920 x 1080",8);
+  outputResolutionList.addItem("1600 x 1200",9);
+  outputResolutionList.addItem("1280 x 480 (2X 640 x 480)",10);
+  outputResolutionList.addItem("1600 x 600 (2X 800 x 600)",11);
+  outputResolutionList.addItem("2048 x 768 (2X 1024 x 768)",12);
+  outputResolutionList.addItem("1920 x 480 (3X 640 x 480)",13);
+  outputResolutionList.addItem("2400 x 600 (3X 800 x 600)",14);
+  outputResolutionList.addItem("3072 x 768 (3X 1024 x 768)",15);
   
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
