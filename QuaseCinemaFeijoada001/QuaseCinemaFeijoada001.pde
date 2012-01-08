@@ -22,9 +22,8 @@ import controlP5.*; // controlP5 0.6.12 http://www.sojamo.de/libraries/controlP5
 import codeanticode.gsvideo.*; // GSvideo 1.0.0 http://gsvideo.sourceforge.net/
 import processing.opengl.*; import javax.media.opengl.GL; // openGL
 import sojamo.drop.*; // sDrop 0.1.4 http://www.sojamo.de/libraries/drop
-import mappingtools.*; // mappingtools 0.0.2 http://www.patricksaintdenis.com
-import ddf.minim.*; 
-import ddf.minim.analysis.*; // minim http://code.compartmental.net/tools/minim
+import mappingtools.*; // mappingtools 0.0.3 http://www.iact.umontreal.ca/mappingtools/
+import ddf.minim.*; import ddf.minim.analysis.*; // minim http://code.compartmental.net/tools/minim
 import themidibus.*; MidiBus myBus; // The MidiBus http://smallbutdigital.com/themidibus.php
 import codeanticode.syphon.*; SyphonServer syphon; // Syphon http://interfaze.info/
 
@@ -530,7 +529,7 @@ public void draw() {
   // bpm change movie
   //
 
-  if (layer1bpmMovie>0 && millis()-layer1bpmMovieLastTime >= map(layer1bpmMovie, 0, 240, 1000, 10)) { // layer 1
+  if (layer1bpmMovie>0 && millis()-layer1bpmMovieLastTime >= map(layer1bpmMovie, 0, 240, 36000, 200)) { // layer 1
     // change movie
     QCrandomMov(0);
 //    String tempString = rootFolder + dirs1[selectedDir1] + OSseparator;
@@ -547,7 +546,7 @@ public void draw() {
     //myMovie1.jump(random(myMovie1.duration()));
     layer1bpmMovieLastTime=millis();
   }
-  if (layer2bpmMovie>0 && millis()-layer2bpmMovieLastTime >= map(layer2bpmMovie, 0, 240, 1000, 10)) { // layer 2
+  if (layer2bpmMovie>0 && millis()-layer2bpmMovieLastTime >= map(layer2bpmMovie, 0, 240, 36000, 200)) { // layer 2
     // change movie
     QCrandomMov(1);
 //    String tempString = rootFolder + dirs2[selectedDir2] + OSseparator;
@@ -564,7 +563,7 @@ public void draw() {
     //myMovie2.jump(random(myMovie2.duration()));
     layer2bpmMovieLastTime=millis();
   }
-  if (layer3bpmMovie>0 && millis()-layer3bpmMovieLastTime >= map(layer3bpmMovie, 0, 240, 1000, 10)) { // layer 3
+  if (layer3bpmMovie>0 && millis()-layer3bpmMovieLastTime >= map(layer3bpmMovie, 0, 240, 36000, 200)) { // layer 3
     // change movie
     QCrandomMov(2);
 //    String tempString = rootFolder + dirs3[selectedDir3] + OSseparator;
@@ -581,7 +580,7 @@ public void draw() {
     //myMovie3.jump(random(0, myMovie3.duration()));
     layer3bpmMovieLastTime=millis();
   }
-  if (layer4bpmMovie>0 && millis()-layer4bpmMovieLastTime >= map(layer4bpmMovie, 0, 240, 1000, 10)) { // layer 4
+  if (layer4bpmMovie>0 && millis()-layer4bpmMovieLastTime >= map(layer4bpmMovie, 0, 240, 36000, 200)) { // layer 4
     // change movie
     QCrandomMov(3);
 //    String tempString = rootFolder + dirs4[selectedDir4] + OSseparator;

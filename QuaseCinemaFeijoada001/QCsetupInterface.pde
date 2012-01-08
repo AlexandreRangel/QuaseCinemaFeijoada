@@ -728,7 +728,7 @@ void QCsetupInterface() {
   outputResolutionList.addItem("320 x 240",1);
   outputResolutionList.addItem("640 x 480",2);
   outputResolutionList.addItem("800 x 600",3);
-  outputResolutionList.addItem("960 x 540",4);
+  outputResolutionList.addItem("854 x 480",4);
   outputResolutionList.addItem("1024 x 768",5);
   outputResolutionList.addItem("1280 x 720",6);
   outputResolutionList.addItem("1280 x 1024",7);

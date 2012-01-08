@@ -27,7 +27,7 @@ void QCchangeResolution() { // update resolution
       changeResolution = 100;
       break;
     case 4:
-      outputWidth = 960; outputHeight = 540;
+      outputWidth = 854; outputHeight = 480;
       outputGL.delete(); outputGL = createGraphics(outputWidth, outputHeight, OPENGL); frame.setSize(outputWidth,outputHeight);
       changeResolution = 100;
       break;
