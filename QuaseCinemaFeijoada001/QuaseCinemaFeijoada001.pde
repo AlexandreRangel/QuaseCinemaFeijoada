@@ -1,4 +1,4 @@
- ///
+//
 // Quase-Cinema Feijoada Remix 0.01+
 // Alexandre Rangel
 // www.quasecinema.org
@@ -74,8 +74,8 @@ String dirs1[] = new String[200]; String dirs2[] = new String[200]; String dirs3
 int fileCounter1 = 0; int fileCounter2 = 0; int fileCounter3 = 0; int fileCounter4 = 0;
 int fileCounter1limit = 21; int fileCounter2limit = 21; int fileCounter3limit = 21; int fileCounter4limit = 21;
 int selectedDir1 = 1; 
-int selectedDir2 = 2; 
-int selectedDir3 = 3; 
+int selectedDir2 = 2;
+int selectedDir3 = 3;
 int selectedDir4 = 4;
 int dirPages1 = 0; int dirPages2 = 0; int dirPages3 = 0; int dirPages4 = 0;
 int dirPageSelected1 = 0; int dirPageSelected2 = 0; int dirPageSelected3 = 0; int dirPageSelected4 = 0;
@@ -239,6 +239,8 @@ public void init() {
 void setup() {
   size(outputWidth, outputHeight, OPENGL); //hint(ENABLE_OPENGL_4X_SMOOTH);
 
+  
+  
   frame.setResizable(true);
   frameRate(60);
   // set to output location (position of second display, usually 1440,0)
@@ -529,7 +531,7 @@ public void draw() {
   // bpm change movie
   //
 
-  if (layer1bpmMovie>0 && millis()-layer1bpmMovieLastTime >= map(layer1bpmMovie, 0, 240, 36000, 200)) { // layer 1
+  if (layer1bpmMovie>0 && millis()-layer1bpmMovieLastTime >= map(layer1bpmMovie, 0, 240, 36000, 10)) { // layer 1
     // change movie
     QCrandomMov(0);
 //    String tempString = rootFolder + dirs1[selectedDir1] + OSseparator;
@@ -546,7 +548,7 @@ public void draw() {
     //myMovie1.jump(random(myMovie1.duration()));
     layer1bpmMovieLastTime=millis();
   }
-  if (layer2bpmMovie>0 && millis()-layer2bpmMovieLastTime >= map(layer2bpmMovie, 0, 240, 36000, 200)) { // layer 2
+  if (layer2bpmMovie>0 && millis()-layer2bpmMovieLastTime >= map(layer2bpmMovie, 0, 240, 36000, 10)) { // layer 2
     // change movie
     QCrandomMov(1);
 //    String tempString = rootFolder + dirs2[selectedDir2] + OSseparator;
@@ -563,7 +565,7 @@ public void draw() {
     //myMovie2.jump(random(myMovie2.duration()));
     layer2bpmMovieLastTime=millis();
   }
-  if (layer3bpmMovie>0 && millis()-layer3bpmMovieLastTime >= map(layer3bpmMovie, 0, 240, 36000, 200)) { // layer 3
+  if (layer3bpmMovie>0 && millis()-layer3bpmMovieLastTime >= map(layer3bpmMovie, 0, 240, 36000, 10)) { // layer 3
     // change movie
     QCrandomMov(2);
 //    String tempString = rootFolder + dirs3[selectedDir3] + OSseparator;
@@ -580,7 +582,7 @@ public void draw() {
     //myMovie3.jump(random(0, myMovie3.duration()));
     layer3bpmMovieLastTime=millis();
   }
-  if (layer4bpmMovie>0 && millis()-layer4bpmMovieLastTime >= map(layer4bpmMovie, 0, 240, 36000, 200)) { // layer 4
+  if (layer4bpmMovie>0 && millis()-layer4bpmMovieLastTime >= map(layer4bpmMovie, 0, 240, 36000, 10)) { // layer 4
     // change movie
     QCrandomMov(3);
 //    String tempString = rootFolder + dirs4[selectedDir4] + OSseparator;
