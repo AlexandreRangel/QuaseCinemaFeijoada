@@ -366,7 +366,7 @@ outputGL = (PGraphicsOpenGL) createGraphics(outputGLw, outputGLh, OPENGL);
 //  interface setup
 ////////////////////////////////////////
 
-cf = addControlFrame("Quase-Cinema Feijoada Remix 0.07");
+cf = addControlFrame("Quase-Cinema Feijoada Remix 0.07a");
 
 
 ////////////////////////////////////////
@@ -375,8 +375,7 @@ cf = addControlFrame("Quase-Cinema Feijoada Remix 0.07");
 
 OSname = System.getProperty("os.name");
 System.out.println("OS Name: "+OSname+", version: "+System.getProperty("os.version")+", " + System.getProperty("os.arch"));
-if (OSname.indexOf("Mac") != -1) { OSseparator = System.getProperty("file.separator");
-} else if (OSname.indexOf("Windows") != -1) { OSseparator = System.getProperty("file.separator"); } // end if separator
+OSseparator = System.getProperty("file.separator");
 println(PGraphicsOpenGL.OPENGL_RENDERER+", "+PGraphicsOpenGL.OPENGL_VERSION);
 
 
