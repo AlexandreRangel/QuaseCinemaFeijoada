@@ -1,10 +1,10 @@
 Quase-Cinema Feijoada VJ software
 
-made with Processing 2.0 beta 3
+Run with Processing 2.0 beta 3 (www.processing.org/download)
 
 Alexandre Rangel - VJ Xorume
 www.quasecinema.org
-
+rangel@quasecinema.org
 twitter: @AlexandreRangel
 
 videos:
