@@ -1,6 +1,7 @@
-Quase-Cinema Feijoada VJ software
+Quase-Cinema Feijoada Remix VJ software 0.7c
+3-November-2012
 
-Run with Processing 2.0 beta 3 (www.processing.org/download)
+Run with Processing 2.0 beta 6 (www.processing.org/download)
 
 Alexandre Rangel - VJ Xorume
 www.quasecinema.org

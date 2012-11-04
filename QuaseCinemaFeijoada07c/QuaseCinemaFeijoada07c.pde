@@ -1,5 +1,5 @@
 //
-// Quase-Cinema Feijoada Remix 0.7b
+// Quase-Cinema Feijoada Remix 0.7c
 //
 // Alexandre Rangel - VJ Xorume
 // www.quasecinema.org
@@ -7,7 +7,9 @@
 
 import java.awt.Frame;
 import java.awt.BorderLayout;
+
 import controlP5.*; // controlP5 2.0.3 http://www.sojamo.de/libraries/controlP5
+
 import processing.video.*;
 import sojamo.drop.*; // sDrop 0.1.4 http://www.sojamo.de/libraries/drop
 import ddf.minim.*; // minim http://code.compartmental.net/tools/minim
@@ -366,7 +368,7 @@ outputGL = (PGraphicsOpenGL) createGraphics(outputGLw, outputGLh, OPENGL);
 //  interface setup
 ////////////////////////////////////////
 
-cf = addControlFrame("Quase-Cinema Feijoada Remix 0.07a");
+cf = addControlFrame("Quase-Cinema Feijoada Remix 0.07c");
 
 
 ////////////////////////////////////////
@@ -385,7 +387,7 @@ println(PGraphicsOpenGL.OPENGL_RENDERER+", "+PGraphicsOpenGL.OPENGL_VERSION);
 //  movies setup
 ////////////////////////////////////////
 
-if (System.getProperty("user.name").equals("rangel2")) { // my folders
+if (System.getProperty("user.name").equals("rangel")) { // my folders
   defaultFolderPath = "/Volumes/SSD-Dados/QC_Performance/bin/data/_videos";
   defaultFolderPathImage = "/Volumes/SSD-Dados/QC_Performance/bin/data/_images";
   defaultFolderPathMp3 = "/Volumes/SSD-Dados/QC_Performance/bin/data/_audio";
@@ -567,7 +569,8 @@ if (frameCount % 10800 == 0) { // each 3 minutes
   System.gc();
   DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
   Date d = new Date(); clock = formatter.format(d);
-  println("Memory garbage collection done at "+clock+"."); }
+  println("Memory garbage collection done at "+clock+".");
+}
 
 
 //

@@ -19,10 +19,10 @@ void controllerChange(int channel, int number, int value) {
  //
  
  // layers bpm visibility
-//  if (channel==0 && number==23 && value==0) { layer1visibility = !layer1visibility; }
-//  else if (channel==0 && number==67 && value==0) { layer2visibility = !layer2visibility; }
-//  else if (channel==0 && number==107 && value==0) { layer3visibility = !layer3visibility; }
-//  else if (channel==0 && number==16 && value==0) { layer4visibility = !layer4visibility; }
+  if (channel==0 && number==23 && value==0) { layer1visibility = !layer1visibility; }
+  else if (channel==0 && number==67 && value==0) { layer2visibility = !layer2visibility; }
+  else if (channel==0 && number==107 && value==0) { layer3visibility = !layer3visibility; }
+  else if (channel==0 && number==16 && value==0) { layer4visibility = !layer4visibility; }
  
  // layers opacity
  // slider 1
