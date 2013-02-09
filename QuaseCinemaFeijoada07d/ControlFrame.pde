@@ -35,7 +35,6 @@ public void setup() {
 size(w, h); frameRate(30);
 cp5 = new ControlP5(this);
 cp5.setControlFont(new ControlFont(createFont("Arial",12, true), 12));
-//cp5.addSlider("abc").plugTo(parent, "def").setRange(0, 255);
 
 
 ////////////////////////////////////////
@@ -1633,7 +1632,7 @@ outputResolutionList.addItem("3072 x 768 (3X 1024 x 768)",15);
 
 
 textHelp = cf.control().addTextarea("helpText",
-"Quase-Cinema Feijoada Remix 0.07c\n"+
+"Quase-Cinema Feijoada Remix 0.07d\n"+
 "Alexandre Rangel (VJ Xorume), 2011-2012\n"+
 "www.quasecinema.org\n\n\n"+
 "Shortcuts\n"+

@@ -1,12 +1,20 @@
 //
-// Quase-Cinema Feijoada Remix 0.7c
+// Quase-Cinema Feijoada Remix 0.7d
 //
 // Alexandre Rangel - VJ Xorume
 // www.quasecinema.org
 //
+// Runs on Processing 2.0 beta 7
+//
+//
 
 import java.awt.Frame;
 import java.awt.BorderLayout;
+import java.util.*;
+import java.text.*;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 
 import controlP5.*; // controlP5 2.0.3 http://www.sojamo.de/libraries/controlP5
 
@@ -28,8 +36,8 @@ public int outputGLw = 640; public int outputGLh = 480; // openGL buffer size
 
 int layerOpacity1 = 255; int layerOpacity2 = 255; int layerOpacity3 = 255; int layerOpacity4 = 255;
 int layerComposite1select=0; int layerComposite2select=0; int layerComposite3select=0; int layerComposite4select=0;
-int doRandomize = 100; 
-int doRandomizeDir = 100; // 100 = don't do it
+int doRandomize = 100; // randomize movie at start 
+//int doRandomizeDir = 0; // 100 = don't do it
 //boolean reloadIcons1 = false; boolean reloadIcons2 = false; boolean reloadIcons3 = false; boolean reloadIcons4 = false;
 int iconLoadingLayer1 = 0; int iconLoadingLayer2 = 0; int iconLoadingLayer3 = 0; int iconLoadingLayer4 = 0;
 
@@ -368,7 +376,7 @@ outputGL = (PGraphicsOpenGL) createGraphics(outputGLw, outputGLh, OPENGL);
 //  interface setup
 ////////////////////////////////////////
 
-cf = addControlFrame("Quase-Cinema Feijoada Remix 0.07c");
+cf = addControlFrame("Quase-Cinema Feijoada Remix 0.07d");
 
 
 ////////////////////////////////////////
@@ -553,6 +561,11 @@ shaderContrast.set("saturation", 1.0);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void draw() {
+  
+  if (frameCount == 2) {
+    QCrandomDir(0);
+    QCrandomMov(0);
+  }
   //background(0,0,255);
   
   // glsl
@@ -565,7 +578,7 @@ void draw() {
   
 
 // memory garbage collection
-if (frameCount % 10800 == 0) { // each 3 minutes
+if (frameCount % 100000 == 0) { // each 3 minutes
   System.gc();
   DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
   Date d = new Date(); clock = formatter.format(d);
