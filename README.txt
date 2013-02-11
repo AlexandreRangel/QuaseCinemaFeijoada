@@ -1,4 +1,4 @@
-Quase-Cinema Feijoada Remix VJ software 0.7c
+Quase-Cinema Feijoada Remix VJ software 0.7d
 11-February-2013
 
 Run with Processing 2.0 beta 7 (www.processing.org/download)
